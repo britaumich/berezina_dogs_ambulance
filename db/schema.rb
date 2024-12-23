@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_014330) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_151143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "animal_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "animals", force: :cascade do |t|
+    t.string "nickname"
+    t.string "surname"
+    t.string "gender"
+    t.date "arival_date"
+    t.string "from_people"
+    t.string "from_place"
+    t.date "birth_year"
+    t.string "birth_month"
+    t.date "death_date"
+    t.string "color"
+    t.string "aviary"
+    t.string "description"
+    t.string "history"
+    t.string "graduation"
+    t.bigint "animal_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -31,5 +58,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_014330) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "animals", "animal_types"
   add_foreign_key "sessions", "users"
 end

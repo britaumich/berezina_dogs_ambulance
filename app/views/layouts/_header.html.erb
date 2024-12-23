@@ -16,11 +16,11 @@
             <div class="flex space-x-4">
               <div class="group relative cursor-pointer">
                 <div class="flex items-center justify-between">
-                  <%= content_tag :span, "Programs", class: "nav-top-link" %>
+                  <%= content_tag :span, "Граждане", class: "nav-top-link" %>
                 </div>
                 <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
-                  <%#= link_to "All Programs", programs_path, class: "nav-sub-link" %>
-                  <%= content_tag :span, "Animals", class: "nav-sub-link" %>
+                  <%= link_to "Animals", animals_path, class: "nav-sub-link" %>
+                  <%= link_to "Animal Types", animal_types_path, class: "nav-sub-link" %>
                 </div>
               </div>
             </div>

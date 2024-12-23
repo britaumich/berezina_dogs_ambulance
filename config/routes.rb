@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :animals
+  resources :animal_types
   resource :registration, only: [:new,:create]
   resource :session
   resources :passwords, param: :token

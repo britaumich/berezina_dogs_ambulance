@@ -39,7 +39,9 @@ module Authentication
 
     def request_authentication
       session[:return_to_after_authenticating] = request.url
-      redirect_to new_session_path
+      unless authenticated?
+        redirect_to new_session_path, alert: "Authenticate to access this page."
+      end
     end
 
     def after_authentication_url
