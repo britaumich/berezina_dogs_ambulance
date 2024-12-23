@@ -11,7 +11,7 @@
             </div>
           <% end %>
         </div>
-        <%# if user_signed_in? %>
+        <% if authenticated? %>
           <div class="hidden lg:ml-6 lg:block">
             <div class="flex space-x-4">
               <div class="group relative cursor-pointer">
@@ -25,8 +25,31 @@
               </div>
             </div>
           </div>
-        <%# end %>
+        <% end %>
       </div>
+
+      <div class="hidden lg:ml-6 lg:block">
+        <div class="flex items-center">
+          <% if authenticated? %>
+            <div>
+              <div class="text-white body-sm-text pb-1"><%= current_user.email_address %></div>
+              <%= link_to "Sign Out", session_path, 
+                method: :delete, 
+                data: { turbo_method: :delete, confirm: "Are you sure?" },
+                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200" 
+              %>
+            </div>
+          <% else %> 
+            <div>
+              <p class="text-lg text-gray-800">Please sign in to access more features.</p>
+              <%= link_to "Sign In", new_session_path, 
+                  class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200" 
+              %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
       
 
       <%# Mobile Nav button %>
