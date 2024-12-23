@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_151143) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_161920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -41,6 +41,26 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_151143) do
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
   end
 
+  create_table "medical_procedures", force: :cascade do |t|
+    t.date "date_complete"
+    t.boolean "complete"
+    t.date "date_planned"
+    t.text "notes"
+    t.bigint "animal_id", null: false
+    t.bigint "procedure_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_medical_procedures_on_animal_id"
+    t.index ["procedure_type_id"], name: "index_medical_procedures_on_procedure_type_id"
+  end
+
+  create_table "procedure_types", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -59,5 +79,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_151143) do
   end
 
   add_foreign_key "animals", "animal_types"
+  add_foreign_key "medical_procedures", "animals"
+  add_foreign_key "medical_procedures", "procedure_types"
   add_foreign_key "sessions", "users"
 end

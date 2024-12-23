@@ -23,6 +23,15 @@
                   <%= link_to "Animal Types", animal_types_path, class: "nav-sub-link" %>
                 </div>
               </div>
+              <div class="group relative cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <%= content_tag :span, "Медицина", class: "nav-top-link" %>
+                </div>
+                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                  <%= link_to "Типы Процедур", procedure_types_path, class: "nav-sub-link" %>
+                  <%= link_to "Процедуры", medical_procedures_path, class: "nav-sub-link" %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>

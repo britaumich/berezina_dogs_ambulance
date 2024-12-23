@@ -1,0 +1,21 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Procedure types" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Procedure types</h1>
+    <%= link_to "New procedure type", new_procedure_type_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="procedure_types" class="min-w-full">
+    <% @procedure_types.each do |procedure_type| %>
+      <%= render procedure_type %>
+      <p>
+        <%= link_to "Show this procedure type", procedure_type, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </p>
+    <% end %>
+  </div>
+</div>

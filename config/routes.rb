@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :medical_procedures
+  resources :procedure_types
   resources :animals
   resources :animal_types
   resource :registration, only: [:new,:create]
