@@ -1,0 +1,63 @@
+<nav data-controller="navbar" class="bg-blue-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <%= link_to root_path do %>
+            <div class="flex items-center">
+              <span class="text-white navlogo-sm-text pl-4">
+              Dogs Ambulance
+              </span>
+            </div>
+          <% end %>
+        </div>
+        <%# if user_signed_in? %>
+          <div class="hidden lg:ml-6 lg:block">
+            <div class="flex space-x-4">
+              <div class="group relative cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <%= content_tag :span, "Programs", class: "nav-top-link" %>
+                </div>
+                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                  <%#= link_to "All Programs", programs_path, class: "nav-sub-link" %>
+                  <%= content_tag :span, "Animals", class: "nav-sub-link" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%# end %>
+      </div>
+      
+
+      <%# Mobile Nav button %>
+      <div class="-mr-2 flex lg:hidden">
+        <!-- Mobile menu button -->
+        <button data-action="click->navbar#toggle" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="absolute -inset-0.5"></span>
+          <span class="sr-only">Open main menu</span>
+          <!--
+            Icon when menu is closed.
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <!--
+            Icon when menu is open.
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <%# end Mobile Nav button %>
+
+    </div>
+  </div>
+
+
+
+</nav>

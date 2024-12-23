@@ -11,3 +11,447 @@
 }
 
 */
+
+@layer base {
+  .header_link {
+    @apply border-transparent text-blue-50 inline-flex items-center pr-1 pt-1 border-b-2 text-xl font-normal hover:border-blue-300 text-white;
+  }
+
+  .active {
+    @apply text-yellow-500;
+  }
+
+  .unavailable {
+    @apply text-red-umred
+  }
+
+  .available {
+    @apply text-green-umgreen
+  }
+
+  h1 {
+    @apply text-4xl font-medium leading-10 my-10;
+  }
+
+  h2 {
+    @apply text-3xl font-medium leading-10;
+  }
+
+  h3 {
+    @apply text-xl font-medium leading-8;
+  }
+
+  h4 {
+    @apply text-base font-medium leading-6;
+  }
+
+  h5 {
+    @apply text-base font-normal leading-6;
+  }
+
+  h6 {
+    @apply text-sm font-medium leading-5;
+  }
+
+  hr {
+    @apply border-gray-um50 border m-2;
+  }
+
+  .card-title {
+    @apply text-xl font-medium leading-8;
+  }
+
+  .body-sm-text {
+    @apply text-sm font-normal;
+  }
+
+  .body-sm-bold-text {
+    @apply text-sm font-bold;
+  }
+
+  .body-sm-semibold-text {
+    @apply text-sm font-semibold text-gray-900
+  }
+
+  .body-md-text {
+    @apply text-base font-normal;
+  }
+
+  .body-md-medium-text {
+    @apply text-base font-medium;
+  }
+
+  .body-md-bold-text {
+    @apply text-base font-bold;
+  }
+
+  .body-lg-text {
+    @apply text-lg font-normal;
+  }
+
+  .body-lg-medium-text {
+    @apply text-lg font-medium;
+  }
+
+  .body-lg-bold-text {
+    @apply text-lg font-bold;
+  }
+
+  .nav-sm-text {
+    @apply text-sm font-normal;
+  }
+
+  .nav-sm-medium-text {
+    @apply text-sm font-medium;
+  }
+
+  .nav-sm-bold-text {
+    @apply text-sm font-bold;
+  }
+
+  .nav-text {
+    @apply text-base font-normal;
+  }
+
+  .nav-medium-text {
+    @apply text-base font-medium;
+  }
+
+  .nav-bold-text {
+    @apply text-base font-bold;
+  }
+
+  .nav-lg-text {
+    @apply text-lg font-normal;
+  }
+
+  .nav-lg-medium-text {
+    @apply text-2xl font-medium;
+  }
+
+  .nav-bold-text {
+    @apply text-2xl font-bold;
+  }
+
+  .navlogo-sm-text {
+    @apply text-4xl font-normal;
+  }
+
+  .nav-top-link {
+    @apply rounded-md px-3 py-2 text-xl font-normal text-white hover:text-yellow-ummaze;
+  }
+
+  .nav-sub-link {
+    @apply my-2 block py-1 nav-sm-text text-white hover:text-yellow-ummaze md:mx-2
+  }
+
+  .nav-top-link-mobile {
+    @apply rounded-md py-2 text-xl font-normal text-yellow-ummaze
+  }
+  
+  .nav-sub-link-mobile {
+    @apply mx-2 block py-1 nav-sm-text text-white md:mx-2
+  }
+
+  .button_label {
+    @apply text-sm font-medium leading-4 text-gray-550;
+  }
+
+  .text_field_label {
+    @apply text-base font-semibold leading-4 text-gray-900 mb-2;
+  }
+
+  .check_box {
+    @apply w-5 h-5 rounded mr-2 border-blue-umblue text-blue-umblue focus:ring-blue-umblue disabled:border-gray-400;
+  }
+
+  .check_box_text {
+    @apply font-medium leading-4 text-sm text-blue-umblue;
+  }
+
+  .primary_button {
+    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-white bg-blue-umblue;
+  }
+
+  .primary_button:hover {
+    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+  }
+
+  .primary_button:active {
+    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+  }
+
+  .primary_button:focus {
+    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+  }
+
+  .primary_button:disabled {
+    @apply opacity-50 bg-black pointer-events-none text-white;
+  }
+
+  .secondary_yellow_button {
+    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-blue-umblue bg-yellow-ummaze;
+  }
+
+  .secondary_yellow_button:hover {
+    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+  }
+
+  .secondary_yellow_button:active {
+    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+  }
+
+  .secondary_yellow_button:focus {
+    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+  }
+
+  .secondary_yellow_button:disabled {
+    @apply opacity-50 bg-black pointer-events-none text-white;
+  }
+
+  .secondary_blue_button {
+    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-white bg-blue-750;
+  }
+
+  .secondary_blue_button:hover {
+    @apply underline text-blue-750 bg-white border-solid border-blue-750 border-2;
+  }
+
+  .secondary_blue_button:active {
+    @apply underline text-blue-750 bg-white border-solid border-blue-750 border-2;
+  }
+
+  .secondary_blue_button:focus {
+    @apply underline text-blue-750 bg-white border-solid border-blue-750 border-2;
+  }
+
+  .secondary_blue_button:disabled {
+    @apply opacity-50 bg-black pointer-events-none text-white;
+  }
+
+  .tertiary_button {
+    @apply py-2 px-4 font-medium leading-7 text-xs text-blue-umblue;
+  }
+
+  .tertiary_button:hover {
+    @apply underline;
+  }
+
+  .tertiary_button:active {
+    @apply underline;
+  }
+
+  .tertiary_button:focus {
+    @apply underline;
+  }
+
+  .tertiary_button:disabled {
+    @apply text-opacity-50 pointer-events-none text-blue-umblue;
+  }
+
+  .sign_button {
+    @apply h-6 px-4 py-1 text-sm shadow-sm rounded text-blue-umblue bg-yellow-ummaze hover:bg-gray-700 hover:text-blue-300;
+  }
+
+  .sign_button_mobile {
+    @apply h-8 px-4 py-1 text-lg shadow-sm rounded text-blue-umblue bg-yellow-ummaze hover:bg-gray-700 hover:text-blue-300;
+  }
+
+  .link_to {
+    @apply text-blue-umlink hover:underline;
+  }
+
+  .link_to_white {
+    @apply text-gray-50 hover:underline;
+  }
+
+  .input_text_field {
+    @apply w-full text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500 placeholder placeholder:font-medium placeholder:leading-7 placeholder:text-sm placeholder:text-gray-um60;
+  }
+
+  .recurring_select {
+    @apply w-full text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500 focus:border-blue-500 
+    placeholder placeholder:font-medium placeholder:leading-7 placeholder:text-sm placeholder:text-gray-um60;
+  }
+
+  .fancy_label {
+    @apply text-sm font-semibold text-gray-900 bg-white relative px-1 top-2 left-3 w-auto group-focus-within:text-red-umred;
+  }
+
+  .filter_select {
+    @apply text-sm font-medium leading-4 text-blue-umblue bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
+  }
+
+  .file-upload {
+    @apply block shadow rounded-md border border-gray-600 outline-none px-3 py-2 mt-2 w-full;
+  }
+
+  .card_area {
+    @apply col-span-1 bg-white rounded-lg shadow-md divide-y divide-gray-400 px-2 place-items-stretch bg-white border border-gray-300 rounded-l
+  }
+
+  /* table */
+
+  .mi_table {
+    @apply px-2 min-w-full divide-y;
+  }
+
+  .report_table {
+    @apply p-2 min-w-full divide-y;
+  }
+
+  .mi_thead {
+    @apply border border-l-0 border-r-0 border-gray-um60;
+  }
+
+  .header_th {
+    @apply p-2 text-sm font-semibold leading-5 lg:table-cell text-left;
+  }
+
+  .header_th_small {
+    @apply px-2 text-sm font-semibold lg:table-cell text-left;
+  }
+
+  .header_mobile {
+    @apply p-2 text-sm font-semibold leading-5 lg:table-cell text-left;
+  }
+
+  .mi_tbody_td {
+    @apply relative p-2 sm:pl-2 text-sm leading-4 text-left;
+  }
+
+  .alert {
+    @apply text-red-umred text-lg font-medium;
+  }
+
+  .notice {
+    @apply text-green-umgreen text-lg font-medium;
+  }
+
+  .fields--hide {
+    @apply hidden
+  }
+
+  .fields--display {
+    @apply block
+  }
+
+  .error_text {
+    @apply text-red-umred text-sm font-normal;
+  }
+
+  /* ... */
+}
+
+@layer components {
+  .select2-dropdown {
+    @apply rounded-b-lg shadow-md;
+  }
+
+  .select2-search {
+    @apply border border-gray-300 rounded;
+  }
+
+  .select2-results__group {
+    @apply text-lg font-bold text-gray-900;
+  }
+
+  /* ... */
+  .switches [type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+    max-width: 150px;
+    width: 95%;
+    margin: 20px auto 0;
+    border-radius: 5px;
+    color: white;
+    background: RoyalBlue;
+  }
+
+  .switches li {
+    position: relative;
+    counter-increment: switchCounter;
+  }
+
+  .switches li:not(:last-child) {
+    border-bottom: 1px solid gray;
+  }
+
+  .switches .label-text {
+    padding-right: 2px;
+  }
+
+  .switches label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px 8px 10px;
+  }
+
+  .switches span:last-child {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+    background: gray;
+    transition: all 0.3s;
+  }
+
+  .switches span:last-child::before,
+  .switches span:last-child::after {
+    content: "";
+    position: absolute;
+  }
+
+  .switches span:last-child::before {
+    left: 4px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+
+  .switches span:last-child::after {
+    top: 50%;
+    right: 8px;
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+    background-size: 12px 12px;
+  }
+
+  .switches [type="checkbox"]:checked+label span:last-child {
+    background: green;
+  }
+
+  .switches [type="checkbox"]:checked+label span:last-child::before {
+    transform: translateX(24px);
+  }
+
+  .switches [type="checkbox"]:checked+label span:last-child::after {
+    width: 14px;
+    height: 14px;
+    left: 8px;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+    background-size: 14px 14px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .switches li::before {
+      display: none;
+    }
+  }
+
+}
+
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+}
