@@ -49,6 +49,7 @@ ru:
        description: "общее описание"
        history: "история"
        graduation: "выпуск"
+       animal_type_id: "вид"
 
   forms:
     messages:

@@ -1,0 +1,28 @@
+<%= turbo_frame_tag 'animals' do %>
+  <div class="min-w-full">
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-um60">
+        <tr>
+          <th class="header_th">id</th>
+          <th class="header_th">nickname</th>
+          <th class="header_th">surname</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @animals.each do |animal| %>
+          <rt>
+            <td class="mi_tbody_td">
+              <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= animal.nickname %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= animal.surname %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

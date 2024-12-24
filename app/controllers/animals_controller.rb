@@ -12,11 +12,13 @@ class AnimalsController < ApplicationController
 
   # GET /animals/new
   def new
+    @animal_types = AnimalType.all
     @animal = Animal.new
   end
 
   # GET /animals/1/edit
   def edit
+    @animal_types = AnimalType.all
   end
 
   # POST /animals or /animals.json

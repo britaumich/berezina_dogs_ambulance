@@ -10,12 +10,12 @@
     <%= link_to "New animal", new_animal_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="animals" class="min-w-full">
-    <% @animals.each do |animal| %>
-      <%= render animal %>
-      <p>
-        <%= link_to "Show this animal", animal, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag "turbo-animals" do %>
+    <div id="maincontent"></div>
+    <div class="mb-10" id="animals_listing">
+      <div id="animals" class="min-w-full">
+        <%= render 'animal_list' %>
+      </div>
+    </div>
+  <% end %>
 </div>

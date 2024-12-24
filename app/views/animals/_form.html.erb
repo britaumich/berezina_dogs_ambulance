@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :id %>
-    <%= form.text_field :id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :animal_type_id, class: "fancy_label" %>
+    <%= form.collection_select(:animal_type_id, @animal_types, :id, :name, { include_blank: "Select ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
@@ -84,11 +84,6 @@
   <div class="my-5">
     <%= form.label :graduation %>
     <%= form.text_field :graduation, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :animal_type_id %>
-    <%= form.text_field :animal_type_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
