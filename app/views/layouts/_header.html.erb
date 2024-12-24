@@ -16,20 +16,29 @@
             <div class="flex space-x-4">
               <div class="group relative cursor-pointer">
                 <div class="flex items-center justify-between">
-                  <%= content_tag :span, "Граждане", class: "nav-top-link" %>
+                  <%= content_tag :span, t('menu.header.citizens'), class: "nav-top-link" %>
                 </div>
                 <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
-                  <%= link_to "Animals", animals_path, class: "nav-sub-link" %>
-                  <%= link_to "Animal Types", animal_types_path, class: "nav-sub-link" %>
+                  <%= link_to t('menu.header.types'), animal_types_path, class: "nav-sub-link" %>
+                  <%= link_to t('menu.header.animals'), animals_path, class: "nav-sub-link" %>
                 </div>
               </div>
               <div class="group relative cursor-pointer">
                 <div class="flex items-center justify-between">
-                  <%= content_tag :span, "Медицина", class: "nav-top-link" %>
+                  <%= content_tag :span, t('menu.header.medicine'), class: "nav-top-link" %>
                 </div>
                 <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
-                  <%= link_to "Типы Процедур", procedure_types_path, class: "nav-sub-link" %>
-                  <%= link_to "Процедуры", medical_procedures_path, class: "nav-sub-link" %>
+                  <%= link_to t('menu.header.types'), procedure_types_path, class: "nav-sub-link" %>
+                  <%= link_to t('menu.header.procedures'), medical_procedures_path, class: "nav-sub-link" %>
+                </div>
+              </div>
+              <div class="group relative cursor-pointer">
+                <div class="flex items-center justify-between">
+                  <%= content_tag :span, t('menu.header.lang'), class: "nav-top-link" %>
+                </div>
+                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                  <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "nav-sub-link" %>
+                  <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "nav-sub-link" %>
                 </div>
               </div>
             </div>

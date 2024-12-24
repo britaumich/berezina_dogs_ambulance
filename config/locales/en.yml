@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  menu:
+    languages:
+      lang: "Language"
+      ru: "Russian"
+      en: "English"
