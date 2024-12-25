@@ -2,8 +2,21 @@
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
-  <%= link_to "Edit this animal", edit_animal_path(@animal), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to animals", animals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-
-  <%= render @animal %>
+  <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+    <h1><%= @animal.animal_type.name %></h1>
+    <div class="lg:grid lg:justify-items-end">
+      <%= link_to "Edit this animal", edit_animal_path(@animal), class: "primary_button mb-2" %>
+      <%= link_to animals_path do %>
+        <span class="tertiary_button">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          Back to Animals
+        </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2">
+    <div class="grid lg:col-span-2">
+      <%= render @animal %>
+    </div>
+  </div>
 </div>

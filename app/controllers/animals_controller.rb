@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: %i[ show edit update destroy ]
+  before_action :set_animal, only: %i[ show edit update upload_pictures destroy ]
 
   # GET /animals or /animals.json
   def index
@@ -49,6 +49,20 @@ class AnimalsController < ApplicationController
     end
   end
 
+  def upload_pictures
+    if @animal.update(animal_params)
+      render turbo_stream: turbo_stream.update("pictures", partial: "pictures")
+    else
+      render turbo_stream: turbo_stream.update("image_errors_picture", partial: "picture_errors", locals: { image_field_name: 'pictures' })
+    end
+  end
+
+  def delete_picture
+    delete_file = ActiveStorage::Attachment.find(params[:id])
+    delete_file.purge
+    redirect_back(fallback_location: request.referer)
+  end
+
   # DELETE /animals/1 or /animals/1.json
   def destroy
     @animal.destroy!
@@ -67,6 +81,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_month, :death_date, :color, :aviary, :description, :history, :graduation, :animal_type_id ])
+      params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_month, 
+        :death_date, :color, :aviary, :description, :history, :graduation, :animal_type_id, pictures: [] ])
     end
 end

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :medical_procedures
   resources :procedure_types
   resources :animals
+  post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
+  get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
+
   resources :animal_types
   resource :registration, only: [:new,:create]
   resource :session
