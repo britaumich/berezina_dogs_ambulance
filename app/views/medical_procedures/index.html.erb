@@ -7,12 +7,9 @@
     <%= link_to "New medical procedure", new_medical_procedure_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="medical_procedures" class="min-w-full">
-    <% @medical_procedures.each do |medical_procedure| %>
-      <%= render medical_procedure %>
-      <p>
-        <%= link_to "Show this medical procedure", medical_procedure, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag "medical_procedures" do %>
+    <div class="min-w-full mb-10" id="procedures_listing">
+      <%= render 'procedure_list' %>
+    </div>
+  <% end %>
 </div>
