@@ -8,11 +8,8 @@
   </div>
 
   <%= turbo_frame_tag "turbo-animals" do %>
-    <div id="maincontent"></div>
-    <div class="mb-10" id="animals_listing">
-      <div id="animals" class="min-w-full">
-        <%= render 'animal_list' %>
-      </div>
+    <div class="mb-10 min-w-full" id="animals_listing">
+      <%= render 'animal_list' %>
     </div>
   <% end %>
 </div>
