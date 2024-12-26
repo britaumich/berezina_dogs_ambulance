@@ -8,11 +8,6 @@
   </div>
 
   <div id="procedure_types" class="min-w-full">
-    <% @procedure_types.each do |procedure_type| %>
-      <%= render procedure_type %>
-      <p>
-        <%= link_to "Show this procedure type", procedure_type, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+     <%= render 'type_list' %>
   </div>
 </div>
