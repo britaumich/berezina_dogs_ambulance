@@ -1,12 +1,32 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto w-full">
   <div class="mx-auto">
-
-    <%= render @medical_procedure %>
-
-    <%= link_to "Edit this medical procedure", edit_medical_procedure_path(@medical_procedure), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to medical procedures", medical_procedures_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this medical procedure", @medical_procedure, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+    <h1>Medical Procedure</h1>
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div>
+        <%= render @medical_procedure %>
+      </div>
+      <div class="lg:flex lg:flex-col place-items-end whitespace-nowrap">
+        <div>
+          <%= link_to "Edit", edit_medical_procedure_path(@medical_procedure), class: "primary_button" %>
+        </div>
+        <div>
+          <%= link_to medical_procedure_path(@medical_procedure), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete} do %>
+            <span class="tertiary_button">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              Delete
+            </span>
+          <% end %>
+        </div>
+          <div>
+            <%= link_to medical_procedures_path do %>
+              <span class="tertiary_button">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                Back to Medical Procedures
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <div>
   </div>
 </div>
