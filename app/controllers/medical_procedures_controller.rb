@@ -12,6 +12,8 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures/new
   def new
+    @animals = Animal.all
+    @procedures = ProcedureType.all
     @medical_procedure = MedicalProcedure.new
   end
 
