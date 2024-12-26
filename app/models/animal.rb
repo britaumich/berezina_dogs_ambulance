@@ -6,4 +6,6 @@ class Animal < ApplicationRecord
   end
   include AppendToHasManyAttached['pictures']
 
+  has_many :medical_procedures
+
 end

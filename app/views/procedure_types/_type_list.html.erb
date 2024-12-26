@@ -1,0 +1,35 @@
+<%= turbo_frame_tag 'procedures' do %>
+  <div class="min-w-full">
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-um60">
+        <tr>
+          <th class="header_th">Name</th>
+          <th class="header_th">Description</th>
+          <th class="header_th">Edit</th>
+          <th class="header_th">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @procedure_types.each do |procedure_type| %>
+          <rt>
+            <td class="mi_tbody_td">
+              <%= procedure_type.name %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= procedure_type.description %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to edit_procedure_type_path(procedure_type), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(procedure_type)}_edit" } do%>
+              <i class="fa fa-pencil text-umgreen"></i>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to procedure_type_path(procedure_type), data: { turbo_confirm: 'Are you sure you want to delete this rover?', turbo_method: :delete}, aria: { label: "#{dom_id(procedure_type)}_delete" }  do %>
+              <i class="fa fa-trash-can text-red-umred"></i>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

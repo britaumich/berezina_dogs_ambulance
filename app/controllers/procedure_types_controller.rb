@@ -25,7 +25,7 @@ class ProcedureTypesController < ApplicationController
 
     respond_to do |format|
       if @procedure_type.save
-        format.html { redirect_to @procedure_type, notice: "Procedure type was successfully created." }
+        format.html { redirect_to procedure_types_url, notice: "Procedure type was successfully created." }
         format.json { render :show, status: :created, location: @procedure_type }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ProcedureTypesController < ApplicationController
   def update
     respond_to do |format|
       if @procedure_type.update(procedure_type_params)
-        format.html { redirect_to @procedure_type, notice: "Procedure type was successfully updated." }
+        format.html { redirect_to procedure_types_url, notice: "Procedure type was successfully updated." }
         format.json { render :show, status: :ok, location: @procedure_type }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -3,9 +3,12 @@
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-um60">
         <tr>
-          <th class="header_th">id</th>
-          <th class="header_th">nickname</th>
-          <th class="header_th">surname</th>
+          <th class="header_th">ID</th>
+          <th class="header_th">Nickname</th>
+          <th class="header_th">Surname</th>
+          <th class="header_th">Gender</th>
+          <th class="header_th">Age</th>
+          <th class="header_th">Aviary</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +22,15 @@
             </td>
             <td class="mi_tbody_td">
               <%= animal.surname %>
+            </td>
+            <td class="mi_tbody_td">
+            <%= animal.gender %>
+          </td>
+            <td class="mi_tbody_td">
+              <%= animal.birth_year %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= animal.aviary %>
             </td>
           </tr>
         <% end %>

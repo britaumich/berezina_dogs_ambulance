@@ -8,6 +8,7 @@ class AnimalsController < ApplicationController
 
   # GET /animals/1 or /animals/1.json
   def show
+    @medical_procedures = @animal.medical_procedures
   end
 
   # GET /animals/new

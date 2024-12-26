@@ -1,32 +1,55 @@
 <div id="<%= dom_id medical_procedure %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date complete:</strong>
-    <%= medical_procedure.date_complete %>
-  </p>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Animal:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= show_animal(medical_procedure.animal) %>
+      </p>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Complete:</strong>
-    <%= medical_procedure.complete %>
-  </p>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Procedure type:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.procedure_type.name %>
+      </p>
+    </div>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Date complete:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.date_complete %>
+      </p>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Date planned:</strong>
-    <%= medical_procedure.date_planned %>
-  </p>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Complete:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.complete %>
+      </p>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Notes:</strong>
-    <%= medical_procedure.notes %>
-  </p>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Date planned:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.date_planned %>
+      </p>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Animal:</strong>
-    <%= medical_procedure.animal_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Procedure type:</strong>
-    <%= medical_procedure.procedure_type_id %>
-  </p>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        Notes:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.notes %>
+      </p>
+    </div>
 
 </div>

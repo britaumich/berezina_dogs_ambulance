@@ -12,11 +12,15 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures/new
   def new
+    @animals = Animal.all
+    @procedures = ProcedureType.all
     @medical_procedure = MedicalProcedure.new
   end
 
   # GET /medical_procedures/1/edit
   def edit
+    @animals = Animal.all
+    @procedures = ProcedureType.all
   end
 
   # POST /medical_procedures or /medical_procedures.json

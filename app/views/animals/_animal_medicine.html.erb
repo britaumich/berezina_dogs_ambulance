@@ -1,0 +1,29 @@
+<h2>Медицинские назначения</h2>
+<%= turbo_frame_tag 'procedures' do %>
+  <div class="min-w-full">
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-um60">
+        <tr>
+          <th class="header_th">Название</th>
+          <th class="header_th">Дата по плану</th>
+          <th class="header_th">Дата проведения</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @medical_procedures.each do |procedure| %>
+          <rt>
+            <td class="mi_tbody_td">
+              <%= link_to procedure.procedure_type.name, medical_procedure_path(procedure), class: "link_to", data: {turbo_frame: "_top"} %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= show_date_with_month_name(procedure.date_planned) %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= show_date_with_month_name(procedure.date_complete) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
