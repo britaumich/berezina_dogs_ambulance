@@ -18,7 +18,7 @@
               <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
-              <%= animal.nickname %>
+              <%= link_to animal.nickname, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
               <%= animal.surname %>
