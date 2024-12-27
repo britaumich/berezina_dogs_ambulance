@@ -3,7 +3,7 @@
     <div>
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Id:
+          <%= t('activerecord.attributes.animal.id') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.id %>
@@ -13,7 +13,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Nickname:
+          <%= t('activerecord.attributes.animal.nickname') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.nickname %>
@@ -22,7 +22,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Surname:
+          <%= t('activerecord.attributes.animal.surname') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.surname %>
@@ -31,7 +31,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Gender:
+          <%= t('activerecord.attributes.animal.gender') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.gender %>
@@ -40,7 +40,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Arival date:
+          <%= t('activerecord.attributes.animal.arival_date') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.arival_date %>
@@ -49,7 +49,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          From people:
+          <%= t('activerecord.attributes.animal.from_people') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.from_people %>
@@ -58,7 +58,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          From place:
+          <%= t('activerecord.attributes.animal.from_place') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.from_place %>
@@ -67,7 +67,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Birth year:
+          <%= t('activerecord.attributes.animal.birth_year') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.birth_year %>
@@ -76,7 +76,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Birth month:
+          <%= t('activerecord.attributes.animal.birth_month') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.birth_month %>
@@ -85,7 +85,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Death date:
+          <%= t('activerecord.attributes.animal.death_date') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.death_date %>
@@ -94,7 +94,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Color:
+          <%= t('activerecord.attributes.animal.color') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.color %>
@@ -103,7 +103,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Aviary:
+          <%= t('activerecord.attributes.animal.aviary') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.aviary %>
@@ -112,7 +112,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Description:
+          <%= t('activerecord.attributes.animal.description') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.description %>
@@ -121,7 +121,7 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          History:
+          <%= t('activerecord.attributes.animal.history') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.history %>
@@ -130,21 +130,13 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          Graduation:
+          <%= t('activerecord.attributes.animal.graduation') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.graduation %>
         </p>
       </div>
 
-      <div class="py-2">
-        <p class="body-lg-bold-text inline">
-          Animal type:
-        </p>
-        <p class="body-lg-text pl-2 inline">
-          <%= animal.animal_type_id %>
-        </p>
-      </div>
     </div>
     <div>
       <%= render 'animal_medicine' %>
