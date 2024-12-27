@@ -30,37 +30,50 @@
 ru:
   text:
     hello: "привет"
+    Animal Types: "Виды животных"
+    Animals: "Животные"
+    Procedure Types: "Виды процедур"
+    Procedures: "Процедуры"
   activerecord:
-   attributes:
-     animal:
-       animals: "Животные"
-       id: "номер"
-       nickname: "кличка"
-       surname: "фамилия"
-       gender: "пол"
-       arival_date: "дата появления"
-       from_people: "кто привез"
-       from_place: "откуда"
-       birth_year: "год рождения"
-       birth_month: "месяц рождения"
-       death_date: "дата смерти"
-       color: "окрас"
-       aviary: "вольер"
-       description: "общее описание"
-       history: "история"
-       graduation: "выпуск"
-       animal_type_id: "вид"
-
+    attributes:
+      animal:
+        id: "Номер"
+        nickname: "Кличка"
+        surname: "Фамилия"
+        gender: "Пол"
+        arival_date: "Дата появления"
+        from_people: "Кто привез"
+        from_place: "Откуда"
+        birth_year: "Год рождения"
+        birth_month: "Месяц рождения"
+        death_date: "Дата смерти"
+        color: "Окрас"
+        aviary: "Вольер"
+        description: "Общее описание"
+        history: "История"
+        graduation: "Выпуск"
+        animal_type_id: "Вид"
+      animal_type:
+        name: "Название"
+      procedure_type:
+        name: "Название"
+        description: "Описание"
+      medical_procedure:
+        date_complete: "Дата проведения"
+        complete: "Закончено"
+        date_planned: "Дата по плану"
+        animal_id: "Животное"
+        procedure_type_id: "Процедура"
   forms:
     messages:
       success: "Операция была успешно выполнена!"
     buttons:
      edit: "Редактировать"
-     submit: "Отправить"
+     submit: "Сохранить"
+     delete: "Удалить"
   menu:
     new: "Добавить"
     languages:
-      lang: "Язык"
       ru: "Русский"
       en: "Английский"
     header:
@@ -69,4 +82,5 @@ ru:
       types: "Виды"
       procedures: "Процедуры"
       animals: "Животные"
+      language: "Язык"
 

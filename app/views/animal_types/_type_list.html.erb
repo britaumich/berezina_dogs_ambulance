@@ -1,11 +1,11 @@
-<%= turbo_frame_tag 'animals' do %>
+<%= turbo_frame_tag 'animal_types' do %>
   <div class="min-w-full">
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-um60">
         <tr>
-          <th class="header_th">Name</th>
-          <th class="header_th">Edit</th>
-          <th class="header_th">Delete</th>
+          <th class="header_th"><%= t('activerecord.attributes.animal_type.name') %></th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
         </tr>
       </thead>
       <tbody>
