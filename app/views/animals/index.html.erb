@@ -7,6 +7,93 @@
     <%= link_to "New animal", new_animal_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+  <div>
+    <%= search_form_for @q, class: "filter-form",
+      data:{ controller: "filters"} do |f| %>
+      
+
+        <div class="col-span-2 mb-4 flex justify-start">
+          <p>Group searching conditions by:</p>
+          <div class="ml-4">
+            <%= f.radio_button :m, 'and', :checked => true %>
+            <%= f.label :m, 'and', value: 'and' %>
+          </div>
+          <div class="ml-4">
+            <%= f.radio_button :m, 'or' %>
+            <%= f.label :m, 'or', value: 'or' %>
+          </div>
+        </div>
+      <div class="grid grid-cols-2 gap-x-2">
+        <div class="">
+          <div class="mx-2 mb-1">
+            <div>
+              <%= f.label :animal_type_id %>
+              <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
+            </div>
+            <div>
+              <%= f.label :nickname %>
+              <%= f.text_field :nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+            <div>
+              <%= f.label :surname %>
+              <%= f.text_field :surname_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+            <div>
+              <%= f.label :gender %>
+              <%= f.text_field :gender_eq, placeholder: "Equal", class: 'input_text_field' %>
+            </div>
+            <div class="flex items-end">
+              <div class="flex-1 w-1/2">
+                <%= f.label :arival_date %>
+                <%= f.text_field :arival_date_gteq, placeholder: "From", class: 'input_text_field',
+                  data: {
+                    controller: "flatpickr",
+                    flatpickr_date_format: "Y-m-d"
+                  } %>
+              </div>
+              <div class="ml-1 flex-1 w-1/2">
+                <%= f.text_field :arival_date_lteq, placeholder: "To", class: 'input_text_field',
+                  data: {
+                    controller: "flatpickr",
+                    flatpickr_date_format: "Y-m-d"
+                  } %>
+              </div>
+            </div>
+          </div>
+        </div>
+            
+
+        <div class="">
+          <div class="mx-2 mb-1">
+            <div>
+              <%= f.label :aviary %>
+              <%= f.text_field :aviary_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+            <div>
+              <%= f.label :description %>
+              <%= f.text_field :description_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+            <div>
+              <%= f.label :history %>
+              <%= f.text_field :history_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2 col-span-2 flex justify-start">
+          <div class="mr-2">
+            <%= f.submit 'Search', data: { disable_with: false }, class: '' %>
+          </div>
+          <div>
+            <button type="button" class="filter-clear-btn"
+              data-action='click->filters#clearFilters'>
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <%= turbo_frame_tag "turbo-animals" do %>
     <div class="mb-10 min-w-full" id="animals_listing">
       <%= render 'animal_list' %>

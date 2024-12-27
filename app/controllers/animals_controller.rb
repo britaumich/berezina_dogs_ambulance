@@ -3,7 +3,14 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
+    @animal_types = AnimalType.all
     @animals = Animal.all
+    if params[:q].nil?
+      @q = @animals.ransack(params[:q])
+    else
+      @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
+    end
+    @animals = @q.result.distinct
   end
 
   # GET /animals/1 or /animals/1.json
