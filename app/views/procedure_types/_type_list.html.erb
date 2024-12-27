@@ -1,12 +1,12 @@
-<%= turbo_frame_tag 'procedures' do %>
+<%= turbo_frame_tag 'procedure_types' do %>
   <div class="min-w-full">
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-um60">
         <tr>
-          <th class="header_th">Name</th>
-          <th class="header_th">Description</th>
-          <th class="header_th">Edit</th>
-          <th class="header_th">Delete</th>
+          <th class="header_th"><%= t('activerecord.attributes.procedure_type.name') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.procedure_type.description') %></th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
         </tr>
       </thead>
       <tbody>

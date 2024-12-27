@@ -3,11 +3,11 @@
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-um60">
         <tr>
-          <th class="header_th">Animal - Procedure</th>
-          <th class="header_th">Date complete</th>
-          <th class="header_th">Date planned</th>
-          <th class="header_th">Edit</th>
-          <th class="header_th">Delete</th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.animal_id') %> - <%= t('activerecord.attributes.medical_procedure.procedure_type_id') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_complete') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_planned') %></th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
         </tr>
       </thead>
       <tbody>

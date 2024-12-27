@@ -3,8 +3,8 @@
   <% content_for :title, "Procedure types" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Procedure types</h1>
-    <%= link_to "New procedure type", new_procedure_type_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl"><%= t('text.Procedure Types') %></h1>
+    <%= link_to t('menu.new'), new_procedure_type_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="procedure_types" class="min-w-full">
