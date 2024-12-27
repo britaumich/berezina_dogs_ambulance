@@ -51,6 +51,8 @@ gem "aws-sdk-s3", require: false
 
 gem 'rails-i18n'
 
+gem 'ransack', '~> 4.2', '>= 4.2.1'
+
 group :development, :test do
   gem "rspec-rails", "~> 7.0"
   gem "factory_bot_rails", "~> 6.0"
