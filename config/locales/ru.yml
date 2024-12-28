@@ -36,6 +36,9 @@ ru:
     Procedures: "Процедуры"
     Pictures: "Фотографии"
     Medical Procedures: "Медицинские назначения"
+  label: 
+    Birthday: "Дата рождения"
+    Age: "Возраст"
   activerecord:
     attributes:
       animal:

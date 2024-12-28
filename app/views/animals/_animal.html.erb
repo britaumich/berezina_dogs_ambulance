@@ -67,10 +67,19 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
-          <%= t('activerecord.attributes.animal.birth_year') %>:
+          <%= t('label.Birthday') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.birth_year %>
+        </p>
+      </div>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          <%= t('label.Age') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= age(animal) %>
         </p>
       </div>
 
