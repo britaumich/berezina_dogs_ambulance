@@ -7,13 +7,13 @@
       </div>
       <div class="lg:flex lg:flex-col place-items-end whitespace-nowrap">
         <div>
-          <%= link_to "Edit", edit_medical_procedure_path(@medical_procedure), class: "primary_button" %>
+          <%= link_to t('forms.buttons.edit'), edit_medical_procedure_path(@medical_procedure), class: "primary_button" %>
         </div>
-        <div>
+        <div class="mt-2">
           <%= link_to medical_procedure_path(@medical_procedure), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete} do %>
             <span class="tertiary_button">
               <i class="fa fa-times" aria-hidden="true"></i>
-              Delete
+              <%= t('forms.buttons.delete') %>
             </span>
           <% end %>
         </div>
@@ -21,7 +21,7 @@
             <%= link_to medical_procedures_path do %>
               <span class="tertiary_button">
                 <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
-                Back to Medical Procedures
+                <%= t('forms.buttons.back') %>
               </span>
             <% end %>
           </div>

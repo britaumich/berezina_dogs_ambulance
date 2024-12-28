@@ -1,7 +1,7 @@
 <div id="<%= dom_id medical_procedure %>">
     <div class="py-2">
       <p class="body-lg-bold-text inline">
-        Animal:
+        <%= t('activerecord.attributes.medical_procedure.animal_id') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= show_animal(medical_procedure.animal) %>
@@ -10,7 +10,7 @@
 
     <div class="py-2">
       <p class="body-lg-bold-text inline">
-        Procedure type:
+        <%= t('activerecord.attributes.medical_procedure.name') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= medical_procedure.procedure_type.name %>
@@ -18,7 +18,7 @@
     </div>
     <div class="py-2">
       <p class="body-lg-bold-text inline">
-        Date complete:
+        <%= t('activerecord.attributes.medical_procedure.date_complete') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= medical_procedure.date_complete %>
@@ -27,7 +27,7 @@
 
     <div class="py-2">
       <p class="body-lg-bold-text inline">
-        Complete:
+        <%= t('activerecord.attributes.medical_procedure.complete') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= medical_procedure.complete %>
@@ -36,7 +36,7 @@
 
     <div class="py-2">
       <p class="body-lg-bold-text inline">
-        Date planned:
+        <%= t('activerecord.attributes.medical_procedure.date_planned') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= medical_procedure.date_planned %>

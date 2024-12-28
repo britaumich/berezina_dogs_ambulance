@@ -34,6 +34,8 @@ ru:
     Animals: "Животные"
     Procedure Types: "Виды процедур"
     Procedures: "Процедуры"
+    Pictures: "Фотографии"
+    Medical Procedures: "Медицинские назначения"
   activerecord:
     attributes:
       animal:
@@ -71,6 +73,7 @@ ru:
      edit: "Редактировать"
      submit: "Сохранить"
      delete: "Удалить"
+     back: "Назад к списку"
   menu:
     new: "Добавить"
     languages:
