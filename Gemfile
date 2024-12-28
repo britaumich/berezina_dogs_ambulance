@@ -48,10 +48,9 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 
 gem "aws-sdk-s3", require: false
-
 gem 'rails-i18n'
-
 gem 'ransack', '~> 4.2', '>= 4.2.1'
+gem 'simple_form', '~> 5.3'
 
 group :development, :test do
   gem "rspec-rails", "~> 7.0"

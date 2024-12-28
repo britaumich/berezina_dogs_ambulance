@@ -269,6 +269,10 @@
     @apply w-full text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
   }
 
+  .short_input_text_field {
+    @apply w-1/4 text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
+  }
+
   .input_text_field:placeholder {
     @apply font-medium leading-7 text-sm text-gray-um60;
   }

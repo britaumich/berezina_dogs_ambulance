@@ -1,4 +1,4 @@
-<%= form_with(model: animal, class: "contents") do |form| %>
+<%= simple_form_for animal do |form| %>
   <% if animal.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
@@ -47,13 +47,9 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :birth_year %>
-    <%= form.date_field :birth_year, class: "input_text_field" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :birth_month %>
-    <%= form.text_field :birth_month, class: "input_text_field" %>
+    <%= form.input :birth_year, as: :date, start_year: Date.today.year - 12,
+                                      end_year: Date.today.year, default: { day: 1, month: 1 },
+                                      input_html: { class: "inline short_input_text_field" }, label: t('label.Birthday') %>
   </div>
 
   <div class="my-5">

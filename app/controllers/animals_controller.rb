@@ -76,7 +76,7 @@ class AnimalsController < ApplicationController
     @animal.destroy!
 
     respond_to do |format|
-      format.html { redirect_to animals_path, status: :see_other, notice: "Animal was successfully destroyed." }
+      format.html { redirect_to animals_path, status: :see_other, notice: "Animal was successfully deleted." }
       format.json { head :no_content }
     end
   end
