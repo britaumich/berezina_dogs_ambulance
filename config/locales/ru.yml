@@ -73,6 +73,7 @@ ru:
      edit: "Редактировать"
      submit: "Сохранить"
      delete: "Удалить"
+     back: "Назад к списку"
   menu:
     new: "Добавить"
     languages:
