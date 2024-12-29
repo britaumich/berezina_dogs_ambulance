@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_28_195824) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_28_204014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -74,7 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_28_195824) do
   end
 
   create_table "aviaries", force: :cascade do |t|
-    t.boolean "sections", default: false
+    t.boolean "has_sections", default: false
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
