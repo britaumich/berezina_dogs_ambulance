@@ -106,7 +106,7 @@
           <%= t('activerecord.attributes.animal.aviary') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
-          <%= animal.aviary %>
+          <%= animal.aviary&.name %>
         </p>
       </div>
 

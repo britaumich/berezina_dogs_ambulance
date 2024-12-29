@@ -21,12 +21,14 @@ class AnimalsController < ApplicationController
   # GET /animals/new
   def new
     @animal_types = AnimalType.all
+    @aviaries = Aviary.all
     @animal = Animal.new
   end
 
   # GET /animals/1/edit
   def edit
     @animal_types = AnimalType.all
+    @aviaries = Aviary.all
   end
 
   # POST /animals or /animals.json
@@ -90,6 +92,6 @@ class AnimalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def animal_params
       params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_month, 
-        :death_date, :color, :aviary, :description, :history, :graduation, :animal_type_id, pictures: [] ])
+        :death_date, :color, :aviary_id, :description, :history, :graduation, :animal_type_id, pictures: [] ])
     end
 end

@@ -63,8 +63,8 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :aviary %>
-    <%= form.text_field :aviary, class: "input_text_field" %>
+    <%= form.label :aviary_id %>
+    <%= form.collection_select(:aviary_id, @aviaries, :id, :name, { include_blank: "Select ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
