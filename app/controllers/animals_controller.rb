@@ -22,6 +22,7 @@ class AnimalsController < ApplicationController
   def new
     @animal_types = AnimalType.all
     @aviaries = Aviary.all
+    @sections = []
     @animal = Animal.new
   end
 
@@ -29,12 +30,14 @@ class AnimalsController < ApplicationController
   def edit
     @animal_types = AnimalType.all
     @aviaries = Aviary.all
+    if @animal.aviary.has_sections
+      @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
+    end
   end
 
   # POST /animals or /animals.json
   def create
     @animal = Animal.new(animal_params)
-
     respond_to do |format|
       if @animal.save
         format.html { redirect_to @animal, notice: "Animal was successfully created." }
@@ -91,7 +94,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_month, 
-        :death_date, :color, :aviary_id, :description, :history, :graduation, :animal_type_id, pictures: [] ])
+      params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_date, :birth_month, 
+        :death_date, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, pictures: [] ])
     end
 end

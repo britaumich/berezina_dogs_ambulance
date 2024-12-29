@@ -57,6 +57,15 @@ class AviariesController < ApplicationController
     end
   end
 
+  def get_sections
+    aviary_id = params[:aviary_id]
+    if Aviary.find(aviary_id).has_sections
+      render json: Section.where(aviary_id: aviary_id).order(:name).map { |s| [s.id, s.name] }
+    else
+      render json: []
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_aviary
