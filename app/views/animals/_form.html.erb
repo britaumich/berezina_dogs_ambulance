@@ -69,10 +69,15 @@
   </div>
 
   <% if @animal.persisted? %>
-    <% if @animal.aviary.has_sections %>
+    <% if @animal.aviary&.has_sections %>
       <div class="" data-animal-target="show_sections">
         <%= form.label :section_id %>
         <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "Select Section ..."}, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
+      </div>
+    <% else %>
+      <div class="hidden" data-animal-target="show_sections">
+        <%= form.label :section_id %>
+        <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "Select Section ..."}, { "data-animal-target": "section", class: "input_text_field" } %>
       </div>
     <% end %>
   <% else %>

@@ -30,8 +30,10 @@ class AnimalsController < ApplicationController
   def edit
     @animal_types = AnimalType.all
     @aviaries = Aviary.all
-    if @animal.aviary.has_sections
+    if @animal.aviary&.has_sections
       @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
+    else 
+      @sections = []
     end
   end
 
