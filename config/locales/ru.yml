@@ -36,6 +36,7 @@ ru:
     Procedures: "Процедуры"
     Pictures: "Фотографии"
     Medical Procedures: "Медицинские назначения"
+    Aviary: "Вольер"
   label: 
     Birthday: "Дата рождения"
     Age: "Возраст"
@@ -60,6 +61,10 @@ ru:
         animal_type_id: "Вид"
       animal_type:
         name: "Название"
+      aviary:
+        sections: "Секции"
+        name: "Название"
+        description: "Описание"
       procedure_type:
         name: "Название"
         description: "Описание"
@@ -88,5 +93,6 @@ ru:
       types: "Виды"
       procedures: "Процедуры"
       animals: "Животные"
+      aviaries: "Вольеры"
       language: "Язык"
 
