@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :sections
-  resources :aviaries
+  resources :aviaries do
+    resources :sections, module: :aviaries
+  end
   resources :medical_procedures
   resources :procedure_types
   resources :animals
