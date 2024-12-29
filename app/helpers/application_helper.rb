@@ -17,8 +17,8 @@ module ApplicationHelper
   end
 
   def age(animal)
-    if animal.birth_year.present?
-      dob = animal.birth_year
+    if animal.birth_date.present?
+      dob = animal.birth_date
       now = Date.today
       months = (now.year * 12 + now.month) - (dob.year * 12 + dob.month)
 
@@ -38,6 +38,15 @@ module ApplicationHelper
   
     "#{year_text}#{pluralize(months, 'month')}"
   end
-  
-  
+
+  def show_aviary(animal)
+    aviary = ''
+    if animal.aviary&.name.present?
+      aviary += animal.aviary.name
+    end
+    if animal.section&.name.present?
+      aviary += ", #{t('activerecord.attributes.animal.section')} " + animal.section.name
+    end
+    return aviary
+  end
 end

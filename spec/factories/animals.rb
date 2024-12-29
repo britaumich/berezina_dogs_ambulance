@@ -6,8 +6,7 @@ FactoryBot.define do
     arival_date { "2024-12-23" }
     from_people { "MyString" }
     from_place { "MyString" }
-    birth_year { "2024-12-23" }
-    birth_month { "MyString" }
+    birth_date { "2024-12-23" }
     death_date { "2024-12-23" }
     color { "MyString" }
     aviary { "MyString" }

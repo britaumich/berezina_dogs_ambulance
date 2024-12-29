@@ -36,6 +36,8 @@ ru:
     Procedures: "Процедуры"
     Pictures: "Фотографии"
     Medical Procedures: "Медицинские назначения"
+    Aviary: "Вольер"
+    Aviaries: "Вольеры"
   label: 
     Birthday: "Дата рождения"
     Age: "Возраст"
@@ -49,17 +51,21 @@ ru:
         arival_date: "Дата появления"
         from_people: "Кто привез"
         from_place: "Откуда"
-        birth_year: "Год рождения"
-        birth_month: "Месяц рождения"
+        birth_date: "Дата рождения"
         death_date: "Дата смерти"
         color: "Окрас"
         aviary: "Вольер"
+        section: "секция"
         description: "Общее описание"
         history: "История"
         graduation: "Выпуск"
         animal_type_id: "Вид"
       animal_type:
         name: "Название"
+      aviary:
+        sections: "Секции"
+        name: "Название"
+        description: "Описание"
       procedure_type:
         name: "Название"
         description: "Описание"
@@ -88,5 +94,6 @@ ru:
       types: "Виды"
       procedures: "Процедуры"
       animals: "Животные"
+      aviaries: "Вольеры"
       language: "Язык"
 

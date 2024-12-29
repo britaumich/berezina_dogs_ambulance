@@ -34,3 +34,7 @@ en:
       lang: "Language"
       ru: "Russian"
       en: "English"
+  activerecord:
+    attributes:
+      animal:
+        section: "section"

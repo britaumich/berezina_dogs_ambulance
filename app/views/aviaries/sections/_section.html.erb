@@ -1,0 +1,10 @@
+<%= turbo_frame_tag section do %>
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        <%= t('activerecord.attributes.section.name') %>:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= section.name%>
+      </p>
+    </div>
+<% end %>

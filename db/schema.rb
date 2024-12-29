@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_25_040926) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_29_230809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,8 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_040926) do
     t.date "arival_date"
     t.string "from_people"
     t.string "from_place"
-    t.date "birth_year"
-    t.string "birth_month"
+    t.date "birth_date"
     t.date "death_date"
     t.string "color"
     t.string "aviary"
@@ -66,7 +65,19 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_040926) do
     t.bigint "animal_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "aviary_id"
+    t.bigint "section_id"
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
+    t.index ["aviary_id"], name: "index_animals_on_aviary_id"
+    t.index ["section_id"], name: "index_animals_on_section_id"
+  end
+
+  create_table "aviaries", force: :cascade do |t|
+    t.boolean "has_sections", default: false
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "medical_procedures", force: :cascade do |t|
@@ -87,6 +98,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_040926) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "aviary_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aviary_id"], name: "index_sections_on_aviary_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -111,5 +131,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_25_040926) do
   add_foreign_key "animals", "animal_types"
   add_foreign_key "medical_procedures", "animals"
   add_foreign_key "medical_procedures", "procedure_types"
+  add_foreign_key "sections", "aviaries"
   add_foreign_key "sessions", "users"
 end
