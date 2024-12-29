@@ -1,4 +1,5 @@
-<%= simple_form_for animal do |form| %>
+<%= simple_form_for animal,
+  data: { controller: "animal" } do |form| %>
   <% if animal.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
@@ -46,10 +47,10 @@
     <%= form.text_field :from_place, class: "input_text_field" %>
   </div>
 
-  <div class="my-5">
-    <%= form.input :birth_year, as: :date, start_year: Date.today.year - 12,
+  <div class="my-5 mr-2">
+    <%= form.input :birth_date, as: :date, start_year: Date.today.year - 12,
                                       end_year: Date.today.year, default: { day: 1, month: 1 },
-                                      input_html: { class: "inline short_input_text_field" }, label: t('label.Birthday') %>
+                                      input_html: { class: "inline short_input_text_field ml-2" } %>
   </div>
 
   <div class="my-5">
@@ -64,8 +65,22 @@
 
   <div class="my-5">
     <%= form.label :aviary_id %>
-    <%= form.collection_select(:aviary_id, @aviaries, :id, :name, { include_blank: "Select ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:aviary_id, @aviaries, :id, :name, { include_blank: "Select ..." }, { "data-action": "change->animal#getSections", "data-animal-target": "aviary_select", "class": "input_text_field" } ) %>
   </div>
+
+  <% if @animal.persisted? %>
+    <% if @animal.aviary.has_sections %>
+      <div class="" data-animal-target="show_sections">
+        <%= form.label :section_id %>
+        <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "Select Section ..."}, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="hidden" data-animal-target="show_sections">
+      <%= form.label :section_id %>
+      <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "Select Section ..."}, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
+    </div>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :description %>
