@@ -1,4 +1,6 @@
 class Section < ApplicationRecord
+  include ActionView::RecordIdentifier
   belongs_to :aviary
-  has_nmany :animals
+  has_many :animals
+
 end

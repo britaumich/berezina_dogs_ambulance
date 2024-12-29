@@ -1,4 +1,4 @@
 class Aviary < ApplicationRecord
   has_many :sections
-  has_nmany :animals
+  has_many :animals
 end

@@ -1,17 +1,47 @@
 <div id="<%= dom_id aviary %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Sections:</strong>
-    <%= aviary.sections %>
-  </p>
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div>
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          Sections:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= aviary.has_sections %>
+        </p>
+      </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= aviary.name %>
-  </p>
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          Name:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= aviary.name %>
+        </p>
+      </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= aviary.description %>
-  </p>
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          Description:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= aviary.description %>
+        </p>
+      </div>
+    </div>
+    <div class="container p-2 rounded-lg shadow-lg text-xl mb-20 bg-gray-50">
+      <h2 class="mb-4">Add Sections:</h2>
+      <%= turbo_frame_tag 'new_section_form' do %>
+        <%= render "aviaries/sections/form", section: Section.new %>
+      <% end %>
+    
+      <%= turbo_stream_from @aviary, :sections %>
+      <%= turbo_frame_tag 'sections_list' do %>
+
+        <%= tag.div id: "#{dom_id(@aviary)}_sections" do %>
+          <%= render "aviaries/sections/sections_list", sections: @aviary.sections %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
 </div>
