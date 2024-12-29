@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_28_204014) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_29_230809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,8 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_28_204014) do
     t.date "arival_date"
     t.string "from_people"
     t.string "from_place"
-    t.date "birth_year"
-    t.string "birth_month"
+    t.date "birth_date"
     t.date "death_date"
     t.string "color"
     t.string "aviary"
