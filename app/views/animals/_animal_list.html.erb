@@ -4,6 +4,7 @@
       <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
           <th class="header_th"><%= t('activerecord.attributes.animal.id') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.animal.animal_type_id') %></th>
           <th class="header_th"><%= t('activerecord.attributes.animal.nickname') %></th>
           <th class="header_th"><%= t('activerecord.attributes.animal.surname') %></th>
           <th class="header_th"><%= t('activerecord.attributes.animal.gender') %></th>
@@ -17,6 +18,9 @@
           <rt>
             <td class="mi_tbody_td">
               <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= animal.animal_type.name %>
             </td>
             <td class="mi_tbody_td">
               <%= link_to animal.nickname, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
