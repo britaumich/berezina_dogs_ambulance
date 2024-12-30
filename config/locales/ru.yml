@@ -38,6 +38,22 @@ ru:
     Medical Procedures: "Медицинские назначения"
     Aviary: "Вольер"
     Aviaries: "Вольеры"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Не найдено ни одной записи"
+          one: "Найдена <b>1</b> запись"
+          other: "Найдены <b>все</b> записи - <b>%{count}</b>"
+      more_pages:
+        display_entries: "Показаны <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> записей"
+  views:
+    pagination:
+      first: "&laquo; Первый"
+      last: "Последний &raquo;"
+      previous: "&lsaquo; Бывший"
+      next: "Следующий &rsaquo;"
+      truncate: "..."
   label: 
     Birthday: "Дата рождения"
     Age: "Возраст"

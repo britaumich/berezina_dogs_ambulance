@@ -11,7 +11,7 @@ class AnimalsController < ApplicationController
     else
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
-    @animals = @q.result.distinct
+    @animals = @q.result.distinct.page(params[:page])
   end
 
   # GET /animals/1 or /animals/1.json

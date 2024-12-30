@@ -98,7 +98,13 @@
   </div>
   <%= turbo_frame_tag "turbo-animals" do %>
     <div class="mb-10 min-w-full" id="animals_listing">
+      <div class="my-2" >
+        <%= page_entries_info @animals %>
+      </div>
       <%= render 'animal_list' %>
+      <div class="my-2 flex justify-center" >
+        <%= paginate @animals %>
+      </div>
     </div>
   <% end %>
 </div>
