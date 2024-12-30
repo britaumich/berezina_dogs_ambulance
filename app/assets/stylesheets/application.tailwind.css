@@ -22,11 +22,11 @@
   }
 
   .unavailable {
-    @apply text-red-umred
+    @apply text-red-950
   }
 
   .available {
-    @apply text-green-umgreen
+    @apply text-green-950
   }
 
   h1 {
@@ -54,7 +54,7 @@
   }
 
   hr {
-    @apply border-gray-um50 border m-2;
+    @apply border-gray-650 border m-2;
   }
 
   .card-title {
@@ -138,15 +138,15 @@
   }
 
   .nav-top-link {
-    @apply rounded-md px-3 py-2 text-xl font-normal text-white hover:text-yellow-ummaze;
+    @apply rounded-md px-3 py-2 text-xl font-normal text-white hover:text-yellow-950;
   }
 
   .nav-sub-link {
-    @apply my-2 block py-1 nav-sm-text text-white hover:text-yellow-ummaze md:mx-2
+    @apply my-2 block py-1 nav-sm-text text-white hover:text-yellow-950 md:mx-2
   }
 
   .nav-top-link-mobile {
-    @apply rounded-md py-2 text-xl font-normal text-yellow-ummaze
+    @apply rounded-md py-2 text-xl font-normal text-yellow-950
   }
   
   .nav-sub-link-mobile {
@@ -162,27 +162,27 @@
   }
 
   .check_box {
-    @apply w-5 h-5 rounded mr-2 border-blue-umblue text-blue-umblue focus:ring-blue-umblue disabled:border-gray-400;
+    @apply w-5 h-5 rounded mr-2 border-blue-950 text-blue-950 focus:ring-blue-950 disabled:border-gray-400;
   }
 
   .check_box_text {
-    @apply font-medium leading-4 text-sm text-blue-umblue;
+    @apply font-medium leading-4 text-sm text-blue-950;
   }
 
   .primary_button {
-    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-white bg-blue-umblue;
+    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-white bg-green-950;
   }
 
   .primary_button:hover {
-    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+    @apply underline text-green-950 bg-white border-solid border-green-950 border-2;
   }
 
   .primary_button:active {
-    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+    @apply underline text-green-950 bg-white border-solid border-green-950 border-2;
   }
 
   .primary_button:focus {
-    @apply underline text-blue-umblue bg-white border-solid border-blue-umblue border-2;
+    @apply underline text-green-950 bg-white border-solid border-green-950 border-2;
   }
 
   .primary_button:disabled {
@@ -190,19 +190,19 @@
   }
 
   .secondary_yellow_button {
-    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-blue-umblue bg-yellow-ummaze;
+    @apply py-2 px-4 font-medium leading-7 text-xs border rounded-md text-blue-950 bg-yellow-950;
   }
 
   .secondary_yellow_button:hover {
-    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+    @apply underline text-blue-950 bg-white border-solid border-yellow-950 border-2;
   }
 
   .secondary_yellow_button:active {
-    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+    @apply underline text-blue-950 bg-white border-solid border-yellow-950 border-2;
   }
 
   .secondary_yellow_button:focus {
-    @apply underline text-blue-umblue bg-white border-solid border-yellow-ummaze border-2;
+    @apply underline text-blue-950 bg-white border-solid border-yellow-950 border-2;
   }
 
   .secondary_yellow_button:disabled {
@@ -230,7 +230,7 @@
   }
 
   .tertiary_button {
-    @apply py-2 px-4 font-medium leading-7 text-xs text-blue-umblue;
+    @apply py-2 px-4 font-medium leading-7 text-xs text-blue-950;
   }
 
   .tertiary_button:hover {
@@ -246,19 +246,19 @@
   }
 
   .tertiary_button:disabled {
-    @apply text-opacity-50 pointer-events-none text-blue-umblue;
+    @apply text-opacity-50 pointer-events-none text-blue-950;
   }
 
   .sign_button {
-    @apply h-6 px-4 py-1 text-sm shadow-sm rounded text-blue-umblue bg-yellow-ummaze hover:bg-gray-700 hover:text-blue-300;
+    @apply h-6 px-4 py-1 text-sm shadow-sm rounded text-blue-950 bg-yellow-950 hover:bg-gray-700 hover:text-blue-300;
   }
 
   .sign_button_mobile {
-    @apply h-8 px-4 py-1 text-lg shadow-sm rounded text-blue-umblue bg-yellow-ummaze hover:bg-gray-700 hover:text-blue-300;
+    @apply h-8 px-4 py-1 text-lg shadow-sm rounded text-blue-950 bg-yellow-950 hover:bg-gray-700 hover:text-blue-300;
   }
 
   .link_to {
-    @apply text-blue-umlink hover:underline;
+    @apply text-blue-950 hover:underline;
   }
 
   .link_to_white {
@@ -266,23 +266,23 @@
   }
 
   .input_text_field {
-    @apply w-full text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
+    @apply w-full text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-green-950;
   }
 
   .short_input_text_field {
-    @apply w-1/4 text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
+    @apply w-1/4 text-lg font-medium text-gray-900 bg-white border border-gray-600 rounded block p-2 focus:ring-green-950;
   }
 
   .input_text_field:placeholder {
-    @apply font-medium leading-7 text-sm text-gray-um60;
+    @apply font-medium leading-7 text-sm text-gray-750;
   }
 
   .fancy_label {
-    @apply text-sm font-semibold text-gray-900 bg-white relative px-1 top-2 left-3 w-auto group-focus-within:text-red-umred;
+    @apply text-sm font-semibold text-gray-900 bg-white relative px-1 top-2 left-3 w-auto group-focus-within:text-red-950;
   }
 
   .filter_select {
-    @apply text-sm font-medium leading-4 text-blue-umblue bg-white border border-gray-600 rounded block p-2 focus:ring-blue-500;
+    @apply text-sm font-medium leading-4 text-blue-950 bg-white border border-gray-600 rounded block p-2 focus:ring-green-950;
   }
 
   .file-upload {
@@ -304,7 +304,7 @@
   }
 
   .mi_thead {
-    @apply border border-l-0 border-r-0 border-gray-um60;
+    @apply border border-l-0 border-r-0 border-gray-750;
   }
 
   .header_th {
@@ -324,11 +324,11 @@
   }
 
   .alert {
-    @apply text-red-umred text-lg font-medium;
+    @apply text-red-950 text-lg font-medium;
   }
 
   .notice {
-    @apply text-green-umgreen text-lg font-medium;
+    @apply text-green-950 text-lg font-medium;
   }
 
   .fields--hide {
@@ -340,7 +340,7 @@
   }
 
   .error_text {
-    @apply text-red-umred text-sm font-normal;
+    @apply text-red-950 text-sm font-normal;
   }
 
   /* ... */

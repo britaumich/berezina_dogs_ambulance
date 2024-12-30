@@ -9,7 +9,7 @@
     <%= form_with(model: @animal, url: upload_pictures_path, method: :post, html: { class: "sm:flex sm:items-center" }) do |form| %>
       <%= form.label :pictures, "Pictures (upload multiple images)", class: "hidden" %>
       <%= form.file_field :pictures, multiple: true, class: "body-sm-text" %>
-      <%= form.submit 'Save', class: "secondary_blue_button" %>
+      <%= form.submit 'Save', class: "primary_button" %>
     <% end %>
   </div>
 

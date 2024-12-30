@@ -1,4 +1,4 @@
-<nav data-controller="navbar" class="bg-blue-900">
+<nav data-controller="navbar" class="bg-green-900">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex items-center">
@@ -18,7 +18,7 @@
                 <div class="flex items-center justify-between">
                   <%= content_tag :span, t('menu.header.citizens'), class: "nav-top-link" %>
                 </div>
-                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
                   <%= link_to t('menu.header.types'), animal_types_path, class: "nav-sub-link" %>
                   <%= link_to t('menu.header.animals'), animals_path, class: "nav-sub-link" %>
                   <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link" %>
@@ -28,7 +28,7 @@
                 <div class="flex items-center justify-between">
                   <%= content_tag :span, t('menu.header.medicine'), class: "nav-top-link" %>
                 </div>
-                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
                   <%= link_to t('menu.header.types'), procedure_types_path, class: "nav-sub-link" %>
                   <%= link_to t('menu.header.procedures'), medical_procedures_path, class: "nav-sub-link" %>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="flex items-center justify-between">
                   <%= content_tag :span, t('menu.header.language'), class: "nav-top-link" %>
                 </div>
-                <div class="invisible absolute z-50 flex w-full flex-col bg-blue-umblue py-1 group-hover:visible" onClick="">
+                <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
                   <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "nav-sub-link" %>
                   <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "nav-sub-link" %>
                 </div>
@@ -55,14 +55,13 @@
               <%= link_to "Sign Out", session_path, 
                 method: :delete, 
                 data: { turbo_method: :delete, confirm: "Are you sure?" },
-                class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200" 
+                class: "sign_button" 
               %>
             </div>
           <% else %> 
             <div>
-              <p class="text-lg text-gray-800">Please sign in to access more features.</p>
               <%= link_to "Sign In", new_session_path, 
-                  class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md shadow-md transition duration-200" 
+                  class: "sign_button" 
               %>
             </div>
           <% end %>

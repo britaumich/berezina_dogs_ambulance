@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'aviaries' do %>
   <div class="min-w-full">
     <table class="mi_table" id="desk-table">
-      <thead class="border border-l-0 border-r-0 border-gray-um60">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
           <th class="header_th"><%= t('activerecord.attributes.aviary.name') %></th>
           <th class="header_th"><%= t('activerecord.attributes.aviary.description') %></th>
@@ -24,12 +24,12 @@
             </td>
             <td class="mi_tbody_td">
               <%= link_to edit_aviary_path(aviary), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(aviary)}_edit" } do%>
-              <i class="fa fa-pencil text-umgreen"></i>
+              <i class="fa fa-pencil text-950"></i>
               <% end %>
             </td>
             <td class="mi_tbody_td">
               <%= link_to aviary_path(aviary), data: { turbo_confirm: 'Are you sure you want to delete this rover?', turbo_method: :delete}, aria: { label: "#{dom_id(aviary)}_delete" }  do %>
-              <i class="fa fa-trash-can text-red-umred"></i>
+              <i class="fa fa-trash-can text-red-950"></i>
               <% end %>
           </tr>
         <% end %>

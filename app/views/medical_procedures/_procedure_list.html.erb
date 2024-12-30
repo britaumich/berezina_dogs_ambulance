@@ -1,7 +1,7 @@
 <%= turbo_frame_tag 'medical_procedures' do %>
   <div class="min-w-full">
     <table class="mi_table" id="desk-table">
-      <thead class="border border-l-0 border-r-0 border-gray-um60">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
           <th class="header_th"><%= t('activerecord.attributes.medical_procedure.animal_id') %> - <%= t('activerecord.attributes.medical_procedure.procedure_type_id') %></th>
           <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_complete') %></th>
@@ -26,12 +26,12 @@
             </td>
             <td class="mi_tbody_td">
               <%= link_to edit_medical_procedure_path(medical_procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(medical_procedure)}_edit" } do%>
-                <i class="fa fa-pencil text-umgreen"></i>
+                <i class="fa fa-pencil text-950"></i>
               <% end %>
             </td>
             <td class="mi_tbody_td">
               <%= link_to medical_procedure_path(medical_procedure), data: { turbo_confirm: 'Are you sure you want to delete this record?', turbo_method: :delete}, aria: { label: "#{dom_id(medical_procedure)}_delete" }  do %>
-                <i class="fa fa-trash-can text-red-umred"></i>
+                <i class="fa fa-trash-can text-red-950"></i>
               <% end %>
             </td>
           </tr>
