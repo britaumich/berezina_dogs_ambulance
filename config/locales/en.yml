@@ -38,3 +38,8 @@ en:
     attributes:
       animal:
         section: "section"
+
+  gender_lists:
+    "Unspecified": Unspecified
+    "Male": Male
+    "Female": Female

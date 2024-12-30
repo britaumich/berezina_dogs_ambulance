@@ -29,7 +29,7 @@
 
   <div class="my-5">
     <%= form.label :gender %>
-    <%= form.text_field :gender, class: "input_text_field" %>
+    <%= form.select :gender, gender_lists, { class: "input_text_field" } %>
   </div>
 
   <div class="my-5">
