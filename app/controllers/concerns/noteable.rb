@@ -3,14 +3,13 @@ module Noteable
   include ActionView::RecordIdentifier
   include RecordHelper
 
-  included do
-    before_action :authenticate_user!
-  end
+  # included do
+  #   before_action :authenticate_user!
+  # end
 
   def create
     @note = @noteable.notes.new(note_params)
     @note.user = current_user
-    authorize @note
     respond_to do |format|
       if @note.save
         note = Note.new

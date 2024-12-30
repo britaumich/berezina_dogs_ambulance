@@ -9,3 +9,5 @@ pin '@fortawesome/fontawesome-free', to: 'https://ga.jspm.io/npm:@fortawesome/fo
 
 pin "stimulus-flatpickr" # @3.0.0
 pin "flatpickr" # @4.6.13
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.js"
