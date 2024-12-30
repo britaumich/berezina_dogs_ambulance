@@ -22,6 +22,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "input_text_field" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :date_planned %>
     <%= form.date_field :date_planned, class: "input_text_field" %>
   </div>
@@ -36,12 +41,7 @@
     <%= form.date_field :date_complete, class: "input_text_field" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :notes %>
-    <%= form.textarea :notes, rows: 4, class: "input_text_field" %>
-  </div>
-
   <div class="inline">
-    <%= form.submit t('forms.buttons.submit'), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit t('forms.buttons.submit'), class: "secondary_blue_button" %>
   </div>
 <% end %>

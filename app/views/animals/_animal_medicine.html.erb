@@ -5,6 +5,7 @@
       <thead class="border border-l-0 border-r-0 border-gray-um60">
         <tr>
           <th class="header_th">Название</th>
+          <th class="header_th">Описание</th>
           <th class="header_th">Дата по плану</th>
           <th class="header_th">Дата проведения</th>
         </tr>
@@ -14,6 +15,9 @@
           <rt>
             <td class="mi_tbody_td">
               <%= link_to procedure.procedure_type.name, medical_procedure_path(procedure), class: "link_to", data: {turbo_frame: "_top"} %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= procedure.description %>
             </td>
             <td class="mi_tbody_td">
               <%= show_date_with_month_name(procedure.date_planned) %>
