@@ -49,10 +49,10 @@ ru:
         display_entries: "Показаны <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> записей"
   views:
     pagination:
-      first: "&laquo; Первый"
-      last: "Последний &raquo;"
-      previous: "&lsaquo; Бывший"
-      next: "Следующий &rsaquo;"
+      first: "&laquo; Первая"
+      last: "Последная &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
       truncate: "..."
   label: 
     Birthday: "Дата рождения"
