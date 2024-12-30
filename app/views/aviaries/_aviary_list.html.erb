@@ -14,7 +14,7 @@
         <% @aviaries.each do |aviary| %>
           <rt>
             <td class="mi_tbody_td">
-              <%= aviary.name %>
+              <%= link_to aviary.name, aviary_path(aviary), data: { turbo_frame: "_top" }, class: "link_to" %>
             </td>
             <td class="mi_tbody_td">
               <%= aviary.description %>
