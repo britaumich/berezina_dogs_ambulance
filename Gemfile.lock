@@ -235,6 +235,10 @@ GEM
       i18n
     rdoc (6.10.0)
       psych (>= 4.0.0)
+    redis (5.3.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.23.0)
+      connection_pool
     regexp_parser (2.9.3)
     reline (0.6.0)
       io-console (~> 0.5)
@@ -355,6 +359,7 @@ DEPENDENCIES
   rails (~> 8.0.0)
   rails-i18n
   ransack (~> 4.2, >= 4.2.1)
+  redis (>= 4.0.1)
   rspec-rails (~> 7.0)
   rubocop (~> 1.0)
   rubocop-rails (~> 2.0)
