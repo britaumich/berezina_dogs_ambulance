@@ -75,6 +75,7 @@ ru:
         date_planned: "Дата по плану"
         animal_id: "Животное"
         procedure_type_id: "Процедура"
+        description: "Описание"
   forms:
     messages:
       success: "Операция была успешно выполнена!"

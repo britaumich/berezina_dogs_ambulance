@@ -16,6 +16,16 @@
         <%= medical_procedure.procedure_type.name %>
       </p>
     </div>
+
+    <div class="py-2">
+      <p class="body-lg-bold-text inline">
+        <%= t('activerecord.attributes.medical_procedure.description') %>:
+      </p>
+      <p class="body-lg-text pl-2 inline">
+        <%= medical_procedure.description %>
+      </p>
+    </div>
+
     <div class="py-2">
       <p class="body-lg-bold-text inline">
         <%= t('activerecord.attributes.medical_procedure.date_complete') %>:
@@ -40,15 +50,6 @@
       </p>
       <p class="body-lg-text pl-2 inline">
         <%= medical_procedure.date_planned %>
-      </p>
-    </div>
-
-    <div class="py-2">
-      <p class="body-lg-bold-text inline">
-        Notes:
-      </p>
-      <p class="body-lg-text pl-2 inline">
-        <%= medical_procedure.notes %>
       </p>
     </div>
 
