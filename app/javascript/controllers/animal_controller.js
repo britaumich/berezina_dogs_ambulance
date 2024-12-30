@@ -2,9 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="animal"
 export default class extends Controller {
-  static targets = ['aviary_select', 'show_sections', 'section']
+  static targets = ['form', 'aviary_select', 'show_sections', 'section']
   connect() {
     console.log("connect animal")
+  }
+
+  clearFilters() {
+    console.log("clear filters")
+    var url = window.location.pathname
+    Turbo.visit(url)
   }
 
   getSections () {

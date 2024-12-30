@@ -4,6 +4,7 @@ class AnimalsController < ApplicationController
   # GET /animals or /animals.json
   def index
     @animal_types = AnimalType.all
+    @aviaries = Aviary.all
     @animals = Animal.all
     if params[:q].nil?
       @q = @animals.ransack(params[:q])

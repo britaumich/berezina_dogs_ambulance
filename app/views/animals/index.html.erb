@@ -7,22 +7,22 @@
     <%= link_to t('menu.new'), new_animal_path, class: "primary_button" %>
   </div>
 
-  <div>
-    <%= search_form_for @q, class: "filter-form",
-      data:{ controller: "filters"} do |f| %>
-      
-
-        <div class="col-span-2 mb-4 flex justify-start">
-          <p>Group searching conditions by:</p>
-          <div class="ml-4">
-            <%= f.radio_button :m, 'and', :checked => true %>
-            <%= f.label :m, 'and', value: 'and' %>
-          </div>
-          <div class="ml-4">
-            <%= f.radio_button :m, 'or' %>
-            <%= f.label :m, 'or', value: 'or' %>
-          </div>
+  <div data-controller="animal">
+    <%= search_form_for @q,
+      data: { animal_target: "form",
+              turbo_frame: "turbo-animals"
+              } do |f| %>
+      <div class="col-span-2 mb-4 flex justify-start">
+        <p>Group searching conditions by:</p>
+        <div class="ml-4">
+          <%= f.radio_button :m, 'and', :checked => true %>
+          <%= f.label :m, 'and', value: 'and' %>
         </div>
+        <div class="ml-4">
+          <%= f.radio_button :m, 'or' %>
+          <%= f.label :m, 'or', value: 'or' %>
+        </div>
+      </div>
       <div class="grid grid-cols-2 gap-x-2">
         <div class="">
           <div class="mx-2 mb-1">
@@ -66,8 +66,8 @@
         <div class="">
           <div class="mx-2 mb-1">
             <div>
-              <%= f.label :aviary %>
-              <%= f.text_field :aviary_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.label :aviary_id %>
+              <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
             </div>
             <div>
               <%= f.label :description %>
@@ -86,11 +86,10 @@
           </div>
           <div>
             <button type="button" class="tertiary_button"
-              data-action='click->filters#clearFilters'>
-              <span>
-              <i class="fa-solid fa-times" aria-hidden="true"></i>
-             Clear
-            </span>
+              data-action='click->animal#clearFilters'>
+            
+              Clear
+           
             </button>
           </div>
         </div>
