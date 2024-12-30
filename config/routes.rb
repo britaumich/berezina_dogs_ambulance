@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   end
   get '/aviaries/get_sections/:aviary_id/', to: 'aviaries#get_sections'
   resources :notes
-  resources :medical_procedures
+  resources :medical_procedures do
+    resources :notes, module: :medical_procedures
+  end
   resources :procedure_types
   resources :animals do
     resources :notes, module: :animals

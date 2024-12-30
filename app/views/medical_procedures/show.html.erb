@@ -28,5 +28,14 @@
         </div>
       </div>
     <div>
+    <div class="container p-2 rounded-lg shadow-lg text-xl mb-20 bg-gray-50">
+        <h2 class="mb-4">Notes:</h2>
+        <%= render partial: "notes/form", locals: { note: Note.new, noteable: @medical_procedure } %>
+    
+        <%= turbo_stream_from @medical_procedure, :notes %>
+        <%= tag.div id: "#{dom_id(@medical_procedure)}_notes" do %>
+          <%= render @medical_procedure.notes %>
+        <% end %>
+      </div>
   </div>
 </div>
