@@ -3,6 +3,8 @@ class Animal < ApplicationRecord
   belongs_to :aviary, optional: true
   belongs_to :section, optional: true
 
+  has_many :notes, as: :noteable
+
   has_many_attached :pictures do |attachable|
     attachable.variant :thumb, resize_to_limit: [640, 480]
   end

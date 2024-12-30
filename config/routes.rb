@@ -3,10 +3,12 @@ Rails.application.routes.draw do
     resources :sections, module: :aviaries
   end
   get '/aviaries/get_sections/:aviary_id/', to: 'aviaries#get_sections'
-
+  resources :notes
   resources :medical_procedures
   resources :procedure_types
-  resources :animals
+  resources :animals do
+    resources :notes, module: :animals
+  end
   post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
   get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
 
