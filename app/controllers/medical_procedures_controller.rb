@@ -61,6 +61,15 @@ class MedicalProceduresController < ApplicationController
     end
   end
 
+  def add_medical_procedure
+    cart = Cart.find(params[:cart_id])
+    cart.cart_animals.each do |cart_animal|
+      MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
+    end
+    cart.destroy
+    flash.now[:notice] = "Medical order creataed."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_medical_procedure

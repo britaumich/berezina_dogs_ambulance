@@ -113,6 +113,7 @@ ru:
       animals: "Животные"
       aviaries: "Вольеры"
       language: "Язык"
+      cart: "Корзина"
   gender_lists:
     "Неопределен": Неопределен
     "М": М

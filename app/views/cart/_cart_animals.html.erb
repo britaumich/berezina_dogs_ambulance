@@ -1,0 +1,16 @@
+<% @cart.cart_animals.each do |cart_animal| %>
+  <% animal = cart_animal.animal %>
+  <div id="<%= "cart-#{animal.id}" %>">
+    <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
+      <strong>nickname:</strong>
+      <%= animal.nickname %>
+      <strong>id:</strong>
+      <%= animal.id %>
+
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: cart_animal.id %>
+        <%= f.submit "X", class: "link_to", data: { "turbo-frame": "_top" } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
