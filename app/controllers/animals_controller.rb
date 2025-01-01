@@ -65,10 +65,6 @@ class AnimalsController < ApplicationController
     end
   end
 
-  def add_to_cart
-    fail
-  end
-
   def upload_pictures
     if @animal.update(animal_params)
       render turbo_stream: turbo_stream.update("pictures", partial: "pictures")
