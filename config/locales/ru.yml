@@ -38,6 +38,9 @@ ru:
     Medical Procedures: "Медицинские назначения"
     Aviary: "Вольер"
     Aviaries: "Вольеры"
+    Add to Card: "Добавить в корзину"
+    cart: "Корзина"
+    Your cart is empty: "Корзина пуста"
   helpers:
     page_entries_info:
       one_page:
@@ -100,6 +103,8 @@ ru:
      submit: "Сохранить"
      delete: "Удалить"
      back: "Назад к списку"
+     search: "Найти"
+     clear: "Обнулить фильтры"
   menu:
     new: "Добавить"
     languages:
