@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   # allow_browser versions: :modern
   before_action :set_locale
+  before_action :set_render_cart
+  before_action :initialize_cart
 
   helper_method :current_user
 
@@ -18,6 +20,30 @@ class ApplicationController < ActionController::Base
       cookies.permanent[:educator_locale] = l
     end
     I18n.locale = l
+  end
+
+  def redirect_back_or_default(notice = '', alert = false, default = root_url)
+    if alert
+      flash[:alert] = notice
+    else
+      flash[:notice] = notice
+    end
+    url = session[:return_to]
+    session[:return_to] = nil
+    redirect_to(url, anchor: "top" || default)
+  end
+
+  def set_render_cart
+    @render_cart = true
+  end
+
+  def initialize_cart
+    @cart ||= Cart.find_by(id: session[:cart_id])
+
+    if @cart.nil?
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+    end
   end
   
 end

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :medical_procedures do
     resources :notes, module: :medical_procedures
   end
-  post 'add_medical_procedure', to: 'medical_procedures#add_medical_procedure'
+  post 'add_medical_procedure', to: 'cart#add_medical_procedure'
   resources :procedure_types
   resources :animals do
     resources :notes, module: :animals
