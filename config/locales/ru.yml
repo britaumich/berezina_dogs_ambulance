@@ -41,6 +41,7 @@ ru:
     Add to Card: "Добавить в корзину"
     cart: "Корзина"
     Your cart is empty: "Корзина пуста"
+    Medical procedures created: "Медицинские назначения созданы"
   helpers:
     page_entries_info:
       one_page:
