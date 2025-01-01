@@ -1,16 +1,38 @@
-<% @cart.cart_animals.each do |cart_animal| %>
-  <% animal = cart_animal.animal %>
-  <div id="<%= "cart-#{animal.id}" %>">
-    <div style="display:flex;justify-content:space-between;margin: 0em 5em;">
-      <strong>nickname:</strong>
-      <%= animal.nickname %>
-      <strong>id:</strong>
-      <%= animal.id %>
 
-      <%= form_with(url: cart_remove_path) do |f| %>
-        <%= f.hidden_field :id, value: cart_animal.id %>
-        <%= f.submit "X", class: "link_to", data: { "turbo-frame": "_top" } %>
-      <% end %>
-    </div>
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
+        <tr>
+          <th class="header_th"><%= t('activerecord.attributes.animal.id') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.animal.animal_type_id') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.animal.nickname') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.animal.aviary') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.cart_animals.each do |cart_animal| %>
+          <div id="<%= "cart-#{cart_animal.id}" %>">
+            <rt>
+              <td class="mi_tbody_td">
+                <%= cart_animal.animal_id %>
+              </td>
+              <td class="mi_tbody_td">
+                <%= cart_animal.animal.animal_type.name %>
+              </td>
+              <td class="mi_tbody_td">
+                <%= cart_animal.animal.nickname %>
+              </td>
+              <td class="mi_tbody_td">
+                <%= show_aviary(cart_animal.animal) %>
+              </td>
+              <td>
+                <%= form_with(url: cart_remove_path) do |f| %>
+                  <%= f.hidden_field :id, value: cart_animal.id %>
+                  <%= f.submit "X", class: "link_to", data: { "turbo-frame": "_top" } %>
+                <% end %>
+              </td>
+            </tr>
+          </div>
+        <% end %>
+      </tbody>
+    </table> 
   </div>
-<% end %>

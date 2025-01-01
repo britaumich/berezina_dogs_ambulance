@@ -2,7 +2,6 @@
   <h1>Cart</h1>
   <% if @cart && @cart&.cart_animals&.count > 0 %>
     <%= render "cart/cart_animals" %>
-    <p>Total: <%= @cart.cart_animals.count %></p>
   <% else %>
     <p>Your cart is empty</p>
   <% end %>
