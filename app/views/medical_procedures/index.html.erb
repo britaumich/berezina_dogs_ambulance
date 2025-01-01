@@ -7,6 +7,82 @@
     <%= link_to t('menu.new'), new_medical_procedure_path, class: "primary_button" %>
   </div>
 
+  <div data-controller="animal">
+    <%= search_form_for @q,
+      data: { animal_target: "form",
+              turbo_frame: "medical_procedures"
+              } do |f| %>
+      <div class="col-span-2 mb-4 flex justify-start">
+        <p>Group searching conditions by:</p>
+        <div class="ml-4">
+          <%= f.radio_button :m, 'and', :checked => true %>
+          <%= f.label :m, 'and', value: 'and' %>
+        </div>
+        <div class="ml-4">
+          <%= f.radio_button :m, 'or' %>
+          <%= f.label :m, 'or', value: 'or' %>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-x-2">
+        <div class="">
+          <div class="mx-2 mb-1">
+            <div>
+              <%= f.label :animal_nickname_cont %>
+              <%= f.search_field :animal_nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+            <div>
+              <%= f.label :procedure_type_id %>
+              <%= f.collection_select(:procedure_type_id_eq, @procedure_type, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
+            </div>
+            
+          </div>
+        </div>
+            
+
+        <div class="">
+        
+          <div class="mx-2 mb-1">
+            <div class="flex items-end">
+              <div class="flex-1 w-1/2">
+                <%= f.label :date_planned %>
+                <%= f.text_field :date_planned_eq, placeholder: "From", class: 'input_text_field',
+                  data: {
+                    controller: "flatpickr",
+                    flatpickr_date_format: "Y-m-d"
+                  } %>
+              </div>
+            </div>
+            <div class="flex items-end">
+              <div class="flex-1 w-1/2">
+                <%= f.label :date_complete %>
+                <%= f.text_field :date_complete_eq, placeholder: "From", class: 'input_text_field',
+                  data: {
+                    controller: "flatpickr",
+                    flatpickr_date_format: "Y-m-d"
+                  } %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="my-2 col-span-2 flex justify-start">
+          <div class="mr-2">
+            <%= f.submit 'Search', data: { disable_with: false }, class: "primary_button" %>
+          </div>
+          <div>
+            <button type="button" class="tertiary_button"
+              data-action='click->animal#clearFilters'>
+            
+              Clear
+           
+            </button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <%= turbo_frame_tag "medical_procedures" do %>
     <div class="min-w-full mb-10" id="procedures_listing">
       <%= render 'procedure_list' %>
