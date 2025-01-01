@@ -31,16 +31,16 @@
               <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
             </div>
             <div>
-              <%= f.label :nickname %>
-              <%= f.text_field :nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.label :nickname_cont %>
+              <%= f.search_field :nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
             </div>
             <div>
-              <%= f.label :surname %>
-              <%= f.text_field :surname_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.label :surname_cont %>
+              <%= f.search_field :surname_cont, placeholder: "Contains", class: 'input_text_field' %>
             </div>
             <div>
               <%= f.label :gender %>
-              <%= f.text_field :gender_eq, placeholder: "Equal", class: 'input_text_field' %>
+              <%= f.search_field :gender_eq, placeholder: "Equal", class: 'input_text_field' %>
             </div>
             <div class="flex items-end">
               <div class="flex-1 w-1/2">
@@ -70,13 +70,19 @@
               <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
             </div>
             <div>
-              <%= f.label :description %>
-              <%= f.text_field :description_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.label :description_cont %>
+              <%= f.search_field :description_cont, placeholder: "Contains", class: 'input_text_field' %>
             </div>
             <div>
-              <%= f.label :history %>
-              <%= f.text_field :history_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.label :history_cont %>
+              <%= f.search_field :history_cont, placeholder: "Contains", class: 'input_text_field' %>
             </div>
+
+            <div>
+              <%= f.label :description_or_history_cont %>
+              <%= f.search_field :description_or_history_cont, placeholder: "Contains", class: 'input_text_field' %>
+            </div>
+
           </div>
         </div>
 
