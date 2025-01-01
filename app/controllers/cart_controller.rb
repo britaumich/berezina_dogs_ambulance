@@ -33,22 +33,23 @@ class CartController < ApplicationController
   end
 
   def add_medical_procedure
-    session[:return_to] = request.referer
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
-    notice = "Medical order created."
+    cart.destroy
+    flash.now[:notice] = t('text.Medical procedures created')
+    @procedures = ProcedureType.all.map { |p| [p.name, p.id] }
+ 
     respond_to do |format|
-      cart.destroy
-    # flash.now[:notice] = "Medical order creataed."
-    # redirect_to request.referrer, notice: "You're being redirected"
-    # @procedures = ProcedureType.all.map { |p| [p.name, p.id] }
-    # render :show, notice: "Medical order created."
-    # redirect_back(fallback_location: request.referer, notice: "Medical order created.")
-    # format.html { redirect_to cart_path, notice: notice }
       format.turbo_stream do
-        redirect_to cart_path, notice: notice
+        render turbo_stream: [turbo_stream.replace('cart',
+                                                  partial: 'cart/cart',
+                                                 ),
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.replace('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('flash', partial: 'layouts/notification')
+                            ]
       end
     end
   end

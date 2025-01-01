@@ -85,17 +85,17 @@
 
           </div>
         </div>
-
         <div class="my-2 col-span-2 flex justify-start">
           <div class="mr-2">
-            <%= f.submit 'Search', data: { disable_with: false }, class: "primary_button" %>
+            <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
           </div>
           <div>
             <button type="button" class="tertiary_button"
               data-action='click->animal#clearFilters'>
-            
-              Clear
-           
+                <span>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  <%= t('forms.buttons.clear') %>
+                </span>
             </button>
           </div>
         </div>

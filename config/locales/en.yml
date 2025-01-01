@@ -38,6 +38,10 @@ en:
     attributes:
       animal:
         section: "section"
+  forms:
+    buttons:
+     edit: "Редактировать"
+     submit: "Save"
 
   gender_lists:
     "Unspecified": Unspecified

@@ -6,6 +6,7 @@
           <th class="header_th"><%= t('activerecord.attributes.animal.animal_type_id') %></th>
           <th class="header_th"><%= t('activerecord.attributes.animal.nickname') %></th>
           <th class="header_th"><%= t('activerecord.attributes.animal.aviary') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
         </tr>
       </thead>
       <tbody>
@@ -24,10 +25,12 @@
               <td class="mi_tbody_td">
                 <%= show_aviary(cart_animal.animal) %>
               </td>
-              <td>
+              <td class="mi_tbody_td">
                 <%= form_with(url: cart_remove_path) do |f| %>
                   <%= f.hidden_field :id, value: cart_animal.id %>
-                  <%= f.submit "X", class: "link_to", data: { "turbo-frame": "_top" } %>
+                  <%= f.button nil do %>
+                    <i class="fa fa-trash-can text-red-950"></i></i>
+                  <% end %>
                 <% end %>
               </td>
             </tr>
