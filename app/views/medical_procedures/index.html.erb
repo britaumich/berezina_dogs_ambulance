@@ -85,7 +85,13 @@
 
   <%= turbo_frame_tag "medical_procedures" do %>
     <div class="min-w-full mb-10" id="procedures_listing">
+    <div class="my-2" >
+        <%= page_entries_info @medical_procedures %>
+      </div>
       <%= render 'procedure_list' %>
+      <div class="my-2 flex justify-center" >
+        <%= paginate @medical_procedures %>
+      </div>
     </div>
   <% end %>
 </div>
