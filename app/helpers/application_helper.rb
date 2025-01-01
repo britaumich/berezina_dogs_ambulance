@@ -53,4 +53,9 @@ module ApplicationHelper
   def gender_lists 
     I18n.t(:gender_lists).map { |key, value| [ value, key ] } 
   end
+
+  def render_flash_stream
+    turbo_stream.update "flash", partial: "layouts/notification"
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_033308) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_31_153135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -89,6 +89,20 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_033308) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cart_animals", force: :cascade do |t|
+    t.bigint "animal_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["animal_id"], name: "index_cart_animals_on_animal_id"
+    t.index ["cart_id"], name: "index_cart_animals_on_cart_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "medical_procedures", force: :cascade do |t|
     t.date "date_complete"
     t.boolean "complete"
@@ -148,6 +162,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_033308) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "animals", "animal_types"
+  add_foreign_key "cart_animals", "animals"
+  add_foreign_key "cart_animals", "carts"
   add_foreign_key "medical_procedures", "animals"
   add_foreign_key "medical_procedures", "procedure_types"
   add_foreign_key "notes", "users"

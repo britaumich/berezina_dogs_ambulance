@@ -2,7 +2,8 @@ class Animal < ApplicationRecord
   belongs_to :animal_type
   belongs_to :aviary, optional: true
   belongs_to :section, optional: true
-
+  has_many :cart_animals
+  has_many :carts, through: :cart_animals
   has_many :notes, as: :noteable
 
   has_many_attached :pictures do |attachable|

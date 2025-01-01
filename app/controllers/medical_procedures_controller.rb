@@ -3,7 +3,14 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures or /medical_procedures.json
   def index
+    @procedure_type = ProcedureType.all
     @medical_procedures = MedicalProcedure.all
+    if params[:q].nil?
+      @q = @medical_procedures.ransack(params[:q])
+    else
+      @q = @medical_procedures.ransack(params[:q].try(:merge, m: params[:q][:m]))
+    end
+    @medical_procedures = @q.result.includes(:animal).page(params[:page])
   end
 
   # GET /medical_procedures/1 or /medical_procedures/1.json
@@ -60,6 +67,7 @@ class MedicalProceduresController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
