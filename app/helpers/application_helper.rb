@@ -5,7 +5,15 @@ module ApplicationHelper
   end
 
   def show_date_with_month_name(field)
-    field.to_date.strftime("%B %d, %Y") unless field.blank?
+    l field.to_date, format: "%d %B, %Y" unless field.blank?
+  end
+
+  def show_date(date)
+    if date.present?
+      l date
+    else
+      ""
+    end
   end
 
   def show_animal(animal)
