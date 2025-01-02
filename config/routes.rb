@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :sections, module: :aviaries
   end
   get '/aviaries/get_sections/:aviary_id/', to: 'aviaries#get_sections'
-  get '/cancel_reason/:aviary_id/:id', to: 'aviaries/sections#cancel_reason', as: :cancel_reason
 
   resources :notes
   resources :medical_procedures do

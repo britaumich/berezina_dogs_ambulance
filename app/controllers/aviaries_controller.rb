@@ -75,6 +75,6 @@ class AviariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aviary_params
-      params.expect(aviary: [ :sections, :name, :description ])
+      params.expect(aviary: [ :has_sections, :name, :description ])
     end
 end
