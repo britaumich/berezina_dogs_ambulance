@@ -32,27 +32,27 @@
             </div>
             <div>
               <%= f.label :nickname_cont %>
-              <%= f.search_field :nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
             <div>
               <%= f.label :surname_cont %>
-              <%= f.search_field :surname_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :surname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
             <div>
               <%= f.label :gender %>
-              <%= f.search_field :gender_eq, placeholder: "Equal", class: 'input_text_field' %>
+              <%= f.select(:gender_eq, gender_lists, { include_blank: "Select ..." }, { class: "input_text_field" }) %>
             </div>
             <div class="flex items-end">
               <div class="flex-1 w-1/2">
                 <%= f.label :arival_date %>
-                <%= f.text_field :arival_date_gteq, placeholder: "From", class: 'input_text_field',
+                <%= f.text_field :arival_date_gteq, placeholder: t('From'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
                     flatpickr_date_format: "Y-m-d"
                   } %>
               </div>
               <div class="ml-1 flex-1 w-1/2">
-                <%= f.text_field :arival_date_lteq, placeholder: "To", class: 'input_text_field',
+                <%= f.text_field :arival_date_lteq, placeholder: t('To'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
                     flatpickr_date_format: "Y-m-d"
@@ -71,16 +71,16 @@
             </div>
             <div>
               <%= f.label :description_cont %>
-              <%= f.search_field :description_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :description_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
             <div>
               <%= f.label :history_cont %>
-              <%= f.search_field :history_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
 
             <div>
               <%= f.label :description_or_history_cont %>
-              <%= f.search_field :description_or_history_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
 
           </div>
