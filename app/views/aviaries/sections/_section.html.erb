@@ -1,10 +1,12 @@
-<%= turbo_frame_tag section do %>
-    <div class="py-2">
-      <p class="body-lg-bold-text inline">
-        <%= t('activerecord.attributes.section.name') %>:
-      </p>
-      <p class="body-lg-text pl-2 inline">
-        <%= section.name%>
-      </p>
-    </div>
-<% end %>
+  <div class="py-2">
+    <p class="body-lg-text pl-2 inline">
+      <%= section.name %>
+    </p>
+  </div>
+  <%= link_to edit_aviary_section_path(@aviary, section) do %>
+    <span class="tertiary_button">Edit
+      <i class="fa-solid fa-pen"></i>
+    </span>
+  <% end %>
+  <%= link_to 'Cancel', cancel_reason_path(@aviary, section), data: { turbo_frame: "modal" } %>
+  

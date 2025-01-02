@@ -1,7 +1,7 @@
 class Aviaries::SectionsController < ApplicationController
   include ActionView::RecordIdentifier
   before_action :set_aviary
-  before_action :set_section, only: %i[ show edit update destroy ]
+  before_action :set_section, only: %i[ show edit update destroy cancel_reason]
 
 
   # GET /sections or /sections.json
@@ -11,6 +11,7 @@ class Aviaries::SectionsController < ApplicationController
 
   # GET /sections/1 or /sections/1.json
   def show
+    @sessions = @aviary.sessions
   end
 
   # GET /sections/new
@@ -55,14 +56,25 @@ class Aviaries::SectionsController < ApplicationController
     end
   end
 
+  def cancel_reason
+  end
   # DELETE /sections/1 or /sections/1.json
   def destroy
     @section.destroy!
-
+    @sections = @aviary.sections
     respond_to do |format|
-      format.html { redirect_to sections_path, status: :see_other, notice: "Section was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to aviary_path(@aviary), notice: notice }
+      # format.turbo_stream do
+      #   render turbo_stream: [turbo_stream.replace('sections_list',
+      #                                             partial: 'aviaries/sections/sections_list", sections: @aviary.sections',
+      #                                            ),
+      #                         turbo_stream.update('flash', partial: 'layouts/notification')
+      #                       ]
+      # end
     end
+
+
+    flash.now[:notice] = "Common attribute was successfully deleted."
   end
 
   private

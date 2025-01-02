@@ -8,6 +8,7 @@ class AviariesController < ApplicationController
 
   # GET /aviaries/1 or /aviaries/1.json
   def show
+    @sections = @aviary.sections
   end
 
   # GET /aviaries/new
