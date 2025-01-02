@@ -8,6 +8,7 @@ class AviariesController < ApplicationController
 
   # GET /aviaries/1 or /aviaries/1.json
   def show
+    @sections = @aviary.sections
   end
 
   # GET /aviaries/new
@@ -74,6 +75,6 @@ class AviariesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aviary_params
-      params.expect(aviary: [ :sections, :name, :description ])
+      params.expect(aviary: [ :has_sections, :name, :description ])
     end
 end

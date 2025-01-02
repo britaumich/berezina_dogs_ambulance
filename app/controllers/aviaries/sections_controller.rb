@@ -11,6 +11,7 @@ class Aviaries::SectionsController < ApplicationController
 
   # GET /sections/1 or /sections/1.json
   def show
+    @sections = @aviary.sections
   end
 
   # GET /sections/new
@@ -46,23 +47,34 @@ class Aviaries::SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: "Section was successfully updated." }
-        format.json { render :show, status: :ok, location: @section }
+        @sections = @aviary.sections
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('sections_list',
+                                                    partial: 'aviaries/sections/sections_list',
+                                                   )
+        end
+        format.html { redirect_to aviary_path(@aviary), notice: "Section was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
+
+                              
+                              
+
   # DELETE /sections/1 or /sections/1.json
   def destroy
     @section.destroy!
-
+    @sections = @aviary.sections
     respond_to do |format|
-      format.html { redirect_to sections_path, status: :see_other, notice: "Section was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to aviary_path(@aviary), notice: notice }
     end
+
+
+    flash.now[:notice] = "Common attribute was successfully deleted."
   end
 
   private

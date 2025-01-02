@@ -1,4 +1,4 @@
-<%= form_for [@aviary, section] do |form| %>
+<%= form_with model: [@aviary, section] do |form| %>
   <% if form.object.errors.any? %>
     <div class="alert alert-danger">
       <% form.object.errors.full_messages.each do |message| %>
@@ -6,13 +6,9 @@
       <% end %>
     </div>
   <% end %>
-  <%= form.text_field :name %>
-  <%= form.submit class: "primary_button mt-2" %>
-  <% if form.object.persisted? %>
-    <%= link_to note do %>
-      <span class="tertiary_button">Cancel
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </span>
-    <% end %>
-  <% end %>
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "input_text_field" %>
+    <%= form.submit class: "primary_button mt-2" %>
+  </div>
 <% end %>

@@ -29,7 +29,7 @@
 
   <div class="my-5">
     <%= form.label :gender %>
-    <%= form.select :gender, gender_lists, { class: "input_text_field" } %>
+    <%= form.select(:gender, options_for_select(gender_lists, @animal.gender), { include_blank: "Select ..." }, { class: "input_text_field" } )%>
   </div>
 
   <div class="my-5">

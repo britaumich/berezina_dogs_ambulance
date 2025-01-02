@@ -28,7 +28,7 @@
           <div class="mx-2 mb-1">
             <div>
               <%= f.label :animal_nickname_cont %>
-              <%= f.search_field :animal_nickname_cont, placeholder: "Contains", class: 'input_text_field' %>
+              <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
             <div>
               <%= f.label :procedure_type_id %>
@@ -48,7 +48,7 @@
                 <%= f.text_field :date_planned_eq, placeholder: "From", class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
+                    flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
             </div>

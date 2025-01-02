@@ -1,8 +1,27 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing section</h1>
-
-  <%= render "form", section: @section %>
-
-  <%= link_to "Show this section", @section, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to sections", sections_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal">
+    <h1>Edir Section</h1>
+    <%= form_with(model: [@aviary, @section], data: { turbo_frame: "_top" }) do |form| %>
+      <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+          <% form.object.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="my-5">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "input_text_field" %>
+        <%= form.submit class: "primary_button mt-2" %>
+      </div>
+    <% end %>
+    <br>
+    <div>
+      <%= link_to aviary_path(@aviary), data: {controller: "modals", action: "modals#close"}  do %>
+        <span class="tertiary_button">Close
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

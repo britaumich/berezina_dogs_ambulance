@@ -37,11 +37,16 @@ ru:
     Pictures: "Фотографии"
     Medical Procedures: "Медицинские назначения"
     Aviary: "Вольер"
+    Sections: "Секции"
+    Add Section: "Добавить секцию"
     Aviaries: "Вольеры"
     Add to Card: "Добавить в корзину"
     cart: "Корзина"
     Your cart is empty: "Корзина пуста"
     Medical procedures created: "Медицинские назначения созданы"
+    Contains: "Содержит"
+    From: "От"
+    To: "До"
   helpers:
     page_entries_info:
       one_page:
@@ -124,3 +129,9 @@ ru:
     "Неопределен": Неопределен
     "М": М
     "Ж": Ж
+  date:
+    month_names: [~, Января, Февраля, Марта, Апреля, Мая, Июня,
+                    Июля, Августа, Сентября, Октября, Ноября, Декабря]
+    formats:
+      default: "%d-%m-%Y"
+      with_month: "%d %B, %Y"
