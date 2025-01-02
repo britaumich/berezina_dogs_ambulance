@@ -42,8 +42,11 @@ en:
     buttons:
      edit: "Редактировать"
      submit: "Save"
-
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male
     "Female": Female
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      with_month: "%d %B, %Y"
