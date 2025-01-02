@@ -47,6 +47,7 @@ ru:
     Contains: "Содержит"
     From: "От"
     To: "До"
+    Date: "Дата"
   helpers:
     page_entries_info:
       one_page:

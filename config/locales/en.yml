@@ -29,6 +29,12 @@
 
 en:
   hello: "Hello world"
+  text:
+    Add to Card: "Add to Card"
+    Contains: "Contains"
+    From: "From"
+    To: "To"
+    Date: "Date"
   menu:
     languages:
       lang: "Language"
@@ -42,6 +48,7 @@ en:
     buttons:
      edit: "Редактировать"
      submit: "Save"
+     search: "Search"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

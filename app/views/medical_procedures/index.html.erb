@@ -37,15 +37,12 @@
             
           </div>
         </div>
-            
-
         <div class="">
-        
           <div class="mx-2 mb-1">
             <div class="flex items-end">
               <div class="flex-1 w-1/2">
                 <%= f.label :date_planned %>
-                <%= f.text_field :date_planned_eq, placeholder: "From", class: 'input_text_field',
+                <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
                     flatpickr_date_format: "d-m-Y"
@@ -55,7 +52,7 @@
             <div class="flex items-end">
               <div class="flex-1 w-1/2">
                 <%= f.label :date_complete %>
-                <%= f.text_field :date_complete_eq, placeholder: "From", class: 'input_text_field',
+                <%= f.text_field :date_complete_eq, placeholder: t('text.Date'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
                     flatpickr_date_format: "Y-m-d"
@@ -64,18 +61,14 @@
             </div>
           </div>
         </div>
-
-
         <div class="my-2 col-span-2 flex justify-start">
           <div class="mr-2">
-            <%= f.submit 'Search', data: { disable_with: false }, class: "primary_button" %>
+            <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
           </div>
           <div>
             <button type="button" class="tertiary_button"
               data-action='click->animal#clearFilters'>
-            
-              Clear
-           
+              <%= t('forms.buttons.clear') %>
             </button>
           </div>
         </div>
