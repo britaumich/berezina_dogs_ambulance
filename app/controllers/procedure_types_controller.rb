@@ -1,13 +1,9 @@
 class ProcedureTypesController < ApplicationController
-  before_action :set_procedure_type, only: %i[ show edit update destroy ]
+  before_action :set_procedure_type, only: %i[ edit update destroy ]
 
   # GET /procedure_types or /procedure_types.json
   def index
     @procedure_types = ProcedureType.all
-  end
-
-  # GET /procedure_types/1 or /procedure_types/1.json
-  def show
   end
 
   # GET /procedure_types/new

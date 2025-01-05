@@ -12,14 +12,14 @@ Rails.application.routes.draw do
     resources :notes, module: :medical_procedures
   end
   post 'add_medical_procedure', to: 'cart#add_medical_procedure'
-  resources :procedure_types
+  resources :procedure_types, except: [:show] 
   resources :animals do
     resources :notes, module: :animals
   end
   post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
   get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
 
-  resources :animal_types
+  resources :animal_types, except: [:show] 
   resource :registration, only: [:new,:create]
   resource :session
   resources :passwords, param: :token

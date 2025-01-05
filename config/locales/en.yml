@@ -35,6 +35,7 @@ en:
     From: "From"
     To: "To"
     Date: "Date"
+    Select: "Select"
   menu:
     languages:
       lang: "Language"
@@ -46,7 +47,7 @@ en:
         section: "section"
   forms:
     buttons:
-     edit: "Редактировать"
+     edit: "Edit"
      submit: "Save"
      search: "Search"
   gender_lists:
