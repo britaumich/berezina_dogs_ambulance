@@ -6,13 +6,13 @@
     
     <div class="my-5">
       <%= label_tag :procedure_type_id, t('activerecord.attributes.procedure_type.name') %>
-      <%= select_tag "procedure_type_id", options_for_select(@procedures), include_blank: "Select ...", class: "input_text_field" %>
+      <%= select_tag "procedure_type_id", options_for_select(@procedures), include_blank: "#{t('text.Select')} ...", class: "input_text_field" %>
     </div>
 
     <div class="my-5">
       <%= label_tag :date_planned, t('activerecord.attributes.medical_procedure.date_planned') %>
       
-      <%= text_field_tag :date_planned, 'Select ...',
+      <%= text_field_tag :date_planned, "#{t('text.Select')} ...",
           data: {
           controller: "flatpickr",
           flatpickr_date_format: "Y-m-d",

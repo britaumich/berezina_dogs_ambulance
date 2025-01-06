@@ -13,14 +13,14 @@
               turbo_frame: "medical_procedures"
               } do |f| %>
       <div class="col-span-2 mb-4 flex justify-start">
-        <p>Group searching conditions by:</p>
+        <p><%= t('text.Group searching conditions by') %>:</p>
         <div class="ml-4">
           <%= f.radio_button :m, 'and', :checked => true %>
-          <%= f.label :m, 'and', value: 'and' %>
+          <%= f.label :m, t('label.and'), value: 'and' %>
         </div>
         <div class="ml-4">
           <%= f.radio_button :m, 'or' %>
-          <%= f.label :m, 'or', value: 'or' %>
+          <%= f.label :m, t('label.or'), value: 'or' %>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-x-2">
@@ -32,7 +32,7 @@
             </div>
             <div>
               <%= f.label :procedure_type_id %>
-              <%= f.collection_select(:procedure_type_id_eq, @procedure_type, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
+              <%= f.collection_select(:procedure_type_id_eq, @procedure_type, :id, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
             </div>
             
           </div>

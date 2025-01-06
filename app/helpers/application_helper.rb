@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActionView::Helpers::TagHelper
 
   def show_date_time(field)
     field.strftime("%m/%d/%Y %I:%M%p") unless field.blank?
@@ -64,6 +65,16 @@ module ApplicationHelper
 
   def render_flash_stream
     turbo_stream.update "flash", partial: "layouts/notification"
+  end
+
+  def show_boolean(var)
+    if var
+      tags = html_escape('') # initialize an html safe string we can append to
+      tags << content_tag(:i, nil, class: "fa-solid fa-check")
+      tags
+    else
+      ""
+    end
   end
 
 end
