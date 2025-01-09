@@ -51,6 +51,7 @@ en:
      submit: "Save"
      search: "Search"
      save: "Save"
+     add: "Add"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

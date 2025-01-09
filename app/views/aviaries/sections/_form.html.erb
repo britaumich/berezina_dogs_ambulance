@@ -13,7 +13,7 @@
   <div class="my-5">
     <%= form.label :name %>
     <%= form.text_field :name, class: "input_text_field" %>
-    <%= form.submit t('forms.buttons.submit'), class: "primary_button mt-2" %>
+    <%= form.submit t('forms.buttons.add'), class: "primary_button mt-2" %>
     <% if form.object.persisted? %>
       <%= link_to aviary_section_path(aviary, section) do %>
         <span class="tertiary_button">Cancel
