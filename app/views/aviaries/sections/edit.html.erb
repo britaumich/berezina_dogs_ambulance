@@ -1,3 +1,3 @@
 <%= turbo_frame_tag @section do %>
-  <%= render 'form', locals: { section: @section, aviary: @aviary } %>
+  <%= render partial: "form", locals: { section: @section, aviary: @aviary } %>
 <% end %>

@@ -15,11 +15,11 @@
     <%= form.text_field :name, class: "input_text_field" %>
     <%= form.submit t('forms.buttons.submit'), class: "primary_button mt-2" %>
     <% if form.object.persisted? %>
-    <%= link_to section do %>
-      <span class="tertiary_button">Cancel
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </span>
+      <%= link_to aviary_section_path(aviary, section) do %>
+        <span class="tertiary_button">Cancel
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 <% end %>

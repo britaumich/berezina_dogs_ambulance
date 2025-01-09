@@ -1,5 +1,6 @@
 class Aviaries::SectionsController < ApplicationController
   include ActionView::RecordIdentifier
+  include RecordHelper
   before_action :set_aviary
   before_action :set_section, only: %i[ show edit update destroy ]
 
@@ -30,11 +31,13 @@ class Aviaries::SectionsController < ApplicationController
     respond_to do |format|
       if @section.save
         @aviary.update(has_sections: true)
-        
-        format.turbo_stream do
-          @new_section = Section.new
-        end
-        format.html { redirect_to aviary_section_path(@aviary), notice: notice }
+        section = Section.new
+        @sections = @aviary.sections
+        format.turbo_stream {
+          render turbo_stream: [turbo_stream.replace(dom_id_for_records(@aviary, section), partial: "aviaries/sections/form", locals: { section: section, aviary: @aviary }),
+                                turbo_stream.append("#{dom_id(@aviary)}_sections", partial: "aviaries/sections/sections_list", locals: { aviary: @aviary })]
+        }
+        format.html { redirect_to @aviary }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -43,31 +46,20 @@ class Aviaries::SectionsController < ApplicationController
 
   # PATCH/PUT /sections/1 or /sections/1.json
   def update
-    respond_to do |format|
-      if @section.update(section_params)
-        @sections = @aviary.sections
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace('sections_list',
-                                                    partial: 'aviaries/sections/sections_list',
-                                                   )
-        end
-        format.html { redirect_to aviary_path(@aviary), notice: "Section was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @section.update(section_params)
+      redirect_to aviary_section_path(@aviary, @section)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end               
 
   # DELETE /sections/1 or /sections/1.json
   def destroy
-    @section.destroy!
-    @sections = @aviary.sections
+    @section.destroy
     respond_to do |format|
-      format.html { redirect_to aviary_path(@aviary), notice: notice }
+      format.turbo_stream {}
+      format.html { redirect_to @section.aviary }
     end
-
-
-    flash.now[:notice] = "Common attribute was successfully deleted."
   end
 
   private
