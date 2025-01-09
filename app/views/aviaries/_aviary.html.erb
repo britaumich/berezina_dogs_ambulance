@@ -21,13 +21,15 @@
   </div>
   <% if aviary.has_sections %>
     <h2 class="my-2"><%= t('text.Sections') %>:</h2>
-    <%= turbo_frame_tag 'new_section_form' do %>
-      <%= render "aviaries/sections/form", section: Section.new %>
-    <% end %>
+      <%= render partial: "aviaries/sections/form", locals: { section: Section.new, aviary: @aviary } %>
   
     <%#= turbo_stream_from @aviary, :sections %>
 
-    <%= render "aviaries/sections/sections_list", sections: @sections %>
+    <%#= render "aviaries/sections/sections_list", sections: @sections %>
+    <%= tag.div id: "#{dom_id(@aviary)}_sections" do %>
+      <%#= render @aviary.sections %>
+      <%= render "aviaries/sections/sections_list", sections: @sections %>
+    <% end %>
   <% end %>
 
 </div>

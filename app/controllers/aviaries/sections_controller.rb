@@ -33,8 +33,6 @@ class Aviaries::SectionsController < ApplicationController
         
         format.turbo_stream do
           @new_section = Section.new
-          notice = "Section was created."
-          flash.now[:notice] = notice
         end
         format.html { redirect_to aviary_section_path(@aviary), notice: notice }
       else
@@ -58,12 +56,7 @@ class Aviaries::SectionsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
-  end
-
-
-
-                              
-                              
+  end               
 
   # DELETE /sections/1 or /sections/1.json
   def destroy
