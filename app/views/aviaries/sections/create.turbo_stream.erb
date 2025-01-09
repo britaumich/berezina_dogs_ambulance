@@ -1,5 +1,0 @@
-<%= turbo_stream.update 'new_section_form' do %>
-  <%= render 'form', section: @new_section %>
-<% end %>
-<%= turbo_stream.append 'sections_list', @section %>
-<%= turbo_stream.update 'flash', partial: 'layouts/notification' %>

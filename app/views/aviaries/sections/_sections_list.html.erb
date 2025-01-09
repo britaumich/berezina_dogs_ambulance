@@ -1,7 +1,3 @@
-<%= turbo_frame_tag 'sections_list' do %>
-
-  <% @sections.each do |section| %>
-    <%= render 'aviaries/sections/section', section: section %>
-  <% end %>
-   
+<% @sections.each do |section| %>
+  <%= render 'aviaries/sections/section', section: section %>
 <% end %>

@@ -4,18 +4,18 @@
       <%= t('text.Pictures') %>
     </h2>
     <p class="body-sm-text my-2">
-      To upload multiple images, click Choose Files and select all images at once.
+      <%= t('text.To upload multiple images, click Choose Files and select all images at once') %>
     </p>
     <%= form_with(model: @animal, url: upload_pictures_path, method: :post, html: { class: "sm:flex sm:items-center" }) do |form| %>
       <%= form.label :pictures, "Pictures (upload multiple images)", class: "hidden" %>
       <%= form.file_field :pictures, multiple: true, class: "body-sm-text" %>
-      <%= form.submit 'Save', class: "primary_button" %>
+      <%= form.submit t('forms.buttons.save'), class: "primary_button" %>
     <% end %>
   </div>
 
   <% if @animal.pictures.attached? %>
     <div class="">
-      <p class="body-md-bold-text mb-2">Uploaded pictures:</p>
+      <p class="body-md-bold-text mb-2"><%= t('text.Uploaded Pictures') %>:</p>
       <div>
         <ul class="list-none grid grid-cols-2 gap-x-4 gap-y-8 mb-2">
           <% @animal.pictures.order(created_at: :desc).each do |picture| %>
@@ -25,11 +25,11 @@
                   <%= picture_tag picture.variant(:thumb), alt: "pictures_#{picture.id}", class: "object-cover group-hover:opacity-75" %>
                 <% end %>
                 <p class="body-sm-text pt-2">
-                  Uploaded on <%= show_date_time(picture.created_at) %>
+                  <%= t('text.Uploaded on') %> <%= show_date_with_month_name(picture.created_at) %>
                 </p>
                 <div>
                   <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
-                    <span class="tertiary_button">Remove
+                    <span class="tertiary_button"><%= t('forms.buttons.delete') %>
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </span>
                   <% end %>

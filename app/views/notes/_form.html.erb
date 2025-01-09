@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <%= form.rich_text_area :body %>
-  <%= form.submit t('forms.buttons.submit'), class: "primary_button mt-2" %>
+  <%= form.submit t('forms.buttons.add'), class: "primary_button mt-2" %>
   <% if form.object.persisted? %>
     <%= link_to note do %>
       <span class="tertiary_button"><%= t('forms.buttons.cancel') %>
