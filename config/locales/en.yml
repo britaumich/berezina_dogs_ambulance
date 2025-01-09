@@ -50,6 +50,7 @@ en:
      edit: "Edit"
      submit: "Save"
      search: "Search"
+     save: "Save"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male
