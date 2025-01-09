@@ -36,6 +36,7 @@ ru:
     Procedures: "Процедуры"
     Pictures: "Фотографии"
     Medical Procedures: "Медицинские назначения"
+    Medical Procedure: "Медицинское назначение"
     Aviary: "Вольер"
     Sections: "Секции"
     Add Section: "Добавить секцию"
@@ -48,6 +49,12 @@ ru:
     From: "От"
     To: "До"
     Date: "Дата"
+    Editing: "Редактировать запись"
+    New: "Новая запись"
+    Select: "Выбрать"
+    Are you sure?: "Действительно удалить?"
+    Notes: "Замечания"
+    Group searching conditions by: "Группировать условия поиска с помощью"
   helpers:
     page_entries_info:
       one_page:
@@ -67,6 +74,8 @@ ru:
   label: 
     Birthday: "Дата рождения"
     Age: "Возраст"
+    and: "и"
+    or: "или"
   activerecord:
     attributes:
       animal:
@@ -80,7 +89,7 @@ ru:
         birth_date: "Дата рождения"
         death_date: "Дата смерти"
         color: "Окрас"
-        aviary: "Вольер"
+        aviary_id: "Вольер"
         section: "секция"
         description: "Общее описание"
         history: "История"
@@ -92,6 +101,8 @@ ru:
         sections: "Секции"
         name: "Название"
         description: "Описание"
+      section:
+        name: "Название"
       procedure_type:
         name: "Название"
         description: "Описание"
@@ -112,6 +123,7 @@ ru:
      back: "Назад к списку"
      search: "Найти"
      clear: "Обнулить фильтры"
+     cancel: "Отменить"
   menu:
     new: "Добавить"
     languages:

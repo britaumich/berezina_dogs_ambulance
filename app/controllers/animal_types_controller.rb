@@ -1,13 +1,9 @@
 class AnimalTypesController < ApplicationController
-  before_action :set_animal_type, only: %i[ show edit update destroy ]
+  before_action :set_animal_type, only: %i[ edit update destroy ]
 
   # GET /animal_types or /animal_types.json
   def index
     @animal_types = AnimalType.all
-  end
-
-  # GET /animal_types/1 or /animal_types/1.json
-  def show
   end
 
   # GET /animal_types/new

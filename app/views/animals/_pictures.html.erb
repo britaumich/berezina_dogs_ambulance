@@ -28,7 +28,7 @@
                   Uploaded on <%= show_date_time(picture.created_at) %>
                 </p>
                 <div>
-                  <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: 'Are you sure?' } do %>
+                  <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
                     <span class="tertiary_button">Remove
                       <i class="fa fa-times" aria-hidden="true"></i>
                     </span>

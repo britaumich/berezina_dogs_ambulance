@@ -13,14 +13,14 @@
               turbo_frame: "turbo-animals"
               } do |f| %>
       <div class="col-span-2 mb-4 flex justify-start">
-        <p>Group searching conditions by:</p>
+        <p><%= t('text.Group searching conditions by') %>:</p>
         <div class="ml-4">
           <%= f.radio_button :m, 'and', :checked => true %>
-          <%= f.label :m, 'and', value: 'and' %>
+          <%= f.label :m, t('label.and'), value: 'and' %>
         </div>
         <div class="ml-4">
           <%= f.radio_button :m, 'or' %>
-          <%= f.label :m, 'or', value: 'or' %>
+          <%= f.label :m, t('label.or'), value: 'or' %>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-x-2">
@@ -28,7 +28,7 @@
           <div class="mx-2 mb-1">
             <div>
               <%= f.label :animal_type_id %>
-              <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
+              <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
             </div>
             <div>
               <%= f.label :nickname_cont %>
@@ -40,7 +40,7 @@
             </div>
             <div>
               <%= f.label :gender %>
-              <%= f.select(:gender_eq, gender_lists, { include_blank: "Select ..." }, { class: "input_text_field" }) %>
+              <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" }) %>
             </div>
             <div class="flex items-end">
               <div class="flex-1 w-1/2">
@@ -67,7 +67,7 @@
           <div class="mx-2 mb-1">
             <div>
               <%= f.label :aviary_id %>
-              <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "Select ..." }, { class: 'input_text_field' }) %>
+              <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
             </div>
             <div>
               <%= f.label :description_cont %>

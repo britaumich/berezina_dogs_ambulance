@@ -31,7 +31,7 @@
         <%= t('activerecord.attributes.medical_procedure.date_complete') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
-        <%= l medical_procedure.date_complete %>
+        <%= show_date(medical_procedure.date_complete) %>
       </p>
     </div>
 
@@ -40,7 +40,7 @@
         <%= t('activerecord.attributes.medical_procedure.complete') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
-        <%= medical_procedure.complete %>
+        <%= show_boolean(medical_procedure.complete) %>
       </p>
     </div>
 
@@ -49,7 +49,7 @@
         <%= t('activerecord.attributes.medical_procedure.date_planned') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
-        <%= l medical_procedure.date_planned %>
+        <%= show_date(medical_procedure.date_planned) %>
       </p>
     </div>
 

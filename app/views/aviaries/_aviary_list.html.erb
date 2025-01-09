@@ -20,7 +20,7 @@
               <%= aviary.description %>
             </td>
             <td class="mi_tbody_td">
-              <%= aviary.has_sections %>
+              <%= show_boolean(aviary.has_sections) %>
             </td>
             <td class="mi_tbody_td">
               <%= link_to edit_aviary_path(aviary), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(aviary)}_edit" } do%>

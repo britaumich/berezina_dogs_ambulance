@@ -15,12 +15,12 @@
         </p>
         
         <%= link_to edit_note_path(note) do %>
-          <span class="tertiary_button">Edit
+          <span class="tertiary_button"><%= t('forms.buttons.edit') %>
             <i class="fa-solid fa-pen"></i>
           </span>
         <% end %>
-        <%= link_to note_path(note), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-          <span class="tertiary_button">Delete
+        <%= link_to note_path(note), data: { turbo_method: :delete, turbo_confirm: t('text.Are you sure?') } do %>
+          <span class="tertiary_button"><%= t('forms.buttons.delete') %>
             <i class="fa fa-times" aria-hidden="true"></i>
           </span>
         <% end %>
