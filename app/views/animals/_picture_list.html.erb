@@ -1,0 +1,11 @@
+<%= turbo_frame_tag 'animals' do %>
+    <div class="">
+      <ul role="list" class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 m-4">
+        <% @animals.each do |animal| %>
+          <li class=" bg-white rounded-lg shadow-md divide-y divide-gray-400 px-2 grid place-items-stretch bg-white border border-gray-300 rounded-lg">
+            <%= render 'animal_card', animal: animal %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

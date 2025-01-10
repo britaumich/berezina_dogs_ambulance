@@ -18,8 +18,8 @@ module ApplicationHelper
   end
 
   def show_animal(animal)
-    if animal.nickname.present?
-      animal.nickname
+    if animal.nickname.present? || animal.surname.present?
+      animal.nickname + " " + animal.surname
     else
       animal.id
     end

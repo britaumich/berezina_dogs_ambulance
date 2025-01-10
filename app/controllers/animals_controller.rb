@@ -3,6 +3,16 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
+    if params[:switch_view] == "table"
+      @view = "table"
+    else
+      @view = "pictures"
+    end
+    if params[:q].present? && params[:q][:s].present?
+      @sort_by = params[:q][:s]
+    else
+      @sort_by = nil
+    end
     @animal_types = AnimalType.all
     @aviaries = Aviary.all
     @animals = Animal.all

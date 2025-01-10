@@ -1,0 +1,21 @@
+<%= turbo_frame_tag dom_id(animal) do  %>
+  <h2 class="sr-only">animal</h2>
+  <div class="mt-2 mb-3 px-2 sm:px-0">
+    <%= link_to animal_path(animal), data: { "turbo-frame": "_top" } do %>
+      <% if animal.pictures.present? %>
+        <%=  image_tag(animal.pictures.first.representation(resize_to_fill: [150, 107]), class: 'p-2', alt: "#{animal.nickname}") %>
+      <% else %>
+        <%=  image_tag('animal_placeholder_small', height: '107', width: '150', class: 'p-2', alt: "animal placeholder") %>
+      <% end %>
+      <div class="text-xs px-2 font-bold">
+        <%= show_animal(animal) %>
+      </div>
+    <% end %>
+    <div class="text-xs px-2">
+      <%= animal.gender %>, <%= age(animal) %>
+    </div>
+    <div class="text-xs px-2">
+      <%= show_aviary(animal) %>
+    </div>
+  </div>
+<% end %>
