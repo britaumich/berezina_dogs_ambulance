@@ -36,15 +36,19 @@ en:
     To: "To"
     Date: "Date"
     Select: "Select"
+    Aviaries: "Enclosures"
   menu:
     languages:
       lang: "Language"
       ru: "Russian"
       en: "English"
+    header:
+      aviaries: "Enclosures"
   activerecord:
     attributes:
       animal:
         section: "section"
+        aviary_id: "Enclosure"
   forms:
     buttons:
      edit: "Edit"

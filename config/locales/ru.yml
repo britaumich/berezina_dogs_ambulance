@@ -94,7 +94,7 @@ ru:
         death_date: "Дата смерти"
         color: "Окрас"
         aviary_id: "Вольер"
-        section: "секция"
+        section_id: "Секция"
         description: "Общее описание"
         history: "История"
         graduation: "Выпуск"
