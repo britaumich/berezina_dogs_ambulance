@@ -1,0 +1,16 @@
+<%= turbo_frame_tag "add_to_enclosure" do %>
+  <h1><%= t('text.Add To Enclosure') %></h1>
+  <%= form_with(url: add_to_aviary_path, class: "contents") do |form| %>
+
+    <%= form.hidden_field :cart_id, value: @cart.id %>
+    
+    <div class="my-5">
+      <%= label_tag :aviary_id, t('activerecord.attributes.procedure_type.name') %>
+      <%= select_tag "aviary_id", options_for_select(@aviaries), include_blank: "#{t('text.Select')} ...", class: "input_text_field" %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
+    </div>
+  <% end %>
+<% end %>

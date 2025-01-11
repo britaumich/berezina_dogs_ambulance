@@ -4,6 +4,7 @@ class CartController < ApplicationController
     # @render_cart = false
     @procedures = ProcedureType.all.map { |p| [p.name, p.id] }
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
+    @aviaries = Aviary.all.map { |a| [a.name, a.id] }
   end
 
   def add
@@ -48,6 +49,28 @@ class CartController < ApplicationController
                                                  ),
                               turbo_stream.update('cart_total', partial: 'cart/cart_total'),
                               turbo_stream.replace('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('flash', partial: 'layouts/notification')
+                            ]
+      end
+    end
+  end
+
+  def add_to_aviary
+    cart = Cart.find(params[:cart_id])
+    cart.cart_animals.each do |cart_animal|
+      Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id])
+    end
+    cart.destroy
+    flash.now[:notice] = t('text.added to enclosure')
+    @aviaries = Aviary.all.map { |a| [a.name, a.id] }
+ 
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('cart',
+                                                  partial: 'cart/cart',
+                                                 ),
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.replace('add_to_enclosure', partial: 'cart/add_to_enclosure'),
                               turbo_stream.update('flash', partial: 'layouts/notification')
                             ]
       end
