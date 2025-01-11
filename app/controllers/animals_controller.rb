@@ -5,7 +5,9 @@ class AnimalsController < ApplicationController
   def index
     if params[:switch_view] == "table"
       @view = "table"
-    else
+    elsif params[:switch_view] == "pictures"
+      @view = "pictures"
+    else 
       @view = "pictures"
     end
     if params[:q].present? && params[:q][:s].present?
