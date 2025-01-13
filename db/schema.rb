@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_31_153135) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_13_005235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -104,7 +104,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_31_153135) do
   end
 
   create_table "medical_procedures", force: :cascade do |t|
-    t.date "date_complete"
+    t.date "date_completed"
     t.boolean "complete"
     t.date "date_planned"
     t.bigint "animal_id", null: false

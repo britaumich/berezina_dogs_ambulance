@@ -1,15 +1,15 @@
 <%= turbo_frame_tag "procedure_ids" do %>
-  <h1><%= t('text.Medical Procedures') %></h1>
+  <h2 class="mt-4"><%= t('text.Medical Procedures') %></h2>
   <%= form_with(url: add_medical_procedure_path, class: "contents") do |form| %>
 
     <%= form.hidden_field :cart_id, value: @cart.id %>
     
-    <div class="my-5">
+    <div class="my-4">
       <%= label_tag :procedure_type_id, t('activerecord.attributes.procedure_type.name') %>
       <%= select_tag "procedure_type_id", options_for_select(@procedures), include_blank: "#{t('text.Select')} ...", class: "input_text_field" %>
     </div>
 
-    <div class="my-5">
+    <div class="my-4">
       <%= label_tag :date_planned, t('activerecord.attributes.medical_procedure.date_planned') %>
       
       <%= text_field_tag :date_planned, "#{t('text.Select')} ...",

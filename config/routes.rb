@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'cart', to: 'cart#show'
   post 'cart/add'
   post 'cart/remove'
+  post 'add_medical_procedure', to: 'cart#add_medical_procedure'
+  post 'add_to_aviary', to: 'cart#add_to_aviary'
   resources :aviaries do
     resources :sections, module: :aviaries
   end
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
   resources :medical_procedures do
     resources :notes, module: :medical_procedures
   end
-  post 'add_medical_procedure', to: 'cart#add_medical_procedure'
+  
   resources :procedure_types, except: [:show] 
   resources :animals do
     resources :notes, module: :animals

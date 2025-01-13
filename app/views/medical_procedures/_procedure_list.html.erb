@@ -5,7 +5,7 @@
         <tr>
           <th class="header_th"><%= sort_link(@q, :animal_id, t('activerecord.attributes.medical_procedure.animal_id')) %></th>
           <th class="header_th"><%= sort_link(@q, :procedure_type_id, t('activerecord.attributes.medical_procedure.procedure_type_id')) %></th>
-          <th class="header_th"><%= sort_link(@q, :date_complete, t('activerecord.attributes.medical_procedure.date_complete')) %></th>
+          <th class="header_th"><%= sort_link(@q, :date_completed, t('activerecord.attributes.medical_procedure.date_completed')) %></th>
           <th class="header_th"><%= sort_link(@q, :date_planned, t('activerecord.attributes.medical_procedure.date_planned')) %></th>
           <th class="header_th"><%= t('forms.buttons.edit') %></th>
           <th class="header_th"><%= t('forms.buttons.delete') %></th>
@@ -25,7 +25,7 @@
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= medical_procedure.date_complete %>
+              <%= medical_procedure.date_completed %>
             </td>
             <td class="mi_tbody_td">
               <%= medical_procedure.date_planned %>

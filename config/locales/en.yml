@@ -30,13 +30,17 @@
 en:
   hello: "Hello world"
   text:
-    Add to Card: "Add to Card"
+    Add to Cart: "Add to Cart"
     Contains: "Contains"
     From: "From"
     To: "To"
     Date: "Date"
     Select: "Select"
+    Select Section: "Select"
     Aviaries: "Enclosures"
+    Add To Enclosure: "Add To Enclosure"
+    section: "секция"
+    Citizens: "Citizens"
   menu:
     languages:
       lang: "Language"
@@ -49,6 +53,7 @@ en:
       animal:
         section: "section"
         aviary_id: "Enclosure"
+        section_id: "Section"
   forms:
     buttons:
      edit: "Edit"

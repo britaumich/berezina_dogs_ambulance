@@ -1,2 +1,9 @@
 <%= render 'cart' %>
-<%= render 'order_medical' %>
+<div class="flex flex-col flex-nowrap items-center gap-5 justify-center py-12 lg:flex-row">
+<div class="grow">
+    <%= render 'order_medical' %>
+  </div>
+  <div class="grow">
+    <%= render 'add_to_enclosure' %>
+  </div>
+</div>
