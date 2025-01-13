@@ -8,102 +8,105 @@
   </div>
 
   <div class="relative min-h-screen md:flex">
-    <div data-controller="animal">
-      <%= search_form_for @q,
-        data: { animal_target: "form",
-                turbo_frame: "turbo-animals"
-                } do |f| %>
-        <div class="col-span-2 mb-4 flex justify-start">
-          <p><%= t('text.Group searching conditions by') %>:</p>
-          <div class="ml-4">
-            <%= f.radio_button :m, 'and', :checked => true %>
-            <%= f.label :m, t('label.and'), value: 'and' %>
-          </div>
-          <div class="ml-4">
-            <%= f.radio_button :m, 'or' %>
-            <%= f.label :m, t('label.or'), value: 'or' %>
-          </div>
-        </div>
-        <div class="">
-          <div class="">
-            <div class="mx-2 mb-1">
-              <div>
-                <%= f.label :animal_type_id %>
-                <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
+    <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+      <div data-controller="animal">
+        <%= search_form_for @q,
+          data: { animal_target: "form",
+                  turbo_frame: "turbo-animals"
+                  } do |f| %>
+          
+            <div class="col-span-2 mb-4 flex justify-start">
+              <p><%= t('text.Group searching conditions by') %>:</p>
+              <div class="ml-4">
+                <%= f.radio_button :m, 'and', :checked => true %>
+                <%= f.label :m, t('label.and'), value: 'and' %>
               </div>
-              <div>
-                <%= f.label :nickname_cont %>
-                <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+              <div class="ml-4">
+                <%= f.radio_button :m, 'or' %>
+                <%= f.label :m, t('label.or'), value: 'or' %>
               </div>
-              <div>
-                <%= f.label :surname_cont %>
-                <%= f.search_field :surname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-              </div>
-              <div>
-                <%= f.label :gender %>
-                <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" }) %>
-              </div>
-              <div class="flex items-end">
-                <div class="flex-1 w-1/2">
-                  <%= f.label :arival_date %>
-                  <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'input_text_field',
-                    data: {
-                      controller: "flatpickr",
-                      flatpickr_date_format: "Y-m-d"
-                    } %>
+            </div>
+            <div class="">
+              <div class="">
+                <div class="mx-2 mb-1">
+                  <div>
+                    <%= f.label :animal_type_id %>
+                    <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
+                  </div>
+                  <div>
+                    <%= f.label :nickname_cont %>
+                    <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+                  </div>
+                  <div>
+                    <%= f.label :surname_cont %>
+                    <%= f.search_field :surname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+                  </div>
+                  <div>
+                    <%= f.label :gender %>
+                    <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" }) %>
+                  </div>
+                  <div class="flex items-end">
+                    <div class="flex-1 w-1/2">
+                      <%= f.label :arival_date %>
+                      <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'input_text_field',
+                        data: {
+                          controller: "flatpickr",
+                          flatpickr_date_format: "Y-m-d"
+                        } %>
+                    </div>
+                    <div class="ml-1 flex-1 w-1/2">
+                      <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'input_text_field',
+                        data: {
+                          controller: "flatpickr",
+                          flatpickr_date_format: "Y-m-d"
+                        } %>
+                    </div>
+                  </div>
                 </div>
-                <div class="ml-1 flex-1 w-1/2">
-                  <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'input_text_field',
-                    data: {
-                      controller: "flatpickr",
-                      flatpickr_date_format: "Y-m-d"
-                    } %>
+              </div>
+                  
+
+              <div class="">
+                <div class="mx-2 mb-1">
+                  <div>
+                    <%= f.label :aviary_id %>
+                    <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
+                  </div>
+                  <div>
+                    <%= f.label :description_cont %>
+                    <%= f.search_field :description_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+                  </div>
+                  <div>
+                    <%= f.label :history_cont %>
+                    <%= f.search_field :history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+                  </div>
+
+                  <div>
+                    <%= f.label :description_or_history_cont %>
+                    <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+                  </div>
+
+                </div>
+              </div>
+              <div class="my-2 col-span-2 flex justify-start">
+                <div class="mr-2">
+                  <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
+                </div>
+                <div>
+                  <button type="button" class="tertiary_button"
+                    data-action='click->animal#clearFilters'>
+                      <span>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <%= t('forms.buttons.clear') %>
+                      </span>
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-              
-
-          <div class="">
-            <div class="mx-2 mb-1">
-              <div>
-                <%= f.label :aviary_id %>
-                <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
-              </div>
-              <div>
-                <%= f.label :description_cont %>
-                <%= f.search_field :description_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-              </div>
-              <div>
-                <%= f.label :history_cont %>
-                <%= f.search_field :history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-              </div>
-
-              <div>
-                <%= f.label :description_or_history_cont %>
-                <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-              </div>
-
-            </div>
-          </div>
-          <div class="my-2 col-span-2 flex justify-start">
-            <div class="mr-2">
-              <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
-            </div>
-            <div>
-              <button type="button" class="tertiary_button"
-                data-action='click->animal#clearFilters'>
-                  <span>
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                    <%= t('forms.buttons.clear') %>
-                  </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-    <div>
+    <div class="flex-1 mx-2">
       <div class="flex justify-between items-end" data-controller="autosubmit">
         <div> </div>
         <%= form_with url: animals_path, method: :get, class: "", data: { autosubmit_target: "form", turbo_frame: "turbo-animals" } do |form| %>
@@ -125,20 +128,24 @@
           </div>
         <% end %>
       </div>
-      <%= turbo_frame_tag "turbo-animals" do %>
-      <div class="mb-10 min-w-full" id="animals_listing">
-        <div class="my-2" >
-          <%= page_entries_info @animals %>
-        </div>
-        <% if @view == 'table' %>
-          <%= render 'animal_list' %>
-        <% else %>
-          <%= render 'picture_list' %>
+      <div>
+        <%= turbo_frame_tag "turbo-animals" do %>
+          <div class="mb-10 min-w-full" id="animals_listing">
+            <div class="my-2" >
+              <%= page_entries_info @animals %>
+            </div>
+            <% if @view == 'table' %>
+              <%= render 'animal_list' %>
+            <% else %>
+              <%= render 'picture_list' %>
+            <% end %>
+            <div class="my-2 flex justify-center" >
+              <%= paginate @animals %>
+            </div>
+          </div>
         <% end %>
-        <div class="my-2 flex justify-center" >
-          <%= paginate @animals %>
-        </div>
       </div>
     </div>
-  <% end %>
+  </div>
+  
 </div>
