@@ -54,7 +54,7 @@ module ApplicationHelper
       aviary += animal.aviary.name
     end
     if animal.section&.name.present?
-      aviary += ", #{t('activerecord.attributes.animal.section')} " + animal.section.name
+      aviary += ", #{t('text.section')} " + animal.section.name
     end
     return aviary
   end

@@ -5,6 +5,7 @@ class CartController < ApplicationController
     @procedures = ProcedureType.all.map { |p| [p.name, p.id] }
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
     @aviaries = Aviary.all.map { |a| [a.name, a.id] }
+    @sections = []
   end
 
   def add
@@ -58,12 +59,12 @@ class CartController < ApplicationController
   def add_to_aviary
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
-      Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id])
+      Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id], section_id: params[:section_id])
     end
     cart.destroy
     flash.now[:notice] = t('text.added to enclosure')
     @aviaries = Aviary.all.map { |a| [a.name, a.id] }
- 
+    @sections = []
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [turbo_stream.replace('cart',

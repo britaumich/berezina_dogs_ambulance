@@ -40,6 +40,7 @@ ru:
     Medical Procedure: "Медицинское назначение"
     Aviary: "Вольер"
     Sections: "Секции"
+    section: "секция"
     Add Section: "Добавить секцию"
     Aviaries: "Вольеры"
     Add to Card: "Добавить в корзину"
@@ -53,6 +54,7 @@ ru:
     Editing: "Редактировать запись"
     New: "Новая запись"
     Select: "Выбрать"
+    Select Section: "Выбрать"
     Are you sure?: "Действительно удалить?"
     Notes: "Примечания"
     Group searching conditions by: "Группировать условия поиска с помощью"
@@ -60,6 +62,8 @@ ru:
     Uploaded Pictures: "Загруженные фотографии"
     Uploaded on: "Загружена"
     Animal Nickname contains: "Кличка содержит"
+    citizens: "Граждане"
+    Lena Beresina's shelter: "Питомник Лены Березиной"
   helpers:
     page_entries_info:
       one_page:
@@ -112,7 +116,7 @@ ru:
         name: "Название"
         description: "Описание"
       medical_procedure:
-        date_complete: "Дата проведения"
+        date_completed: "Дата проведения"
         complete: "Закончено"
         date_planned: "Дата по плану"
         animal_id: "Животное"
