@@ -4,10 +4,9 @@
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
-          <th class="header_th">Название</th>
-          <th class="header_th">Описание</th>
-          <th class="header_th">Дата по плану</th>
-          <th class="header_th">Дата проведения</th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.procedure_type_id') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_planned') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_completed') %></th>
         </tr>
       </thead>
       <tbody>
@@ -17,13 +16,10 @@
               <%= link_to procedure.procedure_type.name, medical_procedure_path(procedure), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
-              <%= procedure.description %>
-            </td>
-            <td class="mi_tbody_td">
               <%= show_date_with_month_name(procedure.date_planned) %>
             </td>
             <td class="mi_tbody_td">
-              <%= show_date_with_month_name(procedure.date_complete) %>
+              <%= show_date_with_month_name(procedure.date_completed) %>
             </td>
           </tr>
         <% end %>
