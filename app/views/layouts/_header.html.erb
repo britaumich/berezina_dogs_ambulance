@@ -43,11 +43,11 @@
               </div>
               <div class="group relative cursor-pointer">
                 <div class="flex items-center justify-between">
-                  <%= content_tag :span, t('menu.header.language'), class: "nav-top-link" %>
-                </div>
-                <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
-                  <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "nav-sub-link" %>
-                  <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "nav-sub-link" %>
+                  <% if I18n.locale == :en %>
+                    <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "nav-top-link" %>
+                  <% else %>
+                    <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "nav-top-link" %>
+                  <% end %>
                 </div>
               </div>
             </div>
