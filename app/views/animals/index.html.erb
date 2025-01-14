@@ -99,20 +99,20 @@
       <div class="flex justify-between items-end" data-controller="autosubmit">
         <div> </div>
         <%= form_with url: animals_path, method: :get, class: "", data: { autosubmit_target: "form", turbo_frame: "turbo-animals" } do |form| %>
-          <div class="flex justify-between items-center gap-4">
+          <div class="flex justify-between items-center gap-4 text-sm">
             <div class="display inline">
-              <label for="sort" class="fancy_label">Sort</label>
-              <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "Sort", class: "input_text_field",
+              <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
+              <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
                 :"data-action" => "change->autosubmit#submit" %>
             </div>
             <div>
-              <label for="order" class="fancy_label">Order</label>
-              <%= select_tag "order", options_for_select([["asc", "asc"], ["desc", "desc"]], selected: @order), class: "input_text_field",
+              <label for="order" class="fancy_label"><%= t('label.order') %></label>
+              <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
                 :"data-action" => "change->autosubmit#submit" %>
             </div>
             <div>
-              <label for="switch_view" class="fancy_label">View</label>
-              <%= select_tag "switch_view", options_for_select([["Table", "table"], ["Pictures", "pictures"]], selected: @view), class: "input_text_field",
+              <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
+              <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
                 :"data-action" => "change->autosubmit#submit" %>
             </div>
           </div>
@@ -121,7 +121,7 @@
       <div>
         <%= turbo_frame_tag "turbo-animals" do %>
           <div class="mb-20 min-w-full" id="animals_listing">
-            <div class="my-2" >
+            <div class="my-2 ml-4">
               <%= page_entries_info @animals %>
             </div>
             <% if @view == 'table' %>
