@@ -4,8 +4,11 @@
         <%= t('activerecord.attributes.medical_procedure.animal_id') %>:
       </p>
       <p class="body-lg-text pl-2 inline">
-        <%= show_animal(medical_procedure.animal) %>
+        <%= link_to animal_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} do %>
+          <%= show_animal(medical_procedure.animal) %>
+        <% end %>
       </p>
+      
     </div>
 
     <div class="py-2">

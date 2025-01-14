@@ -49,10 +49,11 @@ en:
     New Medical Procedure: "New Medical Procedure"
     Editing Citizen: "Editing Animal"
     Editing Medical Procedure: "Editing Medical Procedure"
+    Lena Beresina's shelter: "Lena Beresina's shelter"
   menu:
     languages:
       lang: "Language"
-      ru: "Russian"
+      ru: "Русский"
       en: "English"
     header:
       aviaries: "Enclosures"
