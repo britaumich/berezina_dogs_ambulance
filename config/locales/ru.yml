@@ -108,6 +108,7 @@ ru:
       animal_type:
         name: "Название"
       aviary:
+        has_sections: "Есть секции"
         sections: "Секции"
         name: "Название"
         description: "Описание"
@@ -123,9 +124,16 @@ ru:
         animal_id: "Животное"
         procedure_type_id: "Процедура"
         description: "Описание"
+    errors:
+      models:
+        animal:
+          any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, описание, или дата появления"
+        section:
+          is_already_in_this_aviary: "уже есть в этом вольере"
   forms:
     messages:
       success: "Операция была успешно выполнена!"
+      prohibited this record from being saved: "- запись не может быть сохранена"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"
@@ -161,3 +169,8 @@ ru:
     formats:
       default: "%d-%m-%Y"
       with_month: "%d %B, %Y"
+  error:
+    zero: 'нет ошибок'
+    one: '%{count} ошибка'
+    few: '%{count} ошибки'
+    many: '%{count} ошибок'

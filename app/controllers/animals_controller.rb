@@ -58,6 +58,9 @@ class AnimalsController < ApplicationController
         format.html { redirect_to @animal, notice: "Animal was successfully created." }
         format.json { render :show, status: :created, location: @animal }
       else
+        @animal_types = AnimalType.all
+        @aviaries = Aviary.all
+        @sections = []
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end

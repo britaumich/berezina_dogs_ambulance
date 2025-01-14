@@ -1,8 +1,8 @@
 <%= simple_form_for animal,
   data: { controller: "animal" } do |form| %>
   <% if animal.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+    <div id="error_explanation" class="text-base text-red-950 px-3 py-2 font-medium rounded-lg mt-3">
+    <p class="text-lg"><%= t('error', count: animal.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
 
       <ul>
         <% animal.errors.each do |error| %>
@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :animal_type_id %>
+    <%= form.label :animal_type_id, "#{t('activerecord.attributes.animal.animal_type_id')}(*)" %>
     <%= form.collection_select(:animal_type_id, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
