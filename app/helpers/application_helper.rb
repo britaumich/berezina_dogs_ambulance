@@ -77,4 +77,15 @@ module ApplicationHelper
     end
   end
 
+  def fields_to_sort_animals
+    [
+      ["Animal Type", "animal_type_id"], 
+      ["Nickname", "nickname"],
+      ["Surname", "surname"],
+      ["Gender", "gender"],
+      ["Enclosure", "aviary_id"],
+      ["Arival Date", "arrival_date"]
+    ] 
+  end
+
 end
