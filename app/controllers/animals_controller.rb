@@ -10,8 +10,9 @@ class AnimalsController < ApplicationController
     else 
       @view = "pictures"
     end
-    if params[:q].present? && params[:q][:s].present?
-      @sort_by = params[:q][:s]
+    if params[:sort].present?
+      @sort_by = params[:sort]
+      @order = params[:order]
     else
       @sort_by = nil
     end
@@ -22,6 +23,9 @@ class AnimalsController < ApplicationController
       @q = @animals.ransack(params[:q])
     else
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
+    end
+    if @sort_by.present?
+      @q.sorts = @sort_by + ' ' + @order
     end
     @animals = @q.result.distinct.page(params[:page])
   end

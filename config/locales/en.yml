@@ -50,6 +50,12 @@ en:
     Editing Citizen: "Editing Animal"
     Editing Medical Procedure: "Editing Medical Procedure"
     Lena Beresina's shelter: "Lena Beresina's shelter"
+    table: "Table"
+    pictures: "Pictures"
+  lable:
+    sort: "Sort"
+    order: "Order"
+    view: "View"
   menu:
     languages:
       lang: "Language"
@@ -70,7 +76,6 @@ en:
           any_present_message: "One of the following fileds should exist: nickname, surname, color, description, or arival_date"
         aviary:
           is_already_in_this_aviary: "is already in this enclosure"
-      
   forms:
     buttons:
       edit: "Edit"
@@ -78,6 +83,9 @@ en:
       search: "Search"
       save: "Save"
       add: "Add"
+    sort:
+      asc: "Ascending"
+      desc: "Descending"
 
   gender_lists:
     "Unspecified": Unspecified

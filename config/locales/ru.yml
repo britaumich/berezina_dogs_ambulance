@@ -71,6 +71,8 @@ ru:
     Citizen: "Граждaнин"
     Animal Type: "вид граждан"
     Lena Beresina's shelter: "Питомник Лены Березиной"
+    table: "Таблица"
+    pictures: "Картинки"
   helpers:
     page_entries_info:
       one_page:
@@ -92,6 +94,9 @@ ru:
     Age: "Возраст"
     and: "и"
     or: "или"
+    sort: "Сортировать"
+    order: "Порядок"
+    view: "Вид"
   activerecord:
     attributes:
       animal:
@@ -152,6 +157,9 @@ ru:
      cancel: "Отменить"
      save: "Сохранить"
      add: "Добавить"
+    sort:
+      asc: "По возрастанию"
+      desc: "По убыванию"
   menu:
     new: "Добавить"
     languages:

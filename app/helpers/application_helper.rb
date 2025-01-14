@@ -79,13 +79,26 @@ module ApplicationHelper
 
   def fields_to_sort_animals
     [
-      ["Animal Type", "animal_type_id"], 
-      ["Nickname", "nickname"],
-      ["Surname", "surname"],
-      ["Gender", "gender"],
-      ["Enclosure", "aviary_id"],
-      ["Arival Date", "arrival_date"]
+      [t('activerecord.attributes.animal.animal_type_id'), "animal_type_id"], 
+      [t('activerecord.attributes.animal.nickname'), "nickname"],
+      [t('activerecord.attributes.animal.surname'), "surname"],
+      [t('activerecord.attributes.animal.gender'), "gender"],
+      [t('activerecord.attributes.animal.aviary_id'), "aviary_id"],
+      [t('activerecord.attributes.animal.arival_date'), "arival_date"]
     ] 
   end
 
+  def sorting_order
+    [
+      [t('forms.sort.asc'), "asc"], 
+      [t('forms.sort.desc'), "desc"]
+    ]
+  end
+
+  def index_views
+    [
+      [t('text.table'), "table"], 
+      [t('text.pictures'), "pictures"]
+    ]
+  end
 end
