@@ -38,6 +38,7 @@ en:
     Select: "Select"
     Select All: "Select All"
     Select Section: "Select"
+    Aviary: "Enclosure"
     Aviaries: "Enclosures"
     Add To Enclosure: "Add To Enclosure"
     section: "секция"
@@ -55,13 +56,22 @@ en:
         section: "section"
         aviary_id: "Enclosure"
         section_id: "Section"
+        animal_type_id: "Animal Type"
+    errors:
+      models:
+        animal:
+          any_present_message: "One of the following fileds should exist: nickname, surname, color, description, or arival_date"
+        aviary:
+          is_already_in_this_aviary: "is already in this enclosure"
+      
   forms:
     buttons:
-     edit: "Edit"
-     submit: "Save"
-     search: "Search"
-     save: "Save"
-     add: "Add"
+      edit: "Edit"
+      submit: "Save"
+      search: "Search"
+      save: "Save"
+      add: "Add"
+
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male
@@ -70,3 +80,10 @@ en:
     formats:
       default: "%Y-%m-%d"
       with_month: "%d %B, %Y"
+  error:
+    zero: "No errors"
+    one:   "1 error"
+    few:  "%{count} errors"
+    many:  "%{count} errors"
+    other: "%{count} errors"
+

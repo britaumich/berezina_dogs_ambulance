@@ -39,6 +39,8 @@ class MedicalProceduresController < ApplicationController
         format.html { redirect_to @medical_procedure, notice: "Medical procedure was successfully created." }
         format.json { render :show, status: :created, location: @medical_procedure }
       else
+        @animals = Animal.all
+        @procedures = ProcedureType.all
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
       end

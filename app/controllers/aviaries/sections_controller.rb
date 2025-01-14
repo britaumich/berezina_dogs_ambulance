@@ -40,6 +40,10 @@ class Aviaries::SectionsController < ApplicationController
         format.html { redirect_to @aviary }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(dom_id_for_records(@aviary, @section), partial: "aviaries/sections/form", locals: { section: @section, aviary: @aviary })
+        }
+        format.html { redirect_to @aviary }
       end
     end
   end

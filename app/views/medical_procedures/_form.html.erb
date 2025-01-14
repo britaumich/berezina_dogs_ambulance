@@ -28,12 +28,7 @@
 
   <div class="my-5">
     <%= form.label :date_planned %>
-    <%= form.date_field :date_planned, class: "input_text_field" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :complete %>
-    <%= form.checkbox :complete, class: "block mt-2 h-5 w-5" %>
+    <%= form.date_field :date_planned, class: "input_text_field", required: true %>
   </div>
 
   <div class="my-5">

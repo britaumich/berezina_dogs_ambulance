@@ -1,8 +1,7 @@
 <%= form_with(model: animal_type, class: "contents") do |form| %>
   <% if animal_type.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(animal_type.errors.count, "error") %> prohibited this animal_type from being saved:</h2>
-
+    <div id="error_explanation" class="text-base text-red-950 px-3 py-2 font-medium rounded-lg mt-3">
+      <p class="text-lg"><%= t('error', count: animal_type.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
       <ul>
         <% animal_type.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -13,7 +12,7 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "input_text_field" %>
+    <%= form.text_field :name, class: "input_text_field", required: true %>
   </div>
 
   <div class="inline">
