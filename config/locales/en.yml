@@ -43,6 +43,12 @@ en:
     Add To Enclosure: "Add To Enclosure"
     section: "секция"
     Citizens: "Citizens"
+    Citizen: "Citizen"
+    Animal Type: "Animal Type"
+    Procedure Types: "Procedure Types"
+    New Medical Procedure: "New Medical Procedure"
+    Editing Citizen: "Editing Animal"
+    Editing Medical Procedure: "Editing Medical Procedure"
   menu:
     languages:
       lang: "Language"

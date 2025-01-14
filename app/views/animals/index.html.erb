@@ -100,14 +100,10 @@
         <div> </div>
         <%= form_with url: animals_path, method: :get, class: "", data: { autosubmit_target: "form", turbo_frame: "turbo-animals" } do |form| %>
           <div class="flex justify-between items-center gap-4">
-            <% if @view == 'pictures' %>
               <div class="display inline">
-            <% else %>
-              <div class="hidden inline">
-            <% end %>
-              <label for="q_s" class="fancy_label">Sort</label>
-              <%= select_tag "q[s]", options_for_select([["Enclosure", "aviary_id"], ["Nickname", "nickname"]], selected: @sort_by), include_blank: "Sort", class: "input_text_field",
-                :"data-action" => "change->autosubmit#submit" %>
+                <label for="q_s" class="fancy_label">Sort</label>
+                <%= select_tag "q[s]", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "Sort", class: "input_text_field",
+                  :"data-action" => "change->autosubmit#submit" %>
             </div>
             <div>
               <label for="switch_view" class="fancy_label">View</label>

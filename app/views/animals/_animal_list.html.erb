@@ -21,13 +21,103 @@
               <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
             </td>
             <th class="header_th"><%= t('activerecord.attributes.animal.id') %></th>
-            <th class="header_th"><%= sort_link(@q, :animal_type_id, t('activerecord.attributes.animal.animal_type_id')) %></th>
-            <th class="header_th"><%= sort_link(@q, :nickname, t('activerecord.attributes.animal.nickname')) %></th>
-            <th class="header_th"><%= sort_link(@q, :surname, t('activerecord.attributes.animal.surname')) %></th>
-            <th class="header_th"><%= sort_link(@q, :gender, t('activerecord.attributes.animal.gender')) %></th>
+            <th class="header_th">
+              <%= link_to sort_url(@q, :animal_type_id) do %>
+                <span><%= t('activerecord.attributes.animal.animal_type_id') %></span>
+                <% sort = @q.sorts.find { |s| s.name == 'animal_type_id' } %>            
+                <% if sort.present? && sort.dir == 'asc' %>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <% if sort.present? && sort.dir == 'desc' %>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                <% end %>
+                <% unless sort.present? %>
+                  <i class="fa fa-sort" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </th>
+            <th class="header_th">
+              <%= link_to sort_url(@q, :nickname) do %>
+                <span><%= t('activerecord.attributes.animal.nickname') %></span>
+                <% sort = @q.sorts.find { |s| s.name == 'nickname' } %>            
+                <% if sort.present? && sort.dir == 'asc' %>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <% if sort.present? && sort.dir == 'desc' %>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                <% end %>
+                <% unless sort.present? %>
+                  <i class="fa fa-sort" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </th>
+
+            <th class="header_th">
+              <%= link_to sort_url(@q, :surname) do %>
+                <span><%= t('activerecord.attributes.animal.surname') %></span>
+                <% sort = @q.sorts.find { |s| s.name == 'surname' } %>            
+                <% if sort.present? && sort.dir == 'asc' %>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <% if sort.present? && sort.dir == 'desc' %>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                <% end %>
+                <% unless sort.present? %>
+                  <i class="fa fa-sort" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </th>
+
+            <th class="header_th">
+              <%= link_to sort_url(@q, :gender) do %>
+                <span><%= t('activerecord.attributes.animal.gender') %></span>
+                <% sort = @q.sorts.find { |s| s.name == 'gender' } %>            
+                <% if sort.present? && sort.dir == 'asc' %>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <% if sort.present? && sort.dir == 'desc' %>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                <% end %>
+                <% unless sort.present? %>
+                  <i class="fa fa-sort" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </th>
+
             <th class="header_th"><%= t('label.Age') %></th>
-            <th class="header_th"><%= sort_link(@q, :aviary_id, t('activerecord.attributes.animal.aviary_id')) %></th>
-            <th class="header_th"><%= sort_link(@q, :arival_date, t('activerecord.attributes.animal.arival_date')) %></th>
+
+            <th class="header_th">
+              <%= link_to sort_url(@q, :aviary_id) do %>
+                <span><%= t('activerecord.attributes.animal.aviary_id') %></span>
+                <% sort = @q.sorts.find { |s| s.name == 'aviary_id' } %>            
+                <% if sort.present? && sort.dir == 'asc' %>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                <% end %>
+                <% if sort.present? && sort.dir == 'desc' %>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                <% end %>
+                <% unless sort.present? %>
+                  <i class="fa fa-sort" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </th>
+
+            <th class="header_th">
+              <th class="header_th">
+                <%= link_to sort_url(@q, :arival_date) do %>
+                  <span><%= t('activerecord.attributes.animal.arival_date') %></span>
+                  <% sort = @q.sorts.find { |s| s.name == 'arival_date' } %>            
+                  <% if sort.present? && sort.dir == 'asc' %>
+                    <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <% end %>
+                  <% if sort.present? && sort.dir == 'desc' %>
+                    <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <% end %>
+                  <% unless sort.present? %>
+                    <i class="fa fa-sort" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              </th>
           </tr>
         </thead>
         <tbody>
