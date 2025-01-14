@@ -1,9 +1,26 @@
-<div class="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 px-4">
-  <div class="bg-white p-8 sm:p-12 rounded-lg shadow-xl w-full max-w-screen-lg mx-auto text-center">
-    <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 sm:mb-8">Dogs Ambulance</h1>
-    <p class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8">
-    <%= t("text.Lena Beresina's shelter") %>
-    </p>
+<div class="container px-1 mb-20">
+  <div class="relative overflow-hidden">
+    <!-- Decorative background image and gradient -->
+    <div aria-hidden="true" class="absolute inset-0">
+      <div class="absolute inset-0 max-w-7xl mx-auto overflow-hidden xl:px-8">
+        <div class="w-full h-full object-center object-cover">
+          <%= link_to image_tag(asset_path('shelter.jpg', class: "h-5/6"), alt: "#{(t :sitename)} Logo, link to home page.", id: root_path(anchor: 'page-bottom')), root_path, tabindex: '-1' %>
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-white bg-opacity-25"></div>
+      <div class="bsolute inset-0 bg-gradient-to-t from-white via-white"></div>
+    </div>
+    <section aria-labelledby="sale-heading" class="relative mx-auto flex flex-col items-center text-center sm:px-6 lg:px-8">
 
+      <div class="min-h-screen flex flex-col justify-top items-center pt-8">
+        <div class="bg-opacity-25 bg-white p-8 sm:p-12 rounded-lg shadow-xl w-full max-w-screen-lg mx-auto text-center">
+          <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 sm:mb-8" id="sale-heading">Dogs Ambulance</h1>
+          <p class="text-base sm:text-lg text-gray-750 mb-6 sm:mb-8">
+          <%= t("text.Lena Beresina's shelter") %>
+          </p>
+
+        </div>
+      </section>
+    </div>
   </div>
 </div>
