@@ -30,14 +30,16 @@
 ru:
   text:
     hello: "привет"
-    Animal Types: "Виды животных"
+    Animal Types: "Виды граждан"
     Animals: "Животные"
     Procedure Types: "Виды процедур"
+    Procedure Type: "вид процедур"
     Procedures: "Процедуры"
     Pictures: "Фотографии"
     Add To Enclosure: "Добавить в вольер"
     Medical Procedures: "Медицинские назначения"
     Medical Procedure: "Медицинское назначение"
+    New Medical Procedure: "Новая медицинская процедура"
     Aviary: "Вольер"
     Sections: "Секции"
     section: "секция"
@@ -52,7 +54,7 @@ ru:
     To: "До"
     Date: "Дата"
     Editing: "Редактировать запись"
-    New: "Новая запись"
+    New: "Новый"
     Select: "Выбрать"
     Select All: "Выбрать все"
     Select Section: "Выбрать"
@@ -64,6 +66,8 @@ ru:
     Uploaded on: "Загружена"
     Animal Nickname contains: "Кличка содержит"
     citizens: "Граждане"
+    Citizen: "Граждaнин"
+    Animal Type: "вид граждан"
     Lena Beresina's shelter: "Питомник Лены Березиной"
   helpers:
     page_entries_info:
