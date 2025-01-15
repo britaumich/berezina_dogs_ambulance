@@ -26,10 +26,10 @@
                 <span><%= t('activerecord.attributes.animal.animal_type_id') %></span>
                 <% sort = @q.sorts.find { |s| s.name == 'animal_type_id' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
-                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>
                 <% if sort.present? && sort.dir == 'desc' %>
-                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                 <% end %>
                 <% unless sort.present? %>
                   <i class="fa fa-sort" aria-hidden="true"></i>
@@ -41,10 +41,10 @@
                 <span><%= t('activerecord.attributes.animal.nickname') %></span>
                 <% sort = @q.sorts.find { |s| s.name == 'nickname' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
-                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>
                 <% if sort.present? && sort.dir == 'desc' %>
-                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                 <% end %>
                 <% unless sort.present? %>
                   <i class="fa fa-sort" aria-hidden="true"></i>
@@ -57,10 +57,10 @@
                 <span><%= t('activerecord.attributes.animal.surname') %></span>
                 <% sort = @q.sorts.find { |s| s.name == 'surname' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
-                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>
                 <% if sort.present? && sort.dir == 'desc' %>
-                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                 <% end %>
                 <% unless sort.present? %>
                   <i class="fa fa-sort" aria-hidden="true"></i>
@@ -73,10 +73,10 @@
                 <span><%= t('activerecord.attributes.animal.gender') %></span>
                 <% sort = @q.sorts.find { |s| s.name == 'gender' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
-                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>
                 <% if sort.present? && sort.dir == 'desc' %>
-                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                 <% end %>
                 <% unless sort.present? %>
                   <i class="fa fa-sort" aria-hidden="true"></i>
@@ -91,10 +91,10 @@
                 <span><%= t('activerecord.attributes.animal.aviary_id') %></span>
                 <% sort = @q.sorts.find { |s| s.name == 'aviary_id' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
-                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>
                 <% if sort.present? && sort.dir == 'desc' %>
-                  <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                  <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                 <% end %>
                 <% unless sort.present? %>
                   <i class="fa fa-sort" aria-hidden="true"></i>
@@ -108,10 +108,10 @@
                   <span><%= t('activerecord.attributes.animal.arival_date') %></span>
                   <% sort = @q.sorts.find { |s| s.name == 'arival_date' } %>            
                   <% if sort.present? && sort.dir == 'asc' %>
-                    <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+                    <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                   <% end %>
                   <% if sort.present? && sort.dir == 'desc' %>
-                    <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+                    <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
                   <% end %>
                   <% unless sort.present? %>
                     <i class="fa fa-sort" aria-hidden="true"></i>

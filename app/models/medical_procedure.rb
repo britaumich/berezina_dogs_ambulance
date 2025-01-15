@@ -30,7 +30,7 @@ class MedicalProcedure < ApplicationRecord
   validates_presence_of :animal_id, :procedure_type_id, :date_planned
 
   def self.ransackable_attributes(auth_object = nil)
-    ["date_completed", "date_planned", "animal_id", "procedure_type_id"]
+    ["date_completed", "date_planned"]
   end
 
   def self.ransackable_associations(auth_object = nil)
