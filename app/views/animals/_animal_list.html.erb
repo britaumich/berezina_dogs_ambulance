@@ -22,9 +22,9 @@
             </td>
             <th class="header_th"><%= t('activerecord.attributes.animal.id') %></th>
             <th class="header_th">
-              <%= link_to sort_url(@q, :animal_type_id) do %>
+              <%= link_to sort_url(@q, :animal_type_name) do %>
                 <span><%= t('activerecord.attributes.animal.animal_type_id') %></span>
-                <% sort = @q.sorts.find { |s| s.name == 'animal_type_id' } %>            
+                <% sort = @q.sorts.find { |s| s.name == 'animal_type_name' } %>            
                 <% if sort.present? && sort.dir == 'asc' %>
                   <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
                 <% end %>

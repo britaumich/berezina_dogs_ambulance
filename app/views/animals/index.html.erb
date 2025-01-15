@@ -27,8 +27,8 @@
           </div>
           <div class="">
             <div class="mb-2">
-              <%= f.label :animal_type_id %>
-              <%= f.collection_select(:animal_type_id_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
+              <%= f.label :animal_type_name_eq %>
+              <%= f.collection_select(:animal_type_name_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
             </div>
             <div class="mb-2">
               <%= f.label :nickname_cont %>
