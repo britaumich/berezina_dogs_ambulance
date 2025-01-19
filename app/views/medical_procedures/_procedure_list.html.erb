@@ -4,7 +4,7 @@
       <tr>
         <th class="header_th">
           <%= link_to sort_url(@q, :animal_nickname) do %>
-            <span><%= t('activerecord.attributes.medical_procedure.animal_name') %></span>
+            <span><%= t('activerecord.attributes.medical_procedure.animal_id') %></span>
             <% sort = @q.sorts.find { |s| s.name == 'animal_nickname' } %>            
             <% if sort.present? && sort.dir == 'asc' %>
               <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
@@ -19,7 +19,7 @@
         </th>
         <th class="header_th">
           <%= link_to sort_url(@q, :procedure_type_name) do %>
-            <span><%= t('activerecord.attributes.medical_procedure.procedure_type_name') %></span>
+            <span><%= t('activerecord.attributes.medical_procedure.procedure_type_id') %></span>
             <% sort = @q.sorts.find { |s| s.name == 'procedure_type_name' } %>            
             <% if sort.present? && sort.dir == 'asc' %>
               <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
