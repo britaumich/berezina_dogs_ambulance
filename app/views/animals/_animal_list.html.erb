@@ -86,9 +86,9 @@
           <th class="header_th"><%= t('label.Age') %></th>
 
           <th class="header_th">
-            <%= link_to sort_url(@q, :aviary_id) do %>
+            <%= link_to sort_url(@q, :aviary_name) do %>
               <span><%= t('activerecord.attributes.animal.aviary_id') %></span>
-              <% sort = @q.sorts.find { |s| s.name == 'aviary_id' } %>            
+              <% sort = @q.sorts.find { |s| s.name == 'aviary_name' } %>            
               <% if sort.present? && sort.dir == 'asc' %>
                 <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
               <% end %>

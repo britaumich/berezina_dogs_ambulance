@@ -28,7 +28,7 @@
           <div class="">
             <div class="mb-2">
               <%= f.label :animal_type_name_eq %>
-              <%= f.collection_select(:animal_type_name_eq, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
+              <%= f.collection_select(:animal_type_name_eq, @animal_types, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'input_text_field' }) %>
             </div>
             <div class="mb-2">
               <%= f.label :nickname_cont %>
@@ -60,8 +60,8 @@
               </div>
             </div>
             <div class="mb-2">
-              <%= f.label :aviary_id %>
-              <%= f.collection_select(:aviary_id_eq, @aviaries, :id, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
+              <%= f.label :aviary_name_eq %>
+              <%= f.collection_select(:aviary_name_eq, @aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
             </div>
             <div class="mb-2">
               <%= f.label :description_cont %>
