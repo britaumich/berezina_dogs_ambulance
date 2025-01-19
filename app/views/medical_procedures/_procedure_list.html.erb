@@ -2,10 +2,66 @@
   <table class="mi_table" id="desk-table">
     <thead class="border border-l-0 border-r-0 border-gray-750">
       <tr>
-        <th class="header_th"><%= sort_link(@q, :animal_id, t('activerecord.attributes.medical_procedure.animal_name')) %></th>
-        <th class="header_th"><%= sort_link(@q, :procedure_type_id, t('activerecord.attributes.medical_procedure.procedure_type_name')) %></th>
-        <th class="header_th"><%= sort_link(@q, :date_completed, t('activerecord.attributes.medical_procedure.date_completed')) %></th>
-        <th class="header_th"><%= sort_link(@q, :date_planned, t('activerecord.attributes.medical_procedure.date_planned')) %></th>
+        <th class="header_th">
+          <%= link_to sort_url(@q, :animal_nickname) do %>
+            <span><%= t('activerecord.attributes.medical_procedure.animal_name') %></span>
+            <% sort = @q.sorts.find { |s| s.name == 'animal_nickname' } %>            
+            <% if sort.present? && sort.dir == 'asc' %>
+              <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+            <% end %>
+            <% if sort.present? && sort.dir == 'desc' %>
+              <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+            <% end %>
+            <% unless sort.present? %>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </th>
+        <th class="header_th">
+          <%= link_to sort_url(@q, :procedure_type_name) do %>
+            <span><%= t('activerecord.attributes.medical_procedure.procedure_type_name') %></span>
+            <% sort = @q.sorts.find { |s| s.name == 'procedure_type_name' } %>            
+            <% if sort.present? && sort.dir == 'asc' %>
+              <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+            <% end %>
+            <% if sort.present? && sort.dir == 'desc' %>
+              <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+            <% end %>
+            <% unless sort.present? %>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </th>
+        <th class="header_th">
+          <%= link_to sort_url(@q, :date_completed) do %>
+            <span><%= t('activerecord.attributes.medical_procedure.date_completed') %></span>
+            <% sort = @q.sorts.find { |s| s.name == 'date_completed' } %>            
+            <% if sort.present? && sort.dir == 'asc' %>
+              <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+            <% end %>
+            <% if sort.present? && sort.dir == 'desc' %>
+              <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+            <% end %>
+            <% unless sort.present? %>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </th>
+        <th class="header_th">
+          <%= link_to sort_url(@q, :date_planned) do %>
+            <span><%= t('activerecord.attributes.medical_procedure.date_planned') %></span>
+            <% sort = @q.sorts.find { |s| s.name == 'date_planned' } %>            
+            <% if sort.present? && sort.dir == 'asc' %>
+              <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+            <% end %>
+            <% if sort.present? && sort.dir == 'desc' %>
+              <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+            <% end %>
+            <% unless sort.present? %>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+          </th>
         <th class="header_th"><%= t('forms.buttons.edit') %></th>
         <th class="header_th"><%= t('forms.buttons.delete') %></th>
       </tr>
