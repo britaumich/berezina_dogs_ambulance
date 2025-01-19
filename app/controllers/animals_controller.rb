@@ -27,7 +27,7 @@ class AnimalsController < ApplicationController
     if @sort_by.present?
       @q.sorts = @sort_by + ' ' + @order
     end
-    @animals = @q.result.distinct.page(params[:page])
+    @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
   end
 
   # GET /animals/1 or /animals/1.json

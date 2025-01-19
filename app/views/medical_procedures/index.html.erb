@@ -7,38 +7,34 @@
     <%= link_to t('menu.new'), new_medical_procedure_path, class: "primary_button" %>
   </div>
 
-  <div data-controller="animal">
-    <%= search_form_for @q,
-      data: { animal_target: "form",
-              turbo_frame: "medical_procedures"
-              } do |f| %>
-      <div class="col-span-2 mb-4 flex justify-start">
-        <p><%= t('text.Group searching conditions by') %>:</p>
-        <div class="ml-4">
-          <%= f.radio_button :m, 'and', :checked => true %>
-          <%= f.label :m, t('label.and'), value: 'and' %>
-        </div>
-        <div class="ml-4">
-          <%= f.radio_button :m, 'or' %>
-          <%= f.label :m, t('label.or'), value: 'or' %>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 gap-x-2">
-        <div class="">
-          <div class="mx-2 mb-2">
+  <div class="relative min-h-screen md:flex">
+    <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+      <div data-controller="animal">
+        <%= search_form_for @q,
+          data: { animal_target: "form",
+                  turbo_frame: "turbo-medical-procedures"
+                  } do |f| %>
+          <div class="col-span-2 mb-4 flex justify-start">
+            <p><%= t('text.Group searching conditions by') %>:</p>
+            <div class="ml-4">
+              <%= f.radio_button :m, 'and', :checked => true %>
+              <%= f.label :m, t('label.and'), value: 'and' %>
+            </div>
+            <div class="ml-4">
+              <%= f.radio_button :m, 'or' %>
+              <%= f.label :m, t('label.or'), value: 'or' %>
+            </div>
+          </div>
+          <div class="">
+            <%= f.text_field :s, value: params[:q].try(:[], :s) %>
             <div class="mb-2">
               <%= f.label :animal_nickname_cont, t('text.Animal Nickname contains') %>
               <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
             <div class="mb-2">
-              <%= f.label :procedure_type_id %>
-              <%= f.collection_select(:procedure_type_id_eq, @procedure_type, :id, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
+              <%= f.label :procedure_type_name_eq %>
+              <%= f.collection_select(:procedure_type_name_eq, @procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
             </div>
-            
-          </div>
-        </div>
-        <div class="">
-          <div class="mx-2 mb-2">
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">
                 <%= f.label :date_planned %>
@@ -48,9 +44,7 @@
                     flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
-            </div>
-            <div class="flex items-end mb-2">
-              <div class="flex-1 w-1/2">
+              <div class="ml-1 flex-1 w-1/2">
                 <%= f.label :date_completed %>
                 <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'input_text_field',
                   data: {
@@ -59,32 +53,33 @@
                   } %>
               </div>
             </div>
+            <div class="my-2 col-span-2 flex justify-start">
+              <div class="mr-2">
+                <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
+              </div>
+              <div>
+                <button type="button" class="tertiary_button"
+                  data-action='click->animal#clearFilters'>
+                  <%= t('forms.buttons.clear') %>
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="my-2 col-span-2 flex justify-start">
-          <div class="mr-2">
-            <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
-          </div>
-          <div>
-            <button type="button" class="tertiary_button"
-              data-action='click->animal#clearFilters'>
-              <%= t('forms.buttons.clear') %>
-            </button>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <%= turbo_frame_tag "medical_procedures" do %>
-    <div class="min-w-full mb-10" id="procedures_listing">
-    <div class="my-2" >
-        <%= page_entries_info @medical_procedures %>
-      </div>
-      <%= render 'procedure_list' %>
-      <div class="my-2 flex justify-center" >
-        <%= paginate @medical_procedures %>
+        <% end %>
       </div>
     </div>
-  <% end %>
+    <div class="flex-1 mx-2">
+      <%= turbo_frame_tag "turbo-medical-procedures" do %>
+        <div class="min-w-full mb-10" id="procedures_listing">
+          <div class="my-2 ml-4">
+            <%= page_entries_info @medical_procedures %>
+          </div>
+          <%= render 'procedure_list' %>
+          <div class="my-2 flex justify-center" >
+            <%= paginate @medical_procedures %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
