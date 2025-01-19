@@ -22,7 +22,18 @@ class Section < ApplicationRecord
   belongs_to :aviary
   has_many :animals
 
+  before_save :strip_whitespace_and_capitalize
+
   validates :name, presence: true, uniqueness: { scope: :aviary, message: :is_already_in_this_aviary }
+
+  private
+
+  def strip_whitespace_and_capitalize
+    if self.name.present?
+      self.name = self.name.strip
+      self.name[0] = self.name[0].capitalize
+    end
+  end
 
   after_destroy_commit do
     broadcast_remove_to self

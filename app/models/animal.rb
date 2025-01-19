@@ -46,7 +46,22 @@ class Animal < ApplicationRecord
 
   has_many :medical_procedures
 
+  before_save :strip_whitespace_and_titleize
+
   validate :any_present?
+
+  private
+
+  def strip_whitespace_and_titleize
+    if self.nickname.present?
+      self.nickname = self.nickname.strip
+      self.nickname = self.nickname.split(" ").map{|word| word.capitalize}.join(" ")
+    end
+    if self.surname.present?
+      self.surname = self.surname.strip
+      self.surname = self.surname.split(" ").map{|word| word.capitalize}.join(" ")
+    end
+  end
 
   def any_present?
     if %w(nickname surname color description arival_date).all?{|attr| self[attr].blank?}

@@ -29,6 +29,8 @@ class MedicalProcedure < ApplicationRecord
 
   validates_presence_of :animal_id, :procedure_type_id, :date_planned
 
+  private
+
   def self.ransackable_attributes(auth_object = nil)
     ["date_completed", "date_planned"]
   end
