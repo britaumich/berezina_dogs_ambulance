@@ -16,8 +16,6 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    @animal_types = AnimalType.all
-    @aviaries = Aviary.all
     @animals = Animal.all
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
@@ -37,20 +35,15 @@ class AnimalsController < ApplicationController
 
   # GET /animals/new
   def new
-    @animal_types = AnimalType.all
-    @aviaries = Aviary.all
-    @sections = []
     @animal = Animal.new
   end
 
   # GET /animals/1/edit
   def edit
-    @animal_types = AnimalType.all
-    @aviaries = Aviary.all
     if @animal.aviary&.has_sections
       @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
     else 
-      @sections = []
+
     end
   end
 
@@ -62,9 +55,7 @@ class AnimalsController < ApplicationController
         format.html { redirect_to @animal, notice: "Animal was successfully created." }
         format.json { render :show, status: :created, location: @animal }
       else
-        @animal_types = AnimalType.all
-        @aviaries = Aviary.all
-        @sections = []
+  
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end

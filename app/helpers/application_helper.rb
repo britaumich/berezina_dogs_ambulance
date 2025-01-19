@@ -101,4 +101,17 @@ module ApplicationHelper
       [t('text.pictures'), "pictures"]
     ]
   end
+
+  def animal_types 
+    AnimalType.all.order(:name)
+  end
+
+  def aviaries
+    Aviary.all.order(:name)
+  end
+
+  def sections
+    []
+  end
+
 end
