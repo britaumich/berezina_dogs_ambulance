@@ -3,7 +3,6 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures or /medical_procedures.json
   def index
-
     @procedure_types = ProcedureType.all
     @medical_procedures = MedicalProcedure.all
     if params[:q].nil?
