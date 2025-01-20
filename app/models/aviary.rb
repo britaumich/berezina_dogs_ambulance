@@ -13,7 +13,7 @@ class Aviary < ApplicationRecord
   has_many :sections
   has_many :animals
 
-  before_validation :strip_whitespace_and_capitalize, only: [:name]
+  before_save :strip_whitespace_and_capitalize
   validates :name, presence: true, uniqueness: true
 
   private
