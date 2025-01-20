@@ -7,13 +7,38 @@
     <%= link_to t('menu.new'), new_animal_path, class: "primary_button" %>
   </div>
 
-  <div class="relative min-h-screen md:flex">
-    <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-      <div data-controller="animal">
-        <%= search_form_for @q,
-          data: { animal_target: "form",
-                  turbo_frame: "turbo-animals"
-                  } do |f| %>
+  <div>
+    <%= search_form_for @q,
+      data: { controller: "animal",
+              animal_target: "form",
+              turbo_frame: "turbo-animals"
+              } do |f| %>
+
+      <div class="flex items-center gap-4">
+        <div class="flex justify-between items-center gap-4 text-sm mb-4">
+          <div class="display inline">
+            <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
+            <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
+              :"data-action" => "change->animal#submit" %>
+          </div>
+          <div>
+            <label for="order" class="fancy_label"><%= t('label.order') %></label>
+            <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
+              :"data-action" => "change->animal#submit" %>
+          </div>
+          <div>
+            <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
+            <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
+              :"data-action" => "change->animal#submit" %>
+          </div>
+        </div>
+        <div class="my-2 ml-4">
+          <%= page_entries_info @animals %>
+        </div>
+      </div>
+      <div class="relative min-h-screen md:flex">
+        <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+
           <div class="col-span-2 mb-4 flex justify-start">
             <p><%= t('text.Group searching conditions by') %>:</p>
             <div class="ml-4">
@@ -76,6 +101,7 @@
               <%= f.label :description_or_history_cont %>
               <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
+            
             <div class="my-2 col-span-2 flex justify-start">
               <div class="mr-2">
                 <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
@@ -91,49 +117,22 @@
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
-    </div>
+        </div>
+    <% end %>
     <div class="flex-1 mx-2">
-      <div class="flex justify-between items-end" data-controller="autosubmit">
-        <div> </div>
-        <%= form_with url: animals_path, method: :get, class: "", data: { autosubmit_target: "form", turbo_frame: "turbo-animals" } do |form| %>
-          <div class="flex justify-between items-center gap-4 text-sm">
-            <div class="display inline">
-              <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
-              <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
-                :"data-action" => "change->autosubmit#submit" %>
-            </div>
-            <div>
-              <label for="order" class="fancy_label"><%= t('label.order') %></label>
-              <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
-                :"data-action" => "change->autosubmit#submit" %>
-            </div>
-            <div>
-              <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
-              <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
-                :"data-action" => "change->autosubmit#submit" %>
-            </div>
+      <%= turbo_frame_tag "turbo-animals" do %>
+        <div class="mb-20 min-w-full" id="animals_listing">
+          
+          <% if @view == 'table' %>
+            <%= render 'animal_list' %>
+          <% else %>
+            <%= render 'picture_list' %>
+          <% end %>
+          <div class="my-2 flex justify-center" >
+            <%= paginate @animals %>
           </div>
-        <% end %>
-      </div>
-      <div>
-        <%= turbo_frame_tag "turbo-animals" do %>
-          <div class="mb-20 min-w-full" id="animals_listing">
-            <div class="my-2 ml-4">
-              <%= page_entries_info @animals %>
-            </div>
-            <% if @view == 'table' %>
-              <%= render 'animal_list' %>
-            <% else %>
-              <%= render 'picture_list' %>
-            <% end %>
-            <div class="my-2 flex justify-center" >
-              <%= paginate @animals %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
   
