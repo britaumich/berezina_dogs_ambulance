@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="mb-2">
-              <%= f.label :aviary_name_eq %>
+              <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}"  %>
               <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
             </div>
             <div class="mb-2">
