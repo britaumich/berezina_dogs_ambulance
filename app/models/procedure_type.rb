@@ -11,8 +11,17 @@
 class ProcedureType < ApplicationRecord
   has_many :medical_procedures
 
+  before_save :strip_whitespace_and_downcase
   validates :name, presence: true, uniqueness: true
   
+  private
+
+  def strip_whitespace_and_downcase
+    if self.name.present?
+      self.name = self.name.strip.downcase
+    end
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
   end

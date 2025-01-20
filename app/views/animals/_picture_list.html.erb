@@ -12,8 +12,8 @@
         <%= submit_tag t('text.Add to Cart'), class: "primary_button" %>
       </div>
     </div>
-    <div>
-      <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
+    <div class="ml-4">
+      <input type="checkbox" aria-labelledby="select_all" class="check_box" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
       <span id="select_all"><%= t('text.Select All') %></span>
     </div>
     <div class="">

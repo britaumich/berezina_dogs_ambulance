@@ -3,7 +3,7 @@ class AnimalTypesController < ApplicationController
 
   # GET /animal_types or /animal_types.json
   def index
-    @animal_types = AnimalType.all
+    @animal_types = AnimalType.all.order(:name)
   end
 
   # GET /animal_types/new

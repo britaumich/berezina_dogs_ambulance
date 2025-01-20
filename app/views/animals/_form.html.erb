@@ -14,7 +14,7 @@
 
   <div class="my-5">
     <%= form.label :animal_type_id, "#{t('activerecord.attributes.animal.animal_type_id')}(*)" %>
-    <%= form.collection_select(:animal_type_id, @animal_types, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:animal_type_id, animal_types, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
@@ -65,25 +65,25 @@
 
   <div class="my-5">
     <%= form.label :aviary_id %>
-    <%= form.collection_select(:aviary_id, @aviaries, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-action": "change->animal#getSections", "data-animal-target": "aviary_select", "class": "input_text_field" } ) %>
+    <%= form.collection_select(:aviary_id, aviaries, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-action": "change->animal#getSections", "data-animal-target": "aviary_select", "class": "input_text_field" } ) %>
   </div>
 
   <% if @animal.persisted? %>
     <% if @animal.aviary&.has_sections %>
       <div class="" data-animal-target="show_sections">
         <%= form.label :section_id %>
-        <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
+        <%= form.collection_select :section_id, sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
       </div>
     <% else %>
       <div class="hidden" data-animal-target="show_sections">
         <%= form.label :section_id %>
-        <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-animal-target": "section", class: "input_text_field" } %>
+        <%= form.collection_select :section_id, sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-animal-target": "section", class: "input_text_field" } %>
       </div>
     <% end %>
   <% else %>
     <div class="hidden" data-animal-target="show_sections">
       <%= form.label :section_id %>
-      <%= form.collection_select :section_id, @sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
+      <%= form.collection_select :section_id, sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { selected: @animal.section_id.present? ? @animal.section_id : "", "data-animal-target": "section", class: "input_text_field" } %>
     </div>
   <% end %>
 

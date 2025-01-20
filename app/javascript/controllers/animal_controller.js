@@ -60,4 +60,9 @@ export default class extends Controller {
     }
   }
 
+  submit() {
+    console.log("here")
+    Turbo.navigator.submitForm(this.formTarget)
+  }
+
 }

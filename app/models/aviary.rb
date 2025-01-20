@@ -13,7 +13,17 @@ class Aviary < ApplicationRecord
   has_many :sections
   has_many :animals
 
+  before_save :strip_whitespace_and_capitalize
   validates :name, presence: true, uniqueness: true
+
+  private
+
+  def strip_whitespace_and_capitalize
+    if self.name.present?
+      self.name = self.name.strip
+      self.name[0] = self.name[0].capitalize
+    end
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["name"]
