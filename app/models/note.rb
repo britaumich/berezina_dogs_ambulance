@@ -26,6 +26,10 @@ class Note < ApplicationRecord
 
   has_rich_text :body
 
+  has_one :action_text_rich_text,
+    class_name: 'ActionText::RichText',
+    as: :record
+
   validates :body, presence: true
 
   after_create_commit do
@@ -38,4 +42,13 @@ class Note < ApplicationRecord
   after_destroy_commit do
     broadcast_remove_to self
   end
+
+  # def self.ransackable_associations(_auth_object = nil)
+  #   %w[rich_text_body]
+  # end
+
+ def self.ransackable_associations(auth_object = nil)
+  ["noteable", "rich_text_body_body"]
+end
+
 end
