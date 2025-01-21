@@ -69,18 +69,19 @@
             </div>
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">
-                <%= f.label :arival_date %>
+                <%= f.label :arival_date_gteq, "#{t('activerecord.attributes.animal.arival_date')}" %>
                 <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
+                    flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
               <div class="ml-1 flex-1 w-1/2">
+                <%= f.label :arival_date_lteq, class: "hidden" %>
                 <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
+                    flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
             </div>
