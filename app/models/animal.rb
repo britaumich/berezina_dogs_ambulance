@@ -74,7 +74,7 @@ class Animal < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["nickname", "surname", "gender", "arival_date", "description", "history", "notes_body"]
+    ["nickname", "surname", "gender", "arival_date", "description", "history", "from_people", "from_place", "notes_body"]
   end
 
   def self.ransackable_associations(auth_object = nil)

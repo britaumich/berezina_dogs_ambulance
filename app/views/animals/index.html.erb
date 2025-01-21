@@ -88,25 +88,12 @@
               <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}"  %>
               <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
             </div>
-            <div class="mb-2">
-              <%= f.label :description_cont %>
-              <%= f.search_field :description_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :history_cont %>
-              <%= f.search_field :history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-            </div>
-
-            <div class="mb-2">
-              <%= f.label :description_or_history_cont %>
-              <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-            </div>
 
             <div>
-              <%= f.label :notes_body_cont %>
-              <%= f.search_field :notes_body_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+              <%= f.label :description_or_from_people_or_from_place_or_history_or_notes_body_cont, "#{t('label.Search the Rest of Text Fields')}" %>
+              <%= f.search_field :description_or_from_people_or_from_place_or_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
-            
+
             <div class="my-2 col-span-2 flex justify-start">
               <div class="mr-2">
                 <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
