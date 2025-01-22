@@ -67,6 +67,10 @@
               <%= f.label :gender %>
               <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" }) %>
             </div>
+            <div class="mb-2">
+              <%= f.checkbox :sterilization_eq, class: "check_box" %>
+              <%= f.label :sterilization_eq, "#{t('activerecord.attributes.animal.sterilization')}" %>
+            </div>
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">
                 <%= f.label :arival_date_gteq, "#{t('activerecord.attributes.animal.arival_date')}" %>

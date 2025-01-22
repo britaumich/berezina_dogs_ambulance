@@ -14,6 +14,7 @@
 #  graduation     :string
 #  history        :string
 #  nickname       :string
+#  sterilization  :boolean          default(FALSE)
 #  surname        :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
