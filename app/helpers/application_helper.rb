@@ -83,6 +83,7 @@ module ApplicationHelper
       [t('activerecord.attributes.animal.nickname'), "nickname"],
       [t('activerecord.attributes.animal.surname'), "surname"],
       [t('activerecord.attributes.animal.gender'), "gender"],
+      [t('activerecord.attributes.animal.sterilization'), "sterilization"],
       [t('activerecord.attributes.animal.aviary_id'), "aviary_name"],
       [t('activerecord.attributes.animal.arival_date'), "arival_date"]
     ] 
