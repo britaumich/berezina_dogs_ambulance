@@ -26,7 +26,6 @@
             </div>
           </div>
           <div class="">
-            <%= f.text_field :s, value: params[:q].try(:[], :s) %>
             <div class="mb-2">
               <%= f.label :animal_nickname_cont, t('text.Animal Nickname contains') %>
               <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
@@ -37,21 +36,38 @@
             </div>
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">
-                <%= f.label :date_planned %>
-                <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'input_text_field',
-                  data: {
-                    controller: "flatpickr",
-                    flatpickr_date_format: "d-m-Y"
-                  } %>
-              </div>
+                <%= f.label :date_planned_gteq, "#{t('activerecord.attributes.medical_procedure.date_planned')}" %>
+                  <%= f.text_field :date_planned_gteq, placeholder: t('text.From'), class: 'input_text_field',
+                    data: {
+                      controller: "flatpickr",
+                      flatpickr_date_format: "d-m-Y"
+                    } %>
+                </div>
               <div class="ml-1 flex-1 w-1/2">
-                <%= f.label :date_completed %>
-                <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'input_text_field',
-                  data: {
-                    controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
-                  } %>
-              </div>
+                <%= f.label :date_planned_lteq, class: "hidden" %>
+                  <%= f.text_field :date_planned_lteq, placeholder: t('text.To'), class: 'input_text_field',
+                    data: {
+                      controller: "flatpickr",
+                      flatpickr_date_format: "d-m-Y"
+                    } %>
+                </div>
+            </div>
+
+            <div class="mb-2">
+              <%= f.label :date_planned_eq, "#{t('activerecord.attributes.medical_procedure.date_planned')}" %>
+              <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'input_text_field',
+                data: {
+                  controller: "flatpickr",
+                  flatpickr_date_format: "d-m-Y"
+                } %>
+            </div>
+            <div class="mb-2">
+              <%= f.label :date_completed %>
+              <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'input_text_field',
+                data: {
+                  controller: "flatpickr",
+                  flatpickr_date_format: "Y-m-d"
+                } %>
             </div>
             <div class="my-2 col-span-2 flex justify-start">
               <div class="mr-2">

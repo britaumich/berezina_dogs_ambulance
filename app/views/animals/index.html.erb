@@ -69,18 +69,19 @@
             </div>
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">
-                <%= f.label :arival_date %>
+                <%= f.label :arival_date_gteq, "#{t('activerecord.attributes.animal.arival_date')}" %>
                 <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
+                    flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
               <div class="ml-1 flex-1 w-1/2">
+                <%= f.label :arival_date_lteq, class: "hidden" %>
                 <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'input_text_field',
                   data: {
                     controller: "flatpickr",
-                    flatpickr_date_format: "Y-m-d"
+                    flatpickr_date_format: "d-m-Y"
                   } %>
               </div>
             </div>
@@ -88,20 +89,12 @@
               <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}"  %>
               <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'input_text_field' }) %>
             </div>
-            <div class="mb-2">
-              <%= f.label :description_cont %>
-              <%= f.search_field :description_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :history_cont %>
-              <%= f.search_field :history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+
+            <div>
+              <%= f.label :description_or_from_people_or_from_place_or_history_or_notes_body_cont, "#{t('label.Search the Rest of Text Fields')}" %>
+              <%= f.search_field :description_or_from_people_or_from_place_or_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
             </div>
 
-            <div class="mb-2">
-              <%= f.label :description_or_history_cont %>
-              <%= f.search_field :description_or_history_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
-            </div>
-            
             <div class="my-2 col-span-2 flex justify-start">
               <div class="mr-2">
                 <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>

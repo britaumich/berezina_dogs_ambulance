@@ -80,10 +80,10 @@
             <% end %>
           </td>
           <td class="mi_tbody_td">
-            <%= medical_procedure.date_completed %>
+            <%= show_date(medical_procedure.date_completed) %>
           </td>
           <td class="mi_tbody_td">
-            <%= medical_procedure.date_planned %>
+            <%= show_date(medical_procedure.date_planned) %>
           </td>
           <td class="mi_tbody_td">
             <%= link_to edit_medical_procedure_path(medical_procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(medical_procedure)}_edit" } do%>

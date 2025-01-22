@@ -52,10 +52,11 @@ en:
     Lena Beresina's shelter: "Lena Beresina's shelter"
     table: "Table"
     pictures: "Pictures"
-  lable:
+  label:
     sort: "Sort"
     order: "Order"
     view: "View"
+    Search the Rest of Text Fields: "Search the Rest of Text Fields"
   menu:
     languages:
       lang: "Language"

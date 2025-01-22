@@ -38,4 +38,9 @@ class Note < ApplicationRecord
   after_destroy_commit do
     broadcast_remove_to self
   end
+
+ def self.ransackable_associations(auth_object = nil)
+  ["noteable", "rich_text_body_body"]
+end
+
 end

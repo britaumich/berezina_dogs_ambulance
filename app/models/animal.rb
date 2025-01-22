@@ -39,6 +39,10 @@ class Animal < ApplicationRecord
   has_many :carts, through: :cart_animals
   has_many :notes, as: :noteable
 
+  has_one :action_text_rich_text,
+    class_name: 'ActionText::RichText',
+    as: :record
+
   has_many_attached :pictures do |attachable|
     attachable.variant :thumb, resize_to_limit: [640, 480]
   end
@@ -70,11 +74,21 @@ class Animal < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["nickname", "surname", "gender", "arival_date", "description", "history"]
+    ["nickname", "surname", "gender", "arival_date", "description", "history", "from_people", "from_place", "notes_body"]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["animal_type", "aviary"]
+    ["animal_type", "aviary", "notes", "rich_text_body" ]
+  end
+
+  ransacker :notes_body do |parent|
+    Arel.sql("(SELECT string_agg(action_text_rich_texts.body::text, ' ')
+              FROM notes
+              INNER JOIN action_text_rich_texts ON 
+                action_text_rich_texts.record_type = 'Note' 
+                AND action_text_rich_texts.record_id = notes.id
+              WHERE notes.noteable_type = 'Animal' 
+                AND notes.noteable_id = animals.id)")
   end
 
 end
