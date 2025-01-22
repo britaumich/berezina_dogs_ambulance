@@ -71,6 +71,8 @@ en:
         aviary_id: "Enclosure"
         section_id: "Section"
         animal_type_id: "Animal Type"
+        arival_date: "Arrival Date"
+        sterilization: "Sterilization"
     errors:
       models:
         animal:
