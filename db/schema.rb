@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_13_005235) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_22_014042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_13_005235) do
     t.datetime "updated_at", null: false
     t.bigint "aviary_id"
     t.bigint "section_id"
+    t.boolean "sterilization", default: false
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
     t.index ["aviary_id"], name: "index_animals_on_aviary_id"
     t.index ["section_id"], name: "index_animals_on_section_id"

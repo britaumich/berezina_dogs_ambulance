@@ -28,6 +28,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.checkbox :sterilization, class: "check_box" %>
+    <%= form.label :sterilization %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :gender %>
     <%= form.select(:gender, options_for_select(gender_lists, @animal.gender), { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" } )%>
   </div>

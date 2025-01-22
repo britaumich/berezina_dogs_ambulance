@@ -83,6 +83,22 @@
             <% end %>
           </th>
 
+          <th class="header_th">
+            <%= link_to sort_url(@q, :sterilization) do %>
+              <span><%= t('activerecord.attributes.animal.sterilization') %></span>
+              <% sort = @q.sorts.find { |s| s.name == 'sterilization' } %>            
+              <% if sort.present? && sort.dir == 'asc' %>
+                <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+              <% end %>
+              <% if sort.present? && sort.dir == 'desc' %>
+                <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+              <% end %>
+              <% unless sort.present? %>
+                <i class="fa fa-sort" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </th>
+
           <th class="header_th"><%= t('label.Age') %></th>
 
           <th class="header_th">
@@ -137,8 +153,11 @@
               <%= animal.surname %>
             </td>
             <td class="mi_tbody_td">
-            <%= animal.gender %>
-          </td>
+              <%= animal.gender %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= show_boolean(animal.sterilization) %>
+            </td>
             <td class="mi_tbody_td">
               <%= age(animal) %>
             </td>

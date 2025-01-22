@@ -20,6 +20,9 @@ class AnimalsController < ApplicationController
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
     else
+      if params[:q][:sterilization_eq].present? && params[:q][:sterilization_eq] == "0"
+        params[:q] = params[:q].except("sterilization_eq")
+      end
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
     if @sort_by.present?
@@ -107,7 +110,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :gender, :arival_date, :from_people, :from_place, :birth_date, :birth_month, 
+      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_date, :birth_month, 
         :death_date, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, pictures: [] ])
     end
 end

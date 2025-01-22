@@ -30,6 +30,15 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
+          <%= t('activerecord.attributes.animal.sterilization') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= show_boolean(animal.sterilization) %>
+        </p>
+      </div>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
           <%= t('activerecord.attributes.animal.gender') %>:
         </p>
         <p class="body-lg-text pl-2 inline">

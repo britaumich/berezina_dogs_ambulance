@@ -118,6 +118,7 @@ ru:
         graduation: "Выпуск"
         animal_type_id: "Вид"
         animal_type: "Вид"
+        sterilization: "Стерилизация"
       animal_type:
         name: "Название"
       aviary:
