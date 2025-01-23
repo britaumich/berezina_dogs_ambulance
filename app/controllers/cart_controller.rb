@@ -30,7 +30,8 @@ class CartController < ApplicationController
         render turbo_stream: [turbo_stream.replace('cart',
                                                   partial: 'cart/cart',
                                                   locals: { cart: @cart }),
-                              turbo_stream.update('cart_total', partial: 'cart/cart_total')]
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.update('procedure_ids', partial: 'cart/order_medical')]
       end
     end
   end
@@ -38,7 +39,6 @@ class CartController < ApplicationController
   def add_medical_procedure
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
-      fail
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
     cart.destroy
