@@ -31,7 +31,8 @@ class CartController < ApplicationController
                                                   partial: 'cart/cart',
                                                   locals: { cart: @cart }),
                               turbo_stream.update('cart_total', partial: 'cart/cart_total'),
-                              turbo_stream.update('procedure_ids', partial: 'cart/order_medical')]
+                              turbo_stream.update('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('add_to_enclosure', partial: 'cart/add_to_enclosure')]
       end
     end
   end

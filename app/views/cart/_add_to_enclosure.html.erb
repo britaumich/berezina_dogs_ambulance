@@ -6,11 +6,11 @@
     
     <div class="my-4">
       <%= label_tag :aviary_id, t('activerecord.attributes.animal.aviary_id') %>
-      <%= select_tag "aviary_id", options_for_select(@aviaries), include_blank: "#{t('text.Select')} ...", required: true, class: "input_text_field", "data-action": "change->animal#getSections", "data-animal-target": "aviary_select" %>
+      <%= select_tag "aviary_id", options_for_select(aviaries), include_blank: "#{t('text.Select')} ...", required: true, class: "input_text_field", "data-action": "change->animal#getSections", "data-animal-target": "aviary_select" %>
     </div>
     <div class="hidden mb-4" data-animal-target="show_sections">
       <%= form1.label :section_id, t('activerecord.attributes.animal.section_id') %>
-      <%= form1.collection_select :section_id, @sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-animal-target": "section", class: "input_text_field" } %>
+      <%= form1.collection_select :section_id, sections, :id, :name, { include_blank: "#{t('text.Select')} ..." }, { "data-animal-target": "section", class: "input_text_field" } %>
     </div>
 
     <div class="inline">
