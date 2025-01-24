@@ -52,6 +52,7 @@ en:
     Lena Beresina's shelter: "Lena Beresina's shelter"
     table: "Table"
     pictures: "Pictures"
+    added to enclosure: "Added to Enclosure"
   label:
     sort: "Sort"
     order: "Order"
@@ -73,6 +74,10 @@ en:
         animal_type_id: "Animal Type"
         arival_date: "Arrival Date"
         sterilization: "Sterilization"
+      medical_procedure:
+        date_completed: "Date Completed"
+        date_planned: "Date Planned"
+        procedure_type_id: "Procedure Type"
     errors:
       models:
         animal:

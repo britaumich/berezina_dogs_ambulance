@@ -39,7 +39,14 @@
 
   <div class="my-5">
     <%= form.label :arival_date %>
-    <%= form.date_field :arival_date, class: "input_text_field" %>
+    <%= form.text_field :arival_date,
+          class: "input_text_field",
+          placeholder: "DD-MM-YYYY",
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format_value: "d-m-Y",
+            flatpickr_alt_input: false
+          } %>
   </div>
 
   <div class="my-5">
@@ -60,7 +67,14 @@
 
   <div class="my-5">
     <%= form.label :death_date %>
-    <%= form.date_field :death_date, class: "input_text_field" %>
+    <%= form.text_field :death_date,
+          class: "input_text_field",
+          placeholder: "DD-MM-YYYY",
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format_value: "d-m-Y",
+            flatpickr_alt_input: false
+          } %>
   </div>
 
   <div class="my-5">

@@ -1,5 +1,29 @@
-import { Application } from '@hotwired/stimulus'
-import Flatpickr from 'stimulus-flatpickr'
+import { Controller } from "@hotwired/stimulus"
+import flatpickr from "flatpickr"
 
-const application = Application.start()
-application.register('flatpickr', Flatpickr)
+// Explicitly define the controller class and export it
+export default class extends Controller {
+  connect() {
+    console.log("date contr")
+    this.fp = flatpickr(this.element, {
+      dateFormat: "d-m-Y",
+      minDate: "today",
+      allowInput: false,
+      altInput: false,
+      required: true,
+      disableMobile: true,
+      onChange: (selectedDates, dateStr) => {
+        console.log(dateStr)
+        if (!dateStr) {
+          this.element.setCustomValidity("Please select a date")
+        } else {
+          this.element.setCustomValidity("")
+        }
+      }
+    })
+  }
+
+  disconnect() {
+    this.fp.destroy()
+  }
+}

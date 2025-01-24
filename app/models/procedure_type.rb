@@ -11,7 +11,7 @@
 class ProcedureType < ApplicationRecord
   has_many :medical_procedures
 
-  before_save :strip_whitespace_and_downcase
+  before_validation :strip_whitespace_and_downcase
   validates :name, presence: true, uniqueness: true
   
   private

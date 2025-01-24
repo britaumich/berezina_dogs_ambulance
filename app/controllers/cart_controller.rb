@@ -17,6 +17,7 @@ class CartController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.update('cart_total', partial: 'cart/cart_total')
       end
+      format.html { redirect_to request.referrer, notice: "The cart has been updated" }
     end
   end
 
@@ -29,7 +30,9 @@ class CartController < ApplicationController
         render turbo_stream: [turbo_stream.replace('cart',
                                                   partial: 'cart/cart',
                                                   locals: { cart: @cart }),
-                              turbo_stream.update('cart_total', partial: 'cart/cart_total')]
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.update('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('add_to_enclosure', partial: 'cart/add_to_enclosure')]
       end
     end
   end

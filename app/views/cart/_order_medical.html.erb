@@ -6,22 +6,29 @@
     
     <div class="my-4">
       <%= label_tag :procedure_type_id, t('activerecord.attributes.procedure_type.name') %>
-      <%= select_tag "procedure_type_id", options_for_select(@procedures), include_blank: "#{t('text.Select')} ...", class: "input_text_field" %>
+      <%= select_tag "procedure_type_id", options_for_select(@procedures), include_blank: "#{t('text.Select')} ...", class: "input_text_field", required: true %>
     </div>
 
     <div class="my-4">
       <%= label_tag :date_planned, t('activerecord.attributes.medical_procedure.date_planned') %>
-      
-      <%= text_field_tag :date_planned, "#{t('text.Select')} ...",
+
+      <%= text_field_tag :date_planned, Date.today.strftime("%d-%m-%Y"),
+          class: "input_text_field",
+          required: true,
+          placeholder: "DD-MM-YYYY",
           data: {
-          controller: "flatpickr",
-          flatpickr_date_format: "Y-m-d",
-          flatpickr_min_date: Date.today
-          }, class: "input_text_field" %>
+            controller: "flatpickr",
+            flatpickr_date_format_value: "d-m-Y",
+            flatpickr_alt_input: false, 
+            required: true,
+            flatpickr_min_date_value: "today"
+          } %>
     </div>
 
     <div class="inline">
-      <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
+      <% if @cart.cart_animals.count > 0 %>
+        <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

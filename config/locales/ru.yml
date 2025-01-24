@@ -73,6 +73,7 @@ ru:
     Lena Beresina's shelter: "Питомник Лены Березиной"
     table: "Таблица"
     pictures: "Картинки"
+    added to enclosure: "Добавлены в вольер"
   helpers:
     page_entries_info:
       one_page:
@@ -133,7 +134,6 @@ ru:
         description: "Описание"
       medical_procedure:
         date_completed: "Дата проведения"
-        complete: "Закончено"
         date_planned: "Дата по плану"
         animal_id: "Животное"
         procedure_type_id: "Процедура"
@@ -144,6 +144,8 @@ ru:
           any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, описание, или дата появления"
         section:
           is_already_in_this_aviary: "уже есть в этом вольере"
+      messages:
+        blank: "- поле не может буть пустым"
   forms:
     messages:
       success: "Операция была успешно выполнена!"

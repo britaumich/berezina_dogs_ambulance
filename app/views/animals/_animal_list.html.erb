@@ -1,7 +1,7 @@
 <div class="min-w-full">
   <%= form_with url: cart_add_path, method: :post, 
     data: { controller: "checkboxselectall",
-              target: "form",
+              checkboxselectall_target: "form",
               action: "submit->checkboxselectall#submitForm",
               turbo_frame: "_top" 
             } do |form| %>
