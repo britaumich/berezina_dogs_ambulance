@@ -74,14 +74,16 @@ en:
         animal_type_id: "Animal Type"
         arival_date: "Arrival Date"
         sterilization: "Sterilization"
+      medical_procedure:
+        date_completed: "Date Completed"
+        date_planned: "Date Planned"
+        procedure_type_id: "Procedure Type"
     errors:
       models:
         animal:
           any_present_message: "One of the following fileds should exist: nickname, surname, color, description, or arival_date"
         aviary:
           is_already_in_this_aviary: "is already in this enclosure"
-      messages:
-        blank: "hell"
   forms:
     buttons:
       edit: "Edit"
