@@ -150,6 +150,7 @@ ru:
     messages:
       success: "Операция была успешно выполнена!"
       prohibited this record from being saved: "- запись не может быть сохранена"
+      The cart has been updated with new records: "Новые записи добавлены в корзину"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"

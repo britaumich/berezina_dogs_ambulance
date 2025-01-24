@@ -94,6 +94,8 @@ en:
     sort:
       asc: "Ascending"
       desc: "Descending"
+    messages: 
+    The cart has been updated with new records: "The cart has been updated with new records"
 
   gender_lists:
     "Unspecified": Unspecified
