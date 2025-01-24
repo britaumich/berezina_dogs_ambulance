@@ -1,7 +1,7 @@
 <%= form_with(model: medical_procedure, class: "contents") do |form| %>
   <% if medical_procedure.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(medical_procedure.errors.count, "error") %> prohibited this medical_procedure from being saved:</h2>
+    <p class="text-lg"><%= t('error', count: medical_procedure.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
 
       <ul>
         <% medical_procedure.errors.each do |error| %>
@@ -28,12 +28,30 @@
 
   <div class="my-5">
     <%= form.label :date_planned %>
-    <%= form.date_field :date_planned, class: "input_text_field", required: true %>
+    <%= form.text_field :date_planned,
+          class: "input_text_field",
+          required: true,
+          placeholder: "DD-MM-YYYY",
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format_value: "d-m-Y",
+            flatpickr_alt_input: false, 
+            required: true,
+            flatpickr_min_date_value: "today"
+          } %>
   </div>
 
   <div class="my-5">
     <%= form.label :date_completed %>
-    <%= form.date_field :date_completed, class: "input_text_field" %>
+    <%= form.text_field :date_completed,
+          class: "input_text_field",
+          placeholder: "DD-MM-YYYY",
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format_value: "d-m-Y",
+            flatpickr_alt_input: false, 
+            flatpickr_min_date_value: "today"
+          } %>
   </div>
 
   <div class="inline">
