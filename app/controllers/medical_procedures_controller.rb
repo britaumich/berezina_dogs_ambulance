@@ -3,6 +3,7 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures or /medical_procedures.json
   def index
+    session[:return_to] = request.referer
     @procedure_types = ProcedureType.all
     @medical_procedures = MedicalProcedure.all
     if params[:q].nil?
@@ -24,8 +25,21 @@ class MedicalProceduresController < ApplicationController
     @medical_procedure = MedicalProcedure.new
   end
 
+  def new_medical_procedure_for_animal
+    @animal = Animal.find(params[:animal_id])
+    @medical_procedure = MedicalProcedure.new
+    @animals = Animal.all
+    @procedures = ProcedureType.all
+  end
+
   # GET /medical_procedures/1/edit
   def edit
+    @animals = Animal.all
+    @procedures = ProcedureType.all
+  end
+
+  def edit_medical_procedure_for_animal
+    @medical_procedure = MedicalProcedure.find(params[:procedure_id])
     @animals = Animal.all
     @procedures = ProcedureType.all
   end
@@ -33,11 +47,14 @@ class MedicalProceduresController < ApplicationController
   # POST /medical_procedures or /medical_procedures.json
   def create
     @medical_procedure = MedicalProcedure.new(medical_procedure_params)
-
+    
     respond_to do |format|
       if @medical_procedure.save
-        format.html { redirect_to @medical_procedure, notice: "Medical procedure was successfully created." }
-        format.json { render :show, status: :created, location: @medical_procedure }
+        if params[:return_to_animal]
+          format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
+        else
+          format.html { redirect_to @medical_procedure, notice: "Medical procedure was successfully created" }
+        end
       else
         @animals = Animal.all
         @procedures = ProcedureType.all
@@ -49,6 +66,7 @@ class MedicalProceduresController < ApplicationController
 
   # PATCH/PUT /medical_procedures/1 or /medical_procedures/1.json
   def update
+    fail
     respond_to do |format|
       if @medical_procedure.update(medical_procedure_params)
         format.html { redirect_to @medical_procedure, notice: "Medical procedure was successfully updated." }
