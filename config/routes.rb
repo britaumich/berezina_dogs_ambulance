@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   resources :medical_procedures do
     resources :notes, module: :medical_procedures
   end
-  
-  resources :procedure_types, except: [:show] 
+  get '/new_medical_procedure_for_animal/:animal_id/', to: 'medical_procedures#new_medical_procedure_for_animal', as: :new_medical_procedure_for_animal
+  get '/edit_medical_procedure_for_animal/:procedure_id/', to: 'medical_procedures#edit_medical_procedure_for_animal', as: :edit_medical_procedure_for_animal
+
+  resources :procedure_types, except: [:show]
   resources :animals do
     resources :notes, module: :animals
   end
