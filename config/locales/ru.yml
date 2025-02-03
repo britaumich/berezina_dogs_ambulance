@@ -151,6 +151,7 @@ ru:
       success: "Операция была успешно выполнена!"
       prohibited this record from being saved: "- запись не может быть сохранена"
       The cart has been updated with new records: "Новые записи добавлены в корзину"
+      Medical procedure was successfully created: "Новое медицинское назначение добавлено"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"
@@ -162,6 +163,7 @@ ru:
      cancel: "Отменить"
      save: "Сохранить"
      add: "Добавить"
+     update: "Обновить"
     sort:
       asc: "По возрастанию"
       desc: "По убыванию"

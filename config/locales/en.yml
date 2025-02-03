@@ -91,11 +91,13 @@ en:
       search: "Search"
       save: "Save"
       add: "Add"
+      update: "Update"
     sort:
       asc: "Ascending"
       desc: "Descending"
     messages: 
-    The cart has been updated with new records: "The cart has been updated with new records"
+      The cart has been updated with new records: "The cart has been updated with new records"
+      Medical procedure was successfully created: "Medical procedure was successfully created"
 
   gender_lists:
     "Unspecified": Unspecified
@@ -111,4 +113,3 @@ en:
     few:  "%{count} errors"
     many:  "%{count} errors"
     other: "%{count} errors"
-
