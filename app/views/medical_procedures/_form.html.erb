@@ -13,12 +13,12 @@
 
   <div class="my-5">
     <%= form.label :animal_id %>
-    <%= form.collection_select(:animal_id, @animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true, :selected => animal.present? ? animal.id : nil }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:animal_id, animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true, :selected => animal.present? ? animal.id : nil }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
     <%= form.label :procedure_type_id %>
-    <%= form.collection_select(:procedure_type_id, @procedures, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:procedure_type_id, procedure_types, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
