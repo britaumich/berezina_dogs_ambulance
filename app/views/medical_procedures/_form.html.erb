@@ -53,7 +53,7 @@
             flatpickr_min_date_value: "today"
           } %>
   </div>
-  <%= form.hidden_field :return_to_animal, value: return_to_animal %>
+  <%= hidden_field_tag 'return_to_animal', return_to_animal %>
 
   <div class="inline">
     <% if return_to_animal.present? %>

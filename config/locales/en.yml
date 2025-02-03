@@ -98,7 +98,7 @@ en:
     messages: 
       The cart has been updated with new records: "The cart has been updated with new records"
       Medical procedure was successfully created: "Medical procedure was successfully created"
-
+      Medical procedure was successfully updated: "Medical procedure was successfully updated"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

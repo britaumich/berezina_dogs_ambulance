@@ -152,6 +152,7 @@ ru:
       prohibited this record from being saved: "- запись не может быть сохранена"
       The cart has been updated with new records: "Новые записи добавлены в корзину"
       Medical procedure was successfully created: "Новое медицинское назначение добавлено"
+      Medical procedure was successfully updated: "Медицинское назначение обновлено"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"
