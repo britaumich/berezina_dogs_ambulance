@@ -42,7 +42,7 @@ class MedicalProceduresController < ApplicationController
   # POST /medical_procedures or /medical_procedures.json
   def create
     @medical_procedure = MedicalProcedure.new(medical_procedure_params)
-    
+
     respond_to do |format|
       if @medical_procedure.save
         if params[:return_to_animal] == "true"
