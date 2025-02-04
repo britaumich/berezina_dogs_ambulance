@@ -3,7 +3,6 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures or /medical_procedures.json
   def index
-    session[:return_to] = request.referer
     @medical_procedures = MedicalProcedure.all
     if params[:q].nil?
       @q = @medical_procedures.ransack(params[:q])
