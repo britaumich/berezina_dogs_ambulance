@@ -21,7 +21,7 @@ class ProcedureTypesController < ApplicationController
 
     respond_to do |format|
       if @procedure_type.save
-        format.html { redirect_to procedure_types_url, notice: "Procedure type was successfully created." }
+        format.html { redirect_to procedure_types_url, notice: t('forms.messages.Procedure type was successfully created') }
         format.json { render :show, status: :created, location: @procedure_type }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +34,7 @@ class ProcedureTypesController < ApplicationController
   def update
     respond_to do |format|
       if @procedure_type.update(procedure_type_params)
-        format.html { redirect_to procedure_types_url, notice: "Procedure type was successfully updated." }
+        format.html { redirect_to procedure_types_url, notice: t('forms.messages.Procedure type was successfully updated') }
         format.json { render :show, status: :ok, location: @procedure_type }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class ProcedureTypesController < ApplicationController
     @procedure_type.destroy!
 
     respond_to do |format|
-      format.html { redirect_to procedure_types_path, status: :see_other, notice: "Procedure type was successfully destroyed." }
+      format.html { redirect_to procedure_types_path, status: :see_other, notice: t('forms.messages.Procedure type was successfully deleted') }
       format.json { head :no_content }
     end
   end

@@ -21,7 +21,7 @@ class AnimalTypesController < ApplicationController
 
     respond_to do |format|
       if @animal_type.save
-        format.html { redirect_to animal_types_url, notice: "Animal type was successfully created." }
+        format.html { redirect_to animal_types_url, notice: t('forms.messages.Animal type was successfully created') }
         format.json { render :show, status: :created, location: @animal_type }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,7 +34,7 @@ class AnimalTypesController < ApplicationController
   def update
     respond_to do |format|
       if @animal_type.update(animal_type_params)
-        format.html { redirect_to animal_types_url, notice: "Animal type was successfully updated." }
+        format.html { redirect_to animal_types_url, notice: t('forms.messages.Animal type was successfully updated') }
         format.json { render :show, status: :ok, location: @animal_type }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class AnimalTypesController < ApplicationController
     @animal_type.destroy!
 
     respond_to do |format|
-      format.html { redirect_to animal_types_path, status: :see_other, notice: "Animal type was successfully destroyed." }
+      format.html { redirect_to animal_types_path, status: :see_other, notice: t('forms.messages.Animal type was successfully deleted') }
       format.json { head :no_content }
     end
   end

@@ -32,7 +32,7 @@
             </div>
             <div class="mb-2">
               <%= f.label :procedure_type_name_eq, "#{t('activerecord.attributes.medical_procedure.procedure_type_id')}" %>
-              <%= f.collection_select(:procedure_type_name_eq, @procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
+              <%= f.collection_select(:procedure_type_name_eq, procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
             </div>
             <div class="flex items-end mb-2">
               <div class="flex-1 w-1/2">

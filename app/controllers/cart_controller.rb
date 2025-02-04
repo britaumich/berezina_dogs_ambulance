@@ -43,7 +43,7 @@ class CartController < ApplicationController
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
     cart.destroy
-    flash.now[:notice] = t('text.Medical procedures created')
+    flash.now[:notice] = t('forms.messages.Medical procedures created')
     @procedures = ProcedureType.all.map { |p| [p.name, p.id] }
  
     respond_to do |format|
@@ -65,7 +65,7 @@ class CartController < ApplicationController
       Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id], section_id: params[:section_id])
     end
     cart.destroy
-    flash.now[:notice] = t('text.added to enclosure')
+    flash.now[:notice] = t('forms.messages.Added to enclosure')
     @aviaries = Aviary.all.map { |a| [a.name, a.id] }
     @sections = []
     respond_to do |format|

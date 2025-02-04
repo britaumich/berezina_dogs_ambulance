@@ -26,7 +26,7 @@ class AviariesController < ApplicationController
 
     respond_to do |format|
       if @aviary.save
-        format.html { redirect_to @aviary, notice: "Aviary was successfully created." }
+        format.html { redirect_to @aviary, notice: t('forms.messages.Enclosure was successfully created') }
         format.json { render :show, status: :created, location: @aviary }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class AviariesController < ApplicationController
   def update
     respond_to do |format|
       if @aviary.update(aviary_params)
-        format.html { redirect_to @aviary, notice: "Aviary was successfully updated." }
+        format.html { redirect_to @aviary, notice: t('forms.messages.Enclosure was successfully updated') }
         format.json { render :show, status: :ok, location: @aviary }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class AviariesController < ApplicationController
     @aviary.destroy!
 
     respond_to do |format|
-      format.html { redirect_to aviaries_path, status: :see_other, notice: "Aviary was successfully destroyed." }
+      format.html { redirect_to aviaries_path, status: :see_other, notice: t('forms.messages.Enclosure was successfully deleted') }
       format.json { head :no_content }
     end
   end

@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       start_new_session_for(@user)
-      redirect_to root_url, notice: "Registered successfully"
+      redirect_to root_url, notice: t('forms.messages.Registered successfully')
     else
       render :new
     end

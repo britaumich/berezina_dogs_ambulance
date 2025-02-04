@@ -28,7 +28,7 @@
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to aviary_path(aviary), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete}, aria: { label: "#{dom_id(aviary)}_delete" }  do %>
+              <%= link_to aviary_path(aviary), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(aviary)}_delete" }  do %>
                 <i class="fa fa-trash-can text-red-950"></i>
               <% end %>
           </tr>

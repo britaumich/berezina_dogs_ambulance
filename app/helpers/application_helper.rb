@@ -115,4 +115,12 @@ module ApplicationHelper
     []
   end
 
+  def animals
+    Animal.all.order(:nickname)
+  end
+
+  def procedure_types
+    ProcedureType.all.order(:name)
+  end
+
 end

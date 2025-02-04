@@ -70,7 +70,7 @@
       <% @medical_procedures.each do |medical_procedure| %>
         <rt>
           <td class="mi_tbody_td">
-            <%= link_to animal_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} do %>
+            <%= link_to animal_path(medical_procedure.animal), class: "link_to", data: {turbo_frame: "_top"} do %>
               <%= show_animal(medical_procedure.animal) %>
             <% end %>
           </td>

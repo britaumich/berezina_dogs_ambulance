@@ -13,12 +13,12 @@
 
   <div class="my-5">
     <%= form.label :animal_id %>
-    <%= form.collection_select(:animal_id, @animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:animal_id, animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true, :selected => animal.present? ? animal.id : nil }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
     <%= form.label :procedure_type_id %>
-    <%= form.collection_select(:procedure_type_id, @procedures, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:procedure_type_id, procedure_types, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
@@ -53,8 +53,31 @@
             flatpickr_min_date_value: "today"
           } %>
   </div>
+  <%= hidden_field_tag 'return_to_animal', return_to_animal %>
 
   <div class="inline">
-    <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
+    <% if return_to_animal.present? %>
+      <% if medical_procedure.persisted? %>
+        <%= form.submit t('forms.buttons.update'), class: "primary_button" %>
+      <% else %>
+        <%= form.submit t('forms.buttons.add'), class: "primary_button" %>
+      <% end %>
+      <%= link_to animal_path(animal) do %>
+        <span class="tertiary_button"><%= t('forms.buttons.cancel') %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      <% end %>
+    <% else %>
+      <% if medical_procedure.persisted? %>
+        <%= form.submit t('forms.buttons.update'), class: "primary_button" %>
+      <% else %>
+        <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
+      <% end %>
+      <%= link_to medical_procedures_path do %>
+        <span class="tertiary_button"><%= t('forms.buttons.cancel') %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+      <% end %>
+    <% end %>
   </div>
 <% end %>
