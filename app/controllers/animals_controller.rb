@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-  before_action :set_animal, only: %i[ show edit update upload_pictures destroy ]
+  before_action :set_animal, only: %i[ show edit update upload_pictures destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
   def index
@@ -55,7 +55,7 @@ class AnimalsController < ApplicationController
     @animal = Animal.new(animal_params)
     respond_to do |format|
       if @animal.save
-        format.html { redirect_to @animal, notice: "Animal was successfully created." }
+        format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
       else
   
@@ -69,13 +69,26 @@ class AnimalsController < ApplicationController
   def update
     respond_to do |format|
       if @animal.update(animal_params)
-        format.html { redirect_to @animal, notice: "Animal was successfully updated." }
+        format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete_medical_procedure
+    procedure = MedicalProcedure.find(params[:procedure_id]).destroy
+    @medical_procedures = @animal.medical_procedures
+    flash.now[:notice] = t('forms.messages.Medical procedure was successfully deleted')
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('procedures', partial: 'animals/animal_medicine'),
+                              turbo_stream.update('flash', partial: 'layouts/notification')]
+      end
+    end
+
   end
 
   def upload_pictures
@@ -97,7 +110,7 @@ class AnimalsController < ApplicationController
     @animal.destroy!
 
     respond_to do |format|
-      format.html { redirect_to animals_path, status: :see_other, notice: "Animal was successfully deleted." }
+      format.html { redirect_to animals_path, status: :see_other, notice: t('forms.messages.Animal was successfully deleted') }
       format.json { head :no_content }
     end
   end

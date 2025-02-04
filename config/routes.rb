@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
   get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
+  post 'animals/delete_medical_procedure/:id/:procedure_id', to: 'animals#delete_medical_procedure', as: :delete_medical_procedure
 
   resources :animal_types, except: [:show] 
   resource :registration, only: [:new,:create]

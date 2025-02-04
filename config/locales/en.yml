@@ -53,6 +53,7 @@ en:
     table: "Table"
     pictures: "Pictures"
     added to enclosure: "Added to Enclosure"
+    Are you sure?: "Are you sure?"
   label:
     sort: "Sort"
     order: "Order"
@@ -99,6 +100,24 @@ en:
       The cart has been updated with new records: "The cart has been updated with new records"
       Medical procedure was successfully created: "Medical procedure was successfully created"
       Medical procedure was successfully updated: "Medical procedure was successfully updated"
+      Medical procedure was successfully deleted: "Medical procedure deleted"
+      Animal type was successfully created: "Animal type was successfully created"
+      Animal type was successfully updated: "Animal type was successfully updated"
+      Animal type was successfully deleted: "Animal type was successfully deleted"
+      Animal was successfully created: "Animal was successfully created"
+      Animal was successfully updated: "Animal was successfully updated"
+      Animal was successfully deleted: "Animal was successfully deleted"
+      Enclosure was successfully created: "Enclosure was successfully created"
+      Enclosure was successfully updated: "Enclosure was successfully updated"
+      Enclosure was successfully deleted: "Enclosure was successfully deleted"
+      Medical procedures created: "Medical procedures created"
+      Аdded to enclosure: "Аdded to enclosure"
+      Procedure type was successfully created: "Procedure type was successfully created"
+      Procedure type was successfully updated: "Procedure type was successfully updated"
+      Procedure type was successfully deleted: "Procedure type was successfully deleted"
+      Registered successfully: "Registered successfully"
+      Registered successfully: "Registered successfully"
+      Try another email address or password: "Try another email address or password"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

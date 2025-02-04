@@ -1,8 +1,4 @@
 
-<div class="flex justify-between mb-2">
-  <h2><%= t('text.Medical Procedures') %></h2> 
-  <%= link_to t('menu.new'), new_medical_procedure_for_animal_path(animal_id: @animal.id), class: "primary_button" %>
-</div>
 <%= turbo_frame_tag 'procedures' do %>
   <div class="min-w-full">
     <table class="mi_table" id="desk-table">
@@ -33,7 +29,7 @@
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to medical_procedure_path(procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(procedure)}_delete" }  do %>
+              <%= link_to delete_medical_procedure_path(@animal, procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :post}, aria: { label: "#{dom_id(procedure)}_delete" }  do %>
                 <i class="fa fa-trash-can text-red-950"></i>
               <% end %>
             </td>

@@ -20,19 +20,24 @@ class MedicalProceduresController < ApplicationController
   # GET /medical_procedures/new
   def new
     @medical_procedure = MedicalProcedure.new
+    @animal = nil
+    @return_to_animal = false
   end
 
   def new_medical_procedure_for_animal
     @animal = Animal.find(params[:animal_id])
     @medical_procedure = MedicalProcedure.new
+    @return_to_animal = true
   end
 
   # GET /medical_procedures/1/edit
   def edit
+    @return_to_animal = false
   end
 
   def edit_medical_procedure_for_animal
     @medical_procedure = MedicalProcedure.find(params[:procedure_id])
+    @return_to_animal = true
   end
 
   # POST /medical_procedures or /medical_procedures.json
@@ -47,6 +52,8 @@ class MedicalProceduresController < ApplicationController
           format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
         end
       else
+        @return_to_animal = params[:return_to_animal]
+        @animal = @medical_procedure.animal
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
       end
@@ -64,6 +71,7 @@ class MedicalProceduresController < ApplicationController
         end
         format.json { render :show, status: :ok, location: @medical_procedure }
       else
+        @return_to_animal = params[:return_to_animal]
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
       end

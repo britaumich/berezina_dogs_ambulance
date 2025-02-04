@@ -4,7 +4,7 @@
     <div class="lg:grid lg:justify-items-end">
       <%= link_to t('forms.buttons.edit'), edit_aviary_path(@aviary), class: "primary_button mb-2" %>
       <div class="mt-2">
-        <%= link_to aviary_path(@aviary), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete} do %>
+        <%= link_to aviary_path(@aviary), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete} do %>
           <span class="tertiary_button">
             <i class="fa fa-times" aria-hidden="true"></i>
             <%= t('forms.buttons.delete') %>
