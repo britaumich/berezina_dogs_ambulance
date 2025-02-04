@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <% @medical_procedures.each do |procedure| %>
-          <tр>
+          <tr>
             <td class="mi_tbody_td">
               <%= link_to procedure.procedure_type.name, medical_procedure_path(procedure), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
