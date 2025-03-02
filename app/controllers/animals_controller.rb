@@ -8,7 +8,7 @@ class AnimalsController < ApplicationController
     elsif params[:switch_view] == "pictures"
       @view = "pictures"
     else 
-      @view = "pictures"
+      @view = "table"
     end
     if params[:sort].present?
       @sort_by = params[:sort]
