@@ -19,7 +19,21 @@
             <span hidden id="select_all">Select All</span>
             <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
           </td>
-          <th class="header_th"><%= t('activerecord.attributes.animal.id') %></th>
+          <th class="header_th">
+            <%= link_to sort_url(@q, :id) do %>
+              <span><%= t('activerecord.attributes.animal.id') %></span>
+              <% sort = @q.sorts.find { |s| s.name == 'id' } %>            
+              <% if sort.present? && sort.dir == 'asc' %>
+                <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
+              <% end %>
+              <% if sort.present? && sort.dir == 'desc' %>
+                <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
+              <% end %>
+              <% unless sort.present? %>
+                <i class="fa fa-sort" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </th>
           <th class="header_th">
             <%= link_to sort_url(@q, :animal_type_name) do %>
               <span><%= t('activerecord.attributes.animal.animal_type_id') %></span>

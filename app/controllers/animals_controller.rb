@@ -8,7 +8,7 @@ class AnimalsController < ApplicationController
     elsif params[:switch_view] == "pictures"
       @view = "pictures"
     else 
-      @view = "pictures"
+      @view = "table"
     end
     if params[:sort].present?
       @sort_by = params[:sort]
@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    @animals = Animal.all
+    @animals = Animal.all.order(:id)
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
     else

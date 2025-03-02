@@ -45,9 +45,9 @@ ru:
     section: "секция"
     Add Section: "Добавить секцию"
     Aviaries: "Вольеры"
-    Add to Cart: "Добавить в корзину"
-    cart: "Корзина"
-    Your cart is empty: "Корзина пуста"
+    Add to Cart: "Добавить в список"
+    cart: "Список"
+    Your cart is empty: "Список пустой"
     Contains: "Содержит"
     From: "От"
     To: "До"
@@ -148,7 +148,7 @@ ru:
     messages:
       success: "Операция была успешно выполнена!"
       prohibited this record from being saved: "- запись не может быть сохранена"
-      The cart has been updated with new records: "Новые записи добавлены в корзину"
+      The cart has been updated with new records: "Новые записи добавлены в список"
       Medical procedure was successfully created: "Новое медицинское назначение добавлено"
       Medical procedure was successfully updated: "Медицинское назначение обновлено"
       Medical procedure was successfully deleted: "Медицинское назначение удалено"
@@ -172,7 +172,7 @@ ru:
      edit: "Редактировать"
      submit: "Сохранить"
      delete: "Удалить"
-     delete from cart: "Удалить из корзины"
+     delete from cart: "Удалить из списка"
      back: "Назад к списку"
      search: "Найти"
      clear: "Обнулить фильтры"
@@ -196,7 +196,7 @@ ru:
       animals: "Животные"
       aviaries: "Вольеры"
       language: "Язык"
-      cart: "Корзина"
+      cart: "Список"
   gender_lists:
     "Неопределен": Неопределен
     "М": М
