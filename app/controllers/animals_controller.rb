@@ -16,7 +16,7 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    @animals = Animal.all
+    @animals = Animal.all.order(:id)
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
     else
