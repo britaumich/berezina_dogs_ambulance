@@ -37,9 +37,9 @@
         </div>
       </div>
       <div class="relative min-h-screen md:flex">
-        <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+        <div class="z-50 sidebar w-58 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
 
-          <div class="col-span-2 mb-4 flex justify-start">
+          <div class="col-span-2 mb-4">
             <p><%= t('text.Group search by') %>:</p>
             <div class="ml-4">
               <%= f.radio_button :m, 'and', :checked => true %>
@@ -51,6 +51,11 @@
             </div>
           </div>
           <div class="">
+            <div>
+              <%= f.label :nickname_or_surname_or_description_or_from_people_or_from_place_or_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
+              <%= f.search_field :nickname_or_surname_or_description_or_from_people_or_from_place_or_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
+            </div>
+
             <div class="mb-2">
               <%= f.label :animal_type_name_eq, "#{t('activerecord.attributes.animal.animal_type_id')}", class: "fancy_label" %>
               <%= f.collection_select(:animal_type_name_eq, animal_types, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select' }) %>
@@ -92,11 +97,6 @@
             <div class="mb-2">
               <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}", class: "fancy_label" %>
               <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select' }) %>
-            </div>
-
-            <div>
-              <%= f.label :description_or_from_people_or_from_place_or_history_or_notes_body_cont, "#{t('label.Search Text Fields')}" %>
-              <%= f.search_field :description_or_from_people_or_from_place_or_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
             </div>
 
             <div class="my-2 col-span-2 flex justify-start">
