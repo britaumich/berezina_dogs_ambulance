@@ -8,14 +8,14 @@
   </div>
 
   <div class="relative min-h-screen md:flex">
-    <div class="z-50 sidebar w-72 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+    <div class="z-50 sidebar w-62 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
       <div data-controller="animal">
         <%= search_form_for @q,
           data: { animal_target: "form",
                   turbo_frame: "turbo-medical-procedures"
                   } do |f| %>
-          <div class="col-span-2 mb-4 flex justify-start">
-            <p><%= t('text.Group searching conditions by') %>:</p>
+          <div class="col-span-2 mb-4">
+            <p><%= t('text.Group search by') %>:</p>
             <div class="ml-4">
               <%= f.radio_button :m, 'and', :checked => true %>
               <%= f.label :m, t('label.and'), value: 'and' %>
@@ -27,25 +27,25 @@
           </div>
           <div class="">
             <div class="mb-2">
-              <%= f.label :animal_nickname_cont, t('text.Animal Nickname contains') %>
-              <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'input_text_field' %>
+              <%= f.label :animal_nickname_cont, t('text.Nickname contains'), class: "fancy_label" %>
+              <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
             </div>
             <div class="mb-2">
-              <%= f.label :procedure_type_name_eq, "#{t('activerecord.attributes.medical_procedure.procedure_type_id')}" %>
-              <%= f.collection_select(:procedure_type_name_eq, procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'input_text_field' }) %>
+              <%= f.label :procedure_type_name_eq, "#{t('activerecord.attributes.medical_procedure.procedure_type_id')}", class: "fancy_label"  %>
+              <%= f.collection_select(:procedure_type_name_eq, procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'filter_select' }) %>
             </div>
-            <div class="flex items-end mb-2">
-              <div class="flex-1 w-1/2">
-                <%= f.label :date_planned_gteq, "#{t('activerecord.attributes.medical_procedure.date_planned')}" %>
-                  <%= f.text_field :date_planned_gteq, placeholder: t('text.From'), class: 'input_text_field',
+            <div class="mb-2">
+              <div class="mb-2">
+                <%= f.label :date_planned_gteq, "#{t('activerecord.attributes.medical_procedure.date_planned')}", class: "fancy_label" %>
+                  <%= f.text_field :date_planned_gteq, placeholder: t('text.From'), class: 'filter_select',
                     data: {
                       controller: "flatpickr",
                       flatpickr_date_format: "d-m-Y"
                     } %>
                 </div>
-              <div class="ml-1 flex-1 w-1/2">
+              <div class="ml-2">
                 <%= f.label :date_planned_lteq, class: "hidden" %>
-                  <%= f.text_field :date_planned_lteq, placeholder: t('text.To'), class: 'input_text_field',
+                  <%= f.text_field :date_planned_lteq, placeholder: t('text.To'), class: 'filter_select',
                     data: {
                       controller: "flatpickr",
                       flatpickr_date_format: "d-m-Y"
@@ -54,29 +54,32 @@
             </div>
 
             <div class="mb-2">
-              <%= f.label :date_planned_eq, "#{t('activerecord.attributes.medical_procedure.date_planned')}" %>
-              <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'input_text_field',
+              <%= f.label :date_planned_eq, "#{t('activerecord.attributes.medical_procedure.date_planned')}", class: "fancy_label" %>
+              <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'filter_select',
                 data: {
                   controller: "flatpickr",
                   flatpickr_date_format: "d-m-Y"
                 } %>
             </div>
             <div class="mb-2">
-              <%= f.label :date_completed %>
-              <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'input_text_field',
+              <%= f.label :date_completed, class: "fancy_label" %>
+              <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'filter_select',
                 data: {
                   controller: "flatpickr",
                   flatpickr_date_format: "Y-m-d"
                 } %>
             </div>
             <div class="my-2 col-span-2 flex justify-start">
-              <div class="mr-2">
+              <div class="">
                 <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
               </div>
               <div>
                 <button type="button" class="tertiary_button"
                   data-action='click->animal#clearFilters'>
-                  <%= t('forms.buttons.clear') %>
+                    <span>
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <%= t('forms.buttons.clear') %>
+                    </span>
                 </button>
               </div>
             </div>

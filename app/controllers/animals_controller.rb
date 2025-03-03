@@ -45,8 +45,7 @@ class AnimalsController < ApplicationController
   def edit
     if @animal.aviary&.has_sections
       @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
-    else 
-
+      @section_id = @animal.section_id
     end
   end
 
@@ -58,7 +57,10 @@ class AnimalsController < ApplicationController
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
       else
-  
+        if animal_params[:section_id].present?
+          @section_id = animal_params[:section_id]
+          @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end
@@ -67,11 +69,18 @@ class AnimalsController < ApplicationController
 
   # PATCH/PUT /animals/1 or /animals/1.json
   def update
+    if animal_params[:section_id].present?
+      @section_id = animal_params[:section_id]
+    end
     respond_to do |format|
       if @animal.update(animal_params)
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
       else
+        if animal_params[:section_id].present?
+          @section_id = animal_params[:section_id]
+          @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end

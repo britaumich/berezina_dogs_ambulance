@@ -58,7 +58,7 @@ en:
     sort: "Sort"
     order: "Order"
     view: "View"
-    Search the Rest of Text Fields: "Search the Rest of Text Fields"
+    Search Text Fields: "Search Text Fields"
   menu:
     languages:
       lang: "Language"
