@@ -96,7 +96,7 @@ ru:
     sort: "Сортировать"
     order: "Порядок"
     view: "Вид"
-    Search the Rest of Text Fields: "Поиск по остальным полям"
+    Search Text Fields: "Поиск"
   activerecord:
     attributes:
       animal:
