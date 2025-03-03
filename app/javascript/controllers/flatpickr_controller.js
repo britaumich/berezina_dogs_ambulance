@@ -7,7 +7,6 @@ export default class extends Controller {
     console.log("date contr")
     this.fp = flatpickr(this.element, {
       dateFormat: "d-m-Y",
-      minDate: "today",
       allowInput: false,
       altInput: false,
       required: true,
