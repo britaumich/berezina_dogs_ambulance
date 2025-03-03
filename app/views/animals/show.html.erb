@@ -1,6 +1,6 @@
 <div class="mx-auto w-full">
   <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
-    <h1><%= @animal.animal_type.name %></h1>
+    <h1><%= @animal.animal_type.name %> (<%= @animal.animal_status.name %>)</h1>
     <div class="lg:grid lg:justify-items-end">
       <%= link_to t('forms.buttons.edit'), edit_animal_path(@animal), class: "primary_button mb-2" %>
       <div class="mt-2">

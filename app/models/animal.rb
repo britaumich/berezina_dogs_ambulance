@@ -2,31 +2,33 @@
 #
 # Table name: animals
 #
-#  id             :bigint           not null, primary key
-#  arival_date    :date
-#  birth_date     :date
-#  color          :string
-#  death_date     :date
-#  description    :string
-#  from_people    :string
-#  from_place     :string
-#  gender         :string
-#  graduation     :string
-#  history        :string
-#  nickname       :string
-#  sterilization  :boolean          default(FALSE)
-#  surname        :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  animal_type_id :bigint           not null
-#  aviary_id      :bigint
-#  section_id     :bigint
+#  id               :bigint           not null, primary key
+#  arival_date      :date
+#  birth_date       :date
+#  color            :string
+#  death_date       :date
+#  description      :string
+#  from_people      :string
+#  from_place       :string
+#  gender           :string
+#  graduation       :string
+#  history          :string
+#  nickname         :string
+#  sterilization    :boolean          default(FALSE)
+#  surname          :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  animal_status_id :bigint
+#  animal_type_id   :bigint           not null
+#  aviary_id        :bigint
+#  section_id       :bigint
 #
 # Indexes
 #
-#  index_animals_on_animal_type_id  (animal_type_id)
-#  index_animals_on_aviary_id       (aviary_id)
-#  index_animals_on_section_id      (section_id)
+#  index_animals_on_animal_status_id  (animal_status_id)
+#  index_animals_on_animal_type_id    (animal_type_id)
+#  index_animals_on_aviary_id         (aviary_id)
+#  index_animals_on_section_id        (section_id)
 #
 # Foreign Keys
 #
@@ -36,6 +38,7 @@ class Animal < ApplicationRecord
   belongs_to :animal_type
   belongs_to :aviary, optional: true
   belongs_to :section, optional: true
+  belongs_to :animal_status
   has_many :cart_animals
   has_many :carts, through: :cart_animals
   has_many :notes, as: :noteable

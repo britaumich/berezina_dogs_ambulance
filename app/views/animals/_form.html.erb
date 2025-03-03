@@ -18,6 +18,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :animal_status_id, "#{t('activerecord.attributes.animal.animal_status_id')}(*)" %>
+    <%= form.collection_select(:animal_status_id, animal_statuses, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :nickname %>
     <%= form.text_field :nickname, class: "input_text_field" %>
   </div>

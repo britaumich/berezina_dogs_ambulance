@@ -31,6 +31,7 @@ ru:
   text:
     hello: "привет"
     Animal Types: "Виды граждан"
+    Animal Status: "Статус граждан"
     Animals: "Животные"
     Procedure Types: "Виды процедур"
     Procedure Type: "вид процедур"
@@ -117,8 +118,11 @@ ru:
         graduation: "Выпуск"
         animal_type_id: "Вид"
         animal_type: "Вид"
+        animal_status_id: "Статус"
         sterilization: "Стерилизация"
       animal_type:
+        name: "Название"
+      animal_status:
         name: "Название"
       aviary:
         has_sections: "Есть секции"
@@ -153,6 +157,8 @@ ru:
       Medical procedure was successfully updated: "Медицинское назначение обновлено"
       Medical procedure was successfully deleted: "Медицинское назначение удалено"
       Animal type was successfully created: "Новый вид добавлен"
+      Animal status was successfully created: "Новый статус добавлен"
+      Animal status was successfully updated: "Статус обновлен"
       Animal type was successfully updated: "Вид обновлен"
       Animal type was successfully deleted: "Вид удален"
       Animal was successfully created: "Новый гражданин добавлен"
@@ -162,7 +168,7 @@ ru:
       Enclosure was successfully updated: "Вольер обновлен"
       Enclosure was successfully deleted: "Вольер удален"
       Medical procedures created: "Медицинские назначения созданы"
-      Аdded to enclosure: "Добавлены в вольер"
+      Added to enclosure: "Добавлены в вольер"
       Procedure type was successfully created: "Новая процедура добавлена"
       Procedure type was successfully updated: "Процедура обновлена"
       Procedure type was successfully deleted: "Процедура удалена"
@@ -192,6 +198,7 @@ ru:
       citizens: "Граждане"
       medicine: "Медицина"
       types: "Виды"
+      statuses: "Статус"
       procedures: "Процедуры"
       animals: "Животные"
       aviaries: "Вольеры"

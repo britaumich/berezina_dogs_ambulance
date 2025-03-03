@@ -108,6 +108,10 @@ module ApplicationHelper
     AnimalType.all.order(:name)
   end
 
+  def animal_statuses
+    AnimalStatus.all.order(:name)
+  end
+
   def aviaries
     Aviary.all.order(:name)
   end
