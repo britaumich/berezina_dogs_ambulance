@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_22_014042) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_03_042153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_22_014042) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "animal_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "animal_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -77,6 +83,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_22_014042) do
     t.bigint "aviary_id"
     t.bigint "section_id"
     t.boolean "sterilization", default: false
+    t.bigint "animal_status_id"
+    t.index ["animal_status_id"], name: "index_animals_on_animal_status_id"
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
     t.index ["aviary_id"], name: "index_animals_on_aviary_id"
     t.index ["section_id"], name: "index_animals_on_section_id"

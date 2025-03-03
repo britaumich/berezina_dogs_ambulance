@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'animals/delete_medical_procedure/:id/:procedure_id', to: 'animals#delete_medical_procedure', as: :delete_medical_procedure
 
   resources :animal_types, except: [:show] 
+  resources :animal_statuses,  except: [:show] 
   resource :registration, only: [:new,:create]
   resource :session
   resources :passwords, param: :token

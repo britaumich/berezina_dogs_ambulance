@@ -1,0 +1,32 @@
+<%= turbo_frame_tag 'animal_statuss' do %>
+  <div class="min-w-full">
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
+        <tr>
+          <th class="header_th"><%= t('activerecord.attributes.animal_status.name') %></th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @animal_statuses.each do |animal_status| %>
+          <rt>
+            <td class="mi_tbody_td">
+              <%= animal_status.name %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to edit_animal_status_path(animal_status), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(animal_status)}_edit" } do%>
+                <i class="fa fa-pencil text-950"></i>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to animal_status_path(animal_status), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_status)}_delete" }  do %>
+                <i class="fa fa-trash-can text-red-950"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
