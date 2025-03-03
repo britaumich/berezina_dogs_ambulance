@@ -73,6 +73,7 @@ ru:
     Lena Beresina's shelter: "Питомник Лены Березиной"
     table: "Таблица"
     pictures: "Картинки"
+    The default status cannot be removed: "Этот статус не может быть удален"
   helpers:
     page_entries_info:
       one_page:
@@ -97,6 +98,7 @@ ru:
     sort: "Сортировать"
     order: "Порядок"
     view: "Вид"
+    status: "Статус"
     Search Text Fields: "Поиск"
   activerecord:
     attributes:

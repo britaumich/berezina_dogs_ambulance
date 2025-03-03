@@ -20,8 +20,12 @@
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to animal_status_path(animal_status), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_status)}_delete" }  do %>
-                <i class="fa fa-trash-can text-red-950"></i>
+              <% if animal_status.id == 1 %>
+                <%= t('text.The default status cannot be removed') %>
+              <% else %>
+                <%= link_to animal_status_path(animal_status), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_status)}_delete" }  do %>
+                  <i class="fa fa-trash-can text-red-950"></i>
+                <% end %>
               <% end %>
             </td>
           </tr>

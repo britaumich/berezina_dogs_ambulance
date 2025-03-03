@@ -13,11 +13,20 @@ class AnimalStatus < ApplicationRecord
   before_save :strip_whitespace_and_downcase
   validates :name, presence: true, uniqueness: true
 
+  before_destroy :prevent_deletion_of_default_status
+
   private 
 
   def strip_whitespace_and_downcase
     if self.name.present?
       self.name = self.name.strip.downcase
+    end
+  end
+
+  def prevent_deletion_of_default_status
+    if self.id == 1
+      errors.add(:base, "Cannot delete the default animal status")
+      throw(:abort)
     end
   end
   
