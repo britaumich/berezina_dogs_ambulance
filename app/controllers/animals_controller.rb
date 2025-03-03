@@ -45,7 +45,7 @@ class AnimalsController < ApplicationController
   def edit
     if @animal.aviary&.has_sections
       @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
-      @section = @animal.section
+      @section_id = @animal.section_id
     end
   end
 
