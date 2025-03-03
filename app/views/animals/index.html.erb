@@ -4,6 +4,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl"><%= t('text.Animals') %></h1>
+    <h1><%= show_status(@status_id) %></h1>
     <%= link_to t('menu.new'), new_animal_path, class: "primary_button" %>
   </div>
 
@@ -14,8 +15,8 @@
               turbo_frame: "turbo-animals"
               } do |f| %>
 
-      <div class="flex items-center gap-4">
-        <div class="flex justify-between items-center gap-4 text-sm mb-4">
+      <div class="flex justify-between items-center gap-4 mb-2 -mt-2">
+        <div class="flex justify-between items-center gap-4 text-sm">
           <div class="display inline">
             <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
             <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
@@ -26,14 +27,21 @@
             <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
               :"data-action" => "change->animal#submit" %>
           </div>
+          <div class="mt-2 ml-4">
+            <%= page_entries_info @animals %>
+          </div>
+        </div>
+        <div>
+          <div>
+            <label for="status_id" class="fancy_label"><%= t('label.status') %></label>
+            <%= select_tag "status_id", options_for_select(animal_statuses_for_select, selected: @status_id), class: "filter_select",
+              :"data-action" => "change->animal#submit" %>
+          </div>
           <div>
             <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
             <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
               :"data-action" => "change->animal#submit" %>
           </div>
-        </div>
-        <div class="my-2 ml-4">
-          <%= page_entries_info @animals %>
         </div>
       </div>
       <div class="relative min-h-screen md:flex">
