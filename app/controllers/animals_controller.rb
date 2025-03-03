@@ -16,7 +16,16 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    @animals = Animal.all.order(:id)
+    if params[:status_id].present?
+      @status_id = params[:status_id].to_i
+    else 
+      @status_id = 1
+    end
+    if @status_id == 0
+      @animals = Animal.all.order(:id)
+    else
+      @animals = Animal.where(animal_status_id: @status_id).order(:id)
+    end
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
     else

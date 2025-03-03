@@ -112,6 +112,10 @@ module ApplicationHelper
     AnimalStatus.all.order(:name)
   end
 
+  def animal_statuses_for_select
+    AnimalStatus.all.order(:name).map { |status| [status.name, status.id] } << ['все граждане', 0]
+  end
+
   def aviaries
     Aviary.all.order(:name)
   end
@@ -126,6 +130,14 @@ module ApplicationHelper
 
   def procedure_types
     ProcedureType.all.order(:name)
+  end
+
+  def show_status(status_id)
+    if status_id == 0
+      t('label.status') + " - все граждане"
+    else
+      t('label.status') + " - " + AnimalStatus.find(status_id.to_i).name
+    end
   end
 
 end

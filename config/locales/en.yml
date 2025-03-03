@@ -55,6 +55,7 @@ en:
     pictures: "Pictures"
     Added to enclosure: "Added to Enclosure"
     Are you sure?: "Are you sure?"
+    The default status cannot be removed: "The default status cannot be removed"
   label:
     sort: "Sort"
     order: "Order"
