@@ -18,11 +18,11 @@ RSpec.describe "/animals", type: :request do
   # Animal. As you add validations to Animal, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.build(:animal)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryBot.build(:animal, nickname: nil, surname: nil, animal_type: nil), 
   }
 
   describe "GET /index" do
@@ -87,14 +87,14 @@ RSpec.describe "/animals", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryBot.build(:animal, nickname: "new nickname")
       }
 
       it "updates the requested animal" do
         animal = Animal.create! valid_attributes
         patch animal_url(animal), params: { animal: new_attributes }
         animal.reload
-        skip("Add assertions for updated state")
+        expect(animal.nickname).to eq("new nickname")
       end
 
       it "redirects to the animal" do
