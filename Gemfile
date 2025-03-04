@@ -60,7 +60,11 @@ group :development, :test do
   gem "rubocop", "~> 1.0", require: false
   gem "rubocop-rails", "~> 2.0", require: false
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'capybara'
+  gem 'webdrivers'
+  gem 'faker'
+  gem 'pry'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
