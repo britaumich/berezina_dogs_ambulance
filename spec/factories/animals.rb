@@ -36,19 +36,21 @@
 #
 FactoryBot.define do
   factory :animal do
-    nickname { "MyString" }
-    surname { "MyString" }
-    gender { "MyString" }
-    arival_date { "2024-12-23" }
-    from_people { "MyString" }
-    from_place { "MyString" }
-    birth_date { "2024-12-23" }
-    death_date { "2024-12-23" }
-    color { "MyString" }
-    aviary { "MyString" }
-    description { "MyString" }
-    history { "MyString" }
-    graduation { "MyString" }
-    animal_type { nil }
+    nickname { Faker::Creature::Animal.name }
+    surname { Faker::Name.last_name }
+    gender { Faker::Gender.binary_type }
+    arival_date { Faker::Date.backward(days: 365) }
+    from_people { Faker::Name.name }
+    from_place { Faker::Address.city }
+    birth_date { Faker::Date.backward(days: 365 * 5) }
+    death_date { Faker::Date.forward(days: 365) }
+    color { Faker::Color.color_name }
+    description { Faker::Lorem.sentence }
+    history { Faker::Lorem.paragraph }
+    graduation { Faker::Educator.degree }
+    sterilization { Faker::Boolean.boolean }
+    association :aviary
+    association :animal_type
+    association :animal_status
   end
 end

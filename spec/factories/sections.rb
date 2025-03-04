@@ -19,8 +19,7 @@
 #
 FactoryBot.define do
   factory :section do
-    name { "MyString" }
-    description { "MyText" }
+    name { Faker::Alphanumeric.alpha(number: 8) }
     aviary { nil }
   end
 end

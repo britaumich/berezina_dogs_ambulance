@@ -12,7 +12,6 @@
 FactoryBot.define do
   factory :aviary do
     sections { false }
-    name { "MyString" }
-    description { "MyText" }
+    name { Faker::Alphanumeric.alpha(number: 8) }
   end
 end
