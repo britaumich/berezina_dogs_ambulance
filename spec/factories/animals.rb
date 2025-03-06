@@ -21,6 +21,7 @@
 #  animal_status_id :bigint
 #  animal_type_id   :bigint           not null
 #  aviary_id        :bigint
+#  parent_id        :integer
 #  section_id       :bigint
 #
 # Indexes
