@@ -51,7 +51,7 @@ class Animal < ApplicationRecord
     as: :record
 
   has_many_attached :pictures do |attachable|
-    attachable.variant :thumb, resize_to_limit: [640, 480]
+    attachable.variant :thumb, resize_to_limit: [ 640, 480 ]
   end
   include AppendToHasManyAttached['pictures']
 
@@ -76,36 +76,35 @@ class Animal < ApplicationRecord
   def strip_whitespace_and_titleize
     if self.nickname.present?
       self.nickname = self.nickname.strip
-      self.nickname = self.nickname.split(" ").map{|word| word.capitalize}.join(" ")
+      self.nickname = self.nickname.split(' ').map { |word| word.capitalize }.join(' ')
     end
     if self.surname.present?
       self.surname = self.surname.strip
-      self.surname = self.surname.split(" ").map{|word| word.capitalize}.join(" ")
+      self.surname = self.surname.split(' ').map { |word| word.capitalize }.join(' ')
     end
   end
 
   def any_present?
-    if %w(nickname surname color description arival_date).all?{|attr| self[attr].blank?}
+    if %w[nickname surname color description arival_date].all? { |attr| self[attr].blank? }
       errors.add :base, :any_present_message
     end
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["id", "nickname", "surname", "gender", "arival_date", "sterilization", "description", "history", "from_people", "from_place", "notes_body"]
+    [ 'id', 'nickname', 'surname', 'gender', 'arival_date', 'sterilization', 'description', 'history', 'from_people', 'from_place', 'notes_body' ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["animal_type", "aviary", "notes", "rich_text_body" ]
+    [ 'animal_type', 'aviary', 'notes', 'rich_text_body' ]
   end
 
-  ransacker :notes_body do |parent|
+  ransacker :notes_body do |_parent|
     Arel.sql("(SELECT string_agg(action_text_rich_texts.body::text, ' ')
               FROM notes
-              INNER JOIN action_text_rich_texts ON 
-                action_text_rich_texts.record_type = 'Note' 
+              INNER JOIN action_text_rich_texts ON
+                action_text_rich_texts.record_type = 'Note'
                 AND action_text_rich_texts.record_id = notes.id
-              WHERE notes.noteable_type = 'Animal' 
+              WHERE notes.noteable_type = 'Animal'
                 AND notes.noteable_id = animals.id)")
   end
-
 end

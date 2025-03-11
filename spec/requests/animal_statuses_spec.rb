@@ -18,25 +18,17 @@ RSpec.describe "/animal_statuses", type: :request do
   # AnimalStatus. As you add validations to AnimalStatus, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "в приюте" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
 
   describe "GET /index" do
     it "renders a successful response" do
       AnimalStatus.create! valid_attributes
       get animal_statuses_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      animal_status = AnimalStatus.create! valid_attributes
-      get animal_status_url(animal_status)
       expect(response).to be_successful
     end
   end
@@ -66,7 +58,7 @@ RSpec.describe "/animal_statuses", type: :request do
 
       it "redirects to the created animal_status" do
         post animal_statuses_url, params: { animal_status: valid_attributes }
-        expect(response).to redirect_to(animal_status_url(AnimalStatus.last))
+        expect(response).to redirect_to(animal_statuses_url)
       end
     end
 
@@ -87,21 +79,21 @@ RSpec.describe "/animal_statuses", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "умер" }
       }
 
       it "updates the requested animal_status" do
         animal_status = AnimalStatus.create! valid_attributes
         patch animal_status_url(animal_status), params: { animal_status: new_attributes }
         animal_status.reload
-        skip("Add assertions for updated state")
+        expect(animal_status.name).to eq("умер")
       end
 
       it "redirects to the animal_status" do
         animal_status = AnimalStatus.create! valid_attributes
         patch animal_status_url(animal_status), params: { animal_status: new_attributes }
         animal_status.reload
-        expect(response).to redirect_to(animal_status_url(animal_status))
+        expect(response).to redirect_to(animal_statuses_url)
       end
     end
 

@@ -18,25 +18,17 @@ RSpec.describe "/animal_types", type: :request do
   # AnimalType. As you add validations to AnimalType, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "собака" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
 
   describe "GET /index" do
     it "renders a successful response" do
       AnimalType.create! valid_attributes
       get animal_types_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      animal_type = AnimalType.create! valid_attributes
-      get animal_type_url(animal_type)
       expect(response).to be_successful
     end
   end
@@ -66,7 +58,7 @@ RSpec.describe "/animal_types", type: :request do
 
       it "redirects to the created animal_type" do
         post animal_types_url, params: { animal_type: valid_attributes }
-        expect(response).to redirect_to(animal_type_url(AnimalType.last))
+        expect(response).to redirect_to(animal_types_url)
       end
     end
 
@@ -87,21 +79,21 @@ RSpec.describe "/animal_types", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "кот" }
       }
 
       it "updates the requested animal_type" do
         animal_type = AnimalType.create! valid_attributes
         patch animal_type_url(animal_type), params: { animal_type: new_attributes }
         animal_type.reload
-        skip("Add assertions for updated state")
+        expect(animal_type.name).to eq("кот")
       end
 
       it "redirects to the animal_type" do
         animal_type = AnimalType.create! valid_attributes
         patch animal_type_url(animal_type), params: { animal_type: new_attributes }
         animal_type.reload
-        expect(response).to redirect_to(animal_type_url(animal_type))
+        expect(response).to redirect_to(animal_types_url)
       end
     end
 

@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :animal_status do
-    name { "MyString" }
+    name { "в приюте" }
   end
 end
