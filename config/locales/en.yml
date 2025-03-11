@@ -56,6 +56,7 @@ en:
     Added to enclosure: "Added to Enclosure"
     Are you sure?: "Are you sure?"
     The default status cannot be removed: "The default status cannot be removed"
+    Start typing to search: "Start typing to search"
   label:
     sort: "Sort"
     order: "Order"
