@@ -43,8 +43,8 @@ class Animal < ApplicationRecord
   has_many :cart_animals
   has_many :carts, through: :cart_animals
   has_many :notes, as: :noteable
-  has_many :children, class_name: 'Animal', foreign_key: 'parent_id'
-  belongs_to :parent, class_name: 'Animal', optional: true
+  has_many :children, class_name: "Animal", foreign_key: 'parent_id'
+  belongs_to :parent, class_name: "Animal", optional: true
 
   has_one :action_text_rich_text,
     class_name: 'ActionText::RichText',
@@ -60,6 +60,16 @@ class Animal < ApplicationRecord
   before_save :strip_whitespace_and_titleize
 
   validate :any_present?
+
+  def display_name
+    name = "#{self&.nickname} #{self&.surname}"
+    if self.nickname.present?
+      name += "(#{self.id})"
+    else
+      name += "#{self.id}"
+    end
+    name
+  end
 
   private
 
