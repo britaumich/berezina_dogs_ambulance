@@ -62,7 +62,13 @@ class Animal < ApplicationRecord
   validate :any_present?
 
   def display_name
-    "#{self.id} - #{self&.nickname} #{self&.surname}"
+    name = "#{self&.nickname} #{self&.surname}"
+    if self.nickname.present?
+      name += "(#{self.id})"
+    else
+      name += "#{self.id}"
+    end
+    name
   end
 
   private

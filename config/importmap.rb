@@ -11,3 +11,4 @@ pin "stimulus-flatpickr" # @3.0.0
 pin "flatpickr", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/index.js"
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.js"
+pin "tom-select" # @2.4.1

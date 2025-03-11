@@ -34,9 +34,9 @@
 
   <div class="my-5">
     <%= form.label :parent_id, "#{t('activerecord.attributes.animal.parent_id')}" %>
-    <%= form.select(:parent_id, options_for_select(parents(@animal), @animal.parent_id), { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" } )%>
-
+    <%= form.select(:parent_id, options_for_select(parents(animal), animal.parent_id), { include_blank: "#{t('text.Start typing to search')}" }, { class: 'input_text_field' } ) %>
   </div>
+
 
   <div class="my-5">
     <%= form.checkbox :sterilization, class: "check_box" %>
