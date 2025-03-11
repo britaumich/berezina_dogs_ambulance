@@ -28,6 +28,37 @@
         </p>
       </div>
 
+      <% if animal.parent_id.present? %>
+        <div class="py-2">
+          <p class="body-lg-bold-text inline">
+            <%= t('activerecord.attributes.animal.parent_id') %>:
+          </p>
+          <p class="body-lg-text pl-2 inline">
+            <%= link_to animal.parent.display_name, animal.parent, class: 'link_to' %>
+          </p>
+        </div>
+      <% end %>
+
+      <% if animal.children.present? %>
+        <div class="py-2 flex">
+          <p class="body-lg-bold-text inline">
+            <%= t('activerecord.attributes.animal.children') %>:
+          </p>
+          <p class="body-lg-text pl-2 inline">
+            <%= animal.children.map { |child| link_to(child.display_name, child, class: 'link_to') + '<br>'.html_safe }.join.html_safe %>          
+          </p>
+        </div>
+      <% end %>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          <%= t('activerecord.attributes.animal.surname') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= animal.surname %>
+        </p>
+      </div>
+
       <div class="py-2">
         <p class="body-lg-bold-text inline">
           <%= t('activerecord.attributes.animal.sterilization') %>:

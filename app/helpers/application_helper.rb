@@ -140,4 +140,13 @@ module ApplicationHelper
     end
   end
 
+  def parents(animal)
+    if animal.persisted?
+      parents = Animal.where.not(id: animal.id).sort_by(&:nickname)
+    else
+      parents = Animal.all.sort_by(&:nickname)
+    end
+    parents.map { |a| [a.display_name, a.id] }
+  end
+
 end

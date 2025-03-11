@@ -74,6 +74,7 @@ ru:
     table: "Таблица"
     pictures: "Картинки"
     The default status cannot be removed: "Этот статус не может быть удален"
+    Start typing to search: "Начните печатать кличку для поиска"
   helpers:
     page_entries_info:
       one_page:
@@ -122,6 +123,7 @@ ru:
         animal_type: "Вид"
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
+        parent_id: "Родитель"
       animal_type:
         name: "Название"
       animal_status:

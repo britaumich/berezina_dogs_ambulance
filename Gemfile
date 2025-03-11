@@ -57,8 +57,6 @@ gem "kaminari"
 group :development, :test do
   gem "rspec-rails", "~> 7.0"
   gem "factory_bot_rails", "~> 6.0"
-  gem "rubocop", "~> 1.0", require: false
-  gem "rubocop-rails", "~> 2.0", require: false
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'capybara'
@@ -70,7 +68,14 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+
+  gem "rubocop", "~> 1.0", require: false
+  gem "rubocop-rails", "~> 2.0", require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rails-omakase', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
 
 end
 
