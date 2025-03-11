@@ -122,6 +122,7 @@ ru:
         animal_type: "Вид"
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
+        parent_id: "Родитель"
       animal_type:
         name: "Название"
       animal_status:
