@@ -3,7 +3,7 @@ name: Run RSpec tests
 on:
   push:
     branches:
-      - staging
+      - main
 
 jobs:
   run-rspec-tests:
