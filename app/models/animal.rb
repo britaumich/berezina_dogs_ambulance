@@ -4,9 +4,11 @@
 #
 #  id               :bigint           not null, primary key
 #  arival_date      :date
-#  birth_date       :date
+#  birth_day        :date
+#  birth_year       :date
 #  color            :string
-#  death_date       :date
+#  death_day        :date
+#  death_year       :date
 #  description      :string
 #  from_people      :string
 #  from_place       :string
