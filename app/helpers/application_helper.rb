@@ -17,6 +17,28 @@ module ApplicationHelper
     end
   end
 
+  def show_birth_or_death_date(animal, type)
+    if type == "birth"
+      return "" unless animal.birth_year.present?
+      year = animal.birth_year
+      if animal.birth_day.present?
+        day = animal.birth_day
+        return "#{day.month}-#{day.day}-#{year.year}"
+      else
+        return year.year
+      end
+    elsif type == "death"
+      return "" unless animal.death_year.present?
+      year = animal.death_year
+      if animal.death_day.present?
+        day = animal.death_day
+        return "#{day.month}-#{day.day}-#{year.year}"
+      else
+        return year.year
+      end
+    end
+  end
+
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
       animal.nickname + " " + animal.surname
@@ -26,8 +48,8 @@ module ApplicationHelper
   end
 
   def age(animal)
-    if animal.birth_date.present?
-      dob = animal.birth_date
+    if animal.birth_year.present?
+      dob = animal.birth_year
       now = Date.today
       months = (now.year * 12 + now.month) - (dob.year * 12 + dob.month)
 

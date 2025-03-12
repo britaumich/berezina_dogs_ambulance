@@ -19,7 +19,7 @@
 
   <div class="my-5">
     <%= form.label :animal_status_id, "#{t('activerecord.attributes.animal.animal_status_id')}(*)" %>
-    <%= form.collection_select(:animal_status_id, animal_statuses, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select :animal_status_id, animal_statuses, :id, :name, { include_blank: "#{t('text.Select')} ...", required: true }, { selected: "1", class: "input_text_field" } %>
   </div>
 
   <div class="my-5">
@@ -71,21 +71,41 @@
   </div>
 
   <div class="my-5 mr-2">
-    <%= form.input :birth_date, as: :date, start_year: Date.today.year - 12,
-                                      end_year: Date.today.year, default: { day: 1, month: 1 },
-                                      input_html: { class: "inline short_input_text_field ml-2" } %>
+    <div>
+      <%= label_tag 'birth_year', "#{t('activerecord.attributes.animal.birth_year')}" %>
+    </div>
+    <div>
+      <%= select_year(14, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, {name: 'birth_year', :class => 'short_input_text_field'}) %>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :death_date %>
-    <%= form.text_field :death_date,
-          class: "input_text_field",
-          placeholder: "DD-MM-YYYY",
-          data: {
-            controller: "flatpickr",
-            flatpickr_date_format_value: "d-m-Y",
-            flatpickr_alt_input: false
-          } %>
+  <div class="my-5 mr-2">
+    <div>
+      <%= label_tag 'birth_day', "#{t('activerecord.attributes.animal.birth_day')}" %>
+    </div>
+    <div class="">
+      <%= select_day(32, { field_name: 'birth_day', prefix: 'birth', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_month(14, { field_name: 'birth_month', prefix: 'birth', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
+    </div>
+  </div>
+
+  <div class="my-5 mr-2">
+    <div>
+      <%= label_tag 'death_year', "#{t('activerecord.attributes.animal.death_year')}" %>
+    </div>
+    <div class="">
+      <%= select_year(14, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, { name: 'death_year', :class => 'short_input_text_field' }) %>
+    </div>
+  </div>
+
+  <div class="my-5 mr-2">
+    <div>
+      <%= label_tag 'death_day', "#{t('activerecord.attributes.animal.death_day')}" %>
+    </div>
+    <div class="">
+      <%= select_day(32, { field_name: 'death_day', prefix: 'death', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_month(14, { field_name: 'death_month', prefix: 'death', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
+    </div>
   </div>
 
   <div class="my-5">
