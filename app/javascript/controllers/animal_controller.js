@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="animal"
 export default class extends Controller {
-  static targets = ['form', 'aviary_select', 'show_sections', 'section']
+  static targets = ['form', 'aviary_select', 'show_sections', 'section',
+    'birth_year', 'birth_month', 'birth_day',
+    'death_year', 'death_month', 'death_day']
+
   connect() {
     console.log("connect animal")
   }
@@ -60,9 +63,52 @@ export default class extends Controller {
     }
   }
 
-  submitForm() {
-    console.log("here")
-    Turbo.navigator.submitForm(this.formTarget)
+  submitForm(event) {
+    var error_scroll_place = document.getElementById('error_scroll_place')
+    var birthdate_error = document.getElementById('birthdate_error')
+    birthdate_error.innerHTML = ''
+    let birth_year = this.birth_yearTarget.value
+    let birth_month = this.birth_monthTarget.value
+    let birth_day = this.birth_dayTarget.value
+
+    let death_year = this.death_yearTarget.value
+    let death_month = this.death_monthTarget.value
+    let death_day = this.death_dayTarget.value
+    var deathdate_error = document.getElementById('deathdate_error')
+    deathdate_error.innerHTML = ''
+
+    if (birth_month == '' && birth_day != ''){
+      birthdate_error.innerHTML = "Месяц рождения не может быть пустым, если выбран день."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+    if (birth_day == '' && birth_month != ''){
+      birthdate_error.innerHTML = "День рождения не может быть пустым, если выбран месяц."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+    if (birth_year == '' && (birth_month != '' || birth_day != '')) {
+      birthdate_error.innerHTML = "Год рождения не может быть пустым, если выбраны день и месяц."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+
+    if (death_month == '' && death_day != ''){
+      deathdate_error.innerHTML = "Месяц смерти не может быть пустым, если выбран день."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+    if (death_day == '' && death_month != ''){
+      deathdate_error.innerHTML = "День смерти не может быть пустым, если выбран месяц."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+    if (death_year == '' && (death_month != '' || death_day != '')) {
+      deathdate_error.innerHTML = "Год смерти не может быть пустым, если выбраны день и месяц."
+      error_scroll_place.scrollIntoView()
+      event.preventDefault()
+    }
+    // Turbo.navigator.submitForm(this.formTarget)
   }
 
 }

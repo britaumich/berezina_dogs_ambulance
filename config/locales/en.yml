@@ -60,6 +60,7 @@ en:
     Select Day: "Select Day"
     Select Month: "Select Month"
     Select Year: "Select Year"
+    For the birth date or death date, select a year or a year, month, and day: "For the birth date or death date, select a year or a year, month, and day"
   label:
     sort: "Sort"
     order: "Order"

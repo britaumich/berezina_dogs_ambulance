@@ -78,6 +78,7 @@ ru:
     Select Day: "Выберите день"
     Select Month: "Выберите месяц"
     Select Year: "Выберите год"
+    For the birth date or death date, select a year or a year, month, and day: "Для даты рождения или смерти выберите год или год, месяц и день"
   helpers:
     page_entries_info:
       one_page:
