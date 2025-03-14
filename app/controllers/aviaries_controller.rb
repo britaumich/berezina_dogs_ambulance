@@ -50,11 +50,25 @@ class AviariesController < ApplicationController
 
   # DELETE /aviaries/1 or /aviaries/1.json
   def destroy
-    @aviary.destroy!
+    if @aviary.animals.any?
+      flash.now[:alert] = t("text.Enclosure has animals and can't be deleted")
+      @aviarys = Aviary.all.order(:name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
+        end
+      end
+      return
+    end
 
+    @aviary.destroy!
+    flash.now[:alert] = t('forms.messages.Enclosure was successfully deleted')
+    @aviaries = Aviary.all.order(:name)
     respond_to do |format|
-      format.html { redirect_to aviaries_path, status: :see_other, notice: t('forms.messages.Enclosure was successfully deleted') }
-      format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('aviaries', partial: 'aviaries/aviary_list'),
+                                turbo_stream.update('flash', partial: 'layouts/notification')]
+      end
     end
   end
 

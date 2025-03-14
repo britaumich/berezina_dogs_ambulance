@@ -46,11 +46,25 @@ class AnimalStatusesController < ApplicationController
 
   # DELETE /animal_statuses/1 or /animal_statuses/1.json
   def destroy
-    @animal_status.destroy!
+    if @animal_status.animals.any?
+      flash.now[:alert] = t("text.There are animals with this status and it can't be deleted")
+      @animal_statuses = AnimalStatus.all.order(:name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
+        end
+      end
+      return
+    end
 
+    @animal_status.destroy!
+    flash.now[:alert] = t('forms.messages.Animal status was successfully deleted')
+    @animal_statuses = AnimalStatus.all.order(:name)
     respond_to do |format|
-      format.html { redirect_to animal_statuses_path, status: :see_other, notice: "Animal status was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('animal_statuses', partial: 'animal_statuses/status_list'),
+                                turbo_stream.update('flash', partial: 'layouts/notification')]
+      end
     end
   end
 

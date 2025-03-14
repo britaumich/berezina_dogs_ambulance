@@ -59,6 +59,17 @@ class Aviaries::SectionsController < ApplicationController
 
   # DELETE /sections/1 or /sections/1.json
   def destroy
+    if @section.animals.any?
+      flash.now[:alert] = t("text.Section has animals and can't be deleted")
+      @section = Section.new
+      @sections = @aviary.sections
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
+        end
+      end
+      return
+    end
     @section.destroy
     respond_to do |format|
       format.turbo_stream {}
