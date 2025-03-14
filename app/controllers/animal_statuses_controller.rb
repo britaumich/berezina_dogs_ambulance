@@ -58,7 +58,7 @@ class AnimalStatusesController < ApplicationController
     end
 
     @animal_status.destroy!
-    flash.now[:alert] = t('forms.messages.Animal status was successfully deleted')
+    flash.now[:notice] = t('forms.messages.Animal status was successfully deleted')
     @animal_statuses = AnimalStatus.all.order(:name)
     respond_to do |format|
       format.turbo_stream do

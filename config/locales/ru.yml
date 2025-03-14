@@ -81,7 +81,8 @@ ru:
     For the birth date or death date, select a year or a year, month, and day: "Для даты рождения или смерти выберите год или год, месяц и день"
     Section has animals and can't be deleted: "Секция содержит животных и не может быть удалена"
     Enclosure has animals and can't be deleted: "Вольер содержит животных и не может быть удален"
-    There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому его нельзя удалить"
+    There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому статус нельзя удалить"
+    There are animals with this type and it can't be deleted: "Есть животные этого вида, поэтому вид нельзя удалить"
   helpers:
     page_entries_info:
       one_page:
@@ -171,11 +172,11 @@ ru:
       Medical procedure was successfully updated: "Медицинское назначение обновлено"
       Medical procedure was successfully deleted: "Медицинское назначение удалено"
       Animal type was successfully created: "Новый вид добавлен"
+      Animal type was successfully updated: "Вид обновлен"
+      Animal type was successfully deleted: "Вид удален"
       Animal status was successfully created: "Новый статус добавлен"
       Animal status was successfully updated: "Статус обновлен"
       Animal status was successfully deleted: "Статус удален"
-      Animal type was successfully updated: "Вид обновлен"
-      Animal type was successfully deleted: "Вид удален"
       Animal was successfully created: "Новый гражданин добавлен"
       Animal was successfully updated: "Запись о гражданине обновлена"
       Animal was successfully deleted: "Запись о гражданине удалена"
