@@ -79,6 +79,9 @@ ru:
     Select Month: "Выберите месяц"
     Select Year: "Выберите год"
     For the birth date or death date, select a year or a year, month, and day: "Для даты рождения или смерти выберите год или год, месяц и день"
+    Section has animals and can't be deleted: "Секция содержит животных и не может быть удалена"
+    Enclosure has animals and can't be deleted: "Вольер содержит животных и не может быть удален"
+    There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому его нельзя удалить"
   helpers:
     page_entries_info:
       one_page:

@@ -61,6 +61,9 @@ en:
     Select Month: "Select Month"
     Select Year: "Select Year"
     For the birth date or death date, select a year or a year, month, and day: "For the birth date or death date, select a year or a year, month, and day"
+    Section has animals and can't be deleted: "Section has animals and can't be deleted"
+    Enclosure has animals and can't be deleted: "Enclosure has animals and can't be deleted"
+    There are animals with this status and it can't be deleted: "There are animals with this status and it can't be deleted"
   label:
     sort: "Sort"
     order: "Order"
