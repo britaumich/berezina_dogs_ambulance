@@ -102,7 +102,6 @@ class AnimalsController < ApplicationController
 
   # PATCH/PUT /animals/1 or /animals/1.json
   def update
-    fail
     @animal.attributes = animal_params
     if params['birth_year'].present?
       @animal.birth_year = Date.new(params['birth_year'].to_i)
