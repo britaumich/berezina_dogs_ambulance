@@ -173,6 +173,7 @@ ru:
       Animal type was successfully created: "Новый вид добавлен"
       Animal status was successfully created: "Новый статус добавлен"
       Animal status was successfully updated: "Статус обновлен"
+      Animal status was successfully deleted: "Статус удален"
       Animal type was successfully updated: "Вид обновлен"
       Animal type was successfully deleted: "Вид удален"
       Animal was successfully created: "Новый гражданин добавлен"

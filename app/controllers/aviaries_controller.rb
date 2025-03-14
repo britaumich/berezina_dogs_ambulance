@@ -62,10 +62,13 @@ class AviariesController < ApplicationController
     end
 
     @aviary.destroy!
-
+    flash.now[:alert] = t('forms.messages.Enclosure was successfully deleted')
+    @aviaries = Aviary.all.order(:name)
     respond_to do |format|
-      format.html { redirect_to aviaries_path, status: :see_other, notice: t('forms.messages.Enclosure was successfully deleted') }
-      format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: [turbo_stream.replace('aviaries', partial: 'aviaries/aviary_list'),
+                                turbo_stream.update('flash', partial: 'layouts/notification')]
+      end
     end
   end
 
