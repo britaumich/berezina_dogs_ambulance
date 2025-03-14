@@ -65,6 +65,8 @@ en:
     order: "Order"
     view: "View"
     Search Text Fields: "Search Text Fields"
+    Death Date: "Death Date"
+    Birth Date: "Birth Date"
   menu:
     languages:
       lang: "Language"

@@ -95,7 +95,8 @@ ru:
       next: "Следующая &rsaquo;"
       truncate: "..."
   label: 
-    Birthday: "Дата рождения"
+    Birth Date: "Дата рождения"
+    Death Date: "Дата смерти"
     Age: "Возраст"
     and: "и"
     or: "или"
