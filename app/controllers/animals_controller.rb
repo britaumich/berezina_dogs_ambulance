@@ -48,6 +48,12 @@ class AnimalsController < ApplicationController
   # GET /animals/new
   def new
     @animal = Animal.new
+    @birth_year = 0
+    @birth_month = 14
+    @birth_day = 32
+    @death_year = 0
+    @death_month = 14
+    @death_day = 32
   end
 
   # GET /animals/1/edit
@@ -56,20 +62,38 @@ class AnimalsController < ApplicationController
       @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
       @section_id = @animal.section_id
     end
+    @birth_year = @animal.birth_year.present? ? @animal.birth_year.year : 0
+    @birth_month = @animal.birth_day.present? ? @animal.birth_day.month : 14
+    @birth_day = @animal.birth_day.present? ? @animal.birth_day.day : 32
+    @death_year = @animal.death_year.present? ? @animal.death_year.year : 0
+    @death_month = @animal.death_day.present? ? @animal.death_day.month : 14
+    @death_day = @animal.death_day.present? ? @animal.death_day.day : 32
   end
 
   # POST /animals or /animals.json
   def create
     @animal = Animal.new(animal_params)
+    if params['birth_year'].present?
+      @animal.birth_year = Date.new(params['birth_year'].to_i)
+    end
+    if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
+      @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
+    end
+
+    if params['death_year'].present?
+      @animal.death_year = Date.new(params['death_year'].to_i)
+    end
+    if params['death']['death_month'].present? && params['death']['death_day'].present?
+      @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
+    end
+
     respond_to do |format|
       if @animal.save
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
       else
-        if animal_params[:section_id].present?
-          @section_id = animal_params[:section_id]
-          @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
-        end
+        @section_id = animal_params[:section_id]
+        @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end
@@ -78,6 +102,29 @@ class AnimalsController < ApplicationController
 
   # PATCH/PUT /animals/1 or /animals/1.json
   def update
+    @animal.attributes = animal_params
+    if params['birth_year'].present?
+      @animal.birth_year = Date.new(params['birth_year'].to_i)
+    else
+      @animal.birth_year = nil
+    end
+    if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
+      @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
+    else
+      @animal.birth_day = nil
+    end
+
+    if params['death_year'].present?
+      @animal.death_year = Date.new(params['death_year'].to_i)
+    else
+      @animal.death_year = nil
+    end
+    if params['death']['death_month'].present? && params['death']['death_day'].present?
+      @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
+    else
+      @animal.death_day = nil
+    end
+
     if animal_params[:section_id].present?
       @section_id = animal_params[:section_id]
     end
@@ -86,10 +133,8 @@ class AnimalsController < ApplicationController
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
       else
-        if animal_params[:section_id].present?
-          @section_id = animal_params[:section_id]
-          @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
-        end
+        @section_id = animal_params[:section_id]
+        @sections = Section.where(aviary_id: @animal.aviary_id).order(:name)
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @animal.errors, status: :unprocessable_entity }
       end
@@ -141,7 +186,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_date, :birth_month, 
-        :death_date, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, pictures: [] ])
+      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
+        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, pictures: [] ])
     end
 end

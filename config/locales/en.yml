@@ -57,6 +57,9 @@ en:
     Are you sure?: "Are you sure?"
     The default status cannot be removed: "The default status cannot be removed"
     Start typing to search: "Start typing to search"
+    Select Day: "Select Day"
+    Select Month: "Select Month"
+    Select Year: "Select Year"
   label:
     sort: "Sort"
     order: "Order"
@@ -78,6 +81,12 @@ en:
         animal_type_id: "Animal Type"
         arival_date: "Arrival Date"
         sterilization: "Sterilization"
+        animal_status_id: "Status"
+        parent_id: "Parent"
+        birth_year: "Birth Year"
+        birth_day: "Birth Day"
+        death_year: "Death Year"
+        death_day: "Death Day"
       medical_procedure:
         date_completed: "Date Completed"
         date_planned: "Date Planned"

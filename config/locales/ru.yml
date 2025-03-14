@@ -75,6 +75,9 @@ ru:
     pictures: "Картинки"
     The default status cannot be removed: "Этот статус не может быть удален"
     Start typing to search: "Начните печатать кличку для поиска"
+    Select Day: "Выберите день"
+    Select Month: "Выберите месяц"
+    Select Year: "Выберите год"
   helpers:
     page_entries_info:
       one_page:
@@ -111,8 +114,10 @@ ru:
         arival_date: "Дата появления"
         from_people: "Кто привез"
         from_place: "Откуда"
-        birth_date: "Дата рождения"
-        death_date: "Дата смерти"
+        birth_year: "Год рождения"
+        birth_day: "День рождения"
+        death_year: "Год смерти"
+        death_day: "День смерти"
         color: "Окрас"
         aviary_id: "Вольер"
         section_id: "Секция"

@@ -100,7 +100,7 @@
           <%= t('label.Birthday') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
-          <%= show_date(animal.birth_date) %>
+          <%= show_birth_or_death_date(animal, "birth") %>
         </p>
       </div>
 
@@ -118,7 +118,7 @@
           <%= t('activerecord.attributes.animal.death_date') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
-          <%= show_date(animal.death_date) %>
+          <%= show_birth_or_death_date(animal, "death") %>
         </p>
       </div>
 
