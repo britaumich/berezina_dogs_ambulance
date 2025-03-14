@@ -23,7 +23,7 @@ module ApplicationHelper
       year = animal.birth_year
       if animal.birth_day.present?
         day = animal.birth_day
-        return "#{day.month}-#{day.day}-#{year.year}"
+        return "#{day.day}-#{day.month}-#{year.year}"
       else
         return year.year
       end
@@ -32,7 +32,7 @@ module ApplicationHelper
       year = animal.death_year
       if animal.death_day.present?
         day = animal.death_day
-        return "#{day.month}-#{day.day}-#{year.year}"
+        return "#{day.day}-#{day.month}-#{year.year}"
       else
         return year.year
       end

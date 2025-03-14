@@ -1,5 +1,6 @@
-<%= simple_form_for animal,
-  data: { controller: "animal" } do |form| %>
+<%= form_with model: animal, class: "contents",
+  data: { controller: "animal", animal_target: "form",
+  action: "submit->animal#submitForm" } do |form| %>
   <% if animal.errors.any? %>
     <div id="error_explanation" class="text-base text-red-950 px-3 py-2 font-medium rounded-lg mt-3">
     <p class="text-lg"><%= t('error', count: animal.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
@@ -75,7 +76,7 @@
       <%= label_tag 'birth_year', "#{t('activerecord.attributes.animal.birth_year')}" %>
     </div>
     <div>
-      <%= select_year(14, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, {name: 'birth_year', :class => 'short_input_text_field'}) %>
+      <%= select_year(@birth_year, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, {name: 'birth_year', :class => 'short_input_text_field'}) %>
     </div>
   </div>
 
@@ -84,8 +85,8 @@
       <%= label_tag 'birth_day', "#{t('activerecord.attributes.animal.birth_day')}" %>
     </div>
     <div class="">
-      <%= select_day(32, { field_name: 'birth_day', prefix: 'birth', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
-      <%= select_month(14, { field_name: 'birth_month', prefix: 'birth', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_day(@birth_day, { field_name: 'birth_day', prefix: 'birth', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_month(@birth_day, { field_name: 'birth_month', prefix: 'birth', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
     </div>
   </div>
 
@@ -94,7 +95,7 @@
       <%= label_tag 'death_year', "#{t('activerecord.attributes.animal.death_year')}" %>
     </div>
     <div class="">
-      <%= select_year(14, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, { name: 'death_year', :class => 'short_input_text_field' }) %>
+      <%= select_year(@death_year, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, { name: 'death_year', :class => 'short_input_text_field' }) %>
     </div>
   </div>
 
@@ -103,8 +104,8 @@
       <%= label_tag 'death_day', "#{t('activerecord.attributes.animal.death_day')}" %>
     </div>
     <div class="">
-      <%= select_day(32, { field_name: 'death_day', prefix: 'death', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
-      <%= select_month(14, { field_name: 'death_month', prefix: 'death', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_day(@death_day, { field_name: 'death_day', prefix: 'death', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field" }) %>
+      <%= select_month(@death_month, { field_name: 'death_month', prefix: 'death', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field" }) %>
     </div>
   </div>
 
