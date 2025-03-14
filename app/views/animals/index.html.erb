@@ -10,8 +10,8 @@
 
   <div>
     <%= search_form_for @q,
-      data: { controller: "animal",
-              animal_target: "form",
+      data: { controller: "autosubmit",
+              autosubmit_target: "form",
               turbo_frame: "turbo-animals"
               } do |f| %>
 
@@ -20,12 +20,12 @@
           <div class="display inline">
             <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
             <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
-              :"data-action" => "change->animal#submit" %>
+              :"data-action" => "autosubmit#submit" %>
           </div>
           <div>
             <label for="order" class="fancy_label"><%= t('label.order') %></label>
             <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
-              :"data-action" => "change->animal#submit" %>
+              :"data-action" => "autosubmit#submit" %>
           </div>
           <div class="mt-2 ml-4">
             <%= page_entries_info @animals %>
@@ -35,12 +35,12 @@
           <div>
             <label for="status_id" class="fancy_label"><%= t('label.status') %></label>
             <%= select_tag "status_id", options_for_select(animal_statuses_for_select, selected: @status_id), class: "filter_select",
-              :"data-action" => "change->animal#submit" %>
+              :"data-action" => "autosubmit#submit" %>
           </div>
           <div>
             <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
             <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
-              :"data-action" => "change->animal#submit" %>
+              :"data-action" => "autosubmit#submit" %>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
               </div>
               <div>
                 <button type="button" class="tertiary_button"
-                  data-action='click->animal#clearFilters'>
+                  data-action='click->autosubmit#clearFilters'>
                     <span>
                       <i class="fa fa-times" aria-hidden="true"></i>
                       <%= t('forms.buttons.clear') %>

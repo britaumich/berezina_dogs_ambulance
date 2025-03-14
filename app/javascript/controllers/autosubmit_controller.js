@@ -6,6 +6,13 @@ export default class extends Controller {
   connect () {
     console.log("connect")
   }
+
+  clearFilters() {
+    console.log("clear filters")
+    var url = window.location.pathname
+    Turbo.visit(url)
+  }
+  
   submit() {
     console.log("here")
     Turbo.navigator.submitForm(this.formTarget)
