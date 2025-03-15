@@ -62,7 +62,7 @@ class AviariesController < ApplicationController
     end
 
     @aviary.destroy!
-    flash.now[:alert] = t('forms.messages.Enclosure was successfully deleted')
+    flash.now[:notice] = t('forms.messages.Enclosure was successfully deleted')
     @aviaries = Aviary.all.order(:name)
     respond_to do |format|
       format.turbo_stream do
