@@ -18,11 +18,11 @@ RSpec.describe "/aviaries", type: :request do
   # Aviary. As you add validations to Aviary, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "вольер" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
 
   describe "GET /index" do
@@ -87,14 +87,14 @@ RSpec.describe "/aviaries", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "новый вольер" }
       }
 
       it "updates the requested aviary" do
         aviary = Aviary.create! valid_attributes
         patch aviary_url(aviary), params: { aviary: new_attributes }
         aviary.reload
-        skip("Add assertions for updated state")
+        expect(aviary.name).to eq("Новый вольер")
       end
 
       it "redirects to the aviary" do
@@ -125,7 +125,7 @@ RSpec.describe "/aviaries", type: :request do
     it "redirects to the aviaries list" do
       aviary = Aviary.create! valid_attributes
       delete aviary_url(aviary)
-      expect(response).to redirect_to(aviaries_url)
+      expect(Aviary.exists?(aviary.id)).to be_falsey
     end
   end
 end
