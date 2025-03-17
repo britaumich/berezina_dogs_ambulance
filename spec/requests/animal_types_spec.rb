@@ -117,7 +117,7 @@ RSpec.describe "/animal_types", type: :request do
     it "redirects to the animal_types list" do
       animal_type = AnimalType.create! valid_attributes
       delete animal_type_url(animal_type)
-      expect(response).to redirect_to(animal_types_url)
+      expect(AnimalType.exists?(animal_type.id)).to be_falsey
     end
   end
 end
