@@ -10,6 +10,7 @@
 #  death_day        :date
 #  death_year       :date
 #  description      :string
+#  fake_parent      :boolean          default(FALSE)
 #  from_people      :string
 #  from_place       :string
 #  gender           :string
@@ -23,6 +24,7 @@
 #  animal_status_id :bigint
 #  animal_type_id   :bigint           not null
 #  aviary_id        :bigint
+#  fake_parent_id   :integer
 #  parent_id        :integer
 #  section_id       :bigint
 #
@@ -63,6 +65,8 @@ class Animal < ApplicationRecord
 
   validate :any_present?
 
+  default_scope { where(fake_parent: false) }
+
   def display_name
     name = "#{self&.nickname} #{self&.surname}"
     if self.nickname.present?
@@ -76,6 +80,8 @@ class Animal < ApplicationRecord
   def siblings
     if self.parent.present?
       self.parent.children.where.not(id: self.id)
+    elsif self.fake_parent_id.present?
+      Animal.unscoped.where(fake_parent_id: self.fake_parent_id).where.not(id: self.id)
     else
       Animal.none
     end

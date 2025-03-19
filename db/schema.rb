@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_12_181544) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_19_163729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -87,6 +87,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_12_181544) do
     t.integer "parent_id"
     t.date "birth_year"
     t.date "death_year"
+    t.boolean "fake_parent", default: false
+    t.integer "fake_parent_id"
     t.index ["animal_status_id"], name: "index_animals_on_animal_status_id"
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
     t.index ["aviary_id"], name: "index_animals_on_aviary_id"
