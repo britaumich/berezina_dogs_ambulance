@@ -89,6 +89,21 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       if @animal.save
+        if params['sibling_id'].present?
+          sibling_id = params['sibling_id']
+          if @animal.parent_id.present?
+            Animal.find(sibling_id).update(parent_id: @animal.parent_id)
+          else
+            # create fake parent and add both animals to it as children
+            if @animal.fake_parent_id.present? || Animal.find(sibling_id).fake_parent_id.present?
+              fake_parent = @animal.fake_parent_id.present? ? Animal.unscoped.find(@animal.fake_parent_id) : Animal.unscoped.find(Animal.find(sibling_id).fake_parent_id)
+            else
+              fake_parent = Animal.create!(animal_type_id: @animal.animal_type_id, animal_status_id: @animal.animal_status_id, nickname: 'fake parent', fake_parent: true)
+            end
+            @animal.update(fake_parent_id: fake_parent.id)
+            Animal.find(sibling_id).update(fake_parent_id: fake_parent.id)
+          end
+        end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
       else
@@ -125,11 +140,29 @@ class AnimalsController < ApplicationController
       @animal.death_day = nil
     end
 
-    if animal_params[:section_id].present?
-      @section_id = animal_params[:section_id]
+    if params['sibling_remove'].present?
+      params['sibling_remove'].each do |key, value|
+        Animal.find(key).update(fake_parent_id: nil)
+      end
     end
+
     respond_to do |format|
       if @animal.update(animal_params)
+        if params['sibling_id'].present?
+          sibling_id = params['sibling_id']
+          if @animal.parent_id.present?
+            Animal.find(sibling_id).update(parent_id: @animal.parent_id)
+          else
+            # create fake parent and add both animals to it as children
+            if @animal.fake_parent_id.present? || Animal.find(sibling_id).fake_parent_id.present?
+              fake_parent = @animal.fake_parent_id.present? ? Animal.unscoped.find(@animal.fake_parent_id) : Animal.unscoped.find(Animal.find(sibling_id).fake_parent_id)
+            else
+              fake_parent = Animal.create!(animal_type_id: @animal.animal_type_id, animal_status_id: @animal.animal_status_id, nickname: 'fake parent', fake_parent: true)
+            end
+            @animal.fake_parent_id = fake_parent.id
+            Animal.find(sibling_id).update(fake_parent_id: fake_parent.id)
+          end
+        end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
       else
@@ -187,6 +220,6 @@ class AnimalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def animal_params
       params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
-        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, pictures: [] ])
+        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 end

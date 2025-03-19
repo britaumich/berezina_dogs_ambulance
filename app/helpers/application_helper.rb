@@ -168,7 +168,24 @@ module ApplicationHelper
     else
       parents = Animal.all.sort_by(&:nickname)
     end
+    if animal.siblings.present?
+      parents -= animal.siblings
+    end
     parents.map { |a| [a.display_name, a.id] }
+  end
+
+  def possible_siblings(animal)
+    siblings = Animal.all.order(:nickname)
+    if animal.persisted?
+      siblings -= [animal]
+    end
+    if animal.parent.present?
+      siblings -= [animal.parent]
+    end
+    if animal.siblings.present?
+      siblings -= animal.siblings
+    end
+    siblings.map { |a| [a.display_name, a.id] }
   end
 
 end
