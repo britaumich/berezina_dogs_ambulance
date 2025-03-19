@@ -162,7 +162,7 @@
   }
 
   .check_box {
-    @apply w-5 h-5 rounded mr-2 border-blue-950 text-blue-950 focus:ring-blue-950 disabled:border-gray-400;
+    @apply w-5 h-5 rounded mr-1 border-blue-950 text-blue-950 focus:ring-blue-950 disabled:border-gray-400;
   }
 
   .check_box_text {
