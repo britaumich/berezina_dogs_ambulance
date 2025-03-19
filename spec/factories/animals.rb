@@ -45,8 +45,10 @@ FactoryBot.define do
     arival_date { Faker::Date.backward(days: 365) }
     from_people { Faker::Name.name }
     from_place { Faker::Address.city }
-    birth_date { Faker::Date.backward(days: 365 * 5) }
-    death_date { Faker::Date.forward(days: 365) }
+    birth_year { Faker::Date.backward(days: 365 * 5) }
+    death_year { nil }
+    birth_day { nil }
+    death_day { nil }
     color { Faker::Color.color_name }
     description { Faker::Lorem.sentence }
     history { Faker::Lorem.paragraph }
