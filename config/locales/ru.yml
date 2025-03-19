@@ -135,6 +135,7 @@ ru:
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
         parent_id: "Родитель"
+        siblings: "Братья и сестры"
       animal_type:
         name: "Название"
       animal_status:

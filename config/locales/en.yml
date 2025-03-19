@@ -94,6 +94,7 @@ en:
         birth_day: "Birth Day"
         death_year: "Death Year"
         death_day: "Death Day"
+        siblings: "Siblings"
       medical_procedure:
         date_completed: "Date Completed"
         date_planned: "Date Planned"

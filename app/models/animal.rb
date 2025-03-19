@@ -73,6 +73,14 @@ class Animal < ApplicationRecord
     name
   end
 
+  def siblings
+    if self.parent.present?
+      self.parent.children.where.not(id: self.id)
+    else
+      Animal.none
+    end
+  end
+
   private
 
   def strip_whitespace_and_titleize

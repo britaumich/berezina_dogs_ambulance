@@ -114,10 +114,11 @@ RSpec.describe "/animal_statuses", type: :request do
       }.to change(AnimalStatus, :count).by(-1)
     end
 
-    it "redirects to the animal_statuses list" do
+    it "doesn't show animal status on the page" do
       animal_status = AnimalStatus.create! valid_attributes
       delete animal_status_url(animal_status)
-      expect(response).to redirect_to(animal_statuses_url)
+      
+      expect(AnimalStatus.exists?(animal_status.id)).to be_falsey
     end
   end
 end
