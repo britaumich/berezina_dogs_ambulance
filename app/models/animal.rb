@@ -67,6 +67,8 @@ class Animal < ApplicationRecord
 
   default_scope { where(fake_parent: false) }
   scope :shelter, -> { where(animal_status: 1) }
+  scope :parents, -> { joins(:children).distinct }
+  scope :fake_parents, -> { unscoped.where(fake_parent: true) }
 
   def display_name
     name = "#{self&.nickname} #{self&.surname}"

@@ -180,10 +180,14 @@ module ApplicationHelper
       siblings -= [animal]
     end
     if animal.parent.present?
+      # Exclude the animal's parent
       siblings -= [animal.parent]
-    end
-    if animal.siblings.present?
-      siblings -= animal.siblings.to_a
+      # Exclude animals that have real or fake parents (different parents)
+      siblings.each do |sibling|
+        if sibling.parent_id.present? || sibling.fake_parent_id.present?
+          siblings -= [sibling]
+        end
+      end
     end
     siblings.map { |a| [a.display_name, a.id] }
   end

@@ -90,19 +90,8 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       if @animal.save
         if params['sibling_id'].present?
-          sibling_id = params['sibling_id']
-          if @animal.parent_id.present?
-            Animal.find(sibling_id).update(parent_id: @animal.parent_id)
-          else
-            # create fake parent and add both animals to it as children
-            if @animal.fake_parent_id.present? || Animal.find(sibling_id).fake_parent_id.present?
-              fake_parent = @animal.fake_parent_id.present? ? Animal.unscoped.find(@animal.fake_parent_id) : Animal.unscoped.find(Animal.find(sibling_id).fake_parent_id)
-            else
-              fake_parent = Animal.create!(animal_type_id: @animal.animal_type_id, animal_status_id: @animal.animal_status_id, nickname: 'fake parent', fake_parent: true)
-            end
-            @animal.update(fake_parent_id: fake_parent.id)
-            Animal.find(sibling_id).update(fake_parent_id: fake_parent.id)
-          end
+          family = Family.new(@animal)
+          family.add_sibling(params['sibling_id'])
         end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
@@ -117,6 +106,8 @@ class AnimalsController < ApplicationController
 
   # PATCH/PUT /animals/1 or /animals/1.json
   def update
+    family = Family.new(@animal)
+    family.update_real_parent(animal_params[:parent_id])
     @animal.attributes = animal_params
     if params['birth_year'].present?
       @animal.birth_year = Date.new(params['birth_year'].to_i)
@@ -141,27 +132,15 @@ class AnimalsController < ApplicationController
     end
 
     if params['sibling_remove'].present?
-      params['sibling_remove'].each do |key, value|
-        Animal.find(key).update(fake_parent_id: nil)
-      end
+      family = Family.new(@animal)
+      family.remove_sibling(params['sibling_remove'].keys)
     end
 
     respond_to do |format|
       if @animal.update(animal_params)
         if params['sibling_id'].present?
-          sibling_id = params['sibling_id']
-          if @animal.parent_id.present?
-            Animal.find(sibling_id).update(parent_id: @animal.parent_id)
-          else
-            # create fake parent and add both animals to it as children
-            if @animal.fake_parent_id.present? || Animal.find(sibling_id).fake_parent_id.present?
-              fake_parent = @animal.fake_parent_id.present? ? Animal.unscoped.find(@animal.fake_parent_id) : Animal.unscoped.find(Animal.find(sibling_id).fake_parent_id)
-            else
-              fake_parent = Animal.create!(animal_type_id: @animal.animal_type_id, animal_status_id: @animal.animal_status_id, nickname: 'fake parent', fake_parent: true)
-            end
-            @animal.fake_parent_id = fake_parent.id
-            Animal.find(sibling_id).update(fake_parent_id: fake_parent.id)
-          end
+          family = Family.new(@animal)
+          family.add_sibling(params['sibling_id'])
         end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
