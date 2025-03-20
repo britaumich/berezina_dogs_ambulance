@@ -65,6 +65,8 @@ en:
     Enclosure has animals and can't be deleted: "Enclosure has animals and can't be deleted"
     There are animals with this status and it can't be deleted: "There are animals with this status and it can't be deleted"
     There are animals with this type and it can't be deleted: "There are animals with this type and it can't be deleted"
+    To remove a sibling, please check the corresponding checkbox: "To remove a sibling, please check the corresponding checkbox"
+    To add a sibling please select one from a drop-down list: "To add a sibling please select one from a drop-down list"
   label:
     sort: "Sort"
     order: "Order"

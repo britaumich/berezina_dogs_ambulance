@@ -10,6 +10,7 @@
 #  death_day        :date
 #  death_year       :date
 #  description      :string
+#  fake_parent      :boolean          default(FALSE)
 #  from_people      :string
 #  from_place       :string
 #  gender           :string
@@ -23,6 +24,7 @@
 #  animal_status_id :bigint
 #  animal_type_id   :bigint           not null
 #  aviary_id        :bigint
+#  fake_parent_id   :integer
 #  parent_id        :integer
 #  section_id       :bigint
 #

@@ -38,6 +38,29 @@
     <%= form.select(:parent_id, options_for_select(parents(animal), animal.parent_id), { include_blank: "#{t('text.Start typing to search')}" }, { class: 'input_text_field' } ) %>
   </div>
 
+  <p class="my-5">
+    <%= "#{t('activerecord.attributes.animal.siblings')}" %>
+  </p>
+
+  <% if animal.persisted? && animal.siblings.present? %>
+    <p class="body-sm-semibold-text">
+      <%= t('text.To remove a sibling, please check the corresponding checkbox') %>
+    </p>
+    <div class="my-5">
+      <% animal.siblings.each do |sibling| %>
+        <%= check_box_tag "sibling_remove[#{sibling.id}]", 1, nil, class: "check_box", id: "sibling_id_#{sibling.id}" %>
+        <%= label_tag "sibling_id_#{sibling.id}", "#{sibling.display_name}", class: "mr-2" %>
+      <% end %>
+    </div>
+  <% end %>
+  <p class="body-sm-semibold-text">
+    <%= t('text.To add a sibling please select one from a drop-down list') %>
+  </p>
+  <div class="my-5">
+    <%= form.label :sibling_id, class: "hidden" %>
+    <%= select_tag "sibling_id", options_for_select(possible_siblings(animal), selected: params[:sibling_id]), include_blank: "#{t('text.Start typing to search')}", class: "input_text_field" %>
+  </div>
+
 
   <div class="my-5">
     <%= form.checkbox :sterilization, class: "check_box" %>

@@ -89,6 +89,10 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       if @animal.save
+        if params['sibling_id'].present?
+          family = Family.new(@animal)
+          family.add_sibling(params['sibling_id'])
+        end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully created') }
         format.json { render :show, status: :created, location: @animal }
       else
@@ -102,6 +106,8 @@ class AnimalsController < ApplicationController
 
   # PATCH/PUT /animals/1 or /animals/1.json
   def update
+    family = Family.new(@animal)
+    family.update_real_parent(animal_params[:parent_id])
     @animal.attributes = animal_params
     if params['birth_year'].present?
       @animal.birth_year = Date.new(params['birth_year'].to_i)
@@ -125,11 +131,17 @@ class AnimalsController < ApplicationController
       @animal.death_day = nil
     end
 
-    if animal_params[:section_id].present?
-      @section_id = animal_params[:section_id]
+    if params['sibling_remove'].present?
+      family = Family.new(@animal)
+      family.remove_sibling(params['sibling_remove'].keys)
     end
+
     respond_to do |format|
       if @animal.update(animal_params)
+        if params['sibling_id'].present?
+          family = Family.new(@animal)
+          family.add_sibling(params['sibling_id'])
+        end
         format.html { redirect_to @animal, notice: t('forms.messages.Animal was successfully updated') }
         format.json { render :show, status: :ok, location: @animal }
       else
@@ -187,6 +199,6 @@ class AnimalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def animal_params
       params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
-        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, pictures: [] ])
+        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 end

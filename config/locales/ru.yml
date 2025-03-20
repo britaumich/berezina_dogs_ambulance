@@ -83,6 +83,8 @@ ru:
     Enclosure has animals and can't be deleted: "Вольер содержит животных и не может быть удален"
     There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому статус нельзя удалить"
     There are animals with this type and it can't be deleted: "Есть животные этого вида, поэтому вид нельзя удалить"
+    To remove a sibling, please check the corresponding checkbox: "Чтобы удалить брата или сестру, поставьте галочку около имени"
+    To add a sibling please select one from a drop-down list: "Чтобы добавить брата или сестру, выберите имя из списка"
   helpers:
     page_entries_info:
       one_page:
@@ -135,6 +137,7 @@ ru:
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
         parent_id: "Родитель"
+        children: "Дети"
         siblings: "Братья и сестры"
       animal_type:
         name: "Название"
