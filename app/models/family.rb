@@ -43,7 +43,6 @@ class Family
   end
 
   def update_real_parent(parent_id)
-    
     if parent_id.present? && @animal.parent_id.present? && parent_id.to_i == @animal.parent_id
       return
     end
@@ -59,20 +58,22 @@ class Family
     end
     if parent_id.present? && @animal.fake_parent_id.present?
       # remove fake parent and add real parent to animal and siblings (if they exist)
-      Animal.unscoped.find(@animal.fake_parent_id).destroy
-      @animal.update(fake_parent_id: nil)
+      fake_parent_id = @animal.fake_parent_id
       @animal.siblings.each do |sibling|
         sibling.update(fake_parent_id: nil, parent_id: parent_id)
       end
+      @animal.update(fake_parent_id: nil, parent_id: parent_id)
+      Animal.unscoped.find(fake_parent_id).destroy
       return
     end
-    if parent_id.blank? && @animal.siblings.present?
+
+    if parent_id.blank? && @animal.parent_id.present? && @animal.siblings.present?
       # create fake parent and add animal and siblings to it as children
       fake_parent = Animal.create!(animal_type_id: @animal.animal_type_id, animal_status_id: @animal.animal_status_id, nickname: 'fake parent', fake_parent: true)
-      @animal.update(fake_parent_id: fake_parent.id)
       @animal.siblings.each do |sibling|
-        sibling.update(fake_parent_id: fake_parent.id)
+        sibling.update(fake_parent_id: fake_parent.id, parent_id: nil)
       end
+      @animal.update(fake_parent_id: fake_parent.id, parent_id: nil)
     end
   end
 
