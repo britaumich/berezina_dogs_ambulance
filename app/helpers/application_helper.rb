@@ -164,18 +164,18 @@ module ApplicationHelper
 
   def parents(animal)
     if animal.persisted?
-      parents = Animal.where.not(id: animal.id).sort_by(&:nickname)
+      parents = Animal.shelter.where.not(id: animal.id).sort_by(&:nickname)
     else
-      parents = Animal.all.sort_by(&:nickname)
+      parents = Animal.shelter.sort_by(&:nickname)
     end
     if animal.siblings.present?
-      parents -= animal.siblings
+      parents -= animal.siblings.to_a
     end
     parents.map { |a| [a.display_name, a.id] }
   end
 
   def possible_siblings(animal)
-    siblings = Animal.all.order(:nickname)
+    siblings = Animal.shelter.order(:nickname)
     if animal.persisted?
       siblings -= [animal]
     end
@@ -183,7 +183,7 @@ module ApplicationHelper
       siblings -= [animal.parent]
     end
     if animal.siblings.present?
-      siblings -= animal.siblings
+      siblings -= animal.siblings.to_a
     end
     siblings.map { |a| [a.display_name, a.id] }
   end
