@@ -50,14 +50,16 @@
         </div>
       <% end %>
 
-      <div class="py-2 flex">
-        <p class="body-lg-bold-text inline">
-          <%= t('activerecord.attributes.animal.siblings') %>:
-        </p>
-        <p class="body-lg-text pl-2 inline">
-          <%= animal.siblings.map { |sibling| link_to(sibling.display_name, sibling, class: 'link_to') + '<br>'.html_safe }.join.html_safe %>          
-        </p>
-      </div>
+      <% if animal.siblings.present? %>
+        <div class="py-2 flex">
+          <p class="body-lg-bold-text inline">
+            <%= t('activerecord.attributes.animal.siblings') %>:
+          </p>
+          <p class="body-lg-text pl-2 inline">
+            <%= animal.siblings.map { |sibling| link_to(sibling.display_name, sibling, class: 'link_to') + '<br>'.html_safe }.join.html_safe %>          
+          </p>
+        </div>
+      <% end %>
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
