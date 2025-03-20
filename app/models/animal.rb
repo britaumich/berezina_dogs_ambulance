@@ -66,6 +66,7 @@ class Animal < ApplicationRecord
   validate :any_present?
 
   default_scope { where(fake_parent: false) }
+  scope :shelter, -> { where(animal_status: 1) }
 
   def display_name
     name = "#{self&.nickname} #{self&.surname}"
