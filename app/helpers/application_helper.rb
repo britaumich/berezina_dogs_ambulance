@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def show_date(date)
     if date.present?
-      l date
+      I18n.l(date)
     else
       ""
     end

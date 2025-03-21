@@ -40,6 +40,7 @@
 #  fk_rails_...  (animal_type_id => animal_types.id)
 #
 class Animal < ApplicationRecord
+  extend ApplicationHelper
   belongs_to :animal_type
   belongs_to :aviary, optional: true
   belongs_to :section, optional: true
@@ -47,8 +48,8 @@ class Animal < ApplicationRecord
   has_many :cart_animals
   has_many :carts, through: :cart_animals
   has_many :notes, as: :noteable
-  has_many :children, class_name: "Animal", foreign_key: 'parent_id'
-  belongs_to :parent, class_name: "Animal", optional: true
+  has_many :children, class_name: 'Animal', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Animal', optional: true
 
   has_one :action_text_rich_text,
     class_name: 'ActionText::RichText',
@@ -87,6 +88,56 @@ class Animal < ApplicationRecord
       Animal.unscoped.where(fake_parent_id: self.fake_parent_id).where.not(id: self.id)
     else
       Animal.none
+    end
+  end
+
+  def self.to_csv
+    fields = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color description from_people from_place
+      graduation history birth_year death_year ]
+    header = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color description from_people from_place
+      graduation history birth_day death_day children siblings ]
+    header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
+    CSV.generate(headers: true) do |csv|
+      csv << header_to_csv
+      all.each do |animal|
+        row = []
+        fields.each do |field|
+          value = case field
+          when 'animal_type_id'
+            animal.animal_type&.name
+          when 'aviary_id'
+            animal.aviary&.name
+          when 'section_id'
+            animal.section&.name
+          when 'animal_status_id'
+            animal.animal_status&.name
+          when 'parent_id'
+            animal.parent&.display_name
+          when 'sterilization'
+            animal.sterilization ? 'Yes' : ''
+          when 'birth_year'
+            show_birth_or_death_date(animal, 'birth')
+          when 'death_year'
+            show_birth_or_death_date(animal, 'death')
+          when 'arival_date'
+            show_date(animal.arival_date)
+          else
+            animal.attributes.values_at(field)[0]
+          end
+          row << value
+        end
+        if animal.children.present?
+          row << animal.children.map(&:display_name).join(', ')
+        else
+          row << ''
+        end
+        if animal.siblings.present?
+          row << animal.siblings.map(&:display_name).join(', ')
+        else
+          row << ''
+        end
+        csv << row
+      end
     end
   end
 
