@@ -38,6 +38,12 @@ class AnimalsController < ApplicationController
       @q.sorts = @sort_by + ' ' + @order
     end
     @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
+
+    if params[:format] == "csv"
+      respond_to do |format|
+        format.csv { send_data @animals.to_csv, filename: "#Citezens-#{Date.today}.csv"}
+      end
+    end 
   end
 
   # GET /animals/1 or /animals/1.json
