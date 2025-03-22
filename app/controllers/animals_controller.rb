@@ -50,6 +50,14 @@ class AnimalsController < ApplicationController
   # GET /animals/1 or /animals/1.json
   def show
     @medical_procedures = @animal.medical_procedures
+
+    respond_to do |format|
+      format.html { render :show, status: :ok }
+      format.pdf do
+        pdf_content = generate_pdf_content(@animal)
+        send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /animals/new
@@ -207,5 +215,40 @@ class AnimalsController < ApplicationController
     def animal_params
       params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
         :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
+    end
+
+    def generate_pdf_content(animal)
+      Prawn::Document.new do |pdf|
+        # Register the external font
+        pdf.font_families.update("Montserrat" => {
+          normal: Rails.root.join("app/assets/stylesheets/Montserrat-Medium.ttf")
+        })
+        pdf.font("Montserrat") # Use the registered font
+    
+        # Add content to the PDF
+        pdf.text "Animal Details", size: 24, align: :center
+        pdf.move_down 20
+    
+        pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.arival_date')}: #{animal.arival_date}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.sterilization')}: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.animal_type_id')}: #{animal.animal_type&.name}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.aviary_id')}: #{animal.aviary&.name}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.section_id')}: #{animal.section&.name}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.description')}: #{animal.description}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.history')}: #{animal.history}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.from_people')}: #{animal.from_people}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.birth_year')}: #{animal.birth_year}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.death_year')}: #{animal.death_year}", size: 12
+    
+        # pdf.move_down 20
+        # pdf.text "Medical Procedures:", size: 16
+        # animal.medical_procedures.each do |procedure|
+        #   pdf.text "- #{procedure.name}: #{procedure.description}", size: 12
+        # end
+      end.render
     end
 end

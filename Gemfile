@@ -53,6 +53,9 @@ gem 'ransack', '~> 4.2', '>= 4.2.1'
 gem 'simple_form', '~> 5.3'
 # Use Kaminari for pagination
 gem "kaminari"
+# export to pdf
+gem 'prawn', '~> 2.5'
+gem "prawn-table", "~> 0.2.2"
 
 group :development, :test do
   gem "rspec-rails", "~> 7.0"

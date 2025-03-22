@@ -19,6 +19,7 @@
       <% end %>
     </div>
   </div>
+  <%= link_to "PDF", animal_path(@animal, format: :pdf), class: "primary_button mb-2" %>
   <div class="grid grid-cols-1 lg:grid-cols-2">
     <div class="grid lg:col-span-2">
       <%= render @animal %>
