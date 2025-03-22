@@ -13,7 +13,7 @@ class AnimalType < ApplicationRecord
   before_save :strip_whitespace_and_downcase
   validates :name, presence: true, uniqueness: true
 
-  private 
+  private
 
   def strip_whitespace_and_downcase
     if self.name.present?
@@ -22,11 +22,10 @@ class AnimalType < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    [ 'name' ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["animals"]
+    [ 'animals' ]
   end
-
 end
