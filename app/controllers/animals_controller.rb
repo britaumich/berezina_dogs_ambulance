@@ -43,7 +43,29 @@ class AnimalsController < ApplicationController
   # GET /animals/1 or /animals/1.json
   def show
     @medical_procedures = @animal.medical_procedures
+
+    respond_to do |format|
+      format.html { render :show, status: :ok }
+      format.pdf do
+        pdf_content = generate_pdf_content(@animal)
+        send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
+
+  # def generate_pdf_content
+  #   # Prawn::Document.generate("x.pdf") do
+  #   #   text "Hello"
+  #   # end
+	# 	pdf_service = PdfGeneratorService.new
+  #   pdf = pdf_service.generate_pdf
+  #   pdf_file = Tempfile.new(['test_result_report', '.pdf'], Rails.root.join('tmp'))
+  #   pdf_file.binmode
+  #   pdf_file.write(pdf)
+  #   pdf_file.rewind
+  #   pdf_file.close
+  # 	pdf_file.path
+  # end
 
   # GET /animals/new
   def new
@@ -200,5 +222,33 @@ class AnimalsController < ApplicationController
     def animal_params
       params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
         :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
+    end
+
+    def generate_pdf_content(animal)
+      Prawn::Document.new do |pdf|
+        pdf.text "Animal Details", size: 24, style: :bold, align: :center
+        pdf.move_down 20
+    
+        pdf.text "Nickname: #{animal.nickname}", size: 12
+        pdf.text "Surname: #{animal.surname}", size: 12
+        pdf.text "Gender: #{animal.gender}", size: 12
+        pdf.text "Arrival Date: #{animal.arival_date}", size: 12
+        pdf.text "Sterilization: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
+        pdf.text "Animal Type: #{animal.animal_type&.name}", size: 12
+        pdf.text "Aviary: #{animal.aviary&.name}", size: 12
+        pdf.text "Section: #{animal.section&.name}", size: 12
+        pdf.text "Description: #{animal.description}", size: 12
+        pdf.text "History: #{animal.history}", size: 12
+        pdf.text "From People: #{animal.from_people}", size: 12
+        pdf.text "From Place: #{animal.from_place}", size: 12
+        pdf.text "Birth Year: #{animal.birth_year}", size: 12
+        pdf.text "Death Year: #{animal.death_year}", size: 12
+    
+        pdf.move_down 20
+        pdf.text "Medical Procedures:", size: 16, style: :bold
+        animal.medical_procedures.each do |procedure|
+          pdf.text "- #{procedure.name}: #{procedure.description}", size: 12
+        end
+      end.render
     end
 end
