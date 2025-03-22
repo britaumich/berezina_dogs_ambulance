@@ -52,7 +52,7 @@ class AviariesController < ApplicationController
   def destroy
     if @aviary.animals.any?
       flash.now[:alert] = t("text.Enclosure has animals and can't be deleted")
-      @aviarys = Aviary.all.order(:name)
+      @aviarys = Aviary.order(:name)
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
@@ -63,11 +63,11 @@ class AviariesController < ApplicationController
 
     @aviary.destroy!
     flash.now[:notice] = t('forms.messages.Enclosure was successfully deleted')
-    @aviaries = Aviary.all.order(:name)
+    @aviaries = Aviary.order(:name)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [turbo_stream.replace('aviaries', partial: 'aviaries/aviary_list'),
-                                turbo_stream.update('flash', partial: 'layouts/notification')]
+        render turbo_stream: [ turbo_stream.replace('aviaries', partial: 'aviaries/aviary_list'),
+                                turbo_stream.update('flash', partial: 'layouts/notification') ]
       end
     end
   end
@@ -75,7 +75,7 @@ class AviariesController < ApplicationController
   def get_sections
     aviary_id = params[:aviary_id]
     if Aviary.find(aviary_id).has_sections
-      render json: Section.where(aviary_id: aviary_id).order(:name).map { |s| [s.id, s.name] }
+      render json: Section.where(aviary_id: aviary_id).order(:name).map { |s| [ s.id, s.name ] }
     else
       render json: []
     end
