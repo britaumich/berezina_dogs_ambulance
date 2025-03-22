@@ -1,4 +1,5 @@
 class AnimalsController < ApplicationController
+  include ApplicationHelper
   before_action :set_animal, only: %i[ show edit update upload_pictures destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
@@ -38,6 +39,12 @@ class AnimalsController < ApplicationController
       @q.sorts = @sort_by + ' ' + @order
     end
     @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
+
+    if params[:format] == "csv"
+      respond_to do |format|
+        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Date.today)}.csv"}
+      end
+    end 
   end
 
   # GET /animals/1 or /animals/1.json
