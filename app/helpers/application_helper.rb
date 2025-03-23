@@ -191,4 +191,8 @@ module ApplicationHelper
     end
     siblings.map { |a| [ a.display_name, a.id ] }
   end
+
+  def updated_on_and_by(resource)
+    return t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
+  end
 end

@@ -67,6 +67,8 @@ en:
     There are animals with this type and it can't be deleted: "There are animals with this type and it can't be deleted"
     To remove a sibling, please check the corresponding checkbox: "To remove a sibling, please check the corresponding checkbox"
     To add a sibling please select one from a drop-down list: "To add a sibling please select one from a drop-down list"
+    Updated on: "Updated on"
+    at: "at"
   label:
     sort: "Sort"
     order: "Order"
