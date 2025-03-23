@@ -23,7 +23,7 @@ class AnimalsController < ApplicationController
       @status_id = 1
     end
     if @status_id == 0
-      @animals = Animal.all.order(:id)
+      @animals = Animal.order(:id)
     else
       @animals = Animal.where(animal_status_id: @status_id).order(:id)
     end
@@ -42,7 +42,7 @@ class AnimalsController < ApplicationController
 
     if params[:format] == 'csv'
       respond_to do |format|
-        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Date.today)}.csv" }
+        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Time.zone.today)}.csv" }
       end
     end
   end
