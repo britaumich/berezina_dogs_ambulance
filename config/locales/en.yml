@@ -83,6 +83,7 @@ en:
       en: "English"
     header:
       aviaries: "Enclosures"
+      аdditions: "Additions"
   activerecord:
     attributes:
       animal:
