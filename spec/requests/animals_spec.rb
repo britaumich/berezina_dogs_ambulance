@@ -24,7 +24,7 @@ RSpec.describe "/animals", type: :request do
   }
 
   let(:invalid_attributes) {
-    FactoryBot.attributes_for(:animal, nickname: nil, surname: nil, color: nil, description: nil, arival_date: nil)
+    FactoryBot.attributes_for(:animal, nickname: nil, surname: nil, color: nil, arival_date: nil)
   }
 
   describe "GET /index" do

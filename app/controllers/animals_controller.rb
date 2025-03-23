@@ -213,7 +213,7 @@ class AnimalsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def animal_params
       params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
-        :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
+        :death_year, :death_day, :color, :aviary_id, :section_id, :distinctive_feature, :medical_history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 
     def generate_pdf_content(animal)
@@ -236,8 +236,8 @@ class AnimalsController < ApplicationController
         pdf.text "#{t('activerecord.attributes.animal.animal_type_id')}: #{animal.animal_type&.name}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.aviary_id')}: #{animal.aviary&.name}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.section_id')}: #{animal.section&.name}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.description')}: #{animal.description}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.history')}: #{animal.history}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.distinctive_feature')}: #{animal.distinctive_feature}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.medical_history')}: #{animal.medical_history}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.from_people')}: #{animal.from_people}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.birth_year')}: #{animal.birth_year}", size: 12

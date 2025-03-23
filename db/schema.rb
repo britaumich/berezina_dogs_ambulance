@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_145316) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_194448) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,8 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_145316) do
     t.date "birth_day"
     t.date "death_day"
     t.string "color"
-    t.string "description"
-    t.string "history"
+    t.string "distinctive_feature"
+    t.string "medical_history"
     t.string "graduation"
     t.bigint "animal_type_id", null: false
     t.datetime "created_at", null: false

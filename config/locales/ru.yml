@@ -131,8 +131,8 @@ ru:
         color: "Окрас"
         aviary_id: "Вольер"
         section_id: "Секция"
-        description: "Общее описание"
-        history: "История"
+        distinctive_feature: "  Osoбенности"
+        medical_history: "История болезни"
         graduation: "Выпуск"
         animal_type_id: "Вид"
         animal_type: "Вид"
@@ -164,7 +164,7 @@ ru:
     errors:
       models:
         animal:
-          any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, описание, или дата появления"
+          any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, или дата появления"
         section:
           is_already_in_this_aviary: "уже есть в этом вольере"
       messages:
