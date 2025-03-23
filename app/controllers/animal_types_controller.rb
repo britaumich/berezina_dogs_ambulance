@@ -3,7 +3,7 @@ class AnimalTypesController < ApplicationController
 
   # GET /animal_types or /animal_types.json
   def index
-    @animal_types = AnimalType.all.order(:name)
+    @animal_types = AnimalType.order(:name)
   end
 
   # GET /animal_types/new
@@ -47,7 +47,7 @@ class AnimalTypesController < ApplicationController
   def destroy
     if @animal_type.animals.any?
       flash.now[:alert] = t("text.There are animals with this type and it can't be deleted")
-      @animal_typees = AnimalType.all.order(:name)
+      @animal_typees = AnimalType.order(:name)
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
@@ -58,11 +58,11 @@ class AnimalTypesController < ApplicationController
 
     @animal_type.destroy!
     flash.now[:notice] = t('forms.messages.Animal type was successfully deleted')
-    @animal_types = AnimalType.all.order(:name)
+    @animal_types = AnimalType.order(:name)
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [turbo_stream.replace('animal_types', partial: 'animal_types/type_list'),
-                                turbo_stream.update('flash', partial: 'layouts/notification')]
+        render turbo_stream: [ turbo_stream.replace('animal_types', partial: 'animal_types/type_list'),
+                                turbo_stream.update('flash', partial: 'layouts/notification') ]
       end
     end
   end

@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     end
     url = session[:return_to]
     session[:return_to] = nil
-    redirect_to(url, anchor: "top" || default)
+    redirect_to(url, anchor: 'top' || default)
   end
 
   def set_render_cart
@@ -45,5 +45,4 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @cart.id
     end
   end
-  
 end

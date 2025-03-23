@@ -9,11 +9,11 @@
 #  updated_at  :datetime         not null
 #
 class ProcedureType < ApplicationRecord
-  has_many :medical_procedures
+  has_many :medical_procedures, dependent: :restrict_with_exception
 
   before_validation :strip_whitespace_and_downcase
   validates :name, presence: true, uniqueness: true
-  
+
   private
 
   def strip_whitespace_and_downcase
@@ -23,7 +23,6 @@ class ProcedureType < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    [ 'name' ]
   end
-
 end

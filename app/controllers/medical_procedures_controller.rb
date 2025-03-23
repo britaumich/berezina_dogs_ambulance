@@ -45,7 +45,7 @@ class MedicalProceduresController < ApplicationController
 
     respond_to do |format|
       if @medical_procedure.save
-        if params[:return_to_animal] == "true"
+        if params[:return_to_animal] == 'true'
           format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
         else
           format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
@@ -63,7 +63,7 @@ class MedicalProceduresController < ApplicationController
   def update
     respond_to do |format|
       if @medical_procedure.update(medical_procedure_params)
-        if params[:return_to_animal] == "true"
+        if params[:return_to_animal] == 'true'
           format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully updated') }
         else
           format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully updated') }
@@ -82,7 +82,7 @@ class MedicalProceduresController < ApplicationController
     @medical_procedure.destroy!
 
     respond_to do |format|
-      if params[:return_to_animal] == "true"
+      if params[:return_to_animal] == 'true'
         format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully deleted') }
       else
         format.html { redirect_to medical_procedures_path, status: :see_other, notice: t('forms.messages.Medical procedure was successfully deleted') }

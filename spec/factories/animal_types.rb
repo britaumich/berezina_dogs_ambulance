@@ -7,6 +7,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_animal_types_on_name  (name) UNIQUE
+#
 FactoryBot.define do
   factory :animal_type do
     name { "в приюте" }

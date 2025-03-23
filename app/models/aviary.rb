@@ -10,8 +10,8 @@
 #  updated_at   :datetime         not null
 #
 class Aviary < ApplicationRecord
-  has_many :sections
-  has_many :animals
+  has_many :sections, dependent: :restrict_with_exception
+  has_many :animals, dependent: :restrict_with_exception
 
   before_save :strip_whitespace_and_capitalize
   validates :name, presence: true, uniqueness: true
@@ -26,11 +26,10 @@ class Aviary < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    [ 'name' ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["animals"]
+    [ 'animals' ]
   end
-  
 end

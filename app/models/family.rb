@@ -76,5 +76,4 @@ class Family
       @animal.update(fake_parent_id: fake_parent.id, parent_id: nil)
     end
   end
-
 end
