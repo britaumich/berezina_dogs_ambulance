@@ -131,8 +131,8 @@ ru:
         color: "Окрас"
         aviary_id: "Вольер"
         section_id: "Секция"
-        description: "Общее описание"
-        history: "История"
+        distinctive_feature: "  Osoбенности"
+        medical_history: "История болезни"
         graduation: "Выпуск"
         animal_type_id: "Вид"
         animal_type: "Вид"
@@ -141,6 +141,7 @@ ru:
         parent_id: "Родитель"
         children: "Дети"
         siblings: "Братья и сестры"
+        size: "Размер"
       animal_type:
         name: "Название"
       animal_status:
@@ -164,7 +165,7 @@ ru:
     errors:
       models:
         animal:
-          any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, описание, или дата появления"
+          any_present_message: "Одно из следующих полей должно быть заполнено: кличка, фамилия, окрас, или дата появления"
         section:
           is_already_in_this_aviary: "уже есть в этом вольере"
       messages:
@@ -217,7 +218,7 @@ ru:
       ru: "Русский"
       en: "English"
     header:
-      citizens: "Граждане"
+      аdditions: "Дополнения"
       medicine: "Медицина"
       types: "Виды"
       statuses: "Статус"
@@ -230,6 +231,10 @@ ru:
     "Неопределен": Неопределен
     "М": М
     "Ж": Ж
+  size_list:
+    "Маленький": Маленький
+    "Средний": Средний
+    "Большой": Большой
   date:
     month_names: [~, Января, Февраля, Марта, Апреля, Мая, Июня,
                     Июля, Августа, Сентября, Октября, Ноября, Декабря]

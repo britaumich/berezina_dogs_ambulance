@@ -60,8 +60,8 @@
           </div>
           <div class="">
             <div>
-              <%= f.label :nickname_or_surname_or_description_or_from_people_or_from_place_or_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
-              <%= f.search_field :nickname_or_surname_or_description_or_from_people_or_from_place_or_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
+              <%= f.label :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
+              <%= f.search_field :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
             </div>
 
             <div class="mb-2">
@@ -79,6 +79,10 @@
             <div class="mb-2">
               <%= f.label :gender, class: "fancy_label" %>
               <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
+            </div>
+            <div class="mb-2">
+              <%= f.label :size, class: "fancy_label" %>
+              <%= f.select(:size_eq, size_list, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
             </div>
             <div class="mb-2">
               <%= f.checkbox :sterilization_eq, class: "check_box" %>

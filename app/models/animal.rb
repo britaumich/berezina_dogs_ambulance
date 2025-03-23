@@ -2,31 +2,32 @@
 #
 # Table name: animals
 #
-#  id               :bigint           not null, primary key
-#  arival_date      :date
-#  birth_day        :date
-#  birth_year       :date
-#  color            :string
-#  death_day        :date
-#  death_year       :date
-#  description      :string
-#  fake_parent      :boolean          default(FALSE)
-#  from_people      :string
-#  from_place       :string
-#  gender           :string
-#  graduation       :string
-#  history          :string
-#  nickname         :string
-#  sterilization    :boolean          default(FALSE)
-#  surname          :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  animal_status_id :bigint
-#  animal_type_id   :bigint           not null
-#  aviary_id        :bigint
-#  fake_parent_id   :integer
-#  parent_id        :integer
-#  section_id       :bigint
+#  id                  :bigint           not null, primary key
+#  arival_date         :date
+#  birth_day           :date
+#  birth_year          :date
+#  color               :string
+#  death_day           :date
+#  death_year          :date
+#  distinctive_feature :string
+#  fake_parent         :boolean          default(FALSE)
+#  from_people         :string
+#  from_place          :string
+#  gender              :string
+#  graduation          :string
+#  medical_history     :string
+#  nickname            :string
+#  size                :string
+#  sterilization       :boolean          default(FALSE)
+#  surname             :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  animal_status_id    :bigint
+#  animal_type_id      :bigint           not null
+#  aviary_id           :bigint
+#  fake_parent_id      :integer
+#  parent_id           :integer
+#  section_id          :bigint
 #
 # Indexes
 #
@@ -92,10 +93,10 @@ class Animal < ApplicationRecord
   end
 
   def self.to_csv
-    fields = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color description from_people from_place
-      graduation history birth_year death_year ]
-    header = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color description from_people from_place
-      graduation history birth_day death_day children siblings ]
+    fields = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+      graduation medical_history birth_year death_year ]
+    header = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+      graduation medical_history birth_day death_day children siblings ]
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     CSV.generate(headers: true) do |csv|
       csv << header_to_csv
@@ -155,13 +156,13 @@ class Animal < ApplicationRecord
   end
 
   def any_present?
-    if %w[nickname surname color description arival_date].all? { |attr| self[attr].blank? }
+    if %w[nickname surname color arival_date].all? { |attr| self[attr].blank? }
       errors.add :base, :any_present_message
     end
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ 'id', 'nickname', 'surname', 'gender', 'arival_date', 'sterilization', 'description', 'history', 'from_people', 'from_place', 'notes_body' ]
+    [ 'id', 'nickname', 'surname', 'gender', 'size', 'arival_date', 'sterilization', 'distinctive_feature', 'color', 'medical_history', 'from_people', 'from_place', 'notes_body' ]
   end
 
   def self.ransackable_associations(auth_object = nil)

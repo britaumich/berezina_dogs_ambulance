@@ -85,6 +85,10 @@ module ApplicationHelper
     I18n.t(:gender_lists).map { |key, value| [ value, key ] }
   end
 
+  def size_list
+    I18n.t(:size_list).map { |key, value| [ value, key ] }
+  end
+
   def render_flash_stream
     turbo_stream.update 'flash', partial: 'layouts/notification'
   end

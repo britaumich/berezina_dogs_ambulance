@@ -73,6 +73,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :size %>
+    <%= form.select(:size, options_for_select(size_list, @animal.size), { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" } )%>
+  </div>
+
+  <div class="my-5">
     <%= form.label :arival_date %>
     <%= form.text_field :arival_date,
           class: "input_text_field",
@@ -165,13 +170,13 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: "input_text_field" %>
+    <%= form.label :distinctive_feature %>
+    <%= form.text_field :distinctive_feature, class: "input_text_field" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :history %>
-    <%= form.text_field :history, class: "input_text_field" %>
+    <%= form.label :medical_history %>
+    <%= form.text_field :medical_history, class: "input_text_field" %>
   </div>
 
   <div class="my-5">

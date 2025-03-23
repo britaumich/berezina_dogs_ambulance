@@ -83,6 +83,7 @@ en:
       en: "English"
     header:
       aviaries: "Enclosures"
+      аdditions: "Additions"
   activerecord:
     attributes:
       animal:
@@ -106,7 +107,7 @@ en:
     errors:
       models:
         animal:
-          any_present_message: "One of the following fileds should exist: nickname, surname, color, description, or arival_date"
+          any_present_message: "One of the following fileds should exist: nickname, surname, color, or arival_date"
         aviary:
           is_already_in_this_aviary: "is already in this enclosure"
   forms:
@@ -149,6 +150,10 @@ en:
     "Unspecified": Unspecified
     "Male": Male
     "Female": Female
+  size_list:
+    "Small": Small
+    "Medium": Medium
+    "Large": Large
   date:
     formats:
       default: "%Y-%m-%d"
