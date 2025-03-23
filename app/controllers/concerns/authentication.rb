@@ -19,8 +19,8 @@ module Authentication
 
     def require_authentication
       if resume_session
-      #   request_confirmation unless Current.session.user.confirmed?
-      # else
+        #   request_confirmation unless Current.session.user.confirmed?
+        # else
         request_authentication
       end
     end
@@ -40,7 +40,7 @@ module Authentication
     def request_authentication
       session[:return_to_after_authenticating] = request.url
       unless authenticated?
-        redirect_to new_session_path, alert: "Authenticate to access this page."
+        redirect_to new_session_path, alert: 'Authenticate to access this page.'
       end
     end
 

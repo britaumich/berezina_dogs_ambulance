@@ -12,7 +12,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.turbo_stream {}
+      format.turbo_stream { }
       format.html { redirect_to @note.noteable }
     end
   end

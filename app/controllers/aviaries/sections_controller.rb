@@ -34,14 +34,14 @@ class Aviaries::SectionsController < ApplicationController
         section = Section.new
         @sections = @aviary.sections
         format.turbo_stream {
-          render turbo_stream: [turbo_stream.replace(dom_id_for_records(@aviary, section), partial: "aviaries/sections/form", locals: { section: section, aviary: @aviary }),
-                                turbo_stream.append("#{dom_id(@aviary)}_sections", partial: "aviaries/sections/sections_list", locals: { aviary: @aviary })]
+          render turbo_stream: [ turbo_stream.replace(dom_id_for_records(@aviary, section), partial: 'aviaries/sections/form', locals: { section: section, aviary: @aviary }),
+                                turbo_stream.append("#{dom_id(@aviary)}_sections", partial: 'aviaries/sections/sections_list', locals: { aviary: @aviary }) ]
         }
         format.html { redirect_to @aviary }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(dom_id_for_records(@aviary, @section), partial: "aviaries/sections/form", locals: { section: @section, aviary: @aviary })
+          render turbo_stream: turbo_stream.replace(dom_id_for_records(@aviary, @section), partial: 'aviaries/sections/form', locals: { section: @section, aviary: @aviary })
         }
         format.html { redirect_to @aviary }
       end
@@ -55,7 +55,7 @@ class Aviaries::SectionsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end               
+  end
 
   # DELETE /sections/1 or /sections/1.json
   def destroy
@@ -72,7 +72,7 @@ class Aviaries::SectionsController < ApplicationController
     end
     @section.destroy
     respond_to do |format|
-      format.turbo_stream {}
+      format.turbo_stream { }
       format.html { redirect_to @section.aviary }
     end
   end

@@ -4,12 +4,12 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
-    if params[:switch_view] == "table"
-      @view = "table"
-    elsif params[:switch_view] == "pictures"
-      @view = "pictures"
-    else 
-      @view = "table"
+    if params[:switch_view] == 'table'
+      @view = 'table'
+    elsif params[:switch_view] == 'pictures'
+      @view = 'pictures'
+    else
+      @view = 'table'
     end
     if params[:sort].present?
       @sort_by = params[:sort]
@@ -19,7 +19,7 @@ class AnimalsController < ApplicationController
     end
     if params[:status_id].present?
       @status_id = params[:status_id].to_i
-    else 
+    else
       @status_id = 1
     end
     if @status_id == 0
@@ -30,8 +30,8 @@ class AnimalsController < ApplicationController
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
     else
-      if params[:q][:sterilization_eq].present? && params[:q][:sterilization_eq] == "0"
-        params[:q] = params[:q].except("sterilization_eq")
+      if params[:q][:sterilization_eq].present? && params[:q][:sterilization_eq] == '0'
+        params[:q] = params[:q].except('sterilization_eq')
       end
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
@@ -40,11 +40,11 @@ class AnimalsController < ApplicationController
     end
     @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
 
-    if params[:format] == "csv"
+    if params[:format] == 'csv'
       respond_to do |format|
-        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Date.today)}.csv"}
+        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Date.today)}.csv" }
       end
-    end 
+    end
   end
 
   # GET /animals/1 or /animals/1.json
@@ -55,7 +55,7 @@ class AnimalsController < ApplicationController
       format.html { render :show, status: :ok }
       format.pdf do
         pdf_content = generate_pdf_content(@animal)
-        send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: "application/pdf", disposition: "inline"
+        send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
   end
@@ -174,18 +174,17 @@ class AnimalsController < ApplicationController
     flash.now[:notice] = t('forms.messages.Medical procedure was successfully deleted')
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: [turbo_stream.replace('procedures', partial: 'animals/animal_medicine'),
-                              turbo_stream.update('flash', partial: 'layouts/notification')]
+        render turbo_stream: [ turbo_stream.replace('procedures', partial: 'animals/animal_medicine'),
+                              turbo_stream.update('flash', partial: 'layouts/notification') ]
       end
     end
-
   end
 
   def upload_pictures
     if @animal.update(animal_params)
-      render turbo_stream: turbo_stream.update("pictures", partial: "pictures")
+      render turbo_stream: turbo_stream.update('pictures', partial: 'pictures')
     else
-      render turbo_stream: turbo_stream.update("image_errors_picture", partial: "picture_errors", locals: { image_field_name: 'pictures' })
+      render turbo_stream: turbo_stream.update('image_errors_picture', partial: 'picture_errors', locals: { image_field_name: 'pictures' })
     end
   end
 
@@ -213,22 +212,22 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day, 
+      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
         :death_year, :death_day, :color, :aviary_id, :section_id, :description, :history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 
     def generate_pdf_content(animal)
       Prawn::Document.new do |pdf|
         # Register the external font
-        pdf.font_families.update("Montserrat" => {
-          normal: Rails.root.join("app/assets/stylesheets/Montserrat-Medium.ttf")
+        pdf.font_families.update('Montserrat' => {
+          normal: Rails.root.join('app/assets/stylesheets/Montserrat-Medium.ttf')
         })
-        pdf.font("Montserrat") # Use the registered font
-    
+        pdf.font('Montserrat') # Use the registered font
+
         # Add content to the PDF
-        pdf.text "Animal Details", size: 24, align: :center
+        pdf.text 'Animal Details', size: 24, align: :center
         pdf.move_down 20
-    
+
         pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
@@ -243,7 +242,7 @@ class AnimalsController < ApplicationController
         pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.birth_year')}: #{animal.birth_year}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.death_year')}: #{animal.death_year}", size: 12
-    
+
         # pdf.move_down 20
         # pdf.text "Medical Procedures:", size: 16
         # animal.medical_procedures.each do |procedure|
