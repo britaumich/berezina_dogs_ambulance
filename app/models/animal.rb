@@ -46,8 +46,8 @@ class Animal < ApplicationRecord
   belongs_to :section, optional: true
   belongs_to :animal_status
   has_many :cart_animals
-  has_many :carts, through: :cart_animals
-  has_many :notes, as: :noteable
+  has_many :carts, through: :cart_animals, dependent: :destroy
+  has_many :notes, as: :noteable, dependent: :destroy
   has_many :children, class_name: 'Animal', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Animal', optional: true
 
@@ -60,7 +60,7 @@ class Animal < ApplicationRecord
   end
   include AppendToHasManyAttached['pictures']
 
-  has_many :medical_procedures
+  has_many :medical_procedures, dependent: :destroy
 
   before_save :strip_whitespace_and_titleize
 
@@ -99,7 +99,7 @@ class Animal < ApplicationRecord
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     CSV.generate(headers: true) do |csv|
       csv << header_to_csv
-      all.each do |animal|
+      find_each do |animal|
         row = []
         fields.each do |field|
           value = case field

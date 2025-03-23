@@ -25,25 +25,25 @@
 class MedicalProcedure < ApplicationRecord
   belongs_to :animal
   belongs_to :procedure_type
-  has_many :notes, as: :noteable
+  has_many :notes, as: :noteable, dependent: :destroy
 
   after_save :if_sterilization
 
-  validates_presence_of :animal_id, :procedure_type_id, :date_planned
+  validates :date_planned, presence: true
 
   private
 
   def if_sterilization
-    if self.date_completed.present? && self.procedure_type.name == "стерилизация"
+    if self.date_completed.present? && self.procedure_type.name == 'стерилизация'
       Animal.find(self.animal_id).update(sterilization: true)
     end
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["date_completed", "date_planned"]
+    [ 'date_completed', 'date_planned' ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["animal", "procedure_type"]
+    [ 'animal', 'procedure_type' ]
   end
 end

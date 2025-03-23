@@ -20,7 +20,7 @@
 class Section < ApplicationRecord
   include ActionView::RecordIdentifier
   belongs_to :aviary
-  has_many :animals
+  has_many :animals, dependent: :restrict_with_exception
 
   before_save :strip_whitespace_and_capitalize
 
@@ -38,5 +38,4 @@ class Section < ApplicationRecord
   after_destroy_commit do
     broadcast_remove_to self
   end
-
 end

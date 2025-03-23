@@ -29,18 +29,17 @@ class Note < ApplicationRecord
   validates :body, presence: true
 
   after_create_commit do
-    broadcast_prepend_to [noteable, :notes], target: "#{dom_id(noteable)}_notes"
+    broadcast_prepend_to [ noteable, :notes ], target: "#{dom_id(noteable)}_notes"
   end
   after_update_commit do
     broadcast_remove_to self
-    broadcast_prepend_to [noteable, :notes], target: "#{dom_id(noteable)}_notes"
+    broadcast_prepend_to [ noteable, :notes ], target: "#{dom_id(noteable)}_notes"
   end
   after_destroy_commit do
     broadcast_remove_to self
   end
 
  def self.ransackable_associations(auth_object = nil)
-  ["noteable", "rich_text_body_body"]
+  [ 'noteable', 'rich_text_body_body' ]
 end
-
 end
