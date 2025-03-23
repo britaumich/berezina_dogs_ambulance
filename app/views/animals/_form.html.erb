@@ -73,6 +73,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :size %>
+    <%= form.select(:size, options_for_select(size_list, @animal.size), { include_blank: "#{t('text.Select')} ..." }, { class: "input_text_field" } )%>
+  </div>
+
+  <div class="my-5">
     <%= form.label :arival_date %>
     <%= form.text_field :arival_date,
           class: "input_text_field",

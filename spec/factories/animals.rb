@@ -17,6 +17,7 @@
 #  graduation          :string
 #  medical_history     :string
 #  nickname            :string
+#  size                :string
 #  sterilization       :boolean          default(FALSE)
 #  surname             :string
 #  created_at          :datetime         not null

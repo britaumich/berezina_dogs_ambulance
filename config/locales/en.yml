@@ -150,6 +150,10 @@ en:
     "Unspecified": Unspecified
     "Male": Male
     "Female": Female
+  size_list:
+    "Small": Small
+    "Medium": Medium
+    "Large": Large
   date:
     formats:
       default: "%Y-%m-%d"

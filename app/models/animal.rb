@@ -17,6 +17,7 @@
 #  graduation          :string
 #  medical_history     :string
 #  nickname            :string
+#  size                :string
 #  sterilization       :boolean          default(FALSE)
 #  surname             :string
 #  created_at          :datetime         not null
@@ -92,9 +93,9 @@ class Animal < ApplicationRecord
   end
 
   def self.to_csv
-    fields = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+    fields = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_year death_year ]
-    header = %w[ id nickname surname parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+    header = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_day death_day children siblings ]
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     CSV.generate(headers: true) do |csv|
@@ -161,7 +162,7 @@ class Animal < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    [ 'id', 'nickname', 'surname', 'gender', 'arival_date', 'sterilization', 'distinctive_feature', 'color', 'medical_history', 'from_people', 'from_place', 'notes_body' ]
+    [ 'id', 'nickname', 'surname', 'gender', 'size', 'arival_date', 'sterilization', 'distinctive_feature', 'color', 'medical_history', 'from_people', 'from_place', 'notes_body' ]
   end
 
   def self.ransackable_associations(auth_object = nil)

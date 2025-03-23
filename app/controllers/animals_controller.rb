@@ -212,7 +212,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
+      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :size, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
         :death_year, :death_day, :color, :aviary_id, :section_id, :distinctive_feature, :medical_history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 
@@ -231,6 +231,7 @@ class AnimalsController < ApplicationController
         pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
+        pdf.text "#{t('activerecord.attributes.animal.size')}: #{animal.size}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.arival_date')}: #{animal.arival_date}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.sterilization')}: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
         pdf.text "#{t('activerecord.attributes.animal.animal_type_id')}: #{animal.animal_type&.name}", size: 12
