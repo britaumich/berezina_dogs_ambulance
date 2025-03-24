@@ -9,7 +9,7 @@
       <div class="error_text" id="checkbox_error">
       </div>
       <div class>
-        <%= submit_tag t('text.Add to Cart'), class: "primary_button" %>
+        <%= submit_tag t('text.Add to Cart'), class: "primary_button" if policy(Cart).add? %>
       </div>
     </div>
     <table class="mi_table" id="desk-table">

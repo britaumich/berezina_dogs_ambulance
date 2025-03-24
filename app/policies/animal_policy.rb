@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-class AnimalPolicy
+class AnimalPolicy  < ApplicationPolicy
   attr_reader :user, :record
-
-  def initialize(user, record)
-    @user = user
-    @record = record
-  end
 
   def index?
     true
@@ -17,7 +12,7 @@ class AnimalPolicy
   end
 
   def create?
-    false
+    authenticated?
   end
 
   def new?

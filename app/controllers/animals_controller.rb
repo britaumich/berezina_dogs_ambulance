@@ -1,7 +1,8 @@
 class AnimalsController < ApplicationController
   include ApplicationHelper
   allow_unauthenticated_access only: [ :index, :show ]
-  # before_action :require_authentication, except: [ :index, :show ]
+  before_action :resume_session
+  before_action :require_authentication, except: [ :index, :show ]
   before_action :set_animal, only: %i[ show edit update upload_pictures destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
@@ -72,6 +73,7 @@ class AnimalsController < ApplicationController
     @death_year = 0
     @death_month = 14
     @death_day = 32
+    authorize @animal
   end
 
   # GET /animals/1/edit

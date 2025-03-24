@@ -36,6 +36,12 @@ class ApplicationPolicy
     false
   end
 
+  private
+  
+  def authenticated?
+    user.present?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
