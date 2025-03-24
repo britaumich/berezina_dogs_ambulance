@@ -1,4 +1,6 @@
 class MedicalProceduresController < ApplicationController
+  allow_unauthenticated_access only: [ :index, :show ]
+  before_action :resume_session
   before_action :set_medical_procedure, only: %i[ show edit update destroy ]
 
   # GET /medical_procedures or /medical_procedures.json
@@ -10,6 +12,7 @@ class MedicalProceduresController < ApplicationController
       @q = @medical_procedures.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
     @medical_procedures = @q.result.includes(:animal).page(params[:page])
+    authorize @medical_procedures
   end
 
   # GET /medical_procedures/1 or /medical_procedures/1.json
@@ -21,6 +24,7 @@ class MedicalProceduresController < ApplicationController
     @medical_procedure = MedicalProcedure.new
     @animal = nil
     @return_to_animal = false
+    authorize @medical_procedure
   end
 
   def new_medical_procedure_for_animal
@@ -95,6 +99,7 @@ class MedicalProceduresController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_medical_procedure
       @medical_procedure = MedicalProcedure.find(params.expect(:id))
+      authorize @medical_procedure
     end
 
     # Only allow a list of trusted parameters through.

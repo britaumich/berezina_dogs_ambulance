@@ -61,9 +61,11 @@
               <i class="fa fa-sort" aria-hidden="true"></i>
             <% end %>
           <% end %>
-          </th>
-        <th class="header_th"><%= t('forms.buttons.edit') %></th>
-        <th class="header_th"><%= t('forms.buttons.delete') %></th>
+        </th>
+        <% if policy(MedicalProcedure).edit? %>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -85,16 +87,18 @@
           <td class="mi_tbody_td">
             <%= show_date(medical_procedure.date_planned) %>
           </td>
-          <td class="mi_tbody_td">
-            <%= link_to edit_medical_procedure_path(medical_procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(medical_procedure)}_edit" } do%>
-              <i class="fa fa-pencil text-950"></i>
-            <% end %>
-          </td>
-          <td class="mi_tbody_td">
-            <%= link_to medical_procedure_path(medical_procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(medical_procedure)}_delete" }  do %>
-              <i class="fa fa-trash-can text-red-950"></i>
-            <% end %>
-          </td>
+          <% if policy(MedicalProcedure).edit? %>
+            <td class="mi_tbody_td">
+              <%= link_to edit_medical_procedure_path(medical_procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(medical_procedure)}_edit" } do%>
+                <i class="fa fa-pencil text-950"></i>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to medical_procedure_path(medical_procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(medical_procedure)}_delete" }  do %>
+                <i class="fa fa-trash-can text-red-950"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
