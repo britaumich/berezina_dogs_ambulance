@@ -4,7 +4,7 @@
   <%= form_with(model: @user, url: registration_path, local: true, class: "contents") do |form| %>
     <% if @user.errors.any? %>
       <div class="bg-red-50 text-red-500 font-medium p-4 rounded-lg mb-5">
-        <h2 class="font-bold mb-3"><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <h2 class="font-bold mb-3"><%= pluralize(@user.errors.count, "error") %> <%= t('forms.messages.prohibited this record from being saved') %>:</h2>
         <ul class="list-disc list-inside">
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
