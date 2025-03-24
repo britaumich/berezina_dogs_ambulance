@@ -57,6 +57,7 @@ ru:
     Editing: "Редактировать"
     Editing Citizen: "Редактировать гражданина"
     Editing Medical Procedure: "Редактировать медицинскую процедуру"
+    Editing Admin: "Редактировать администратора"
     New: "Новый"
     Select: "Выбрать"
     Select All: "Выбрать все"
@@ -71,6 +72,7 @@ ru:
     citizens: "Граждане"
     Citizen: "Граждaнин"
     Animal Type: "вид граждан"
+    Admin: "aдминистратор"
     Lena Beresina's shelter: "Питомник Лены Березиной"
     table: "Таблица"
     pictures: "Картинки"
@@ -163,6 +165,8 @@ ru:
         animal_id: "Животное"
         procedure_type_id: "Процедура"
         description: "Описание"
+      admin_user:
+        email: "Адрес электронной почты"
     errors:
       models:
         animal:
@@ -196,6 +200,9 @@ ru:
       Procedure type was successfully created: "Новая процедура добавлена"
       Procedure type was successfully updated: "Процедура обновлена"
       Procedure type was successfully deleted: "Процедура удалена"
+      Admin user was successfully added: "Новый администратор добавлен"
+      Admin user was successfully updated: "Аминистратор обновлен"
+      Admin user was successfully deleted: "Администратор удален"
       Registered successfully: "Вы зарегистрированы"
       Try another email address or password: "Попробуйте другой адрес электронной почты или пароль"
     buttons:
