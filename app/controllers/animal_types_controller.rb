@@ -4,11 +4,13 @@ class AnimalTypesController < ApplicationController
   # GET /animal_types or /animal_types.json
   def index
     @animal_types = AnimalType.order(:name)
+    authorize @animal_types
   end
 
   # GET /animal_types/new
   def new
     @animal_type = AnimalType.new
+    authorize @animal_type
   end
 
   # GET /animal_types/1/edit
