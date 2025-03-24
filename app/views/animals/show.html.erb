@@ -38,15 +38,15 @@
     </div>
   </div>
 
-  <% if policy(Animal).edit? %>
-    <div class="container p-2 rounded-lg shadow-lg text-xl mb-20 bg-gray-50">
-      <h2 class="mb-4"><%= t('text.Notes') %>:</h2>
+  <div class="container p-2 rounded-lg shadow-lg text-xl mb-20 bg-gray-50">
+    <h2 class="mb-4"><%= t('text.Notes') %>:</h2>
+    <% if policy(Animal).edit? %>
       <%= render partial: "notes/form", locals: { note: Note.new, noteable: @animal } %>
-
-      <%= turbo_stream_from @animal, :notes %>
-      <%= tag.div id: "#{dom_id(@animal)}_notes" do %>
-        <%= render @animal.notes %>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
+    <%= turbo_stream_from @animal, :notes %>
+    <%= tag.div id: "#{dom_id(@animal)}_notes" do %>
+      <%= render @animal.notes %>
+    <% end %>
+  </div>
+  
 </div>

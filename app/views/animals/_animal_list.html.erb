@@ -15,10 +15,12 @@
     <table class="mi_table" id="desk-table">
       <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
-          <td>
-            <span hidden id="select_all">Select All</span>
-            <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
-          </td>
+          <% if policy(Cart).add? %>
+            <td>
+              <span hidden id="select_all">Select All</span>
+              <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
+            </td>
+          <% end %>
           <th class="header_th">
             <%= link_to sort_url(@q, :id) do %>
               <span><%= t('activerecord.attributes.animal.id') %></span>
@@ -150,10 +152,12 @@
       </thead>
       <tbody>
         <% @animals.each do |animal| %>
-          <rt>
-            <td class="mi_tbody_td">
-              <input type="checkbox" aria-labelledby=<%= "animal_ids_#{animal.id}" %> name="animal_ids[<%= animal.id %>]" id="animal_ids_<%= animal.id %>" value="0" class="check_box" data-checkboxselectall-target="checkbox" data-action="change->checkboxselectall#toggleCheckboxAll">
-            </td>
+          <tr>
+            <% if policy(Cart).add? %>
+              <td class="mi_tbody_td">
+                <input type="checkbox" aria-labelledby=<%= "animal_ids_#{animal.id}" %> name="animal_ids[<%= animal.id %>]" id="animal_ids_<%= animal.id %>" value="0" class="check_box" data-checkboxselectall-target="checkbox" data-action="change->checkboxselectall#toggleCheckboxAll">
+              </td>
+            <% end %>
             <td class="mi_tbody_td">
               <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
