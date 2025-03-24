@@ -1,0 +1,13 @@
+<div class="w-full">
+
+  <% content_for :title, t('text.admin_users')  %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t('text.Admins') %></h1>
+    <%= link_to t('menu.new'), new_admin_user_path, class: "primary_button" %>
+  </div>
+
+  <div id="admin_users" class="min-w-full">
+    <%= render 'admin_users_list' %>
+  </div>
+</div>

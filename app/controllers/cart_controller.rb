@@ -5,12 +5,14 @@ class CartController < ApplicationController
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
     @aviaries = Aviary.all.map { |a| [ a.name, a.id ] }
     @sections = []
+    authorize @cart
   end
 
   def add
     animal_ids = params[:animal_ids].keys.map(&:to_i)
     cart_ids = @cart.cart_animals.pluck(:animal_id)
     new_ids = animal_ids - cart_ids
+    authorize @cart
     new_ids.each do |animal_id|
       @cart.cart_animals.create!(animal: Animal.find(animal_id))
     end
@@ -26,6 +28,7 @@ class CartController < ApplicationController
     CartAnimal.find_by(id: params[:id]).destroy
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
+    authorize @cart
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [ turbo_stream.replace('cart', partial: 'cart/cart', locals: { cart: @cart }),
@@ -37,6 +40,7 @@ class CartController < ApplicationController
   end
 
   def add_medical_procedure
+    authorize @cart
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
@@ -44,7 +48,6 @@ class CartController < ApplicationController
     cart.destroy
     flash.now[:notice] = t('forms.messages.Medical procedures created')
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [ turbo_stream.replace('cart',
@@ -59,6 +62,7 @@ class CartController < ApplicationController
   end
 
   def add_to_aviary
+    authorize @cart
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
       Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id], section_id: params[:section_id])

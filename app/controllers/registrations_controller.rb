@@ -7,11 +7,15 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      start_new_session_for(@user)
-      redirect_to root_url, notice: t('forms.messages.Registered successfully')
+    if AdminUser.find_by(email: @user.email_address).present?
+      if @user.save
+        start_new_session_for(@user)
+        redirect_to root_url, notice: t('forms.messages.Registered successfully')
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new
+      redirect_to new_registration_path, alert: t('forms.messages.Email address is not allowed to register')
     end
   end
 

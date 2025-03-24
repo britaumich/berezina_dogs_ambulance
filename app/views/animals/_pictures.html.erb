@@ -3,13 +3,15 @@
     <h2>
       <%= t('text.Pictures') %>
     </h2>
-    <p class="body-sm-text my-2">
-      <%= t('text.To upload multiple images, click Browse and select all images at once') %>
-    </p>
-    <%= form_with(model: @animal, url: upload_pictures_path, method: :post, html: { class: "sm:flex sm:items-center" }) do |form| %>
-      <%= form.label :pictures, "Pictures (upload multiple images)", class: "hidden" %>
-      <%= form.file_field :pictures, multiple: true, class: "body-sm-text" %>
-      <%= form.submit t('forms.buttons.save'), class: "primary_button" %>
+    <% if policy(@animal).edit? %>
+      <p class="body-sm-text my-2">
+        <%= t('text.To upload multiple images, click Browse and select all images at once') %>
+      </p>
+      <%= form_with(model: @animal, url: upload_pictures_path, method: :post, html: { class: "sm:flex sm:items-center" }) do |form| %>
+        <%= form.label :pictures, "Pictures (upload multiple images)", class: "hidden" %>
+        <%= form.file_field :pictures, multiple: true, class: "body-sm-text" %>
+        <%= form.submit t('forms.buttons.save'), class: "primary_button" %>
+      <% end %>
     <% end %>
   </div>
 

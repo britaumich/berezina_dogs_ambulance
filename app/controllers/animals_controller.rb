@@ -1,5 +1,7 @@
 class AnimalsController < ApplicationController
   include ApplicationHelper
+  allow_unauthenticated_access only: [ :index, :show ]
+  before_action :resume_session
   before_action :set_animal, only: %i[ show edit update upload_pictures destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
@@ -39,6 +41,7 @@ class AnimalsController < ApplicationController
       @q.sorts = @sort_by + ' ' + @order
     end
     @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
+    authorize @animals
 
     if params[:format] == 'csv'
       respond_to do |format|
@@ -69,6 +72,7 @@ class AnimalsController < ApplicationController
     @death_year = 0
     @death_month = 14
     @death_day = 32
+    authorize @animal
   end
 
   # GET /animals/1/edit
@@ -208,6 +212,7 @@ class AnimalsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_animal
       @animal = Animal.find(params.expect(:id))
+      authorize @animal
     end
 
     # Only allow a list of trusted parameters through.

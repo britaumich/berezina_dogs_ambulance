@@ -4,6 +4,7 @@ class AviariesController < ApplicationController
   # GET /aviaries or /aviaries.json
   def index
     @aviaries = Aviary.all
+    authorize @aviaries
   end
 
   # GET /aviaries/1 or /aviaries/1.json
@@ -14,6 +15,7 @@ class AviariesController < ApplicationController
   # GET /aviaries/new
   def new
     @aviary = Aviary.new
+    authorize @aviary
   end
 
   # GET /aviaries/1/edit
@@ -85,6 +87,7 @@ class AviariesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_aviary
       @aviary = Aviary.find(params.expect(:id))
+      authorize @aviary
     end
 
     # Only allow a list of trusted parameters through.

@@ -4,11 +4,13 @@ class AnimalStatusesController < ApplicationController
   # GET /animal_statuses or /animal_statuses.json
   def index
     @animal_statuses = AnimalStatus.order(:name)
+    authorize @animal_statuses
   end
 
   # GET /animal_statuses/new
   def new
     @animal_status = AnimalStatus.new
+    authorize @animal_status
   end
 
   # GET /animal_statuses/1/edit
@@ -72,6 +74,7 @@ class AnimalStatusesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_animal_status
       @animal_status = AnimalStatus.find(params.expect(:id))
+      authorize @animal_status
     end
 
     # Only allow a list of trusted parameters through.

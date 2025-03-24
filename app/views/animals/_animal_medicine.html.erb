@@ -7,8 +7,10 @@
           <th class="header_th"><%= t('activerecord.attributes.medical_procedure.procedure_type_id') %></th>
           <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_planned') %></th>
           <th class="header_th"><%= t('activerecord.attributes.medical_procedure.date_completed') %></th>
-          <th class="header_th"><%= t('forms.buttons.edit') %></th>
-          <th class="header_th"><%= t('forms.buttons.delete') %></th>
+          <% if policy(MedicalProcedure).edit? %>
+            <th class="header_th"><%= t('forms.buttons.edit') %></th>
+            <th class="header_th"><%= t('forms.buttons.delete') %></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -23,16 +25,18 @@
             <td class="mi_tbody_td">
               <%= show_date_with_month_name(procedure.date_completed) %>
             </td>
-            <td class="mi_tbody_td">
-              <%= link_to edit_medical_procedure_for_animal_path(procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(procedure)}_edit" } do%>
-                <i class="fa fa-pencil text-950"></i>
-              <% end %>
-            </td>
-            <td class="mi_tbody_td">
-              <%= link_to delete_medical_procedure_path(@animal, procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :post}, aria: { label: "#{dom_id(procedure)}_delete" }  do %>
-                <i class="fa fa-trash-can text-red-950"></i>
-              <% end %>
-            </td>
+            <% if policy(MedicalProcedure).edit? %>
+              <td class="mi_tbody_td">
+                <%= link_to edit_medical_procedure_for_animal_path(procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(procedure)}_edit" } do%>
+                  <i class="fa fa-pencil text-950"></i>
+                <% end %>
+              </td>
+              <td class="mi_tbody_td">
+                <%= link_to delete_medical_procedure_path(@animal, procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :post}, aria: { label: "#{dom_id(procedure)}_delete" }  do %>
+                  <i class="fa fa-trash-can text-red-950"></i>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
