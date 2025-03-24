@@ -4,11 +4,13 @@ class AdminUsersController < ApplicationController
   # GET /admin_users or /admin_users.json
   def index
     @admin_users = AdminUser.all
+    authorize @admin_users
   end
 
   # GET /admin_users/new
   def new
     @admin_user = AdminUser.new
+    authorize @admin_user
   end
 
   # GET /admin_users/1/edit
@@ -45,12 +47,6 @@ class AdminUsersController < ApplicationController
 
   # DELETE /admin_users/1 or /admin_users/1.json
   def destroy
-    # @admin_user.destroy!
-
-    # respond_to do |format|
-    #   format.html { redirect_to admin_users_path, status: :see_other, notice: "Admin user was successfully destroyed." }
-    #   format.json { head :no_content }
-    # end
     email = @admin_user.email
     if @admin_user.destroy
       User.find_by(email_address: email)&.destroy!
@@ -73,6 +69,7 @@ class AdminUsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
       @admin_user = AdminUser.find(params.expect(:id))
+      authorize @admin_user
     end
 
     # Only allow a list of trusted parameters through.

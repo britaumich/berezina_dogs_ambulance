@@ -74,6 +74,7 @@ class AnimalStatusesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_animal_status
       @animal_status = AnimalStatus.find(params.expect(:id))
+      authorize @animal_status
     end
 
     # Only allow a list of trusted parameters through.
