@@ -92,6 +92,15 @@ class Animal < ApplicationRecord
     end
   end
 
+  def dup
+    super.tap do |new_animal|
+      new_animal.nickname = nil
+      if self.parent.present?
+        new_animal.parent = self.parent
+      end
+    end
+  end
+
   def self.to_csv
     fields = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_year death_year ]

@@ -66,7 +66,7 @@ en:
     There are animals with this status and it can't be deleted: "There are animals with this status and it can't be deleted"
     There are animals with this type and it can't be deleted: "There are animals with this type and it can't be deleted"
     To remove a sibling, please check the corresponding checkbox: "To remove a sibling, please check the corresponding checkbox"
-    To add a sibling please select one from a drop-down list: "To add a sibling please select one from a drop-down list"
+    To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved"
     Updated on: "Updated on"
     at: "at"
   label:
