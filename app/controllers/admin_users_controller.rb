@@ -1,13 +1,9 @@
 class AdminUsersController < ApplicationController
-  before_action :set_admin_user, only: %i[ show edit update destroy ]
+  before_action :set_admin_user, only: %i[ edit update destroy ]
 
   # GET /admin_users or /admin_users.json
   def index
     @admin_users = AdminUser.all
-  end
-
-  # GET /admin_users/1 or /admin_users/1.json
-  def show
   end
 
   # GET /admin_users/new
