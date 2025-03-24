@@ -7,5 +7,6 @@ class Animals::NotesController < ApplicationController
 
     def set_noteable
       @noteable = Animal.find(params[:animal_id])
+      authorize @noteable
     end
 end
