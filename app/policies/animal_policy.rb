@@ -20,7 +20,7 @@ class AnimalPolicy  < ApplicationPolicy
   end
 
   def update?
-    false
+    authenticated?
   end
 
   def edit?
@@ -28,7 +28,7 @@ class AnimalPolicy  < ApplicationPolicy
   end
 
   def destroy?
-    false
+    authenticated?
   end
 
   class Scope
