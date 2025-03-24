@@ -36,6 +36,7 @@ ru:
     Procedure Types: "Виды процедур"
     Procedure Type: "вид процедур"
     Procedures: "Процедуры"
+    Admins: "Администраторы"
     Pictures: "Фотографии"
     Add To Enclosure: "Добавить в вольер"
     Medical Procedures: "Медицинские назначения"
@@ -220,13 +221,15 @@ ru:
     header:
       аdditions: "Дополнения"
       medicine: "Медицина"
-      types: "Виды"
-      statuses: "Статус"
+      animal_types: "Вид граждан"
+      animal_statuses: "Статус граждан"
       procedures: "Процедуры"
+      procedure_types: "Виды процедур"
       animals: "Электорат"
       aviaries: "Вольеры"
       language: "Язык"
       cart: "Список"
+      admins: "Администраторы"
   gender_lists:
     "Неопределен": Неопределен
     "М": М
