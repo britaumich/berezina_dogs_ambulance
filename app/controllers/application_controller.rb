@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   include Authentication
+  include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   # allow_browser versions: :modern
+  before_action :require_authentication
   before_action :set_locale
   before_action :set_render_cart
   before_action :initialize_cart
@@ -45,4 +48,10 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @cart.id
     end
   end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(root_path)
+  end
+
 end

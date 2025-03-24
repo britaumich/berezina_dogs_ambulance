@@ -18,9 +18,12 @@ module Authentication
     end
 
     def require_authentication
-      if resume_session
-        #   request_confirmation unless Current.session.user.confirmed?
-        # else
+      # if resume_session
+      #   request_confirmation unless Current.session.user.confirmed?
+      #   else
+      #   request_authentication
+      # end
+      unless resume_session
         request_authentication
       end
     end
