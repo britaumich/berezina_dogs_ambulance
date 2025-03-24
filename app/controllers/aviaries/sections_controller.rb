@@ -8,6 +8,7 @@ class Aviaries::SectionsController < ApplicationController
   # GET /sections or /sections.json
   def index
     @sections = Section.all
+    authorize([@aviary, @sections])
   end
 
   # GET /sections/1 or /sections/1.json
@@ -18,6 +19,7 @@ class Aviaries::SectionsController < ApplicationController
   # GET /sections/new
   def new
     @section = Section.new
+    authorize([@aviary, @section])
   end
 
   # GET /sections/1/edit
@@ -81,6 +83,7 @@ class Aviaries::SectionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_section
       @section = Section.find(params.expect(:id))
+      authorize([@aviary, @section])
     end
 
     def set_aviary
