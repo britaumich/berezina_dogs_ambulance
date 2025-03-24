@@ -4,11 +4,13 @@ class ProcedureTypesController < ApplicationController
   # GET /procedure_types or /procedure_types.json
   def index
     @procedure_types = ProcedureType.all
+    authorize @procedure_types
   end
 
   # GET /procedure_types/new
   def new
     @procedure_type = ProcedureType.new
+    authorize @procedure_type
   end
 
   # GET /procedure_types/1/edit
@@ -57,6 +59,7 @@ class ProcedureTypesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_procedure_type
       @procedure_type = ProcedureType.find(params.expect(:id))
+      authorize @procedure_type
     end
 
     # Only allow a list of trusted parameters through.
