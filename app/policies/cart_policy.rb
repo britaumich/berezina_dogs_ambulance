@@ -3,7 +3,23 @@
 class CartPolicy < ApplicationPolicy
   attr_reader :user, :record
 
+  def show?
+    authenticated?
+  end
+
   def add?
+    authenticated?
+  end
+
+  def remove?
+    authenticated?
+  end
+
+  def add_medical_procedure?
+    authenticated?
+  end
+
+  def add_to_aviary?
     authenticated?
   end
 
