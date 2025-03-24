@@ -12,10 +12,10 @@ class CartController < ApplicationController
     animal_ids = params[:animal_ids].keys.map(&:to_i)
     cart_ids = @cart.cart_animals.pluck(:animal_id)
     new_ids = animal_ids - cart_ids
+    authorize @cart
     new_ids.each do |animal_id|
       @cart.cart_animals.create!(animal: Animal.find(animal_id))
     end
-    authorize @cart
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update('cart_total', partial: 'cart/cart_total')
