@@ -1,0 +1,32 @@
+<%= turbo_frame_tag 'admin_users' do %>
+  <div class="min-w-full">
+    <table class="mi_table" id="desk-table">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
+        <tr>
+          <th class="header_th"><%= t('activerecord.attributes.admin_user.name') %></th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @admin_users.each do |admin_user| %>
+          <rt>
+            <td class="mi_tbody_td">
+              <%= admin_user.email %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to edit_admin_user_path(admin_user), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(admin_user)}_edit" } do%>
+                <i class="fa fa-pencil text-950"></i>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+            <%= link_to admin_user_path(admin_user), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(admin_user)}_delete" }  do %>
+              <i class="fa fa-trash-can text-red-950"></i>
+            <% end %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
