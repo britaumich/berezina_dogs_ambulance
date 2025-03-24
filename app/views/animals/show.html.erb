@@ -4,6 +4,16 @@
     <div class="lg:grid lg:justify-items-end">
       <%= link_to t('forms.buttons.edit'), edit_animal_path(@animal), class: "primary_button mb-2" if policy(Animal).edit? %>
       <div class="mt-2">
+        <% if policy(Animal).duplicate? %>
+          <%= link_to duplicate_path(@animal) do %>
+            <span class="tertiary_button">
+              <i class="fa-solid fa-clone" aria-hidden="true"></i>
+              <%= t('forms.buttons.duplicate') %>
+            </span>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
         <% if policy(Animal).destroy? %>
           <%= link_to animal_path(@animal), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete} do %>
             <span class="tertiary_button">

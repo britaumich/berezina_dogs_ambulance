@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
   get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
   post 'animals/delete_medical_procedure/:id/:procedure_id', to: 'animals#delete_medical_procedure', as: :delete_medical_procedure
+  get 'animals/duplicate/:id', to: 'animals#duplicate', as: :duplicate
 
   resources :animal_types, except: [:show] 
   resources :animal_statuses,  except: [:show] 

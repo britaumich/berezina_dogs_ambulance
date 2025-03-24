@@ -11,6 +11,10 @@ class AnimalPolicy  < ApplicationPolicy
     true
   end
 
+  def duplicate?
+    create?
+  end
+
   def create?
     authenticated?
   end

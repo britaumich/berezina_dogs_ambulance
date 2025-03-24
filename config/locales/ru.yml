@@ -87,7 +87,7 @@ ru:
     There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому статус нельзя удалить"
     There are animals with this type and it can't be deleted: "Есть животные этого вида, поэтому вид нельзя удалить"
     To remove a sibling, please check the corresponding checkbox: "Чтобы удалить брата или сестру, поставьте галочку около имени"
-    To add a sibling please select one from a drop-down list: "Чтобы добавить брата или сестру, выберите имя из списка"
+    To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "Чтобы добавить брата или сестру, выберите имя из списка; при дублировании братья и сестры будут сохранены"
     Updated on: "Обновлено"
     on: "в"
   helpers:
@@ -217,6 +217,7 @@ ru:
      save: "Сохранить"
      add: "Добавить"
      update: "Обновить"
+     duplicate: "Дублировать"
     sort:
       asc: "По возрастанию"
       desc: "По убыванию"
