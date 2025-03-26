@@ -38,7 +38,7 @@ class AnimalsController < ApplicationController
     if @sort_by.present?
       @q.sorts = @sort_by + ' ' + @order
     end
-    @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
+    @animals = @q.result.includes(:animal_type, :aviary, :animal_status).page(params[:page])
     authorize @animals
 
     if params[:format] == 'csv'
