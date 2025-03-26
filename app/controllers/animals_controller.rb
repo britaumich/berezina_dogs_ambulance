@@ -34,6 +34,8 @@ class AnimalsController < ApplicationController
       end
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
+    @arival_date_lteq = params[:q].present? && params[:q][:arival_date_lteq].present? ? params[:q][:arival_date_lteq] : nil
+    @arival_date_gteq = params[:q].present? && params[:q][:arival_date_gteq].present? ? params[:q][:arival_date_gteq] : nil
     if @sort_by.present?
       @q.sorts = @sort_by + ' ' + @order
     end
