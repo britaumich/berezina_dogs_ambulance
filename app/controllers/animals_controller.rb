@@ -6,6 +6,10 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
+    
+    @animal_type_id = params[:animal_type_id]
+    @animal_typy = AnimalType.find(@animal_type_id)
+    @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
       @view = 'table'
     elsif params[:switch_view] == 'pictures'
@@ -19,19 +23,13 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    if params[:status_id].present?
-      @status_id = params[:status_id].to_i
-    else
-      @status_id = 1
-    end
-    if @status_id == 0
-      @animals = Animal.order(:id)
-    else
-      @animals = Animal.where(animal_status_id: @status_id).order(:id)
-    end
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
+      @status_id = nil
     else
+      if params[:q][:animal_status_name_eq].present?
+        @status_id = AnimalStatus.find_by(name: params[:q][:animal_status_name_eq]).id
+      end
       if params[:q][:sterilization_eq].present? && params[:q][:sterilization_eq] == '0'
         params[:q] = params[:q].except('sterilization_eq')
       end

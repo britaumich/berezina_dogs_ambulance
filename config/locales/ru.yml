@@ -116,6 +116,7 @@ ru:
     order: "Порядок"
     view: "Вид"
     status: "Статус"
+    animal_type: "вид"
     Search Text Fields: "Поиск"
   activerecord:
     attributes:

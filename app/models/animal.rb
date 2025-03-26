@@ -175,7 +175,7 @@ class Animal < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    [ 'animal_type', 'aviary', 'notes', 'rich_text_body' ]
+    [ 'animal_type', 'animal_status', 'aviary', 'notes', 'rich_text_body' ]
   end
 
   ransacker :notes_body do |_parent|

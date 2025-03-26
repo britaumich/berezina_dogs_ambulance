@@ -138,9 +138,9 @@ module ApplicationHelper
     AnimalStatus.order(:name)
   end
 
-  def animal_statuses_for_select
-    AnimalStatus.order(:name).map { |status| [ status.name, status.id ] } << [ 'все граждане', 0 ]
-  end
+  # def animal_statuses_for_select
+  #   AnimalStatus.order(:name).map { |status| [ status.name, status.id ] } << [ 'все граждане', 0 ]
+  # end
 
   def aviaries
     Aviary.order(:name)
@@ -158,12 +158,14 @@ module ApplicationHelper
     ProcedureType.order(:name)
   end
 
-  def show_status(status_id)
-    if status_id == 0
-      t('label.status') + ' - все граждане'
+  def show_status(status_id, animal_type_id)
+    status = ''
+    if status_id.nil?
+      status += t('label.status') + ' - все граждане; '
     else
-      t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name
+      status += t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name + '; '
     end
+    status += t('label.animal_type') + ' - ' + AnimalType.find(animal_type_id).name
   end
 
   def parents(animal)
@@ -198,5 +200,9 @@ module ApplicationHelper
 
   def updated_on_and_by(resource)
     return t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
+  end
+
+  def animal_types_except_dogs
+    AnimalType.where.not(name: 'собака').order(:name)
   end
 end

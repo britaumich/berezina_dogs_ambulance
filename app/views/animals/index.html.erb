@@ -4,7 +4,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl"><%= t('text.Animals') %></h1>
-    <h1><%= show_status(@status_id) %></h1>
+    <h1><%= show_status(@status_id, @animal_type_id) %></h1>
     <% if policy(Animal).new? %>
       <%= link_to t('menu.new'), new_animal_path, class: "primary_button" %>
     <% else %>
@@ -19,6 +19,9 @@
               turbo_frame: "turbo-animals"
               } do |f| %>
 
+      <div class="mb-2">
+        <input type="hidden" id="animal_type_id" name="animal_type_id" value=<%= @animal_type_id %>
+      </div>
       <div class="flex justify-between items-center gap-4 mb-2 -mt-2">
         <div class="flex justify-between items-center gap-4 text-sm">
           <div class="display inline">
@@ -36,11 +39,6 @@
           </div>
         </div>
         <div>
-          <div>
-            <label for="status_id" class="fancy_label"><%= t('label.status') %></label>
-            <%= select_tag "status_id", options_for_select(animal_statuses_for_select, selected: @status_id), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
           <div>
             <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
             <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
@@ -69,9 +67,10 @@
             </div>
 
             <div class="mb-2">
-              <%= f.label :animal_type_name_eq, "#{t('activerecord.attributes.animal.animal_type_id')}", class: "fancy_label" %>
-              <%= f.collection_select(:animal_type_name_eq, animal_types, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select' }) %>
+              <%= f.label :animal_status_name_eq, "#{t('activerecord.attributes.animal.animal_status_id')}", class: "fancy_label" %>
+              <%= f.collection_select(:animal_status_name_eq, animal_statuses, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select' }) %>
             </div>
+ 
             <div class="mb-2">
               <%= f.label :nickname_cont, class: "fancy_label" %>
               <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
