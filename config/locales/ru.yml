@@ -51,7 +51,7 @@ ru:
     cart: "Список"
     Your cart is empty: "Список пустой"
     Contains: "Содержит"
-    From: "От"
+    From: "После"
     To: "До"
     Date: "Дата"
     Editing: "Редактировать"
@@ -119,6 +119,12 @@ ru:
     status: "Статус"
     animal_type: "вид"
     Search Text Fields: "Поиск"
+    date_planned_after: "Плановая дата - после"
+    date_planned_before: "Плановая дата - до"
+    date_completed_after: "Дата проведения - после"
+    date_completed_before: "Дата проведения - до"
+    arival_date_after: "Дата появления - после"
+    arival_date_before: "Дата появления - до"
   activerecord:
     attributes:
       animal:

@@ -12,6 +12,14 @@ export default class extends Controller {
     var url = window.location.pathname
     Turbo.visit(url)
   }
+
+  search() {
+    clearTimeout(this.timeout)
+
+    this.timeout = setTimeout(() => {
+      this.formTarget.requestSubmit()
+    }, 200)
+  }
   
   submit() {
     console.log("here")
