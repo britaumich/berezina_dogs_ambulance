@@ -7,7 +7,7 @@ class AnimalsController < ApplicationController
   # GET /animals or /animals.json
   def index
     
-    @animal_type_id = params[:animal_type_id]
+    @animal_type_id = params[:animal_type_id].present? ? params[:animal_type_id] : AnimalType.find_by(name: 'собака').id
     @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
       @view = 'table'
