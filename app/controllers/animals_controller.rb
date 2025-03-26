@@ -200,6 +200,7 @@ class AnimalsController < ApplicationController
 
   def delete_picture
     delete_file = ActiveStorage::Attachment.find(params[:id])
+    authorize Animal
     delete_file.purge
     redirect_back(fallback_location: request.referer)
   end
