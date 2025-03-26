@@ -8,17 +8,17 @@
         <%= image_tag('animal_placeholder_small.png', height: '107', width: '150', class: 'p-2', alt: "animal placeholder") %>
       <% end %>
       <div class="text-xs px-2 font-bold">
-        <%= show_animal(animal) %>
+        <%= animal.id %> - <%= animal.animal_type.name %>
       </div>
       <div class="text-xs px-2 font-bold">
-        <%= animal.animal_type.name %>
+        <%= show_animal(animal) %>
       </div>
     <% end %>
     <div class="text-xs px-2">
-      <%= animal.gender %>, <%= age(animal) %>
+      <%= animal.gender %>, <%= show_birth_or_death_date(animal, 'birth') %>
     </div>
     <div class="text-xs px-2">
-      <%= show_aviary(animal) %>
+      <%= age(animal) %>
     </div>
   </div>
 <% end %>

@@ -32,12 +32,12 @@
           class: "input_text_field",
           required: true,
           placeholder: "DD-MM-YYYY",
+          value: medical_procedure.date_planned.present? ? medical_procedure.date_planned.strftime("%d-%m-%Y") : nil,
           data: {
             controller: "flatpickr",
             flatpickr_date_format_value: "d-m-Y",
             flatpickr_alt_input: false, 
-            required: true,
-            flatpickr_min_date_value: "today"
+            required: true
           } %>
   </div>
 
@@ -46,11 +46,11 @@
     <%= form.text_field :date_completed,
           class: "input_text_field",
           placeholder: "DD-MM-YYYY",
+          value: medical_procedure.date_completed.present? ? medical_procedure.date_completed.strftime("%d-%m-%Y") : nil,
           data: {
             controller: "flatpickr",
             flatpickr_date_format_value: "d-m-Y",
-            flatpickr_alt_input: false, 
-            flatpickr_min_date_value: "today"
+            flatpickr_alt_input: false
           } %>
   </div>
   <%= hidden_field_tag 'return_to_animal', return_to_animal %>

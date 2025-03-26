@@ -37,21 +37,6 @@
             <% end %>
           </th>
           <th class="header_th">
-            <%= link_to sort_url(@q, :animal_type_name) do %>
-              <span><%= t('activerecord.attributes.animal.animal_type_id') %></span>
-              <% sort = @q.sorts.find { |s| s.name == 'animal_type_name' } %>            
-              <% if sort.present? && sort.dir == 'asc' %>
-                <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
-              <% end %>
-              <% if sort.present? && sort.dir == 'desc' %>
-                <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
-              <% end %>
-              <% unless sort.present? %>
-                <i class="fa fa-sort" aria-hidden="true"></i>
-              <% end %>
-            <% end %>
-          </th>
-          <th class="header_th">
             <%= link_to sort_url(@q, :nickname) do %>
               <span><%= t('activerecord.attributes.animal.nickname') %></span>
               <% sort = @q.sorts.find { |s| s.name == 'nickname' } %>            
@@ -99,23 +84,9 @@
             <% end %>
           </th>
 
-          <th class="header_th">
-            <%= link_to sort_url(@q, :sterilization) do %>
-              <span><%= t('activerecord.attributes.animal.sterilization') %></span>
-              <% sort = @q.sorts.find { |s| s.name == 'sterilization' } %>            
-              <% if sort.present? && sort.dir == 'asc' %>
-                <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
-              <% end %>
-              <% if sort.present? && sort.dir == 'desc' %>
-                <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
-              <% end %>
-              <% unless sort.present? %>
-                <i class="fa fa-sort" aria-hidden="true"></i>
-              <% end %>
-            <% end %>
-          </th>
 
-          <th class="header_th"><%= t('label.Age') %></th>
+          <th class="header_th"><%= t('label.Birth Date') %></th>
+          <th class="header_th"><%= t('label.Vaccination Date') %></th>
 
           <th class="header_th">
             <%= link_to sort_url(@q, :aviary_name) do %>
@@ -133,20 +104,6 @@
             <% end %>
           </th>
 
-          <th class="header_th">
-            <%= link_to sort_url(@q, :arival_date) do %>
-              <span><%= t('activerecord.attributes.animal.arival_date') %></span>
-              <% sort = @q.sorts.find { |s| s.name == 'arival_date' } %>            
-              <% if sort.present? && sort.dir == 'asc' %>
-                <i class="fa-solid fa-sort-down" aria-hidden="true"></i>
-              <% end %>
-              <% if sort.present? && sort.dir == 'desc' %>
-                <i class="fa-solid fa-sort-up" aria-hidden="true"></i>
-              <% end %>
-              <% unless sort.present? %>
-                <i class="fa fa-sort" aria-hidden="true"></i>
-              <% end %>
-            <% end %>
           </th>
         </tr>
       </thead>
@@ -162,9 +119,6 @@
               <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
-              <%= animal.animal_type.name %>
-            </td>
-            <td class="mi_tbody_td">
               <%= link_to animal.nickname, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
@@ -174,16 +128,13 @@
               <%= animal.gender %>
             </td>
             <td class="mi_tbody_td">
-              <%= show_boolean(animal.sterilization) %>
+              <%= show_birth_or_death_date(animal, "birth") %>
             </td>
             <td class="mi_tbody_td">
-              <%= age(animal) %>
+              <%= show_vaccination_date(animal) %>
             </td>
             <td class="mi_tbody_td">
               <%= show_aviary(animal) %>
-            </td>
-            <td class="mi_tbody_td">
-              <%= show_date(animal.arival_date) %>
             </td>
           </tr>
         <% end %>

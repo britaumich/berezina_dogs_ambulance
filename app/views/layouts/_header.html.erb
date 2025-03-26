@@ -13,15 +13,19 @@
         </div>
         <div class="hidden lg:ml-6 lg:block">
           <div class="flex space-x-4">
-            <div class="flex items-center justify-between">
-              <div class="nav-top-link">
-                <%= link_to t('menu.header.animals'), animals_path, class: "#{class_names(active: current_page?(animals_path))}" if policy(Animal).index? %>
+            <div class="group relative cursor-pointer">
+              <div class="flex items-center justify-between">
+                <%= link_to t('menu.header.animals'), animals_path(:animal_type_id => AnimalType.find_by(name: 'собака').id), class: "nav-top-link #{class_names(active: current_page?(animals_path))}" if policy(Animal).index? %>
+              </div>
+              <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
+                <% animal_types_except_dogs.each do |animal_type| %>
+                  <%= link_to animal_type.name, animals_path(:animal_type_id => animal_type.id), class: "nav-sub-link" if policy(Animal).index? %>
+                <% end %>
               </div>
             </div>
-            <div class="flex items-center justify-between">
-              <div class="nav-top-link">
-                <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" %>
-              </div>
+            
+            <div class="nav-top-link">
+              <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" %>
             </div>
             <% if authenticated? %>
               <div class="group relative cursor-pointer">
