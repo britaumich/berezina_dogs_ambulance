@@ -8,7 +8,6 @@ class AnimalsController < ApplicationController
   def index
     
     @animal_type_id = params[:animal_type_id]
-    @animal_typy = AnimalType.find(@animal_type_id)
     @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
       @view = 'table'
