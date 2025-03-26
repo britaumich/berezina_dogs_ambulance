@@ -106,7 +106,6 @@ module ApplicationHelper
   def fields_to_sort_animals
     [
       [ t('activerecord.attributes.animal.id'), 'id' ],
-      [ t('activerecord.attributes.animal.animal_type_id'), 'animal_type_name' ],
       [ t('activerecord.attributes.animal.nickname'), 'nickname' ],
       [ t('activerecord.attributes.animal.surname'), 'surname' ],
       [ t('activerecord.attributes.animal.gender'), 'gender' ],
