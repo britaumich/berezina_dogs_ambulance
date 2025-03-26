@@ -109,6 +109,7 @@ ru:
   label: 
     Birth Date: "Дата рождения"
     Death Date: "Дата смерти"
+    Vaccination Date: "Дата вакцинации"
     Age: "Возраст"
     and: "и"
     or: "или"
