@@ -93,7 +93,7 @@
             </div>
             <div class="">
               <div class="">
-                <%= f.label :arival_date_gteq, "#{t('activerecord.attributes.animal.arival_date')}", class: "fancy_label" %>
+                <%= f.label :arival_date_gteq, "#{t('label.arival_date_after')}", class: "fancy_label" %>
                 <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'filter_select', :"data-action" => "autosubmit#submit",
                   value: @arival_date_gteq.present? ? @arival_date_gteq : nil,
                   data: {
@@ -102,7 +102,7 @@
                   } %>
               </div>
               <div class="mt-2">
-                <%= f.label :arival_date_lteq, "#{t('activerecord.attributes.animal.arival_date')}", class: "fancy_label" %>
+                <%= f.label :arival_date_lteq, "#{t('label.arival_date_before')}", class: "fancy_label" %>
                 <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'filter_select', :"data-action" => "autosubmit#submit",
                   value: @arival_date_lteq.present? ? @arival_date_lteq : nil,
                   data: {
@@ -116,19 +116,14 @@
               <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select', :"data-action" => "autosubmit#submit" }) %>
             </div>
 
-            <div class="my-2 col-span-2 flex justify-start">
-              <div>
-                <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
-              </div>
-              <div>
-                <button type="button" class="tertiary_button"
-                  data-action='click->autosubmit#clearFilters'>
-                    <span>
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                      <%= t('forms.buttons.clear') %>
-                    </span>
-                </button>
-              </div>
+            <div class="my-2">
+              <button type="button" class="tertiary_button"
+                data-action='click->autosubmit#clearFilters'>
+                  <span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <%= t('forms.buttons.clear') %>
+                  </span>
+              </button>
             </div>
             <div class="mt-4">
               <%= link_to animals_path(format: 'csv'), class: "link_to" do %>

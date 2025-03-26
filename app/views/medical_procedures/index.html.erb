@@ -9,9 +9,10 @@
 
   <div class="relative min-h-screen md:flex">
     <div class="z-50 sidebar w-62 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-      <div data-controller="animal">
+      <div>
         <%= search_form_for @q,
-          data: { animal_target: "form",
+          data: { controller: "autosubmit",
+                  autosubmit_target: "form",
                   turbo_frame: "turbo-medical-procedures"
                   } do |f| %>
           <div class="col-span-2 mb-4">
@@ -28,24 +29,26 @@
           <div class="">
             <div class="mb-2">
               <%= f.label :animal_nickname_cont, t('text.Nickname contains'), class: "fancy_label" %>
-              <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
+              <%= f.search_field :animal_nickname_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
             </div>
             <div class="mb-2">
               <%= f.label :procedure_type_name_eq, "#{t('activerecord.attributes.medical_procedure.procedure_type_id')}", class: "fancy_label"  %>
-              <%= f.collection_select(:procedure_type_name_eq, procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'filter_select' }) %>
+              <%= f.collection_select(:procedure_type_name_eq, procedure_types, :name, :name, { include_blank: "#{t('text.Select')} ..."}, { class: 'filter_select', :"data-action" => "autosubmit#submit"  }) %>
             </div>
             <div class="mb-2">
               <div class="mb-2">
-                <%= f.label :date_planned_gteq, "#{t('activerecord.attributes.medical_procedure.date_planned')}", class: "fancy_label" %>
-                  <%= f.text_field :date_planned_gteq, placeholder: t('text.From'), class: 'filter_select',
+                <%= f.label :date_planned_gteq, "#{t('label.date_planned_after')}", class: "fancy_label" %>
+                  <%= f.text_field :date_planned_gteq, placeholder: t('text.From'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+                    value: @date_planned_gteq.present? ? @date_planned_gteq : nil,
                     data: {
                       controller: "flatpickr",
                       flatpickr_date_format: "d-m-Y"
                     } %>
                 </div>
-              <div class="ml-2">
-                <%= f.label :date_planned_lteq, class: "hidden" %>
-                  <%= f.text_field :date_planned_lteq, placeholder: t('text.To'), class: 'filter_select',
+              <div class="mb-2">
+                <%= f.label :date_planned_lteq, "#{t('label.date_planned_before')}", class: "fancy_label" %>
+                  <%= f.text_field :date_planned_lteq, placeholder: t('text.To'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+                    value: @date_planned_lteq.present? ? @date_planned_lteq : nil,
                     data: {
                       controller: "flatpickr",
                       flatpickr_date_format: "d-m-Y"
@@ -54,34 +57,34 @@
             </div>
 
             <div class="mb-2">
-              <%= f.label :date_planned_eq, "#{t('activerecord.attributes.medical_procedure.date_planned')}", class: "fancy_label" %>
-              <%= f.text_field :date_planned_eq, placeholder: t('text.Date'), class: 'filter_select',
-                data: {
-                  controller: "flatpickr",
-                  flatpickr_date_format: "d-m-Y"
-                } %>
+              <div class="mb-2">
+                <%= f.label :date_completed_gteq, "#{t('label.date_completed_after')}", class: "fancy_label" %>
+                  <%= f.text_field :date_completed_gteq, placeholder: t('text.From'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+                    value: @date_completed_gteq.present? ? @date_completed_gteq : nil,
+                    data: {
+                      controller: "flatpickr",
+                      flatpickr_date_format: "d-m-Y"
+                    } %>
+                </div>
+              <div class="mb-2">
+                <%= f.label :date_completed_lteq, "#{t('label.date_completed_before')}", class: "fancy_label" %>
+                  <%= f.text_field :date_completed_lteq, placeholder: t('text.To'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+                    value: @date_completed_lteq.present? ? @date_completed_lteq : nil,
+                    data: {
+                      controller: "flatpickr",
+                      flatpickr_date_format: "d-m-Y"
+                    } %>
+                </div>
             </div>
-            <div class="mb-2">
-              <%= f.label :date_completed, class: "fancy_label" %>
-              <%= f.text_field :date_completed_eq, placeholder: t('text.Date'), class: 'filter_select',
-                data: {
-                  controller: "flatpickr",
-                  flatpickr_date_format: "Y-m-d"
-                } %>
-            </div>
+
             <div class="my-2 col-span-2 flex justify-start">
-              <div class="">
-                <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
-              </div>
-              <div>
-                <button type="button" class="tertiary_button"
-                  data-action='click->animal#clearFilters'>
-                    <span>
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                      <%= t('forms.buttons.clear') %>
-                    </span>
-                </button>
-              </div>
+              <button type="button" class="tertiary_button"
+                data-action='click->autosubmit#clearFilters'>
+                  <span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <%= t('forms.buttons.clear') %>
+                  </span>
+              </button>
             </div>
           </div>
         <% end %>

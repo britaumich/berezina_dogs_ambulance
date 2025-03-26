@@ -5,12 +5,18 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures or /medical_procedures.json
   def index
+    
     @medical_procedures = MedicalProcedure.all
     if params[:q].nil?
       @q = @medical_procedures.ransack(params[:q])
     else
       @q = @medical_procedures.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
+    @date_planned_gteq = params[:q].present? && params[:q][:date_planned_gteq].present? ? params[:q][:date_planned_gteq] : nil
+    @date_planned_lteq = params[:q].present? && params[:q][:date_planned_lteq].present? ? params[:q][:date_planned_lteq] : nil
+    @date_completed_gteq = params[:q].present? && params[:q][:date_completed_gteq].present? ? params[:q][:date_completed_gteq] : nil
+    @date_completed_lteq = params[:q].present? && params[:q][:date_completed_lteq].present? ? params[:q][:date_completed_lteq] : nil
+
     @medical_procedures = @q.result.includes(:animal).page(params[:page])
     authorize @medical_procedures
   end

@@ -282,7 +282,7 @@
   }
 
   .filter_select {
-    @apply w-40 text-sm font-medium leading-4 text-blue-950 bg-white border border-gray-600 rounded block p-2 focus:ring-green-950;
+    @apply w-48 text-sm font-medium leading-4 text-blue-950 bg-white border border-gray-600 rounded block p-2 focus:ring-green-950;
   }
 
   .file-upload {

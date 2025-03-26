@@ -77,6 +77,12 @@ en:
     Death Date: "Death Date"
     Birth Date: "Birth Date"
     Vaccination Date: "Vaccination Date"
+    date_planned_after: "Date Planned - After"
+    date_planned_before: "Date Planned - Before"
+    date_completed_after: "Date Completed - After"
+    date_completed_before: "Date Completed - Before"
+    arival_date_after: "Arrival Date - After"
+    arival_date_before: "Arrival Date - Before"
   menu:
     languages:
       lang: "Language"
