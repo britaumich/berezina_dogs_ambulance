@@ -35,6 +35,14 @@ class AnimalPolicy  < ApplicationPolicy
     authenticated?
   end
 
+  def upload_pictures?
+    authenticated?
+  end
+
+  def delete_picture?
+    authenticated?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

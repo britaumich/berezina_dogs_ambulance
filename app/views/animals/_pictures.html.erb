@@ -3,7 +3,7 @@
     <h2>
       <%= t('text.Pictures') %>
     </h2>
-    <% if policy(@animal).edit? %>
+    <% if policy(@animal).upload_pictures? %>
       <p class="body-sm-text my-2">
         <%= t('text.To upload multiple images, click Browse and select all images at once') %>
       </p>
@@ -30,10 +30,12 @@
                   <%= t('text.Uploaded on') %> <%= show_date_with_month_name(picture.created_at) %>
                 </p>
                 <div>
-                  <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
-                    <span class="tertiary_button"><%= t('forms.buttons.delete') %>
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </span>
+                  <% if policy(@animal).delete_picture? %>
+                    <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
+                      <span class="tertiary_button"><%= t('forms.buttons.delete') %>
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </span>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
