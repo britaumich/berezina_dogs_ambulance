@@ -39,6 +39,9 @@ module ApplicationHelper
     end
   end
 
+  def show_vaccination_date(animal)
+  end
+
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
       animal.nickname + ' ' + animal.surname
