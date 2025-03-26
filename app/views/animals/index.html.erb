@@ -68,7 +68,7 @@
 
             <div class="mb-2">
               <%= f.label :animal_status_name_eq, "#{t('activerecord.attributes.animal.animal_status_id')}", class: "fancy_label" %>
-              <%= f.collection_select(:animal_status_name_eq, animal_statuses, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select' }) %>
+              <%= f.collection_select(:animal_status_name_eq, animal_statuses, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select', :"data-action" => "autosubmit#submit" }) %>
             </div>
  
             <div class="mb-2">
@@ -81,15 +81,15 @@
             </div>
             <div class="mb-2">
               <%= f.label :gender, class: "fancy_label" %>
-              <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
+              <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select", :"data-action" => "autosubmit#submit" }) %>
             </div>
             <div class="mb-2">
               <%= f.label :size, class: "fancy_label" %>
-              <%= f.select(:size_eq, size_list, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
+              <%= f.select(:size_eq, size_list, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select", :"data-action" => "autosubmit#submit" }) %>
             </div>
             <div class="mb-2">
               <%= f.checkbox :sterilization_eq, class: "check_box" %>
-              <%= f.label :sterilization_eq, "#{t('activerecord.attributes.animal.sterilization')}", class: "body-sm-semibold-text" %>
+              <%= f.label :sterilization_eq, "#{t('activerecord.attributes.animal.sterilization')}", class: "body-sm-semibold-text", :"data-action" => "autosubmit#submit" %>
             </div>
             <div class="">
               <div class="">
@@ -111,7 +111,7 @@
             </div>
             <div class="mb-2">
               <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}", class: "fancy_label" %>
-              <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select' }) %>
+              <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select', :"data-action" => "autosubmit#submit" }) %>
             </div>
 
             <div class="my-2 col-span-2 flex justify-start">
