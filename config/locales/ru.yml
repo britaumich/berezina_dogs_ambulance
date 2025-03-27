@@ -90,6 +90,7 @@ ru:
     To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "Чтобы добавить брата или сестру, выберите имя из списка; при дублировании братья и сестры будут сохранены"
     Updated on: "Обновлено"
     on: "в"
+    Animal Details: "Детали"
   helpers:
     page_entries_info:
       one_page:
@@ -265,3 +266,12 @@ ru:
     one: '%{count} ошибка'
     few: '%{count} ошибки'
     many: '%{count} ошибок'
+  age:
+    years old: "лет"
+    months old: "месяцев"
+    year old: "год"
+    month old: "месяц"
+    year: "год"
+    month: "месяц"
+    years: "лет"
+    months: "месяцев"

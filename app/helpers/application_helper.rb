@@ -51,27 +51,51 @@ module ApplicationHelper
   end
 
   def age(animal)
-    if animal.birth_year.present?
-      dob = animal.birth_year
-      now = Time.zone.today
-      months = (now.year * 12 + now.month) - (dob.year * 12 + dob.month)
+    return 'N/A' if animal.birth_year.blank?
+    now = Time.zone.today
+    year = animal.birth_year.year
+    month = animal.birth_day.present? ? animal.birth_day.month : 1
+
+    months = (now.year * 12 + now.month) - (year * 12 + month)
 
       # months / 12 will give the number of years
       # months % 12 will give the number of months
       readable_age(months / 12, months % 12)
-    else
-      'N/A'
-    end
+
   end
+
+  # def age(animal)
+  #   return 'N/A' if animal.birth_year.blank?
+  #   now = Time.zone.today
+  #   year = animal.birth_year.year
+  #   month = animal.birth_day.present? ? animal.birth_day.month : 1
+  #   day = animal.birth_day.present? ? animal.birth_day.day : 1
+  #   now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
+  # end
 
   def readable_age(years, months)
-    year_text = ''
-    if years != 0
-      year_text = "#{pluralize(years, 'year')} "
+    # for under 1 year olds
+    if years == 0
+      return months > 1 ? months.to_s + " " + I18n.t('age.months old') : " " + months.to_s + " " + I18n.t('age.month old')  
+  
+    # for 1 year olds
+    elsif years == 1
+      return months > 1 ? years.to_s + " " + I18n.t('age.year') + " " + months.to_s + " " + I18n.t('age.months old') : years.to_s + " " + I18n.t('age.year') + months.to_s + " " + I18n.t('age.month old') 
+  
+    # for older than 1
+    else
+      return months > 1 ? years.to_s + " " + I18n.t('age.years') + " " + months.to_s + " " + I18n.t('age.months old') : years.to_s + " " + I18n.t('age.years') + months.to_s + " " + I18n.t('age.month old')
     end
-
-    "#{year_text}#{pluralize(months, 'month')}"
   end
+
+  # def readable_age(years, months)
+  #   year_text = ''
+  #   if years != 0
+  #     year_text = "#{pluralize(years, 'year')} "
+  #   end
+
+  #   "#{year_text}#{pluralize(months, 'month')}"
+  # end
 
   def show_aviary(animal)
     aviary = ''
