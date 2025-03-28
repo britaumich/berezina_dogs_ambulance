@@ -126,9 +126,10 @@
               </button>
             </div>
             <div class="mt-4">
-              <%= link_to animals_path(format: 'csv'), class: "link_to" do %>
-                Export to CSV
-              <% end %>
+              <%= link_to "Export All to CSV", animals_path(format: 'csv'), class: "link_to" if policy(Animal).edit? %>
+            </div>
+            <div class="mt-2">
+              <%= link_to "Export All to PDF", animals_path(format: :pdf), class: "link_to" if policy(Animal).edit? %>
             </div>
           </div>
         </div>

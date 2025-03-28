@@ -6,7 +6,6 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
-    
     @animal_type_id = params[:animal_type_id].present? ? params[:animal_type_id] : AnimalType.find_by(name: 'собака').id
     @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
@@ -42,11 +41,14 @@ class AnimalsController < ApplicationController
     @animals = @q.result.includes(:animal_type, :aviary, :animal_status).page(params[:page])
     authorize @animals
 
-    if params[:format] == 'csv'
+    if params[:format] == 'csv' || params[:format] == 'pdf'
+      @animals = @q.result.includes(:animal_type, :aviary, :animal_status)
       respond_to do |format|
-        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Time.zone.today)}.csv" }
+        format.csv { send_data @animals.to_csv, charset: "utf-8", filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.csv" }
+        format.pdf { send_data generate_pdf_content(@animals), filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.pdf", type: 'application/pdf', disposition: 'inline'}
       end
     end
+
   end
 
   def duplicate
@@ -62,7 +64,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.html { render :show, status: :ok }
       format.pdf do
-        pdf_content = generate_pdf_content(@animal)
+        pdf_content = generate_pdf_content([@animal])
         send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
@@ -227,7 +229,7 @@ class AnimalsController < ApplicationController
         :death_year, :death_day, :color, :aviary_id, :section_id, :distinctive_feature, :medical_history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 
-    def generate_pdf_content(animal)
+    def generate_pdf_content(animals)
       Prawn::Document.new do |pdf|
         # Register the external font
         pdf.font_families.update('Montserrat' => {
@@ -236,35 +238,37 @@ class AnimalsController < ApplicationController
         pdf.font('Montserrat') # Use the registered font
 
         # Add content to the PDF
-        pdf.text "#{animal.animal_type.name} - #{animal.animal_status.name}", size: 24, align: :center
-        pdf.move_down 20
-        pdf.text "#{t('activerecord.attributes.animal.id')}: #{animal.id}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
-        pdf.text "#{t('label.Birth Date')}: #{show_birth_or_death_date(animal, "birth")}", size: 12
-        pdf.text "#{t('label.Age')}: #{age(animal)}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.size')}: #{animal.size}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.color')}: #{animal.color}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.distinctive_feature')}: #{animal.distinctive_feature}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.arival_date')}: #{show_date(animal.arival_date)}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.from_people')}: #{animal.from_people}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.sterilization')}: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.medical_history')}: #{animal.medical_history}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.aviary_id')}: #{show_aviary(animal)}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.graduation')}: #{animal.graduation}", size: 12
-        pdf.text "#{t('label.Death Date')}: #{show_birth_or_death_date(animal, "death")}", size: 12
+        animals.each_with_index do |animal, index|
+          pdf.start_new_page unless index == 0
+          pdf.text "#{animal.animal_type.name} - #{animal.animal_status.name}", size: 24, align: :center
+          pdf.move_down 20
+          pdf.text "#{t('activerecord.attributes.animal.id')}: #{animal.id}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
+          pdf.text "#{t('label.Birth Date')}: #{show_birth_or_death_date(animal, "birth")}", size: 12
+          pdf.text "#{t('label.Age')}: #{age(animal)}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.size')}: #{animal.size}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.color')}: #{animal.color}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.distinctive_feature')}: #{animal.distinctive_feature}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.arival_date')}: #{show_date(animal.arival_date)}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.from_people')}: #{animal.from_people}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.sterilization')}: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.medical_history')}: #{animal.medical_history}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.aviary_id')}: #{show_aviary(animal)}", size: 12
+          pdf.text "#{t('activerecord.attributes.animal.graduation')}: #{animal.graduation}", size: 12
+          pdf.text "#{t('label.Death Date')}: #{show_birth_or_death_date(animal, "death")}", size: 12
 
-        pdf.move_down 20
-        
-        table_data = Array.new
-        table_data << ["#{t('activerecord.attributes.medical_procedure.procedure_type_id')}", "#{t('activerecord.attributes.medical_procedure.date_planned')}", "#{t('activerecord.attributes.medical_procedure.date_completed')}"]
-        animal.medical_procedures.each do |procedure|
-          table_data << [procedure.procedure_type.name, show_date(procedure.date_planned), show_date(procedure.date_completed)]
+          pdf.move_down 20
+          
+          table_data = Array.new
+          table_data << ["#{t('activerecord.attributes.medical_procedure.procedure_type_id')}", "#{t('activerecord.attributes.medical_procedure.date_planned')}", "#{t('activerecord.attributes.medical_procedure.date_completed')}"]
+          animal.medical_procedures.each do |procedure|
+            table_data << [procedure.procedure_type.name, show_date(procedure.date_planned), show_date(procedure.date_completed)]
+          end
+          pdf.table(table_data, header: true, width: 500, cell_style: { inline_format: true, size: 12 })
         end
-        pdf.table(table_data, header: true, width: 500, cell_style: { inline_format: true, size: 12 })
-
 
       end.render
     end

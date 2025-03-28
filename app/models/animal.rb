@@ -107,7 +107,7 @@ class Animal < ApplicationRecord
     header = %w[ id nickname surname gender size parent_id animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_day death_day children siblings ]
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
-    CSV.generate(headers: true) do |csv|
+    csv_string = CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << header_to_csv
       find_each do |animal|
         row = []
@@ -149,6 +149,7 @@ class Animal < ApplicationRecord
         csv << row
       end
     end
+    "\uFEFF" + csv_string
   end
 
   private
