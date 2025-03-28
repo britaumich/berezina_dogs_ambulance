@@ -19,51 +19,51 @@
               turbo_frame: "turbo-animals"
               } do |f| %>
 
-      <div class="mb-2">
-        <input type="hidden" id="animal_type_id" name="animal_type_id" value=<%= @animal_type_id %>>
-      </div>
-      <div class="flex justify-between items-center gap-4 mb-2 -mt-2">
-        <div class="flex justify-between items-center gap-4 text-sm">
-          <div class="display inline">
-            <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
-            <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
-          <div>
-            <label for="order" class="fancy_label"><%= t('label.order') %></label>
-            <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
-          <div class="mt-2 ml-4">
-            <%= page_entries_info @animals %>
-          </div>
-        </div>
-        <div>
-          <div>
-            <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
-            <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
-        </div>
-      </div>
+      <input type="hidden" id="animal_type_id" name="animal_type_id" value=<%= @animal_type_id %>>
       <div class="relative min-h-screen md:flex">
         <%= render 'side_filters', f: f %>
-    <% end %>
-    <div class="flex-1 mx-2">
-      <%= turbo_frame_tag "turbo-animals" do %>
-        <div class="mb-20 min-w-full" id="animals_listing">
-          
-          <% if @view == 'table' %>
-            <%= render 'animal_list' %>
-          <% else %>
-            <%= render 'picture_list' %>
-          <% end %>
-          <div class="my-2 flex justify-center" >
-            <%= paginate @animals %>
+    
+        <div class="flex-1 mx-2">
+          <div class="flex justify-between items-center gap-4 mb-2 -mt-2">
+            <div class="flex justify-between items-center gap-4 text-sm">
+              <div class="display inline">
+                <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
+                <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+              <div>
+                <label for="order" class="fancy_label"><%= t('label.order') %></label>
+                <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+              <div class="mt-2 ml-4">
+                <%= page_entries_info @animals %>
+              </div>
+            </div>
+            <div>
+              <div>
+                <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
+                <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+            </div>
           </div>
+          <%= turbo_frame_tag "turbo-animals" do %>
+            <div class="mb-20 min-w-full" id="animals_listing">
+              
+              <% if @view == 'table' %>
+                <%= render 'animal_list' %>
+              <% else %>
+                <%= render 'picture_list' %>
+              <% end %>
+              <div class="my-2 flex justify-center" >
+                <%= paginate @animals %>
+              </div>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
   
 </div>
