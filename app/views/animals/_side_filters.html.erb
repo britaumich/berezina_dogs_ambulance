@@ -1,0 +1,86 @@
+<div class="z-50 sidebar w-62 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+
+  <div class="col-span-2 mb-4">
+    <p><%= t('text.Group search by') %>:</p>
+    <div class="ml-4">
+      <%= f.radio_button :m, 'and', :checked => true %>
+      <%= f.label :m, t('label.and'), value: 'and' %>
+    </div>
+    <div class="ml-4">
+      <%= f.radio_button :m, 'or' %>
+      <%= f.label :m, t('label.or'), value: 'or' %>
+    </div>
+  </div>
+  <div class="">
+    <div>
+      <%= f.label :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
+      <%= f.search_field :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :animal_status_name_eq, "#{t('activerecord.attributes.animal.animal_status_id')}", class: "fancy_label" %>
+      <%= f.collection_select(:animal_status_name_eq, animal_statuses, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select', :"data-action" => "autosubmit#submit" }) %>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :nickname_cont, class: "fancy_label" %>
+      <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
+    </div>
+    <div class="mb-2">
+      <%= f.label :surname_cont, class: "fancy_label" %>
+      <%= f.search_field :surname_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
+    </div>
+    <div class="mb-2">
+      <%= f.label :gender, class: "fancy_label" %>
+      <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select", :"data-action" => "autosubmit#submit" }) %>
+    </div>
+    <div class="mb-2">
+      <%= f.label :size, class: "fancy_label" %>
+      <%= f.select(:size_eq, size_list, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select", :"data-action" => "autosubmit#submit" }) %>
+    </div>
+    <div class="mb-2">
+      <%= f.checkbox :sterilization_eq, class: "check_box", :"data-action" => "input->autosubmit#submit" %>
+      <%= f.label :sterilization_eq, "#{t('activerecord.attributes.animal.sterilization')}", class: "body-sm-semibold-text" %>
+    </div>
+    <div class="">
+      <div class="">
+        <%= f.label :arival_date_gteq, "#{t('label.arival_date_after')}", class: "fancy_label" %>
+        <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+          value: @arival_date_gteq.present? ? @arival_date_gteq : nil,
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format: "d-m-Y"
+          } %>
+      </div>
+      <div class="mt-2">
+        <%= f.label :arival_date_lteq, "#{t('label.arival_date_before')}", class: "fancy_label" %>
+        <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'filter_select', :"data-action" => "autosubmit#submit",
+          value: @arival_date_lteq.present? ? @arival_date_lteq : nil,
+          data: {
+            controller: "flatpickr",
+            flatpickr_date_format: "d-m-Y"
+          } %>
+      </div>
+    </div>
+    <div class="mb-2">
+      <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}", class: "fancy_label" %>
+      <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select', :"data-action" => "autosubmit#submit" }) %>
+    </div>
+
+    <div class="my-2">
+      <button type="button" class="tertiary_button"
+        data-action='click->autosubmit#clearFilters'>
+          <span>
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <%= t('forms.buttons.clear') %>
+          </span>
+      </button>
+    </div>
+    <div class="mt-4">
+      <%= link_to "Export All to CSV", animals_path(format: 'csv', animal_type_id: @animal_type_id), class: "link_to" if policy(Animal).edit? %>
+    </div>
+    <div class="mt-2">
+      <%= link_to "Export All to PDF", animals_path(format: :pdf, animal_type_id: @animal_type_id), class: "link_to" if policy(Animal).edit? %>
+    </div>
+  </div>
+</div>
