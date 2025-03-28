@@ -103,7 +103,7 @@ module ApplicationHelper
       aviary += animal.aviary.name
     end
     if animal.section&.name.present?
-      aviary += ", #{t('text.section')} " + animal.section.name
+      aviary += ", #{I18n.t('text.section')} " + animal.section.name
     end
     aviary
   end
@@ -132,27 +132,27 @@ module ApplicationHelper
 
   def fields_to_sort_animals
     [
-      [ t('activerecord.attributes.animal.id'), 'id' ],
-      [ t('activerecord.attributes.animal.nickname'), 'nickname' ],
-      [ t('activerecord.attributes.animal.surname'), 'surname' ],
-      [ t('activerecord.attributes.animal.gender'), 'gender' ],
-      [ t('activerecord.attributes.animal.sterilization'), 'sterilization' ],
-      [ t('activerecord.attributes.animal.aviary_id'), 'aviary_name' ],
-      [ t('activerecord.attributes.animal.arival_date'), 'arival_date' ]
+      [ I18n.t('activerecord.attributes.animal.id'), 'id' ],
+      [ I18n.t('activerecord.attributes.animal.nickname'), 'nickname' ],
+      [ I18n.t('activerecord.attributes.animal.surname'), 'surname' ],
+      [ I18n.t('activerecord.attributes.animal.gender'), 'gender' ],
+      [ I18n.t('activerecord.attributes.animal.sterilization'), 'sterilization' ],
+      [ I18n.t('activerecord.attributes.animal.aviary_id'), 'aviary_name' ],
+      [ I18n.t('activerecord.attributes.animal.arival_date'), 'arival_date' ]
     ]
   end
 
   def sorting_order
     [
-      [ t('forms.sort.asc'), 'asc' ],
-      [ t('forms.sort.desc'), 'desc' ]
+      [ I18n.t('forms.sort.asc'), 'asc' ],
+      [ I18n.t('forms.sort.desc'), 'desc' ]
     ]
   end
 
   def index_views
     [
-      [ t('text.table'), 'table' ],
-      [ t('text.pictures'), 'pictures' ]
+      [ I18n.t('text.table'), 'table' ],
+      [ I18n.t('text.pictures'), 'pictures' ]
     ]
   end
 
@@ -187,11 +187,11 @@ module ApplicationHelper
   def show_status(status_id, animal_type_id)
     status = ''
     if status_id.nil?
-      status += t('label.status') + ' - все граждане; '
+      status += I18n.t('label.status') + ' - все граждане; '
     else
-      status += t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name + '; '
+      status += I18n.t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name + '; '
     end
-    status += t('label.animal_type') + ' - ' + AnimalType.find(animal_type_id).name
+    status += I18n.t('label.animal_type') + ' - ' + AnimalType.find(animal_type_id).name
   end
 
   def parents(animal)
@@ -225,7 +225,7 @@ module ApplicationHelper
   end
 
   def updated_on_and_by(resource)
-    return t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
+    return I18n.t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
   end
 
   def animal_types_except_dogs
