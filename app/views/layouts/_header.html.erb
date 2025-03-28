@@ -114,6 +114,77 @@
     </div>
   </div>
 
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class= "lg:hidden">
 
+    <div data-navbar-target="toggleable" class="hidden flex-col" id="mobile-menu">
+
+      <div class="border-t border-gray-700">
+        <div class="flex justify-center">
+          <div class= "flex flex-col pr-1 z-50">
+            <% if current_user %>
+              <div>
+                <div class="text-white body-sm-text pb-1"><%= current_user.email_address %></div>
+                <%= link_to "Sign Out", session_path, 
+                  method: :delete, 
+                  data: { turbo_method: :delete, confirm: "Are you sure?" },
+                  class: "sign_button" 
+                %>
+              </div>
+              <% else %> 
+                <div>
+                  <%= link_to "Sign In", new_session_path, 
+                      class: "sign_button" 
+                  %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="pb-3 pl-2">
+        <div class="w-full flex flex-col">
+          <div class="header_link">
+            <%= link_to t('menu.header.animals'), animals_path, class: "#{class_names(active: current_page?(animals_path))}" if policy(Animal).index? %>
+          </div>
+          <div class="cursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
+            <% animal_types_except_dogs.each do |animal_type| %>
+              <%= link_to animal_type.name, animals_path(:animal_type_id => animal_type.id), class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(Animal).index? %>
+            <% end %>
+          </div>
+          <div class="header_link">
+            <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" %>
+          </div>
+          <% if authenticated? %>
+            <div>
+              <%= content_tag :span, t('menu.header.аdditions'), class: "header_link" %>
+            </div>
+            <div class="cursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
+              <%= link_to t('menu.header.animal_types'), animal_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_types_path))}" %>
+              <%= link_to t('menu.header.animal_statuses'), animal_statuses_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_statuses_path))}" %>
+              <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" %>
+              <%= link_to t('menu.header.procedure_types'), procedure_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(procedure_types_path))}" %>
+              <%= link_to t('menu.header.admins'), admin_users_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(admin_users_path))}" %>
+            </div>
+            <div class="header_link">
+              <%= link_to t('menu.header.cart'), cart_path, class: "#{class_names(active: current_page?(cart_path))}" %>
+              <%= turbo_frame_tag "cart_total" do %>
+                <%= render 'cart/cart_total' %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="header_link">
+            <% if I18n.locale == :en %>
+              <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "" %>
+            <% else %>
+              <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+
+  </div>
 
 </nav>
