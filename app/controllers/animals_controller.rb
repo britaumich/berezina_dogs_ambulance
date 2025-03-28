@@ -64,7 +64,7 @@ class AnimalsController < ApplicationController
     respond_to do |format|
       format.html { render :show, status: :ok }
       format.pdf do
-        pdf_content = generate_pdf_content(@animal)
+        pdf_content = generate_pdf_content([@animal])
         send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
@@ -238,7 +238,8 @@ class AnimalsController < ApplicationController
         pdf.font('Montserrat') # Use the registered font
 
         # Add content to the PDF
-        animals.each do |animal|
+        animals.each_with_index do |animal, index|
+          pdf.start_new_page unless index == 0
           pdf.text "#{animal.animal_type.name} - #{animal.animal_status.name}", size: 24, align: :center
           pdf.move_down 20
           pdf.text "#{t('activerecord.attributes.animal.id')}: #{animal.id}", size: 12
@@ -267,7 +268,6 @@ class AnimalsController < ApplicationController
             table_data << [procedure.procedure_type.name, show_date(procedure.date_planned), show_date(procedure.date_completed)]
           end
           pdf.table(table_data, header: true, width: 500, cell_style: { inline_format: true, size: 12 })
-          pdf.start_new_page
         end
 
       end.render
