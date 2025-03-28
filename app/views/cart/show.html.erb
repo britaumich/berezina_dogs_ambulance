@@ -7,3 +7,9 @@
     <%= render 'add_to_enclosure' %>
   </div>
 </div>
+<div class="">
+  <%= link_to "Export the Cart to CSV", cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
+</div>
+<div class="mt-2">
+  <%= link_to "Export the Cart to PDF", cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
+</div>
