@@ -82,6 +82,7 @@
     <%= form.text_field :arival_date,
           class: "input_text_field",
           placeholder: "DD-MM-YYYY",
+          value: animal.arival_date.present? ? animal.arival_date.strftime("%d-%m-%Y") : nil,
           data: {
             controller: "flatpickr",
             flatpickr_date_format_value: "d-m-Y",
