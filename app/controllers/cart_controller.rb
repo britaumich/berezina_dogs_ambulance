@@ -3,7 +3,6 @@ class CartController < ApplicationController
     # @render_cart = false
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
-    @aviaries = Aviary.all.map { |a| [ a.name, a.id ] }
     @sections = []
     authorize @cart
 
@@ -78,7 +77,6 @@ class CartController < ApplicationController
     end
     cart.destroy
     flash.now[:notice] = t('forms.messages.Added to enclosure')
-    @aviaries = Aviary.all.map { |a| [ a.name, a.id ] }
     @sections = []
     respond_to do |format|
       format.turbo_stream do

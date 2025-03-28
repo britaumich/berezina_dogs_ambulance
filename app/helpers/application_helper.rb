@@ -172,6 +172,10 @@ module ApplicationHelper
     Aviary.order(:name)
   end
 
+  def aviaries_for_select
+    Aviary.all.map { |a| [ a.name, a.id ] }
+  end
+
   def sections
     []
   end

@@ -14,7 +14,7 @@
           <div id="<%= "cart-#{cart_animal.id}" %>">
             <rt>
               <td class="mi_tbody_td">
-                <%= cart_animal.animal_id %>
+                <%= link_to cart_animal.animal_id, animal_path(cart_animal.animal_id), data: { turbo_frame: "_top" }, class: "link_to" %>
               </td>
               <td class="mi_tbody_td">
                 <%= cart_animal.animal.animal_type.name %>
