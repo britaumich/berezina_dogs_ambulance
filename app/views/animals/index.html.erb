@@ -126,8 +126,8 @@
               </button>
             </div>
             <div class="mt-4">
-              <%= link_to animals_path(format: 'csv'), class: "link_to" do %>
-                Export to CSV
+              <%= link_to animals_path(format: 'csv', animals: @animals), class: "link_to" do %>
+                Export All to CSV
               <% end %>
             </div>
           </div>

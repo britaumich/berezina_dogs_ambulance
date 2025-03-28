@@ -6,7 +6,6 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
-    
     @animal_type_id = params[:animal_type_id].present? ? params[:animal_type_id] : AnimalType.find_by(name: 'собака').id
     @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
@@ -43,10 +42,12 @@ class AnimalsController < ApplicationController
     authorize @animals
 
     if params[:format] == 'csv'
+      @animals = @q.result.includes(:animal_type, :aviary, :animal_status)
       respond_to do |format|
-        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Time.zone.today)}.csv" }
+        format.csv { send_data @animals.to_csv, charset: "utf-8", filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.csv" }
       end
     end
+
   end
 
   def duplicate
