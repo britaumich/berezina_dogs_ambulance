@@ -6,6 +6,8 @@ class AnimalsController < ApplicationController
 
   # GET /animals or /animals.json
   def index
+    @animal_type_id = params[:animal_type_id].present? ? params[:animal_type_id] : AnimalType.find_by(name: 'собака').id
+    @animals = Animal.where(animal_type_id: @animal_type_id).order(:id)
     if params[:switch_view] == 'table'
       @view = 'table'
     elsif params[:switch_view] == 'pictures'
@@ -19,35 +21,34 @@ class AnimalsController < ApplicationController
     else
       @sort_by = nil
     end
-    if params[:status_id].present?
-      @status_id = params[:status_id].to_i
-    else
-      @status_id = 1
-    end
-    if @status_id == 0
-      @animals = Animal.order(:id)
-    else
-      @animals = Animal.where(animal_status_id: @status_id).order(:id)
-    end
     if params[:q].nil?
       @q = @animals.ransack(params[:q])
+      @status_id = nil
     else
+      if params[:q][:animal_status_name_eq].present?
+        @status_id = AnimalStatus.find_by(name: params[:q][:animal_status_name_eq]).id
+      end
       if params[:q][:sterilization_eq].present? && params[:q][:sterilization_eq] == '0'
         params[:q] = params[:q].except('sterilization_eq')
       end
       @q = @animals.ransack(params[:q].try(:merge, m: params[:q][:m]))
     end
+    @arival_date_lteq = params[:q].present? && params[:q][:arival_date_lteq].present? ? params[:q][:arival_date_lteq] : nil
+    @arival_date_gteq = params[:q].present? && params[:q][:arival_date_gteq].present? ? params[:q][:arival_date_gteq] : nil
     if @sort_by.present?
       @q.sorts = @sort_by + ' ' + @order
     end
-    @animals = @q.result.includes(:animal_type, :aviary).page(params[:page])
+    @animals = @q.result.includes(:animal_type, :aviary, :animal_status).page(params[:page])
     authorize @animals
 
-    if params[:format] == 'csv'
+    if params[:format] == 'csv' || params[:format] == 'pdf'
+      @animals = @q.result.includes(:animal_type, :aviary, :animal_status)
       respond_to do |format|
-        format.csv { send_data @animals.to_csv, filename: "#{t('menu.header.citizens')}-#{show_date(Time.zone.today)}.csv" }
+        format.csv { send_data @animals.to_csv, charset: "utf-8", filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.csv" }
+        format.pdf { send_data PdfGenerator.new(@animals).generate_pdf_content, filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.pdf", type: 'application/pdf', disposition: 'inline' }
       end
     end
+
   end
 
   def duplicate
@@ -62,10 +63,7 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       format.html { render :show, status: :ok }
-      format.pdf do
-        pdf_content = generate_pdf_content(@animal)
-        send_data pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline'
-      end
+      format.pdf { send_data PdfGenerator.new([@animal]).generate_pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline' }
     end
   end
 
@@ -200,6 +198,7 @@ class AnimalsController < ApplicationController
 
   def delete_picture
     delete_file = ActiveStorage::Attachment.find(params[:id])
+    authorize Animal
     delete_file.purge
     redirect_back(fallback_location: request.referer)
   end
@@ -227,39 +226,4 @@ class AnimalsController < ApplicationController
         :death_year, :death_day, :color, :aviary_id, :section_id, :distinctive_feature, :medical_history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 
-    def generate_pdf_content(animal)
-      Prawn::Document.new do |pdf|
-        # Register the external font
-        pdf.font_families.update('Montserrat' => {
-          normal: Rails.root.join('app/assets/stylesheets/Montserrat-Medium.ttf')
-        })
-        pdf.font('Montserrat') # Use the registered font
-
-        # Add content to the PDF
-        pdf.text 'Animal Details', size: 24, align: :center
-        pdf.move_down 20
-
-        pdf.text "#{t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.size')}: #{animal.size}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.arival_date')}: #{animal.arival_date}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.sterilization')}: #{animal.sterilization ? 'Yes' : 'No'}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.animal_type_id')}: #{animal.animal_type&.name}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.aviary_id')}: #{animal.aviary&.name}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.section_id')}: #{animal.section&.name}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.distinctive_feature')}: #{animal.distinctive_feature}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.medical_history')}: #{animal.medical_history}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.from_people')}: #{animal.from_people}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.from_place')}: #{animal.from_place}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.birth_year')}: #{animal.birth_year}", size: 12
-        pdf.text "#{t('activerecord.attributes.animal.death_year')}: #{animal.death_year}", size: 12
-
-        # pdf.move_down 20
-        # pdf.text "Medical Procedures:", size: 16
-        # animal.medical_procedures.each do |procedure|
-        #   pdf.text "- #{procedure.name}: #{procedure.description}", size: 12
-        # end
-      end.render
-    end
 end

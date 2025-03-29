@@ -1,10 +1,19 @@
-<div class="w-full">
+<div class="w-full" data-controller='sidebar'>
 
   <% content_for :title, "Animals" %>
 
-  <div class="flex justify-between items-center">
+  <div class="md:flex justify-between items-center">
     <h1 class="font-bold text-4xl"><%= t('text.Animals') %></h1>
-    <h1><%= show_status(@status_id) %></h1>
+    <h1><%= show_status(@status_id, @animal_type_id) %></h1>
+    <div class="justify-self-end items-center md:hidden mr-4" data-controller="navbar">
+      <!--  Mobile menu button -->
+      <button class="mobile-menu-button rounded h-10 w-10 bg-blue-900 text-white focus:outline-none focus:bg-blue-800" data-action="click->sidebar#toggle">
+        <div class="mx-auto h-5 w-5" viewBox="0 0 24 24">
+          <i class="fa-solid fa-filter"></i>
+          <span class="sr-only">Filters</span>
+        </div>
+      </button>
+    </div>
     <% if policy(Animal).new? %>
       <%= link_to t('menu.new'), new_animal_path, class: "primary_button" %>
     <% else %>
@@ -19,139 +28,57 @@
               turbo_frame: "turbo-animals"
               } do |f| %>
 
-      <div class="flex justify-between items-center gap-4 mb-2 -mt-2">
-        <div class="flex justify-between items-center gap-4 text-sm">
-          <div class="display inline">
-            <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
-            <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
-          <div>
-            <label for="order" class="fancy_label"><%= t('label.order') %></label>
-            <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
-          <div class="mt-2 ml-4">
-            <%= page_entries_info @animals %>
-          </div>
+      <input type="hidden" id="animal_type_id" name="animal_type_id" value=<%= @animal_type_id %>>
+      <div class="z-0 relative min-h-screen md:flex">
+        <div class="z-50 sidebar w-62 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out" data-sidebar-target="sidebar">
+
+          <%= render 'side_filters', f: f %>
         </div>
-        <div>
-          <div>
-            <label for="status_id" class="fancy_label"><%= t('label.status') %></label>
-            <%= select_tag "status_id", options_for_select(animal_statuses_for_select, selected: @status_id), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
+    
+        <div class="flex-1 mx-2">
+          <div class="md:flex justify-between items-center gap-4 mb-2 -mt-2">
+            <div class="md:flex justify-between items-center gap-4 text-sm">
+              <div class="display inline">
+                <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
+                <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+              <div>
+                <label for="order" class="fancy_label"><%= t('label.order') %></label>
+                <%= select_tag "order", options_for_select(sorting_order, selected: @order), class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+              <div class="mt-2 ml-4">
+                <%= page_entries_info @animals %>
+              </div>
+            </div>
+            <div>
+              <div>
+                <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
+                <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
+                  :"data-action" => "autosubmit#submit" %>
+              </div>
+            </div>
           </div>
-          <div>
-            <label for="switch_view" class="fancy_label"><%= t('label.view') %></label>
-            <%= select_tag "switch_view", options_for_select(index_views, selected: @view), class: "filter_select",
-              :"data-action" => "autosubmit#submit" %>
-          </div>
+          <%= turbo_frame_tag "turbo-animals" do %>
+            <div class="" id="desktop-animals_listing">
+              <% if @view == 'table' %>
+                <%= render 'animal_list' %>
+              <% else %>
+                <%= render 'picture_list' %>
+              <% end %>
+              <div class="my-2 flex justify-center" >
+                <%= paginate @animals %>
+              </div>
+            </div>
+            <div id="mobile-animals_listing" class="lg:hidden">
+              <%= render 'picture_list' %>
+              <%= paginate @animals %>
+            </div>
+          <% end %>
         </div>
       </div>
-      <div class="relative min-h-screen md:flex">
-        <div class="z-50 sidebar w-62 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
-
-          <div class="col-span-2 mb-4">
-            <p><%= t('text.Group search by') %>:</p>
-            <div class="ml-4">
-              <%= f.radio_button :m, 'and', :checked => true %>
-              <%= f.label :m, t('label.and'), value: 'and' %>
-            </div>
-            <div class="ml-4">
-              <%= f.radio_button :m, 'or' %>
-              <%= f.label :m, t('label.or'), value: 'or' %>
-            </div>
-          </div>
-          <div class="">
-            <div>
-              <%= f.label :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
-              <%= f.search_field :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
-            </div>
-
-            <div class="mb-2">
-              <%= f.label :animal_type_name_eq, "#{t('activerecord.attributes.animal.animal_type_id')}", class: "fancy_label" %>
-              <%= f.collection_select(:animal_type_name_eq, animal_types, :name, :name, { include_blank: "#{t('text.Select')} ..." }, { class: 'filter_select' }) %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :nickname_cont, class: "fancy_label" %>
-              <%= f.search_field :nickname_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :surname_cont, class: "fancy_label" %>
-              <%= f.search_field :surname_cont, placeholder: t('text.Contains'), class: 'filter_select' %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :gender, class: "fancy_label" %>
-              <%= f.select(:gender_eq, gender_lists, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
-            </div>
-            <div class="mb-2">
-              <%= f.label :size, class: "fancy_label" %>
-              <%= f.select(:size_eq, size_list, { include_blank: "#{t('text.Select')} ..." }, { class: "filter_select" }) %>
-            </div>
-            <div class="mb-2">
-              <%= f.checkbox :sterilization_eq, class: "check_box" %>
-              <%= f.label :sterilization_eq, "#{t('activerecord.attributes.animal.sterilization')}", class: "body-sm-semibold-text" %>
-            </div>
-            <div class="">
-              <div class="">
-                <%= f.label :arival_date_gteq, "#{t('activerecord.attributes.animal.arival_date')}", class: "fancy_label" %>
-                <%= f.text_field :arival_date_gteq, placeholder: t('text.From'), class: 'filter_select',
-                  data: {
-                    controller: "flatpickr",
-                    flatpickr_date_format: "d-m-Y"
-                  } %>
-              </div>
-              <div class="mt-2 ml-2">
-                <%= f.label :arival_date_lteq, class: "hidden" %>
-                <%= f.text_field :arival_date_lteq, placeholder: t('text.To'), class: 'filter_select',
-                  data: {
-                    controller: "flatpickr",
-                    flatpickr_date_format: "d-m-Y"
-                  } %>
-              </div>
-            </div>
-            <div class="mb-2">
-              <%= f.label :aviary_name_eq, "#{t('activerecord.attributes.animal.aviary_id')}", class: "fancy_label" %>
-              <%= f.collection_select(:aviary_name_eq, aviaries, :name, :name, { include_blank: "#{t('text.Select')}" }, { class: 'filter_select' }) %>
-            </div>
-
-            <div class="my-2 col-span-2 flex justify-start">
-              <div>
-                <%= f.submit t('forms.buttons.search'), data: { disable_with: false }, class: "primary_button" %>
-              </div>
-              <div>
-                <button type="button" class="tertiary_button"
-                  data-action='click->autosubmit#clearFilters'>
-                    <span>
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                      <%= t('forms.buttons.clear') %>
-                    </span>
-                </button>
-              </div>
-            </div>
-            <div class="mt-4">
-              <%= link_to animals_path(format: 'csv'), class: "link_to" do %>
-                Export to CSV
-              <% end %>
-            </div>
-          </div>
-        </div>
     <% end %>
-    <div class="flex-1 mx-2">
-      <%= turbo_frame_tag "turbo-animals" do %>
-        <div class="mb-20 min-w-full" id="animals_listing">
-          
-          <% if @view == 'table' %>
-            <%= render 'animal_list' %>
-          <% else %>
-            <%= render 'picture_list' %>
-          <% end %>
-          <div class="my-2 flex justify-center" >
-            <%= paginate @animals %>
-          </div>
-        </div>
-      <% end %>
-    </div>
   </div>
   
 </div>

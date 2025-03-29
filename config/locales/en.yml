@@ -76,6 +76,15 @@ en:
     Search Text Fields: "Search Text Fields"
     Death Date: "Death Date"
     Birth Date: "Birth Date"
+    Vaccination Date: "Vaccination Date"
+    date_planned_after: "Date Planned - After"
+    date_planned_before: "Date Planned - Before"
+    date_completed_after: "Date Completed - After"
+    date_completed_before: "Date Completed - Before"
+    arival_date_after: "Arrival Date - After"
+    arival_date_before: "Arrival Date - Before"
+    status: "Status"
+    animal_type: "Type"
   menu:
     languages:
       lang: "Language"
@@ -167,3 +176,10 @@ en:
     few:  "%{count} errors"
     many:  "%{count} errors"
     other: "%{count} errors"
+  age:
+    years old: "years old"
+    months old: "months old"
+    year old: "year old"
+    month old: "month old"
+    year: "year"
+    month: "month"

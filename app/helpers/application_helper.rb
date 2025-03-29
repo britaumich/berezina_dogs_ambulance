@@ -39,6 +39,9 @@ module ApplicationHelper
     end
   end
 
+  def show_vaccination_date(animal)
+  end
+
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
       animal.nickname + ' ' + animal.surname
@@ -48,27 +51,51 @@ module ApplicationHelper
   end
 
   def age(animal)
-    if animal.birth_year.present?
-      dob = animal.birth_year
-      now = Time.zone.today
-      months = (now.year * 12 + now.month) - (dob.year * 12 + dob.month)
+    return 'N/A' if animal.birth_year.blank?
+    now = Time.zone.today
+    year = animal.birth_year.year
+    month = animal.birth_day.present? ? animal.birth_day.month : 1
+
+    months = (now.year * 12 + now.month) - (year * 12 + month)
 
       # months / 12 will give the number of years
       # months % 12 will give the number of months
       readable_age(months / 12, months % 12)
-    else
-      'N/A'
-    end
+
   end
+
+  # def age(animal)
+  #   return 'N/A' if animal.birth_year.blank?
+  #   now = Time.zone.today
+  #   year = animal.birth_year.year
+  #   month = animal.birth_day.present? ? animal.birth_day.month : 1
+  #   day = animal.birth_day.present? ? animal.birth_day.day : 1
+  #   now.year - year - ((now.month > month || (now.month == month && now.day >= day)) ? 0 : 1)
+  # end
 
   def readable_age(years, months)
-    year_text = ''
-    if years != 0
-      year_text = "#{pluralize(years, 'year')} "
+    # for under 1 year olds
+    if years == 0
+      return months > 1 ? months.to_s + " " + I18n.t('age.months old') : " " + months.to_s + " " + I18n.t('age.month old')  
+  
+    # for 1 year olds
+    elsif years == 1
+      return months > 1 ? years.to_s + " " + I18n.t('age.year') + " " + months.to_s + " " + I18n.t('age.months old') : years.to_s + " " + I18n.t('age.year') + months.to_s + " " + I18n.t('age.month old') 
+  
+    # for older than 1
+    else
+      return months > 1 ? years.to_s + " " + I18n.t('age.years') + " " + months.to_s + " " + I18n.t('age.months old') : years.to_s + " " + I18n.t('age.years') + months.to_s + " " + I18n.t('age.month old')
     end
-
-    "#{year_text}#{pluralize(months, 'month')}"
   end
+
+  # def readable_age(years, months)
+  #   year_text = ''
+  #   if years != 0
+  #     year_text = "#{pluralize(years, 'year')} "
+  #   end
+
+  #   "#{year_text}#{pluralize(months, 'month')}"
+  # end
 
   def show_aviary(animal)
     aviary = ''
@@ -76,7 +103,7 @@ module ApplicationHelper
       aviary += animal.aviary.name
     end
     if animal.section&.name.present?
-      aviary += ", #{t('text.section')} " + animal.section.name
+      aviary += ", #{I18n.t('text.section')} " + animal.section.name
     end
     aviary
   end
@@ -105,28 +132,27 @@ module ApplicationHelper
 
   def fields_to_sort_animals
     [
-      [ t('activerecord.attributes.animal.id'), 'id' ],
-      [ t('activerecord.attributes.animal.animal_type_id'), 'animal_type_name' ],
-      [ t('activerecord.attributes.animal.nickname'), 'nickname' ],
-      [ t('activerecord.attributes.animal.surname'), 'surname' ],
-      [ t('activerecord.attributes.animal.gender'), 'gender' ],
-      [ t('activerecord.attributes.animal.sterilization'), 'sterilization' ],
-      [ t('activerecord.attributes.animal.aviary_id'), 'aviary_name' ],
-      [ t('activerecord.attributes.animal.arival_date'), 'arival_date' ]
+      [ I18n.t('activerecord.attributes.animal.id'), 'id' ],
+      [ I18n.t('activerecord.attributes.animal.nickname'), 'nickname' ],
+      [ I18n.t('activerecord.attributes.animal.surname'), 'surname' ],
+      [ I18n.t('activerecord.attributes.animal.gender'), 'gender' ],
+      [ I18n.t('activerecord.attributes.animal.sterilization'), 'sterilization' ],
+      [ I18n.t('activerecord.attributes.animal.aviary_id'), 'aviary_name' ],
+      [ I18n.t('activerecord.attributes.animal.arival_date'), 'arival_date' ]
     ]
   end
 
   def sorting_order
     [
-      [ t('forms.sort.asc'), 'asc' ],
-      [ t('forms.sort.desc'), 'desc' ]
+      [ I18n.t('forms.sort.asc'), 'asc' ],
+      [ I18n.t('forms.sort.desc'), 'desc' ]
     ]
   end
 
   def index_views
     [
-      [ t('text.table'), 'table' ],
-      [ t('text.pictures'), 'pictures' ]
+      [ I18n.t('text.table'), 'table' ],
+      [ I18n.t('text.pictures'), 'pictures' ]
     ]
   end
 
@@ -138,12 +164,16 @@ module ApplicationHelper
     AnimalStatus.order(:name)
   end
 
-  def animal_statuses_for_select
-    AnimalStatus.order(:name).map { |status| [ status.name, status.id ] } << [ 'все граждане', 0 ]
-  end
+  # def animal_statuses_for_select
+  #   AnimalStatus.order(:name).map { |status| [ status.name, status.id ] } << [ 'все граждане', 0 ]
+  # end
 
   def aviaries
     Aviary.order(:name)
+  end
+
+  def aviaries_for_select
+    Aviary.all.map { |a| [ a.name, a.id ] }
   end
 
   def sections
@@ -158,12 +188,14 @@ module ApplicationHelper
     ProcedureType.order(:name)
   end
 
-  def show_status(status_id)
-    if status_id == 0
-      t('label.status') + ' - все граждане'
+  def show_status(status_id, animal_type_id)
+    status = ''
+    if status_id.nil?
+      status += I18n.t('label.status') + ' - все граждане; '
     else
-      t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name
+      status += I18n.t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name + '; '
     end
+    status += I18n.t('label.animal_type') + ' - ' + AnimalType.find(animal_type_id).name
   end
 
   def parents(animal)
@@ -197,6 +229,10 @@ module ApplicationHelper
   end
 
   def updated_on_and_by(resource)
-    return t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
+    return I18n.t('text.Updated on') + resource.updated_at.strftime(" %m/%d/%Y - %I:%M%p")
+  end
+
+  def animal_types_except_dogs
+    AnimalType.where.not(name: 'собака').order(:name)
   end
 end

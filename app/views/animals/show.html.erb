@@ -23,7 +23,7 @@
           <% end %>
         <% end %>
       </div>
-      <%= link_to animals_path do %>
+      <%= link_to animals_path(animal_type_id: @animal.animal_type_id) do %>
         <span class="tertiary_button">
           <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
           <%= t('forms.buttons.back') %>

@@ -3,9 +3,17 @@ class CartController < ApplicationController
     # @render_cart = false
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
     @animal_ids = @cart.cart_animals.pluck(:animal_id)
-    @aviaries = Aviary.all.map { |a| [ a.name, a.id ] }
     @sections = []
     authorize @cart
+
+    if params[:format] == 'csv' || params[:format] == 'pdf'
+      animals = @cart.cart_animals
+      export_animals = Animal.where(id: animals.map(&:animal_id))
+      respond_to do |format|
+        format.csv { send_data export_animals.to_csv, charset: "utf-8", filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.csv" }
+        format.pdf { send_data PdfGenerator.new(export_animals).generate_pdf_content, filename: "#{t('menu.header.animals')}-#{show_date(Time.zone.today)}.pdf", type: 'application/pdf', disposition: 'inline'}
+      end
+    end
   end
 
   def add
@@ -69,7 +77,6 @@ class CartController < ApplicationController
     end
     cart.destroy
     flash.now[:notice] = t('forms.messages.Added to enclosure')
-    @aviaries = Aviary.all.map { |a| [ a.name, a.id ] }
     @sections = []
     respond_to do |format|
       format.turbo_stream do
@@ -82,6 +89,10 @@ class CartController < ApplicationController
                             ]
       end
     end
+  end
+
+  def export_from_cart
+    fail
   end
 
   private

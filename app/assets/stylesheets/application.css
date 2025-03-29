@@ -176,3 +176,21 @@
     --bs-pagination-font-size: 0.875rem;
     --bs-pagination-border-radius: var(--bs-border-radius-sm);
   }
+
+/*normal mode*/
+#desktop-animals_listing {
+  display: block
+}
+#mobile-animals_listing {
+  display: none;
+}
+
+/*mobile mode*/
+@media only screen and (max-width: 1000px) {
+  #desktop-animals_listing {
+      display: none;
+  }
+  #mobile-animals_listing {
+      display: block;
+  }
+}
