@@ -2,10 +2,11 @@
 #
 # Table name: animal_types
 #
-#  id         :bigint           not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  name        :string
+#  plural_name :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -14,5 +15,6 @@
 FactoryBot.define do
   factory :animal_type do
     name { "кот" }
+    plural_name { "коты" }
   end
 end

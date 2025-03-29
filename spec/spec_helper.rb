@@ -93,7 +93,7 @@ RSpec.configure do |config|
 =end
   config.before(:each) do
     user = FactoryBot.create(:user)
-    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака')
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
     sign_in(user)
   end
 end

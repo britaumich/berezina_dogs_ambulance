@@ -18,7 +18,7 @@ RSpec.describe "/animal_types", type: :request do
   # AnimalType. As you add validations to AnimalType, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { name: "кот" }
+    { name: "кот", plural_name: "коты" }
   }
 
   let(:invalid_attributes) {

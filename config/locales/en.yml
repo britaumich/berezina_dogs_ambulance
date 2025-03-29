@@ -56,6 +56,7 @@ en:
     Added to enclosure: "Added to Enclosure"
     Are you sure?: "Are you sure?"
     The default status cannot be removed: "The default status cannot be removed"
+    The default type cannot be removed: "The default type cannot be removed"
     Start typing to search: "Start typing to search"
     Select Day: "Select Day"
     Select Month: "Select Month"
@@ -113,6 +114,8 @@ en:
         date_completed: "Date Completed"
         date_planned: "Date Planned"
         procedure_type_id: "Procedure Type"
+      animal_type:
+        plural_name: "Name in Plural Form"
     errors:
       models:
         animal:
