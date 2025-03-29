@@ -77,6 +77,7 @@ ru:
     table: "Таблица"
     pictures: "Картинки"
     The default status cannot be removed: "Этот статус не может быть удален"
+    The default type cannot be removed: "Этот вид не может быть удален"
     Start typing to search: "Начните печатать имя для поиска"
     Select Day: "Выберите день"
     Select Month: "Выберите месяц"
@@ -156,6 +157,7 @@ ru:
         size: "Размер"
       animal_type:
         name: "Название"
+        plural_name: "Название во множественном числе"
       animal_status:
         name: "Название"
       aviary:

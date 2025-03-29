@@ -15,6 +15,11 @@
     <%= form.text_field :name, class: "input_text_field", required: true %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :plural_name %>
+    <%= form.text_field :plural_name, class: "input_text_field", required: true %>
+  </div>
+
   <div class="inline">
     <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
   </div>

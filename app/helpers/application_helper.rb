@@ -189,13 +189,12 @@ module ApplicationHelper
   end
 
   def show_status(status_id, animal_type_id)
-    status = ''
+    status = AnimalType.find(animal_type_id).plural_name
     if status_id.nil?
-      status += I18n.t('label.status') + ' - все граждане; '
+      status += ' (все граждане)'
     else
-      status += I18n.t('label.status') + ' - ' + AnimalStatus.find(status_id.to_i).name + '; '
+      status += ' (' + AnimalStatus.find(status_id.to_i).name + ')'
     end
-    status += I18n.t('label.animal_type') + ' - ' + AnimalType.find(animal_type_id).name
   end
 
   def parents(animal)

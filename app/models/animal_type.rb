@@ -2,10 +2,11 @@
 #
 # Table name: animal_types
 #
-#  id         :bigint           not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  name        :string
+#  plural_name :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 # Indexes
 #
@@ -15,13 +16,21 @@ class AnimalType < ApplicationRecord
   has_many :animals, dependent: :restrict_with_exception
 
   before_save :strip_whitespace_and_downcase
-  validates :name, presence: true, uniqueness: true
+  before_destroy :prevent_deletion_of_default_status
+  validates :name, :plural_name, presence: true, uniqueness: true
 
   private
 
   def strip_whitespace_and_downcase
     if self.name.present?
       self.name = self.name.strip.downcase
+    end
+  end
+
+  def prevent_deletion_of_default_status
+    if self.id == 1
+      errors.add(:base, 'Cannot delete the default animal type')
+      throw(:abort)
     end
   end
 

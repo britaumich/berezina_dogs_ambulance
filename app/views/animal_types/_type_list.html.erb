@@ -4,6 +4,7 @@
       <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
           <th class="header_th"><%= t('activerecord.attributes.animal_type.name') %></th>
+          <th class="header_th"><%= t('activerecord.attributes.animal_type.plural_name') %></th>
           <th class="header_th"><%= t('forms.buttons.edit') %></th>
           <th class="header_th"><%= t('forms.buttons.delete') %></th>
         </tr>
@@ -15,13 +16,20 @@
               <%= animal_type.name %>
             </td>
             <td class="mi_tbody_td">
+              <%= animal_type.plural_name %>
+            </td>
+            <td class="mi_tbody_td">
               <%= link_to edit_animal_type_path(animal_type), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(animal_type)}_edit" } do%>
                 <i class="fa fa-pencil text-950"></i>
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to animal_type_path(animal_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_type)}_delete" }  do %>
-                <i class="fa fa-trash-can text-red-950"></i>
+            <% if animal_type.id == 1 %>
+                <%= t('text.The default type cannot be removed') %>
+              <% else %>
+                <%= link_to animal_type_path(animal_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_type)}_delete" }  do %>
+                  <i class="fa fa-trash-can text-red-950"></i>
+                <% end %>
               <% end %>
             </td>
           </tr>
