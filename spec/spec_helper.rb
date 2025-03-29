@@ -91,4 +91,9 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before(:each) do
+    user = FactoryBot.create(:user)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака')
+    sign_in(user)
+  end
 end

@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :animal_type do
-    name { "в приюте" }
+    name { "кот" }
   end
 end

@@ -67,7 +67,7 @@
           <% if current_user %>
             <div>
               <div class="text-white body-sm-text pb-1"><%= current_user.email_address %></div>
-              <%= link_to "Sign Out hell", session_path, 
+              <%= link_to "Sign Out", session_path, 
                 method: :delete, 
                 data: { turbo_method: :delete, confirm: "Are you sure?" },
                 class: "sign_button" 
