@@ -1,4 +1,4 @@
-<div class="col-span-2 mb-4">
+<div class="col-span-2 mb-4 pl-2">
   <p><%= t('text.Group search by') %>:</p>
   <div class="ml-4">
     <%= f.radio_button :m, 'and', :checked => true %>
@@ -9,7 +9,7 @@
     <%= f.label :m, t('label.or'), value: 'or' %>
   </div>
 </div>
-<div class="">
+<div class="pl-2">
   <div>
     <%= f.label :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, "#{t('label.Search Text Fields')}", class: "fancy_label" %>
     <%= f.search_field :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
