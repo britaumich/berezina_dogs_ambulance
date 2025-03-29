@@ -10,6 +10,6 @@ export default class extends Controller {
   toggle() {
     console.log("Sidebar toggle clicked");
     this.sidebarTarget.classList.toggle('-translate-x-full')
-  } 
+  }
 
 }
