@@ -15,5 +15,6 @@
 FactoryBot.define do
   factory :animal_type do
     name { "кот" }
+    plural_name { "коты" }
   end
 end
