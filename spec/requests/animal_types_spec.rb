@@ -66,7 +66,7 @@ RSpec.describe "/animal_types", type: :request do
       it "does not create a new AnimalType" do
         expect {
           post animal_types_url, params: { animal_type: invalid_attributes }
-        }.to change(AnimalType, :count).by(0)
+        }.not_to change(AnimalType, :count)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
@@ -117,7 +117,7 @@ RSpec.describe "/animal_types", type: :request do
     it "redirects to the animal_types list" do
       animal_type = AnimalType.create! valid_attributes
       delete animal_type_url(animal_type)
-      expect(AnimalType.exists?(animal_type.id)).to be_falsey
+      expect(AnimalType).not_to exist(animal_type.id)
     end
   end
 end
