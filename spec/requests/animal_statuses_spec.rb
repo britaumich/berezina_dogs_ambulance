@@ -18,20 +18,11 @@ RSpec.describe "/animal_statuses", type: :request do
   # AnimalStatus. As you add validations to AnimalStatus, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) { { name: "в приюте" } }
-  let(:invalid_attributes) { { name: "" }}
-  let!(:user) { FactoryBot.create(:user) }
-
-  def sign_in(user)
-    AdminUser.create!(email: user.email_address)
-    binding.pry
-    post new_session_url, params: { email_address: user.email_address, password: user.password }
-  end
+  let(:invalid_attributes) { { name: "" } }
 
   describe "GET /index" do
     it "renders a successful response" do
-      sign_in(user)
       AnimalStatus.create! valid_attributes
-      binding.pry
       get animal_statuses_url
       expect(response).to be_successful
     end

@@ -17,7 +17,7 @@ RSpec.describe "/animals", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Animal. As you add validations to Animal, be sure to
   # adjust the attributes here as well.
-  let!(:animal_status) { FactoryBot.create(:animal_status, id: 1) }
+  let!(:animal_status) { FactoryBot.create(:animal_status) }
   let!(:animal_type) { FactoryBot.create(:animal_type) }
   let(:valid_attributes) {
     FactoryBot.attributes_for(:animal, animal_status_id: animal_status.id, animal_type_id: animal_type.id)

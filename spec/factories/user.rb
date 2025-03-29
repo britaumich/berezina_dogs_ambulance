@@ -9,9 +9,10 @@
 #  updated_at      :datetime         not null
 #
 FactoryBot.define do
+  admin_user = FactoryBot.create(:admin_user)
   factory :user do
-    email_address { Faker::Internet.email }
-    password { Faker::Internet.password(min_length: 10) }
+    email_address { admin_user.email }
+    password { "password" }
   end
 
 end
