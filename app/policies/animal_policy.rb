@@ -43,6 +43,10 @@ class AnimalPolicy  < ApplicationPolicy
     authenticated?
   end
 
+  def delete_medical_procedure?
+    authenticated?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

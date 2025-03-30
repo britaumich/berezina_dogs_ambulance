@@ -151,7 +151,7 @@ ru:
         animal_type: "Вид"
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
-        parent_id: "Родитель"
+        parent_id: "Родитель (мама)"
         children: "Дети"
         siblings: "Братья и сестры"
         size: "Размер"
@@ -254,6 +254,7 @@ ru:
     "М": М
     "Ж": Ж
   size_list:
+    "Puppy": Щенок
     "Маленький": Маленький
     "Средний": Средний
     "Большой": Большой
