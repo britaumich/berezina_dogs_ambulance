@@ -194,7 +194,7 @@
 
     </div>
     <div>
-      <div class="flex justify-between mb-2">
+      <div class="flex items-center justify-between mb-2">
         <h2><%= t('text.Medical Procedures') %></h2> 
         <%= link_to t('menu.new'), new_medical_procedure_for_animal_path(animal_id: @animal.id), class: "primary_button" if policy(Animal).new? %>
       </div>
