@@ -92,7 +92,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
   config.before(:each) do
-    user = FactoryBot.create(:user)
+    # user = FactoryBot.create(:user)
     animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
     sign_in(user)
   end
