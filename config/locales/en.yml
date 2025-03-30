@@ -166,6 +166,7 @@ en:
     "Male": Male
     "Female": Female
   size_list:
+    "Puppy": Puppy
     "Small": Small
     "Medium": Medium
     "Large": Large
