@@ -151,7 +151,7 @@ ru:
         animal_type: "Вид"
         animal_status_id: "Статус"
         sterilization: "Стерилизация"
-        parent_id: "Родитель"
+        parent_id: "Родитель (мама)"
         children: "Дети"
         siblings: "Братья и сестры"
         size: "Размер"

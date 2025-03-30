@@ -104,7 +104,7 @@ en:
         arival_date: "Arrival Date"
         sterilization: "Sterilization"
         animal_status_id: "Status"
-        parent_id: "Parent"
+        parent_id: "Parent (mother)"
         birth_year: "Birth Year"
         birth_day: "Birth Day"
         death_year: "Death Year"
