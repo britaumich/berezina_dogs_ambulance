@@ -23,6 +23,10 @@ class CartPolicy < ApplicationPolicy
     authenticated?
   end
 
+  def empty_cart?
+    authenticated?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

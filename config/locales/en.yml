@@ -130,6 +130,7 @@ en:
       save: "Save"
       add: "Add"
       update: "Update"
+      empty_cart: "Empty Cart"
     sort:
       asc: "Ascending"
       desc: "Descending"
