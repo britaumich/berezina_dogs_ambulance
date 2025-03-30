@@ -64,22 +64,22 @@
       
     <% end %>
     
-      
-        <%= turbo_frame_tag "turbo-animals" do %>
-          <div class="mb-20" id="animals_listing">
-            
-            <% if @view == 'table' %>
-              <%= render 'animal_list' %>
-            <% else %>
-              <%= render 'picture_list' %>
-            <% end %>
-            <div class="my-2 flex justify-center" >
-              <%= paginate @animals %>
+        <div>
+          <%= turbo_frame_tag "turbo-animals" do %>
+            <div class="mb-20" id="animals_listing">
+              
+              <% if @view == 'table' %>
+                <%= render 'animal_list' %>
+              <% else %>
+                <%= render 'picture_list' %>
+              <% end %>
+              <div class="my-2 flex justify-center" >
+                <%= paginate @animals %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
   </div>
   
 </div>
