@@ -28,14 +28,23 @@ class MedicalProcedure < ApplicationRecord
   has_many :notes, as: :noteable, dependent: :destroy
 
   after_save :if_sterilization
-
-  validates :date_planned, presence: true
+  before_destroy :if_sterilization_update_animal
 
   private
 
   def if_sterilization
+    if self.procedure_type.name == 'стерилизация'
+      if self.date_completed.present?
+        Animal.find(self.animal_id).update(sterilization: true)
+      else
+        Animal.find(self.animal_id).update(sterilization: false)
+      end
+    end
+  end
+
+  def if_sterilization_update_animal
     if self.date_completed.present? && self.procedure_type.name == 'стерилизация'
-      Animal.find(self.animal_id).update(sterilization: true)
+      Animal.find(self.animal_id).update(sterilization: false)
     end
   end
 
