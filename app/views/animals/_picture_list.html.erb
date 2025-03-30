@@ -9,18 +9,22 @@
       <div class="error_text" id="checkbox_error">
       </div>
       <div class>
-        <%= submit_tag t('text.Add to Cart'), class: "primary_button" %>
+        <%= submit_tag t('text.Add to Cart'), class: "primary_button" if policy(Cart).add?  %>
       </div>
     </div>
     <div class="ml-4">
-      <input type="checkbox" aria-labelledby="select_all" class="check_box" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
-      <span id="select_all"><%= t('text.Select All') %></span>
+      <% if policy(Cart).add? %>
+        <input type="checkbox" aria-labelledby="select_all" class="check_box" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
+        <span id="select_all"><%= t('text.Select All') %></span>
+      <% end %>
     </div>
     <div class="">
       <ul role="list" class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 m-4">
         <% @animals.each do |animal| %>
           <li class=" bg-white rounded-lg shadow-md divide-y divide-gray-400 px-2 grid place-items-stretch bg-white border border-gray-300 rounded-lg">
-            <input type="checkbox" aria-labelledby=<%= "animal_ids_#{animal.id}" %> name="animal_ids[<%= animal.id %>]" id="animal_ids_<%= animal.id %>" value="0" class="check_box" data-checkboxselectall-target="checkbox" data-action="change->checkboxselectall#toggleCheckboxAll">
+            <% if policy(Cart).add? %>
+              <input type="checkbox" aria-labelledby=<%= "animal_ids_#{animal.id}" %> name="animal_ids[<%= animal.id %>]" id="animal_ids_<%= animal.id %>" value="0" class="check_box" data-checkboxselectall-target="checkbox" data-action="change->checkboxselectall#toggleCheckboxAll">
+            <% end %>
             <%= render 'animal_card', animal: animal %>
           </li>
         <% end %>
