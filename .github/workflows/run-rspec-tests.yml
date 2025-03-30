@@ -53,8 +53,9 @@ jobs:
 
       - name: Setup DB
         run: 
-          bin/rails db:create:all
-          bin/rails db:migrate 
+          bin/rails db:create
+          bin/rails db:migrate
+          bundle exec rails db:test:prepare
           bin/rails db:seed
 
       - name: Run Request tests
