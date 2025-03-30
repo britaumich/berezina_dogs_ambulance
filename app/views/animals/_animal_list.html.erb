@@ -5,6 +5,7 @@
               action: "submit->checkboxselectall#submitForm",
               turbo_frame: "_top" 
             } do |form| %>
+              
     <div class="flex md:flex justify-between items-center ml-2 mb-2">
       <div class="error_text" id="checkbox_error">
       </div>
@@ -12,7 +13,7 @@
         <%= submit_tag t('text.Add to Cart'), class: "primary_button" if policy(Cart).add? %>
       </div>
     </div>
-    <table class="mi_table" id="desk-table">
+    <table class="mi_table">
       <thead class="border border-l-0 border-r-0 border-gray-750">
         <tr>
           <% if policy(Cart).add? %>
