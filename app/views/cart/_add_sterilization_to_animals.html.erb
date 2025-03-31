@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "add_vacination" do %>
+  <h2 class="mt-4"><%= t('forms.buttons.Add Sterilization') %></h2>
+  <%= form_with url: add_sterilization_to_animals_path do |form1| %>
+
+    <%= form1.hidden_field :cart_id, value: @cart.id %>
+
+    <div class="inline">
+      <% if @cart.cart_animals.count > 0 %>
+        <%= form1.submit t('forms.buttons.submit'), class: "primary_button" %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

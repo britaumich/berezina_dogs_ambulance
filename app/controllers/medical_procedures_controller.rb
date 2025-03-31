@@ -6,7 +6,7 @@ class MedicalProceduresController < ApplicationController
   # GET /medical_procedures or /medical_procedures.json
   def index
     
-    @medical_procedures = MedicalProcedure.all
+    @medical_procedures = MedicalProcedure.all.order(:date_planned)
     if params[:q].nil?
       @q = @medical_procedures.ransack(params[:q])
     else
@@ -84,6 +84,32 @@ class MedicalProceduresController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def complete_procedures
+    procedure_ids = params[:medical_procedure_ids].keys.map(&:to_i)
+    medical_procedures = MedicalProcedure.where(id: procedure_ids)
+    transaction = ActiveRecord::Base.transaction do
+      medical_procedures.update_all(date_completed: params[:date_completed])
+    end
+    if transaction
+      flash.now[:notice] = t('forms.messages.Medical procedures were successfully updated')
+      @medical_procedures = MedicalProcedure.all.order(:date_planned)
+      @q = @medical_procedures.ransack(params[:q])
+      @medical_procedures = @q.result.includes(:animal).page(params[:page])
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [ turbo_stream.update("turbo-medical-procedures", partial: 'medical_procedures/procedure_list'),
+                                  turbo_stream.update('flash', partial: 'layouts/notification') ]
+        end
+      end
+    else
+      flash.now[:alert] = t('forms.messages.Error updating database records')
+      @medical_procedures = MedicalProcedure.all.order(:date_planned)
+      @q = @medical_procedures.ransack(params[:q])
+      @medical_procedures = @q.result.includes(:animal).page(params[:page])
+      render :index, status: :unprocessable_entity
     end
   end
 

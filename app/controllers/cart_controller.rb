@@ -68,7 +68,7 @@ class CartController < ApplicationController
     cart.cart_animals.each do |cart_animal|
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
-    cart.destroy
+    # cart.destroy
     flash.now[:notice] = t('forms.messages.Medical procedures created')
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
     respond_to do |format|
@@ -90,7 +90,7 @@ class CartController < ApplicationController
     cart.cart_animals.each do |cart_animal|
       MedicalProcedure.create(date_completed: params[:date_completed], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
-    cart.destroy
+    # cart.destroy
     flash.now[:notice] = t('forms.messages.Medical procedures created')
     @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
     respond_to do |format|
@@ -112,7 +112,7 @@ class CartController < ApplicationController
     cart.cart_animals.each do |cart_animal|
       Animal.find(cart_animal.animal_id).update(aviary_id: params[:aviary_id], section_id: params[:section_id])
     end
-    cart.destroy
+    # cart.destroy
     flash.now[:notice] = t('forms.messages.Added to enclosure')
     @sections = []
     respond_to do |format|
@@ -128,8 +128,22 @@ class CartController < ApplicationController
     end
   end
 
-  def export_from_cart
-    fail
+  def add_sterilization_to_animals
+    authorize @cart
+    transaction = ActiveRecord::Base.transaction do
+      @cart.cart_animals.each do |cart_animal|
+        Animal.find(cart_animal.animal_id).update(sterilization: true)
+      end
+    end
+    if transaction
+      flash.now[:notice] = t('forms.messages.Sterilization added')
+
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('flash', partial: 'layouts/notification')
+        end
+      end
+    end
   end
 
   private

@@ -1,22 +1,25 @@
 <%= render 'cart' %>
-<div class="md:flex flex-col flex-nowrap items-center gap-5 justify-center pt-12 lg:flex-row">
-  <div class="grow">
+<p class="body-sm-semibold-text mt-4">
+<%= t('text.Fill out the forms to apply changes to all animals from the list') %>
+</p>
+<div class="md:grid grid-cols-2 gap-4 items-center gap-5 py-4">
+  <div>
     <%= render 'order_medical' %>
   </div>
-  <div class="grow">
+  <div>
     <%= render 'add_to_enclosure' %>
   </div>
-</div>
-<div class="md:flex flex-col flex-nowrap items-center gap-5 justify-center py-12 lg:flex-row">
-  <div class="grow">
+  <div>
     <%= render 'completed_medical' %>
   </div>
-  <div class="grow">
-    <div class="my-4">
-      <%= link_to "Export the Cart to CSV", cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
+  <div>
+    <%= render 'add_sterilization_to_animals' %>
+  </div>
+  <div>
+    <div>
+      <%= link_to t('forms.buttons.Export the Cart to CSV'), cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
     </div>
-    <div class="">
-      <%= link_to "Export the Cart to PDF", cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
-    </div>
+    <div class="mt-2">
+      <%= link_to t('forms.buttons.Export the Cart to PDF'), cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
   </div>
 </div>

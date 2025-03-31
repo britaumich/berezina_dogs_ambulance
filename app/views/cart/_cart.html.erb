@@ -1,8 +1,7 @@
 <%= turbo_frame_tag "cart" do %>
   <div class="flex justify-between items-center">
     <h1><%= t('text.cart') %></h1>
-    <%= link_to t('forms.buttons.empty_cart'), empty_cart_path(@cart), data: { turbo_confirm: 'Are you sure?', turbo_method: :post }, class: "primary_button" %>
-    <%#= link_to cancel_recurring_reservation_path(@reservation, :cancel_type => "one"), data: { turbo_confirm: 'Are you sure?', turbo_method: :post} do %>
+    <%= link_to t('forms.buttons.empty_cart'), empty_cart_path(@cart), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :post }, class: "primary_button" %>
 
   </div>
   <% if @cart && @cart&.cart_animals&.count > 0 %>

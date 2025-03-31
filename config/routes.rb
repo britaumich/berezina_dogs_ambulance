@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'empty_cart/:id', to: 'cart#empty_cart', as: :empty_cart
   post 'add_medical_procedure', to: 'cart#add_medical_procedure'
   post 'add_completed_medical_procedure', to: 'cart#add_completed_medical_procedure'
+  post 'add_sterilization_to_animals', to: 'cart#add_sterilization_to_animals'
   post 'add_to_aviary', to: 'cart#add_to_aviary'
   resources :aviaries do
     resources :sections, module: :aviaries
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   end
   get '/new_medical_procedure_for_animal/:animal_id/', to: 'medical_procedures#new_medical_procedure_for_animal', as: :new_medical_procedure_for_animal
   get '/edit_medical_procedure_for_animal/:procedure_id/', to: 'medical_procedures#edit_medical_procedure_for_animal', as: :edit_medical_procedure_for_animal
+  post '/complete_procedures', to: 'medical_procedures#complete_procedures', as: :complete_procedures
 
   resources :procedure_types, except: [:show]
   resources :animals do
