@@ -27,6 +27,10 @@ class MedicalProcedurePolicy  < ApplicationPolicy
     update?
   end
 
+  def complete_procedures?
+    authenticated?
+  end
+
   def destroy?
     authenticated?
   end

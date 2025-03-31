@@ -32,9 +32,6 @@
     <div class="flex-1 mx-2">
       <%= turbo_frame_tag "turbo-medical-procedures" do %>
         <div class="min-w-full mb-10" id="procedures_listing">
-          <div class="my-2 ml-4">
-            <%= page_entries_info @medical_procedures %>
-          </div>
           <%= render 'procedure_list' %>
           <div class="my-2 flex justify-center" >
             <%= paginate @medical_procedures %>

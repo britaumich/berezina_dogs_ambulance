@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkbox_all", "checkbox", "form"]
+  static targets = ["checkbox_all", "checkbox", "form", "medicine_checkbox_error", "medicine_date_completed"]
 
   connect() {
     console.log("connect - checkbox select/deselect all")
@@ -32,8 +32,20 @@ export default class extends Controller {
     var checkbox_error_place = document.getElementById('checkbox_error')
     checkbox_error_place.innerHTML = ''
     if (!this.checkboxTargets.map(x => x.checked).includes(true)) {
-      checkbox_error_place.innerHTML = "Please select animals."
+      checkbox_error_place.innerHTML = "Пожалуйста, отметьте имена."
       event.preventDefault()
     }
   }
+
+  submitMedicineForm(event) {
+    console.log("submit medicine form")
+    var medicine_checkbox_error = document.getElementById('medicine_checkbox_error')
+    var medicine_date_completed = this.medicine_date_completedTarget.value
+    medicine_checkbox_error.innerHTML = ''
+    if (!this.checkboxTargets.map(x => x.checked).includes(true) || medicine_date_completed == "") {
+      medicine_checkbox_error.innerHTML = "Пожалуйста, выберите процедуры и дату."
+      event.preventDefault()
+    }
+  }
+
 }

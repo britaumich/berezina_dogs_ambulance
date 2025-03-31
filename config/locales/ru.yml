@@ -128,6 +128,7 @@ ru:
     date_completed_before: "Дата проведения - до"
     arival_date_after: "Дата появления - после"
     arival_date_before: "Дата появления - до"
+    Select the Date of the Procedure: "Выберите дату проведения процедуры"
   activerecord:
     attributes:
       animal:
@@ -174,7 +175,7 @@ ru:
       medical_procedure:
         date_completed: "Дата проведения"
         date_planned: "Дата по плану"
-        animal_id: "Животное"
+        animal_id: "Имя"
         procedure_type_id: "Процедура"
         description: "Описание"
       admin_user:
@@ -217,6 +218,8 @@ ru:
       Admin user was successfully deleted: "Администратор удален"
       Registered successfully: "Вы зарегистрированы"
       Try another email address or password: "Попробуйте другой адрес электронной почты или пароль"
+      Medical procedures were successfully updated: "Медицинские процедуры обновлены"
+      Error updating database records: "Ошибка обновления записей в базе данных"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"
@@ -231,6 +234,7 @@ ru:
      update: "Обновить"
      duplicate: "Дублировать"
      empty_cart: "Обнулить список"
+     Add Completed Date: "Добавить дату проведения процедуры"
     sort:
       asc: "По возрастанию"
       desc: "По убыванию"

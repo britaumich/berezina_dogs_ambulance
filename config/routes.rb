@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   get '/new_medical_procedure_for_animal/:animal_id/', to: 'medical_procedures#new_medical_procedure_for_animal', as: :new_medical_procedure_for_animal
   get '/edit_medical_procedure_for_animal/:procedure_id/', to: 'medical_procedures#edit_medical_procedure_for_animal', as: :edit_medical_procedure_for_animal
+  post '/complete_procedures', to: 'medical_procedures#complete_procedures', as: :complete_procedures
 
   resources :procedure_types, except: [:show]
   resources :animals do

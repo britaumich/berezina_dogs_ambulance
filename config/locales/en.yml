@@ -86,6 +86,7 @@ en:
     arival_date_before: "Arrival Date - Before"
     status: "Status"
     animal_type: "Type"
+    Select the Date of the Procedure: "Select the Date of the Procedure"
   menu:
     languages:
       lang: "Language"
@@ -131,6 +132,7 @@ en:
       add: "Add"
       update: "Update"
       empty_cart: "Empty Cart"
+      Add Completed Date: "Add Completed Date"
     sort:
       asc: "Ascending"
       desc: "Descending"
