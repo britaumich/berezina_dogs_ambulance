@@ -16,10 +16,13 @@
     <%= render 'add_sterilization_to_animals' %>
   </div>
   <div>
-    <div>
-      <%= link_to t('forms.buttons.Export the Cart to CSV'), cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
-    </div>
-    <div class="mt-2">
-      <%= link_to t('forms.buttons.Export the Cart to PDF'), cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
+    <% if @cart.cart_animals.count > 0 %>
+      <div>
+        <%= link_to t('forms.buttons.Export the Cart to CSV'), cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
+      </div>
+      <div class="mt-2">
+        <%= link_to t('forms.buttons.Export the Cart to PDF'), cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
+      </div>
+    <% end %>
   </div>
 </div>

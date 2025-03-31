@@ -57,7 +57,10 @@ class CartController < ApplicationController
         render turbo_stream: [ turbo_stream.replace('cart', partial: 'cart/cart', locals: { cart: @cart }),
                               turbo_stream.update('cart_total', partial: 'cart/cart_total'),
                               turbo_stream.update('procedure_ids', partial: 'cart/order_medical'),
-                              turbo_stream.update('add_to_enclosure', partial: 'cart/add_to_enclosure') ]
+                              turbo_stream.update('add_to_enclosure', partial: 'cart/add_to_enclosure'),
+                              turbo_stream.update('add_sterilization', partial: 'cart/add_sterilization_to_animals'),
+                              turbo_stream.update('completed_procedure_ids', partial: 'cart/completed_medical')
+                            ]
       end
     end
   end
