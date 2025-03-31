@@ -47,11 +47,48 @@ class CartController < ApplicationController
     end
   end
 
+  def empty_cart 
+    @cart = Cart.find(params[:id])
+    @cart.cart_animals.destroy_all
+    @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
+    authorize @cart
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [ turbo_stream.replace('cart', partial: 'cart/cart', locals: { cart: @cart }),
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.update('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('add_to_enclosure', partial: 'cart/add_to_enclosure') ]
+      end
+    end
+  end
+
   def add_medical_procedure
     authorize @cart
     cart = Cart.find(params[:cart_id])
     cart.cart_animals.each do |cart_animal|
       MedicalProcedure.create(date_planned: params[:date_planned], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
+    end
+    cart.destroy
+    flash.now[:notice] = t('forms.messages.Medical procedures created')
+    @procedures = ProcedureType.all.map { |p| [ p.name, p.id ] }
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [ turbo_stream.replace('cart',
+                                                  partial: 'cart/cart',
+                                                 ),
+                              turbo_stream.update('cart_total', partial: 'cart/cart_total'),
+                              turbo_stream.replace('procedure_ids', partial: 'cart/order_medical'),
+                              turbo_stream.update('flash', partial: 'layouts/notification')
+                            ]
+      end
+    end
+  end
+
+  def add_completed_medical_procedure
+    authorize @cart
+    cart = Cart.find(params[:cart_id])
+    cart.cart_animals.each do |cart_animal|
+      MedicalProcedure.create(date_completed: params[:date_completed], animal_id: cart_animal.animal_id, procedure_type_id: params[:procedure_type_id])
     end
     cart.destroy
     flash.now[:notice] = t('forms.messages.Medical procedures created')

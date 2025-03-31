@@ -19,7 +19,15 @@ class CartPolicy < ApplicationPolicy
     authenticated?
   end
 
+  def add_completed_medical_procedure?
+    authenticated?
+  end
+
   def add_to_aviary?
+    authenticated?
+  end
+
+  def empty_cart?
     authenticated?
   end
 

@@ -40,6 +40,7 @@ ru:
     Pictures: "Фотографии"
     Add To Enclosure: "Добавить в вольер"
     Medical Procedures: "Медицинские назначения"
+    Completed Procedures: "Проведенные процедуры"
     Medical Procedure: "Медицинское назначение"
     New Medical Procedure: "Новая медицинская процедура"
     Aviary: "Вольер"
@@ -229,6 +230,7 @@ ru:
      add: "Добавить"
      update: "Обновить"
      duplicate: "Дублировать"
+     empty_cart: "Обнулить список"
     sort:
       asc: "По возрастанию"
       desc: "По убыванию"

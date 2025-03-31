@@ -1,15 +1,22 @@
 <%= render 'cart' %>
-<div class="md:flex flex-col flex-nowrap items-center gap-5 justify-center py-12 lg:flex-row">
-<div class="grow">
+<div class="md:flex flex-col flex-nowrap items-center gap-5 justify-center pt-12 lg:flex-row">
+  <div class="grow">
     <%= render 'order_medical' %>
   </div>
   <div class="grow">
     <%= render 'add_to_enclosure' %>
   </div>
 </div>
-<div class="">
-  <%= link_to "Export the Cart to CSV", cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
-</div>
-<div class="mt-2">
-  <%= link_to "Export the Cart to PDF", cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
+<div class="md:flex flex-col flex-nowrap items-center gap-5 justify-center py-12 lg:flex-row">
+  <div class="grow">
+    <%= render 'completed_medical' %>
+  </div>
+  <div class="grow">
+    <div class="my-4">
+      <%= link_to "Export the Cart to CSV", cart_path(@cart, format: 'csv'), class: "link_to" if @cart.cart_animals.count > 0 %>
+    </div>
+    <div class="">
+      <%= link_to "Export the Cart to PDF", cart_path(@cart, format: :pdf), class: "link_to" if @cart.cart_animals.count > 0 %>
+    </div>
+  </div>
 </div>
