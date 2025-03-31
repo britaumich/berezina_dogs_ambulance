@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'empty_cart/:id', to: 'cart#empty_cart', as: :empty_cart
   post 'add_medical_procedure', to: 'cart#add_medical_procedure'
   post 'add_completed_medical_procedure', to: 'cart#add_completed_medical_procedure'
+  post 'add_sterilization_to_animals', to: 'cart#add_sterilization_to_animals'
   post 'add_to_aviary', to: 'cart#add_to_aviary'
   resources :aviaries do
     resources :sections, module: :aviaries

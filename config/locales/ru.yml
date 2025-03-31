@@ -93,6 +93,7 @@ ru:
     Updated on: "Обновлено"
     on: "в"
     Animal Details: "Детали"
+    Fill out the forms to apply changes to all animals from the list: "Заполните формы, чтобы применить изменения ко всему списку"
   helpers:
     page_entries_info:
       one_page:
@@ -220,6 +221,7 @@ ru:
       Try another email address or password: "Попробуйте другой адрес электронной почты или пароль"
       Medical procedures were successfully updated: "Медицинские процедуры обновлены"
       Error updating database records: "Ошибка обновления записей в базе данных"
+      Sterilization added: "Стерилизация добавлена"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"
@@ -235,6 +237,11 @@ ru:
      duplicate: "Дублировать"
      empty_cart: "Обнулить список"
      Add Completed Date: "Добавить дату проведения процедуры"
+     Add Sterilization: "Добавить стерилизацию"
+     Export the Cart to CSV: "Экспорт список в CSV"
+     Export the Cart to PDF: "Экспорт список в PDF"
+     Export All to CSV: "Экспорт все записи в CSV"
+     Export All to PDF: "Экспорт все записи в PDF"
     sort:
       asc: "По возрастанию"
       desc: "По убыванию"

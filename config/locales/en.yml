@@ -133,6 +133,10 @@ en:
       update: "Update"
       empty_cart: "Empty Cart"
       Add Completed Date: "Add Completed Date"
+      Export the Cart to CSV: "Export the Cart to CSV"
+      Export the Cart to PDF: "Export the Cart to PDF"
+      Export All to CSV: "Export All to CSV"
+      Export All to PDF: "Export All to PDF"
     sort:
       asc: "Ascending"
       desc: "Descending"
@@ -164,6 +168,7 @@ en:
       Registered successfully: "Registered successfully"
       Registered successfully: "Registered successfully"
       Try another email address or password: "Try another email address or password"
+      Sterilization added: "Sterilization added"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

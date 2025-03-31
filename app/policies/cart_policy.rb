@@ -27,6 +27,10 @@ class CartPolicy < ApplicationPolicy
     authenticated?
   end
 
+  def add_sterilization_to_animals?
+    authenticated?
+  end
+
   def empty_cart?
     authenticated?
   end
