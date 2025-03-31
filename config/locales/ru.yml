@@ -79,6 +79,7 @@ ru:
     pictures: "Картинки"
     The default status cannot be removed: "Этот статус не может быть удален"
     The default type cannot be removed: "Этот вид не может быть удален"
+    The default procedure cannot be removed: "Эта процедура не может быть удалена"
     Start typing to search: "Начните печатать имя для поиска"
     Select Day: "Выберите день"
     Select Month: "Выберите месяц"

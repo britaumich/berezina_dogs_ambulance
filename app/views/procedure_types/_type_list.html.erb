@@ -24,9 +24,14 @@
               <% end %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to procedure_type_path(procedure_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(procedure_type)}_delete" }  do %>
-              <i class="fa fa-trash-can text-red-950"></i>
+              <% if procedure_type.id == 1 %>
+                <%= t('text.The default procedure cannot be removed') %>
+              <% else %>
+                <%= link_to procedure_type_path(procedure_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(procedure_type)}_delete" }  do %>
+                  <i class="fa fa-trash-can text-red-950"></i>
+                <% end %>
               <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
