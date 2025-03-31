@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["checkbox_all", "checkbox", "form", "medicine_checkbox_error", "medicine_date_completed"]
+  static targets = ["checkbox_all", "checkbox", "form", "medicine_date_completed"]
 
   connect() {
     console.log("connect - checkbox select/deselect all")
