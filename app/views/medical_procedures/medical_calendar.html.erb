@@ -1,0 +1,18 @@
+<div class="w-full" data-controller='autosubmit'>
+  <a id="top" name="top" style="display: none;">top</a>
+  <div class="">
+    <h1>Procedures</h1>
+    <div>
+      <%= month_calendar(attribute: :date_planned, events: @medical_procedures) do |date, medical_procedures| %>
+        <div class="day-header">
+          <%= date.mday %>
+          <% medical_procedures.each do |medical_procedure| %>
+            <div class="event">
+              <%= link_to "#{show_animal(medical_procedure.animal)} - #{medical_procedure.procedure_type.name}", medical_procedure_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

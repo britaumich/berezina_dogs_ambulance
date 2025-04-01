@@ -14,13 +14,15 @@ Rails.application.routes.draw do
   get '/aviaries/get_sections/:aviary_id/', to: 'aviaries#get_sections'
 
   resources :notes
+  get '/medical_procedures/medical_calendar', to: 'medical_procedures#medical_calendar', as: :medical_calendar
+
   resources :medical_procedures do
     resources :notes, module: :medical_procedures
   end
   get '/new_medical_procedure_for_animal/:animal_id/', to: 'medical_procedures#new_medical_procedure_for_animal', as: :new_medical_procedure_for_animal
   get '/edit_medical_procedure_for_animal/:procedure_id/', to: 'medical_procedures#edit_medical_procedure_for_animal', as: :edit_medical_procedure_for_animal
   post '/complete_procedures', to: 'medical_procedures#complete_procedures', as: :complete_procedures
-
+  
   resources :procedure_types, except: [:show]
   resources :animals do
     resources :notes, module: :animals

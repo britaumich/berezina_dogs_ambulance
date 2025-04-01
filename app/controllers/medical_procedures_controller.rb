@@ -21,6 +21,12 @@ class MedicalProceduresController < ApplicationController
     authorize @medical_procedures
   end
 
+  def medical_calendar
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @medical_procedures = MedicalProcedure.where("date_planned BETWEEN ? and ? OR date_completed BETWEEN ? and ?", start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week, start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week)
+    authorize @medical_procedures
+  end
+
   # GET /medical_procedures/1 or /medical_procedures/1.json
   def show
   end

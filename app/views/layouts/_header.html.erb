@@ -23,10 +23,16 @@
                 <% end %>
               </div>
             </div>
-            
-            <div class="nav-top-link">
-              <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" %>
+
+            <div class="group relative cursor-pointer">
+              <div class="flex items-center justify-between">
+                <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "nav-top-link #{class_names(active: current_page?(medical_procedures_path))}" %>
+              </div>
+              <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
+                <%= link_to "Calendar", medical_calendar_path, class: "nav-sub-link" if policy(Animal).index? %>
+              </div>
             </div>
+            
             <% if authenticated? %>
               <div class="group relative cursor-pointer">
                 <div class="flex items-center justify-between">
