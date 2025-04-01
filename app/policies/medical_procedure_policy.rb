@@ -8,7 +8,7 @@ class MedicalProcedurePolicy  < ApplicationPolicy
   end
 
   def medical_calendar?
-    true
+    authenticated?
   end
 
   def show?
