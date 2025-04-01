@@ -7,6 +7,10 @@ class MedicalProcedurePolicy  < ApplicationPolicy
     true
   end
 
+  def medical_calendar?
+    true
+  end
+
   def show?
     true
   end
