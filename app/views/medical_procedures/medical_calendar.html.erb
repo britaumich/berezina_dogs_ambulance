@@ -6,9 +6,16 @@
       <%= month_calendar(attribute: :date_planned, events: @medical_procedures) do |date, medical_procedures| %>
         <div class="day-header">
           <%= date.mday %>
-          <% medical_procedures.each do |medical_procedure| %>
+        </div>
+        <div class="body-sm-text">
+          <%= link_to "Today List", day_procedures_path(date), class: "link_to", data: {turbo_frame: "_top"} %>
+        </div>
+        <div>
+          <% procedure_types = medical_procedures.group_by(&:procedure_type_id) %>
+          <% procedure_types.each do |procedure_id, medical_procedure| %>
             <div class="event">
-              <%= link_to "#{show_animal(medical_procedure.animal)} - #{medical_procedure.procedure_type.name}", medical_procedure_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} %>
+              <%= show_day_procedure(procedure_id, medical_procedure) %>
+              <%#= link_to "#{show_animal(medical_procedure.animal)} - #{medical_procedure.procedure_type.name}", medical_procedure_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} %>
             </div>
           <% end %>
         </div>

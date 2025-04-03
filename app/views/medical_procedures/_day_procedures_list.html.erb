@@ -1,0 +1,94 @@
+<%= turbo_frame_tag "turbo-medical-procedures" do %>
+  <%= form_with url: complete_procedures_path, method: :post, 
+    data: { controller: "checkboxselectall",
+              checkboxselectall_target: "form",
+              action: "submit->checkboxselectall#submitMedicineForm",
+              turbo_frame: "_top" 
+            } do |form| %>
+    <div class="md:flex justify-between items-center ml-2 mb-2">
+      <div class="flex flex-col">
+        <div class="mb-4">
+          <%= form.label :date_completed, "#{t('label.Select the Date of the Procedure')}", class: "fancy_label"  %>
+          <%= text_field_tag :date_completed, nil,
+            placeholder: "DD-MM-YYYY",
+            required: true, 
+            class: 'filter_select w-80',
+            data: {
+              controller: "flatpickr",
+              flatpickr_date_format_value: "d-m-Y",
+              flatpickr_alt_input: false,
+              required: true
+            }, "data-checkboxselectall-target": "medicine_date_completed" %>
+        </div>
+        <div class="error_text" id="medicine_checkbox_error"></div>
+      </div>
+      <div>
+        <input type="hidden" id="day" name="day" value=<%= @day %>>
+      </div>
+      <div>
+        <%= submit_tag t('forms.buttons.Add Completed Date'), class: "primary_button" if policy(Cart).add? %>
+      </div>
+    </div>
+    <table class="mi_table">
+      <thead class="border border-l-0 border-r-0 border-gray-750">
+        <tr>
+          <td>
+            <span hidden id="select_all">Select All</span>
+            <input type="checkbox" aria-labelledby="select_all" class="check_box ml-2" data-checkboxselectall-target="checkbox_all" data-action="change->checkboxselectall#toggleCheckbox">
+          </td>
+          <th class="header_th">
+            <%= t('activerecord.attributes.medical_procedure.animal_id') %>
+          </th>
+          <th class="header_th">
+            <%= t('activerecord.attributes.medical_procedure.procedure_type_id') %>
+          </th>
+          <th class="header_th">
+            <%= t('activerecord.attributes.medical_procedure.date_completed') %>
+          </th>
+          <th class="header_th">
+            <%= t('activerecord.attributes.medical_procedure.date_planned') %>
+          </th>
+          <th class="header_th"><%= t('forms.buttons.edit') %></th>
+          <th class="header_th"><%= t('forms.buttons.delete') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @day_medical_procedures.each do |medical_procedure| %>
+          <tr>
+            <% if policy(Cart).add? %>
+              <td class="mi_tbody_td">
+                <input type="checkbox" aria-labelledby=<%= "medical_procedure_ids_#{medical_procedure.id}" %> name="medical_procedure_ids[<%= medical_procedure.id %>]" id="medical_procedure_ids_<%= medical_procedure.id %>" value="0" class="check_box" data-checkboxselectall-target="checkbox" data-action="change->checkboxselectall#toggleCheckboxAll">
+              </td>
+            <% end %>
+            <td class="mi_tbody_td">
+              <%= link_to animal_path(medical_procedure.animal), class: "link_to", data: {turbo_frame: "_top"} do %>
+                <%= show_animal(medical_procedure.animal) %>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to medical_procedure_path(medical_procedure), class: "link_to", data: {turbo_frame: "_top"} do %>
+                <%= medical_procedure.procedure_type.name %>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= show_date(medical_procedure.date_completed) %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= show_date(medical_procedure.date_planned) %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to edit_medical_procedure_path(medical_procedure), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(medical_procedure)}_edit" } do%>
+                <i class="fa fa-pencil text-950"></i>
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <%= link_to medical_procedure_path(medical_procedure), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(medical_procedure)}_delete" }  do %>
+                <i class="fa fa-trash-can text-red-950"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

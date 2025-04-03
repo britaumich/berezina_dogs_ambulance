@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :notes
   get '/medical_procedures/medical_calendar', to: 'medical_procedures#medical_calendar', as: :medical_calendar
-
+  get '/medical_procedures/day_procedures/:date', to: 'medical_procedures#day_procedures', as: :day_procedures
   resources :medical_procedures do
     resources :notes, module: :medical_procedures
   end

@@ -234,4 +234,14 @@ module ApplicationHelper
   def animal_types_except_dogs
     AnimalType.where.not(name: 'собака').order(:name)
   end
+
+  def show_day_procedure(procedure_id, medical_procedure)
+    procedure = ProcedureType.find(procedure_id)
+    count = medical_procedure.count
+    if count > 1
+      procedure.name + " - " + Animal.find(medical_procedure[0].animal_id).nickname + " и еще " + count.to_s
+    else
+      procedure.name + " - " + Animal.find(medical_procedure[0].animal_id).nickname
+    end
+  end
 end
