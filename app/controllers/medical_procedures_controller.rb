@@ -23,8 +23,13 @@ class MedicalProceduresController < ApplicationController
 
   def medical_calendar
     start_date = params.fetch(:start_date, Date.today).to_date
-    @medical_procedures = MedicalProcedure.where("date_planned BETWEEN ? and ? OR date_completed BETWEEN ? and ?", start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week, start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week)
+    @medical_procedures = MedicalProcedure.where("date_planned BETWEEN ? and ? OR date_completed BETWEEN ? and ?", start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week, start_date.beginning_of_month.beginning_of_week, start_date.end_of_month.end_of_week).order(:procedure_type_id)
     authorize @medical_procedures
+  end
+
+  def day_procedures
+    @day = params[:date].to_date
+    @day_medical_procedures = MedicalProcedure.where("(date_planned BETWEEN ? AND ?)", @day.beginning_of_day, @day.end_of_day).order(:procedure_type_id)
   end
 
   # GET /medical_procedures/1 or /medical_procedures/1.json
@@ -101,13 +106,24 @@ class MedicalProceduresController < ApplicationController
     end
     if transaction
       flash.now[:notice] = t('forms.messages.Medical procedures were successfully updated')
-      @medical_procedures = MedicalProcedure.all.order(:date_planned)
-      @q = @medical_procedures.ransack(params[:q])
-      @medical_procedures = @q.result.includes(:animal).page(params[:page])
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [ turbo_stream.update("turbo-medical-procedures", partial: 'medical_procedures/procedure_list'),
-                                  turbo_stream.update('flash', partial: 'layouts/notification') ]
+      if params[:day].present?
+        @day = params[:day].to_date
+        @day_medical_procedures = MedicalProcedure.where("(date_planned BETWEEN ? AND ?)", @day.beginning_of_day, @day.end_of_day).order(:procedure_type_id)
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [ turbo_stream.update("turbo-medical-procedures", partial: 'medical_procedures/day_procedures_list'),
+                                    turbo_stream.update('flash', partial: 'layouts/notification') ]
+          end
+        end
+      else
+        @medical_procedures = MedicalProcedure.all.order(:date_planned)
+        @q = @medical_procedures.ransack(params[:q])
+        @medical_procedures = @q.result.includes(:animal).page(params[:page])
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: [ turbo_stream.update("turbo-medical-procedures", partial: 'medical_procedures/procedure_list'),
+                                    turbo_stream.update('flash', partial: 'layouts/notification') ]
+          end
         end
       end
     else
