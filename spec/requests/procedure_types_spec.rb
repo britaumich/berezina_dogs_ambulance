@@ -13,30 +13,29 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/procedure_types", type: :request do
+
+  before(:each) do
+    admin_user = FactoryBot.create(:admin_user)
+    user = FactoryBot.create(:user, email_address: admin_user.email)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
+    sign_in(user)
+  end
   
   # This should return the minimal set of attributes required to create a valid
   # ProcedureType. As you add validations to ProcedureType, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "вакцинация" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
 
   describe "GET /index" do
     it "renders a successful response" do
       ProcedureType.create! valid_attributes
       get procedure_types_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      procedure_type = ProcedureType.create! valid_attributes
-      get procedure_type_url(procedure_type)
       expect(response).to be_successful
     end
   end
@@ -64,9 +63,9 @@ RSpec.describe "/procedure_types", type: :request do
         }.to change(ProcedureType, :count).by(1)
       end
 
-      it "redirects to the created procedure_type" do
+      it "redirects to the procedure_types index page" do
         post procedure_types_url, params: { procedure_type: valid_attributes }
-        expect(response).to redirect_to(procedure_type_url(ProcedureType.last))
+        expect(response).to redirect_to(procedure_types_url)
       end
     end
 
@@ -87,21 +86,21 @@ RSpec.describe "/procedure_types", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "вакцинация" }
       }
 
       it "updates the requested procedure_type" do
         procedure_type = ProcedureType.create! valid_attributes
         patch procedure_type_url(procedure_type), params: { procedure_type: new_attributes }
         procedure_type.reload
-        skip("Add assertions for updated state")
+        expect(procedure_type.name).to eq("вакцинация")
       end
 
-      it "redirects to the procedure_type" do
+      it "redirects to the procedure_types index page" do
         procedure_type = ProcedureType.create! valid_attributes
         patch procedure_type_url(procedure_type), params: { procedure_type: new_attributes }
         procedure_type.reload
-        expect(response).to redirect_to(procedure_type_url(procedure_type))
+        expect(response).to redirect_to(procedure_types_url)
       end
     end
 
@@ -122,10 +121,10 @@ RSpec.describe "/procedure_types", type: :request do
       }.to change(ProcedureType, :count).by(-1)
     end
 
-    it "redirects to the procedure_types list" do
+    it "doesn't have deleted record in the table" do
       procedure_type = ProcedureType.create! valid_attributes
       delete procedure_type_url(procedure_type)
-      expect(response).to redirect_to(procedure_types_url)
+      expect(ProcedureType).not_to exist(procedure_type.id)
     end
   end
 end

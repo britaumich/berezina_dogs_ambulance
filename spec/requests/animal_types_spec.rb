@@ -13,6 +13,13 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/animal_types", type: :request do
+
+  before(:each) do
+    admin_user = FactoryBot.create(:admin_user)
+    user = FactoryBot.create(:user, email_address: admin_user.email)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
+    sign_in(user)
+  end
   
   # This should return the minimal set of attributes required to create a valid
   # AnimalType. As you add validations to AnimalType, be sure to
@@ -56,7 +63,7 @@ RSpec.describe "/animal_types", type: :request do
         }.to change(AnimalType, :count).by(1)
       end
 
-      it "redirects to the created animal_type" do
+      it "redirects to the created animal_types index page" do
         post animal_types_url, params: { animal_type: valid_attributes }
         expect(response).to redirect_to(animal_types_url)
       end
@@ -89,7 +96,7 @@ RSpec.describe "/animal_types", type: :request do
         expect(animal_type.name).to eq("кот")
       end
 
-      it "redirects to the animal_type" do
+      it "redirects to the animal_types index page" do
         animal_type = AnimalType.create! valid_attributes
         patch animal_type_url(animal_type), params: { animal_type: new_attributes }
         animal_type.reload
@@ -114,7 +121,7 @@ RSpec.describe "/animal_types", type: :request do
       }.to change(AnimalType, :count).by(-1)
     end
 
-    it "redirects to the animal_types list" do
+    it "doesn't have deleted record in the table" do
       animal_type = AnimalType.create! valid_attributes
       delete animal_type_url(animal_type)
       expect(AnimalType).not_to exist(animal_type.id)
