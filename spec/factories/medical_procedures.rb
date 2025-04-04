@@ -24,11 +24,8 @@
 #
 FactoryBot.define do
   factory :medical_procedure do
-    date_completed { "2024-12-23" }
-    complete { false }
-    date_planned { "2024-12-23" }
-    notes { "MyText" }
-    animal { nil }
-    procedure_type { nil }
+    date_planned { Faker::Date.forward(days: 30)  }
+    association :animal
+    association :procedure_type
   end
 end
