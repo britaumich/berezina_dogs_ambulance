@@ -13,6 +13,14 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/animal_statuses", type: :request do
+
+  before(:each) do
+    admin_user = FactoryBot.create(:admin_user)
+    user = FactoryBot.create(:user, email_address: admin_user.email)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
+    sign_in(user)
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # AnimalStatus. As you add validations to AnimalStatus, be sure to
   # adjust the attributes here as well.
