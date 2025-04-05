@@ -13,16 +13,25 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/medical_procedures", type: :request do
+
+  before(:each) do
+    admin_user = FactoryBot.create(:admin_user)
+    user = FactoryBot.create(:user, email_address: admin_user.email)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
+    sign_in(user)
+  end
   
   # This should return the minimal set of attributes required to create a valid
   # MedicalProcedure. As you add validations to MedicalProcedure, be sure to
   # adjust the attributes here as well.
+  let!(:animal) { FactoryBot.create(:animal) }
+  let!(:procedure_type) { FactoryBot.create(:procedure_type) }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:medical_procedure, animal_id: animal.id, procedure_type_id: procedure_type.id)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryBot.attributes_for(:medical_procedure, animal_id: nil, procedure_type_id: procedure_type.id)
   }
 
   describe "GET /index" do
@@ -86,15 +95,17 @@ RSpec.describe "/medical_procedures", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
+      # let(:new_animal_type) { FactoryBot.create(:animal_type, name: 'попугай', plural_name: 'попугаи') }
+      let(:new_animal) { FactoryBot.create(:animal, nickname: 'New Name', animal_type_id: animal.animal_type.id, animal_status_id: animal.animal_status_id ) }
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryBot.attributes_for(:medical_procedure, animal_id: new_animal.id)
       }
 
       it "updates the requested medical_procedure" do
         medical_procedure = MedicalProcedure.create! valid_attributes
         patch medical_procedure_url(medical_procedure), params: { medical_procedure: new_attributes }
         medical_procedure.reload
-        skip("Add assertions for updated state")
+        expect(medical_procedure.animal.nickname).to eq("New Name")
       end
 
       it "redirects to the medical_procedure" do
