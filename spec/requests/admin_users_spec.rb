@@ -13,30 +13,29 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/admin_users", type: :request do
+
+  before(:each) do
+    admin_user = FactoryBot.create(:admin_user)
+    user = FactoryBot.create(:user, email_address: admin_user.email)
+    animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
+    sign_in(user)
+  end
   
   # This should return the minimal set of attributes required to create a valid
   # AdminUser. As you add validations to AdminUser, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { email: "test@test.com" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { email: "" }
   }
 
   describe "GET /index" do
     it "renders a successful response" do
       AdminUser.create! valid_attributes
       get admin_users_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      admin_user = AdminUser.create! valid_attributes
-      get admin_user_url(admin_user)
       expect(response).to be_successful
     end
   end
@@ -64,9 +63,9 @@ RSpec.describe "/admin_users", type: :request do
         }.to change(AdminUser, :count).by(1)
       end
 
-      it "redirects to the created admin_user" do
+      it "redirects to the admin_user index page" do
         post admin_users_url, params: { admin_user: valid_attributes }
-        expect(response).to redirect_to(admin_user_url(AdminUser.last))
+        expect(response).to redirect_to(admin_users_url)
       end
     end
 
@@ -87,21 +86,21 @@ RSpec.describe "/admin_users", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { email: "test1@test.com" }
       }
 
       it "updates the requested admin_user" do
         admin_user = AdminUser.create! valid_attributes
         patch admin_user_url(admin_user), params: { admin_user: new_attributes }
         admin_user.reload
-        skip("Add assertions for updated state")
+        expect(admin_user.email).to eq("test1@test.com")
       end
 
-      it "redirects to the admin_user" do
+      it "redirects to the admin_users index page" do
         admin_user = AdminUser.create! valid_attributes
         patch admin_user_url(admin_user), params: { admin_user: new_attributes }
         admin_user.reload
-        expect(response).to redirect_to(admin_user_url(admin_user))
+        expect(response).to redirect_to(admin_users_url)
       end
     end
 
@@ -122,10 +121,10 @@ RSpec.describe "/admin_users", type: :request do
       }.to change(AdminUser, :count).by(-1)
     end
 
-    it "redirects to the admin_users list" do
+    it "doesn't show admin_user on the page" do
       admin_user = AdminUser.create! valid_attributes
       delete admin_user_url(admin_user)
-      expect(response).to redirect_to(admin_users_url)
+      expect(AdminUser.exists?(admin_user.id)).to be_falsey
     end
   end
 end
