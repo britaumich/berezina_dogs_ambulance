@@ -52,11 +52,7 @@ jobs:
         run: bundle exec rails assets:precompile
 
       - name: Setup DB
-        run: 
-          bin/rails db:create
-          bin/rails db:migrate
-          bundle exec rails db:test:prepare
-          bin/rails db:seed
+        run: bin/rails db:create db:migrate db:seed
 
       - name: Run Request tests
         run: bundle exec rspec spec/requests/*
