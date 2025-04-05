@@ -65,64 +65,63 @@ RSpec.describe "/animals", type: :request do
     end
   end
 
-  # describe "POST /create" do
-  #   context "with valid parameters" do
-  #     it "creates a new Animal" do
-  #       binding.pry
-  #       expect {
-  #         post animals_url, params: { animal: valid_attributes }
-  #       }.to change(Animal, :count).by(1)
-  #     end
+  describe "POST /create" do
+    context "with valid parameters" do
+      it "creates a new Animal" do
+        expect {
+          post animals_url, params: { animal: valid_attributes }
+        }.to change(Animal, :count).by(1)
+      end
 
-  #     it "redirects to the created animal" do
-  #       post animals_url, params: { animal: valid_attributes }
-  #       expect(response).to redirect_to(animal_url(Animal.last))
-  #     end
-  #   end
+      it "redirects to the created animal" do
+        post animals_url, params: { animal: valid_attributes }
+        expect(response).to redirect_to(animal_url(Animal.last))
+      end
+    end
 
-  #   context "with invalid parameters" do
-  #     it "does not create a new Animal" do
-  #       expect {
-  #         post animals_url, params: { animal: invalid_attributes }
-  #       }.to change(Animal, :count).by(0)
-  #     end
+    context "with invalid parameters" do
+      it "does not create a new Animal" do
+        expect {
+          post animals_url, params: { animal: invalid_attributes }
+        }.to change(Animal, :count).by(0)
+      end
 
-  #     it "renders a response with 422 status (i.e. to display the 'new' template)" do
-  #       post animals_url, params: { animal: invalid_attributes }
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #   end
-  # end
+      it "renders a response with 422 status (i.e. to display the 'new' template)" do
+        post animals_url, params: { animal: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 
-  # describe "PATCH /update" do
-  #   context "with valid parameters" do
-  #     let(:new_attributes) {
-  #       skip("Add a hash of attributes valid for your model")
-  #     }
+  describe "PATCH /update" do
+    context "with valid parameters" do
+      let(:new_attributes) {
+        FactoryBot.attributes_for(:animal, surname: "surname", animal_status_id: animal_status.id, animal_type_id: animal_type.id)
+      }
 
-  #     it "updates the requested animal" do
-  #       animal = Animal.create! valid_attributes
-  #       patch animal_url(animal), params: { animal: new_attributes }
-  #       animal.reload
-  #       skip("Add assertions for updated state")
-  #     end
+      it "updates the requested animal" do
+        animal = Animal.create! valid_attributes
+        patch animal_url(animal), params: { animal: new_attributes }
+        animal.reload
+        expect(animal.surname).to eq("Surname")
+      end
 
-  #     it "redirects to the animal" do
-  #       animal = Animal.create! valid_attributes
-  #       patch animal_url(animal), params: { animal: new_attributes }
-  #       animal.reload
-  #       expect(response).to redirect_to(animal_url(animal))
-  #     end
-  #   end
+      it "redirects to the animal" do
+        animal = Animal.create! valid_attributes
+        patch animal_url(animal), params: { animal: new_attributes }
+        animal.reload
+        expect(response).to redirect_to(animal_url(animal))
+      end
+    end
 
-  #   context "with invalid parameters" do
-  #     it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-  #       animal = Animal.create! valid_attributes
-  #       patch animal_url(animal), params: { animal: invalid_attributes }
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
-  #   end
-  # end
+    context "with invalid parameters" do
+      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        animal = Animal.create! valid_attributes
+        patch animal_url(animal), params: { animal: invalid_attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 
   describe "DELETE /destroy" do
     it "destroys the requested animal" do
