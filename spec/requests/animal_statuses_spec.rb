@@ -58,7 +58,7 @@ RSpec.describe "/animal_statuses", type: :request do
         }.to change(AnimalStatus, :count).by(1)
       end
 
-      it "redirects to the created animal_status" do
+      it "redirects to the animal_statuses index page" do
         post animal_statuses_url, params: { animal_status: valid_attributes }
         expect(response).to redirect_to(animal_statuses_url)
       end
