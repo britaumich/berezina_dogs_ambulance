@@ -95,6 +95,7 @@ ru:
     on: "в"
     Animal Details: "Детали"
     Fill out the forms to apply changes to all animals from the list: "Заполните формы, чтобы применить изменения ко всему списку"
+    Duplicate: "Копия"
   helpers:
     page_entries_info:
       one_page:

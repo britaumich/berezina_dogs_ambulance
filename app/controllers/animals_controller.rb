@@ -98,16 +98,16 @@ class AnimalsController < ApplicationController
     @animal = Animal.new(animal_params)
     if params['birth_year'].present?
       @animal.birth_year = Date.new(params['birth_year'].to_i)
-    end
-    if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
-      @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
+      if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
+        @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
+      end
     end
 
     if params['death_year'].present?
       @animal.death_year = Date.new(params['death_year'].to_i)
-    end
-    if params['death']['death_month'].present? && params['death']['death_day'].present?
-      @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
+      if params['death']['death_month'].present? && params['death']['death_day'].present?
+        @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
+      end
     end
 
     respond_to do |format|
@@ -134,24 +134,24 @@ class AnimalsController < ApplicationController
     @animal.attributes = animal_params
     if params['birth_year'].present?
       @animal.birth_year = Date.new(params['birth_year'].to_i)
+      if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
+        @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
+      else
+        @animal.birth_day = nil
+      end
     else
       @animal.birth_year = nil
-    end
-    if params['birth']['birth_month'].present? && params['birth']['birth_day'].present?
-      @animal.birth_day = Date.new(0, params['birth']['birth_month'].to_i, params['birth']['birth_day'].to_i)
-    else
-      @animal.birth_day = nil
     end
 
     if params['death_year'].present?
       @animal.death_year = Date.new(params['death_year'].to_i)
+      if params['death']['death_month'].present? && params['death']['death_day'].present?
+        @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
+      else
+        @animal.death_day = nil
+      end
     else
       @animal.death_year = nil
-    end
-    if params['death']['death_month'].present? && params['death']['death_day'].present?
-      @animal.death_day = Date.new(0, params['death']['death_month'].to_i, params['death']['death_day'].to_i)
-    else
-      @animal.death_day = nil
     end
 
     if params['sibling_remove'].present?

@@ -95,7 +95,6 @@ RSpec.describe "/medical_procedures", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      # let(:new_animal_type) { FactoryBot.create(:animal_type, name: 'попугай', plural_name: 'попугаи') }
       let(:new_animal) { FactoryBot.create(:animal, nickname: 'New Name', animal_type_id: animal.animal_type.id, animal_status_id: animal.animal_status_id ) }
       let(:new_attributes) {
         FactoryBot.attributes_for(:medical_procedure, animal_id: new_animal.id)
