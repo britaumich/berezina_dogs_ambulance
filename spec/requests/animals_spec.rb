@@ -93,6 +93,21 @@ RSpec.describe "/animals", type: :request do
     end
   end
 
+  describe "GET duplicate" do
+    it "renders a successful response" do
+      animal = Animal.create! valid_attributes
+      get duplicate_url(animal)
+      expect(response).to be_successful
+    end
+
+    it "renders a response with 422 status (i.e. to display the 'new' template)" do
+      animal = Animal.create! valid_attributes
+      animal_type_id = animal.animal_type_id
+      get duplicate_url(animal)
+      expect(response.body).to include("Duplicate")
+    end
+  end
+
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
