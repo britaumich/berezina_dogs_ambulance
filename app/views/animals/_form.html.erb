@@ -110,7 +110,7 @@
     <div class="flex justify-between">
       <%= select_year(@birth_year, { prompt: "#{t('text.Select Year')} ...", start_year: DateTime.now.year, end_year: DateTime.now.year - 20 }, {name: 'birth_year', :class => 'short_input_text_field', "data-animal-target": "birth_year"}) %>
       <%= select_day(@birth_day, { field_name: 'birth_day', prefix: 'birth', prompt: "#{t('text.Select Day')} ..." }, { class: "inline short_input_text_field", "data-animal-target": "birth_day" }) %>
-      <%= select_month(@birth_day, { field_name: 'birth_month', prefix: 'birth', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field", "data-animal-target": "birth_month" }) %>
+      <%= select_month(@birth_month, { field_name: 'birth_month', prefix: 'birth', prompt: "#{t('text.Select Month')} ..." }, { class: "inline short_input_text_field", "data-animal-target": "birth_month" }) %>
     </div>
   </div>
   <div class="error_text" id="birthdate_error"></div>
