@@ -183,6 +183,8 @@ en:
     formats:
       default: "%Y-%m-%d"
       with_month: "%d %B, %Y"
+    calendar_month_names: [~, January, February, March, April, May, June, 
+                              July, August, September, October, November, December]
   error:
     zero: "No errors"
     one:   "1 error"

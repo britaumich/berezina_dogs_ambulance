@@ -29,7 +29,7 @@
                 <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "nav-top-link #{class_names(active: current_page?(medical_procedures_path))}" if policy(MedicalProcedure).index? %>
               </div>
               <div class="invisible absolute z-50 flex w-full flex-col bg-green-900 py-1 group-hover:visible" onClick="">
-                <%= link_to "Calendar", medical_calendar_path, class: "nav-sub-link" if policy(MedicalProcedure).medical_calendar? %>
+                <%= link_to t('menu.header.calendar'), medical_calendar_path, class: "nav-sub-link" if policy(MedicalProcedure).medical_calendar? %>
               </div>
             </div>
             
@@ -160,7 +160,7 @@
               <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" if policy(MedicalProcedure).index?  %>
             </div>
             <div class="icursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
-              <%= link_to "Calendar", medical_calendar_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(MedicalProcedure).index? %>
+              <%= link_to t('menu.header.calendar'), medical_calendar_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(MedicalProcedure).index? %>
             </div>
 
 
