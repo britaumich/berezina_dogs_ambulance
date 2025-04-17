@@ -54,6 +54,13 @@ class AnimalsController < ApplicationController
   def duplicate
     @duplicate_animal_id = @animal.id
     @animal = @animal.dup
+    @birth_year = @animal.birth_year.present? ? @animal.birth_year.year : 0
+    @birth_month = @animal.birth_day.present? ? @animal.birth_day.month : 14
+    @birth_day = @animal.birth_day.present? ? @animal.birth_day.day : 32
+    @death_year = 0
+    @death_month = 14
+    @death_day = 32
+    authorize @animal
     render :new
   end
 
