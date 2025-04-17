@@ -112,6 +112,12 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следующая &rsaquo;"
       truncate: "..."
+  simple_calendar:
+    previous: "Прошлый месяц"
+    next: "Следующий месяц"
+    today: "Сегодня"
+    Today List: "Список на сегодня"
+  
   label: 
     Birth Date: "Дата рождения"
     Death Date: "Дата смерти"
@@ -255,6 +261,7 @@ ru:
     header:
       аdditions: "Дополнения"
       medicine: "Медицина"
+      calendar: "Календарь"
       animal_types: "Вид граждан"
       animal_statuses: "Статус граждан"
       procedures: "Процедуры"
@@ -276,6 +283,8 @@ ru:
   date:
     month_names: [~, Января, Февраля, Марта, Апреля, Мая, Июня,
                     Июля, Августа, Сентября, Октября, Ноября, Декабря]
+    calendar_month_names: [~, Январь, Февраль, Март, Апрель, Май, Июнь,
+                    Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
     formats:
       default: "%d-%m-%Y"
       with_month: "%d %B, %Y"
