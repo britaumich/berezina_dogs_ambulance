@@ -1,7 +1,10 @@
 <div class="w-full" data-controller='autosubmit'>
   <a id="top" name="top" style="display: none;">top</a>
   <div class="">
-    <h1><%= t('text.Procedures') %></h1>
+    <div class="md:flex justify-between items-center">
+      <h1><%= t('text.Procedures') %></h1>
+      <%= link_to t('menu.new'), new_medical_procedure_path(return_to_calendar: true), class: "primary_button" if policy(MedicalProcedure).new? %>
+    </div>
     <div>
       <%= month_calendar(attribute: :date_planned, events: @medical_procedures) do |date, medical_procedures| %>
         <div class="day-header">
@@ -9,6 +12,14 @@
         </div>
         <div class="body-sm-text">
           <%= link_to t('simple_calendar.Today List'), day_procedures_path(date), class: "link_to", data: {turbo_frame: "_top"} %>
+          <div>
+            <%= link_to new_medical_procedure_path(return_to_calendar: true, :date_planned => date), data: {turbo_frame: "_top"} do %>
+              <span class="tertiary_button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <%= t('menu.new') %>
+              </span>
+            <% end %>
+          </div>
         </div>
         <div>
           <% procedure_types = medical_procedures.group_by(&:procedure_type_id) %>

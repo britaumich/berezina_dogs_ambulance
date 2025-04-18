@@ -41,6 +41,9 @@ class MedicalProceduresController < ApplicationController
     @medical_procedure = MedicalProcedure.new
     @animal = nil
     @return_to_animal = false
+    @return_to_calendar = params[:return_to_calendar].present? ? params[:return_to_calendar] : false
+    @animal_ids = params[:animal_ids].present? ? params[:animal_ids] : nil
+    @date_planned = params[:date_planned].present? ? params[:date_planned].to_date : nil
     authorize @medical_procedure
   end
 
@@ -52,7 +55,9 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures/1/edit
   def edit
+    @animal = @medical_procedure.animal
     @return_to_animal = false
+    @date_planned = @medical_procedure.date_planned
   end
 
   def edit_medical_procedure_for_animal
