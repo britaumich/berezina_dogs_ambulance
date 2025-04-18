@@ -62,21 +62,46 @@ class MedicalProceduresController < ApplicationController
 
   # POST /medical_procedures or /medical_procedures.json
   def create
-    @medical_procedure = MedicalProcedure.new(medical_procedure_params)
 
-    respond_to do |format|
-      if @medical_procedure.save
-        if params[:return_to_animal] == 'true'
-          format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
-        else
-          format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
-        end
-      else
-        @return_to_animal = params[:return_to_animal]
-        @animal = @medical_procedure.animal
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
+    animal_ids = params[:animal_ids]
+    transaction = ActiveRecord::Base.transaction do
+      animal_ids.each do |animal_id|
+        @medical_procedure = MedicalProcedure.new(medical_procedure_params)
+        @medical_procedure.animal_id = animal_id
+        raise ActiveRecord::Rollback unless @medical_procedure.save
+        # respond_to do |format|
+        #   if @medical_procedure.save
+        #     if params[:return_to_animal] == 'true'
+        #       format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
+        #     else
+        #       format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
+        #     end
+        #   else
+        #     @return_to_animal = params[:return_to_animal]
+        #     @animal = @medical_procedure.animal
+        #     format.html { render :new, status: :unprocessable_entity }
+        #     format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
+        #   end
+        # end
+        true
       end
+    end
+
+    if transaction
+      if params[:return_to_animal] == 'true'
+        redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created')
+      elsif params[:return_to_calendar] == 'true'
+        redirect_to medical_calendar_path, notice: t('forms.messages.Medical procedure was successfully created')
+      elsif animal_ids.size == 1 && params[:return_to_animal] == 'false'
+        redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created')
+      else
+        redirect_to medical_procedures_path, notice: t('forms.messages.Medical procedure was successfully created')
+      end
+    else
+      @medical_procedure = MedicalProcedure.new
+      @return_to_animal = params[:return_to_animal]
+      flash.now[:alert] = t('forms.messages.Error creating medical procedure')
+      render :new, status: :unprocessable_entity
     end
   end
 

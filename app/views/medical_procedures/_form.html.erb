@@ -11,9 +11,17 @@
     </div>
   <% end %>
 
+
   <div class="my-5">
-    <%= form.label :animal_id %>
-    <%= form.collection_select(:animal_id, animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true, :selected => animal.present? ? animal.id : nil }, { class: "input_text_field" }) %>
+    <%= form.label :animal_ids, t('label.animals') %>
+    <div class="scrollable-frame">
+      <% animals.each do |animal| %>
+        <div class="checkbox-item">
+          <%= check_box_tag "animal_ids[]", animal.id, false, id: "animal_#{animal.id}", class: "check_box" %>
+          <%= label_tag "animal_#{animal.id}", animal.display_name %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="my-5">
