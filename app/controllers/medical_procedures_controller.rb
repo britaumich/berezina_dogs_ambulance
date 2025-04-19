@@ -165,8 +165,13 @@ class MedicalProceduresController < ApplicationController
   end
 
   def sort_animals
+    allowed_sort_fields = %w[id nickname surname gender sterilization aviary_name arival_date] # Whitelist allowed fields
     @sort_by = params[:sort_by]
-    @animals = Animal.order(@sort_by)
+    if allowed_sort_fields.include?(@sort_by)
+      @animals = Animal.order(@sort_by)
+    else
+      @animals = Animal.order(:nickname) # Default sorting
+    end
   end
 
 
