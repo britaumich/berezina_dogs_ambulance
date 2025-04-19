@@ -39,7 +39,6 @@ class MedicalProceduresController < ApplicationController
   # GET /medical_procedures/new
   def new
     @medical_procedure = MedicalProcedure.new
-    @animals = Animal.order(:nickname)
     @animal = nil
     @return_to_animal = false
     @return_to_calendar = params[:return_to_calendar].present? ? params[:return_to_calendar] : false
