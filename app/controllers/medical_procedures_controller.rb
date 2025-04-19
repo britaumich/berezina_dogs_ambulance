@@ -39,6 +39,7 @@ class MedicalProceduresController < ApplicationController
   # GET /medical_procedures/new
   def new
     @medical_procedure = MedicalProcedure.new
+    @animals = Animal.order(:nickname)
     @animal = nil
     @return_to_animal = false
     @return_to_calendar = params[:return_to_calendar].present? ? params[:return_to_calendar] : false
@@ -74,20 +75,6 @@ class MedicalProceduresController < ApplicationController
         @medical_procedure = MedicalProcedure.new(medical_procedure_params)
         @medical_procedure.animal_id = animal_id
         raise ActiveRecord::Rollback unless @medical_procedure.save
-        # respond_to do |format|
-        #   if @medical_procedure.save
-        #     if params[:return_to_animal] == 'true'
-        #       format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
-        #     else
-        #       format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
-        #     end
-        #   else
-        #     @return_to_animal = params[:return_to_animal]
-        #     @animal = @medical_procedure.animal
-        #     format.html { render :new, status: :unprocessable_entity }
-        #     format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
-        #   end
-        # end
         true
       end
     end
@@ -176,6 +163,11 @@ class MedicalProceduresController < ApplicationController
         format.html { redirect_to medical_procedures_path, status: :see_other, notice: t('forms.messages.Medical procedure was successfully deleted') }
       end
     end
+  end
+
+  def sort_animals
+    @sort_by = params[:sort_by]
+    @animals = Animal.order(@sort_by)
   end
 
 

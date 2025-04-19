@@ -1,4 +1,8 @@
-<%= form_with(model: medical_procedure, class: "contents") do |form| %>
+<%= form_with(model: medical_procedure, class: "contents",
+data: { controller: 'animals',
+          autosubmit_target: "form",
+          turbo_frame: "animal-names"
+          }) do |form| %>
   <% if medical_procedure.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
     <p class="text-lg"><%= t('error', count: medical_procedure.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
@@ -16,24 +20,17 @@
       <%= medical_procedure.animal.display_name %>
     </div>
   <% else %>
-    <div class="my-5 flex justify-between items-center">
+    <div class="my-5 flex justify-between items-end">
       <div>
         <%= form.label :animal_ids, t('label.Nickname (Select Multiple)') %>
       </div>
       <div class="display inline">
         <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
         <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
-          :"data-action" => "autosubmit#submit" %>
+          "data-animals-target": "sort_by", :"data-action" => "animals#sortAnimals" %>
       </div>
     </div>
-    <div class="scrollable-frame">
-      <% animals.each do |animal| %>
-        <div class="checkbox-item">
-          <%= check_box_tag "animal_ids[]", animal.id, false, id: "animal_#{animal.id}", class: "check_box" %>
-          <%= label_tag "animal_#{animal.id}", animal.display_name %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'scrollable_frame' %>
   <% end %>
 
   <div class="my-5">
