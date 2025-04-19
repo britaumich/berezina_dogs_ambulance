@@ -58,6 +58,7 @@ gem 'prawn', '~> 2.5'
 gem "prawn-table", "~> 0.2.2"
 gem 'pundit', '~> 2.5'
 gem "simple_calendar"
+gem 'requestjs-rails', '~> 0.0.10'
 
 group :development, :test do
   gem "rspec-rails", "~> 7.0"

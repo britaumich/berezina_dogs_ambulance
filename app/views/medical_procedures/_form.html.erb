@@ -1,4 +1,8 @@
-<%= form_with(model: medical_procedure, class: "contents") do |form| %>
+<%= form_with(model: medical_procedure, class: "contents",
+data: { controller: 'animals',
+          autosubmit_target: "form",
+          turbo_frame: "animal-names"
+          }) do |form| %>
   <% if medical_procedure.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
     <p class="text-lg"><%= t('error', count: medical_procedure.errors.count) %> <%= t('forms.messages.prohibited this record from being saved') %>:</p>
@@ -11,10 +15,23 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :animal_id %>
-    <%= form.collection_select(:animal_id, animals, :id, :nickname, { include_blank: "#{t('text.Select')} ...", required: true, :selected => animal.present? ? animal.id : nil }, { class: "input_text_field" }) %>
-  </div>
+  <% if medical_procedure.persisted? %>
+    <div class="my-5 body-lg-bold-text">
+      <%= medical_procedure.animal.display_name %>
+    </div>
+  <% else %>
+    <div class="my-5 flex justify-between items-end">
+      <div>
+        <%= form.label :animal_ids, t('label.Nickname (Select Multiple)') %>
+      </div>
+      <div class="display inline">
+        <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
+        <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
+          "data-animals-target": "sort_by", :"data-action" => "animals#sortAnimals" %>
+      </div>
+    </div>
+    <%= render 'scrollable_frame' %>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :procedure_type_id %>
@@ -32,7 +49,7 @@
           class: "input_text_field",
           required: true,
           placeholder: "DD-MM-YYYY",
-          value: medical_procedure.date_planned.present? ? medical_procedure.date_planned.strftime("%d-%m-%Y") : nil,
+          value: @date_planned.present? ? @date_planned.strftime("%d-%m-%Y") : nil,
           data: {
             controller: "flatpickr",
             flatpickr_date_format_value: "d-m-Y",
@@ -54,6 +71,7 @@
           } %>
   </div>
   <%= hidden_field_tag 'return_to_animal', return_to_animal %>
+  <%= hidden_field_tag 'return_to_calendar', params[:return_to_calendar] %>
 
   <div class="inline">
     <% if return_to_animal.present? %>

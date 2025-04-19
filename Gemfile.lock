@@ -286,6 +286,8 @@ GEM
     regexp_parser (2.9.3)
     reline (0.6.0)
       io-console (~> 0.5)
+    requestjs-rails (0.0.12)
+      railties (>= 6.1.0)
     rexml (3.4.1)
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
@@ -438,6 +440,7 @@ DEPENDENCIES
   rails-i18n
   ransack (~> 4.2, >= 4.2.1)
   redis (>= 4.0.1)
+  requestjs-rails (~> 0.0.10)
   rspec-rails (~> 7.0)
   rubocop (~> 1.0)
   rubocop-capybara

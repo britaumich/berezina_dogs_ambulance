@@ -41,6 +41,9 @@ class MedicalProceduresController < ApplicationController
     @medical_procedure = MedicalProcedure.new
     @animal = nil
     @return_to_animal = false
+    @return_to_calendar = params[:return_to_calendar].present? ? params[:return_to_calendar] : false
+    @animal_ids = params[:animal_ids].present? ? params[:animal_ids] : nil
+    @date_planned = params[:date_planned].present? ? params[:date_planned].to_date : nil
     authorize @medical_procedure
   end
 
@@ -52,7 +55,9 @@ class MedicalProceduresController < ApplicationController
 
   # GET /medical_procedures/1/edit
   def edit
+    @animal = @medical_procedure.animal
     @return_to_animal = false
+    @date_planned = @medical_procedure.date_planned
   end
 
   def edit_medical_procedure_for_animal
@@ -62,21 +67,32 @@ class MedicalProceduresController < ApplicationController
 
   # POST /medical_procedures or /medical_procedures.json
   def create
-    @medical_procedure = MedicalProcedure.new(medical_procedure_params)
 
-    respond_to do |format|
-      if @medical_procedure.save
-        if params[:return_to_animal] == 'true'
-          format.html { redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created') }
-        else
-          format.html { redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created') }
-        end
-      else
-        @return_to_animal = params[:return_to_animal]
-        @animal = @medical_procedure.animal
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @medical_procedure.errors, status: :unprocessable_entity }
+    animal_ids = params[:animal_ids]
+    transaction = ActiveRecord::Base.transaction do
+      animal_ids.each do |animal_id|
+        @medical_procedure = MedicalProcedure.new(medical_procedure_params)
+        @medical_procedure.animal_id = animal_id
+        raise ActiveRecord::Rollback unless @medical_procedure.save
+        true
       end
+    end
+
+    if transaction
+      if params[:return_to_animal] == 'true'
+        redirect_to @medical_procedure.animal, notice: t('forms.messages.Medical procedure was successfully created')
+      elsif params[:return_to_calendar] == 'true'
+        redirect_to medical_calendar_path, notice: t('forms.messages.Medical procedure was successfully created')
+      elsif animal_ids.size == 1 && params[:return_to_animal] == 'false'
+        redirect_to @medical_procedure, notice: t('forms.messages.Medical procedure was successfully created')
+      else
+        redirect_to medical_procedures_path, notice: t('forms.messages.Medical procedure was successfully created')
+      end
+    else
+      @medical_procedure = MedicalProcedure.new
+      @return_to_animal = params[:return_to_animal]
+      flash.now[:alert] = t('forms.messages.Error creating medical procedure')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -145,6 +161,16 @@ class MedicalProceduresController < ApplicationController
       else
         format.html { redirect_to medical_procedures_path, status: :see_other, notice: t('forms.messages.Medical procedure was successfully deleted') }
       end
+    end
+  end
+
+  def sort_animals
+    allowed_sort_fields = %w[id nickname surname gender sterilization aviary_name arival_date] # Whitelist allowed fields
+    @sort_by = params[:sort_by]
+    if allowed_sort_fields.include?(@sort_by)
+      @animals = Animal.order(@sort_by)
+    else
+      @animals = Animal.order(:nickname) # Default sorting
     end
   end
 

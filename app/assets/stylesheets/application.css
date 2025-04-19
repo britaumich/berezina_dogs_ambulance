@@ -194,3 +194,16 @@
       display: block;
   }
 }
+
+.scrollable-frame {
+  max-height: 200px; /* Adjust height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Add a border */
+  padding: 10px; /* Optional: Add padding */
+  background-color: #f9f9f9; /* Optional: Add background color */
+  border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+.checkbox-item {
+  margin-bottom: 5px; /* Add spacing between checkboxes */
+}
