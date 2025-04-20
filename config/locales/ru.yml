@@ -138,7 +138,7 @@ ru:
     arival_date_after: "Дата появления - после"
     arival_date_before: "Дата появления - до"
     Select the Date of the Procedure: "Выберите дату проведения процедуры"
-    Nickname (Select Multiple): "Имя (выберите несколько)"
+    Nickname (Select Multiple): "Имя (можно выберать несколько)"
   activerecord:
     attributes:
       animal:
