@@ -38,7 +38,6 @@ export default class extends Controller {
   }
 
   submitMedicineForm(event) {
-    console.log("submit medicine form")
     var medicine_checkbox_error = document.getElementById('medicine_checkbox_error')
     var medicine_date_completed = this.medicine_date_completedTarget.value
     medicine_checkbox_error.innerHTML = ''

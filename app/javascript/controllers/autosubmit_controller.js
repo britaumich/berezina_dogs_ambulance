@@ -3,12 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['form', 'sidebar' ]
   
-  connect () {
+  connect() {
     console.log("connect autosubmit")
   }
 
   clearFilters() {
-    console.log("clear filters")
     var url = window.location.pathname
     Turbo.visit(url)
   }
@@ -22,12 +21,10 @@ export default class extends Controller {
   }
   
   submit() {
-    console.log("here")
     Turbo.navigator.submitForm(this.formTarget)
   }
 
   toggle() {
-    console.log("Sidebar toggle clicked");
     this.sidebarTarget.classList.toggle('-translate-x-full')
   }
 }

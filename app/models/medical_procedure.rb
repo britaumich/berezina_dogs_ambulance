@@ -6,7 +6,6 @@
 #  complete          :boolean
 #  date_completed    :date
 #  date_planned      :date
-#  description       :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  animal_id         :bigint           not null
@@ -29,6 +28,8 @@ class MedicalProcedure < ApplicationRecord
 
   after_save :if_sterilization
   before_destroy :if_sterilization_update_animal
+
+  validates :date_planned, presence: true
 
   private
 

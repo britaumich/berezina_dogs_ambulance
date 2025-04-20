@@ -2,8 +2,8 @@
   <div class="scrollable-frame">
     <% animals.each do |animal| %>
       <div class="checkbox-item">
-        <%= check_box_tag "animal_ids[]", animal.id, false, id: "animal_#{animal.id}", class: "check_box" %>
-        <%= label_tag "animal_#{animal.id}", animal.display_name %>
+        <%= check_box_tag "animal_ids[]", animal.id, false, id: "animal_#{animal.id}", class: "check_box", "data-medicine-target": "checkbox" %>
+        <%= label_tag "animal_ids_#{animal.id}", animal.display_name %>
       </div>
     <% end %>
   </div>
