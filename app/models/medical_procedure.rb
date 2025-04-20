@@ -6,7 +6,6 @@
 #  complete          :boolean
 #  date_completed    :date
 #  date_planned      :date
-#  description       :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  animal_id         :bigint           not null
