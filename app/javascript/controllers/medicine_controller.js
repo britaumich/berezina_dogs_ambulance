@@ -4,7 +4,7 @@ import { get } from "@rails/request.js"
 export default class extends Controller {
   static targets = [ 'form', 'sort_by', 'checkbox', 'date_planned' ] 
 
-  connect () {
+  connect() {
     console.log("connect medicine")
   }
 

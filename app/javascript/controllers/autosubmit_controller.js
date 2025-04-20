@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['form', 'sidebar' ]
   
-  connect () {
+  connect() {
     console.log("connect autosubmit")
   }
 
