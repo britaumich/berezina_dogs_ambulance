@@ -1,7 +1,8 @@
 <%= form_with(model: medical_procedure, class: "contents",
 data: { controller: 'animals',
           autosubmit_target: "form",
-          turbo_frame: "animal-names"
+          turbo_frame: "animal-names",
+          action: "animals#submitForm",
           }) do |form| %>
   <% if medical_procedure.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
@@ -26,11 +27,13 @@ data: { controller: 'animals',
       </div>
       <div class="display inline">
         <label for="sort" class="fancy_label"><%= t('label.sort') %></label>
-        <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , class: "filter_select",
+        <%= select_tag "sort", options_for_select(fields_to_sort_animals, selected: @sort_by), include_blank: "#{t('text.Select')} ..." , value: "0", class: "filter_select",
           "data-animals-target": "sort_by", :"data-action" => "animals#sortAnimals" %>
       </div>
+
     </div>
     <%= render 'scrollable_frame' %>
+    <div class="error_text mt-2" id="checkbox_error"></div>
   <% end %>
 
   <div class="my-5">
@@ -55,8 +58,9 @@ data: { controller: 'animals',
             flatpickr_date_format_value: "d-m-Y",
             flatpickr_alt_input: false, 
             required: true
-          } %>
+          }, "data-animals-target": "date_planned" %>
   </div>
+  <div class="error_text mt-2" id="date_planned_error"></div>
 
   <div class="my-5">
     <%= form.label :date_completed %>
