@@ -11,13 +11,11 @@ export default class extends Controller {
   }
 
   clearFilters() {
-    console.log("clear filters")
     var url = window.location.pathname
     Turbo.visit(url)
   }
 
   getSections () {
-    console.log("getSections")
     let aviary = this.aviary_selectTarget.value
     fetch(`/aviaries/get_sections/${aviary}`)
     .then((response) => response.json())
@@ -26,8 +24,6 @@ export default class extends Controller {
   }
 
   updateSections(data) {
-    console.log("updateSections")
-    console.log(data)
     if (data.length > 0) {
       this.show_sectionsTarget.classList.remove('hidden')
     } else {
@@ -39,7 +35,6 @@ export default class extends Controller {
     let defaultOption = document.createElement('option');
     defaultOption.value = '';
     if (data.length > 1) {
-      console.log("more that one")
       defaultOption.text = 'Select Section ...';
       dropdown.add(defaultOption);
       dropdown.selectedIndex = 0;

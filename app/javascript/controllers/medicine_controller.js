@@ -5,19 +5,17 @@ export default class extends Controller {
   static targets = [ 'form', 'sort_by', 'checkbox', 'date_planned' ] 
 
   connect () {
-    console.log("animals")
+    console.log("connect medicine")
   }
 
   sortAnimals() {
     let sort_by = this.sort_byTarget.value
-    console.log(sort_by)
     get(`/medical_procedures/sort_animals/${sort_by}`, {
       responseKind: "turbo-stream"
     })
   }
 
   submitForm(event) {
-    console.log("in submit form method")
     var checkbox_error_place = document.getElementById('checkbox_error')
     checkbox_error_place.innerHTML = ''
     var date_planned_error_place = document.getElementById('date_planned_error')
