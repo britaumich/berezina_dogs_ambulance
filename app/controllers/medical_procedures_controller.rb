@@ -183,6 +183,6 @@ class MedicalProceduresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def medical_procedure_params
-      params.expect(medical_procedure: [ :date_completed, :complete, :description, :date_planned, :animal_id, :procedure_type_id ])
+      params.expect(medical_procedure: [ :date_completed, :complete, :date_planned, :animal_id, :procedure_type_id ])
     end
 end

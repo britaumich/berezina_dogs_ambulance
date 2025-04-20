@@ -42,11 +42,6 @@ data: { controller: 'medicine',
   </div>
 
   <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: "input_text_field" %>
-  </div>
-
-  <div class="my-5">
     <%= form.label :date_planned %>
     <%= form.text_field :date_planned,
           class: "input_text_field",
@@ -95,7 +90,7 @@ data: { controller: 'medicine',
       <% else %>
         <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
       <% end %>
-      <%= link_to medical_procedures_path do %>
+      <%= link_to medical_procedure_path(medical_procedure) do %>
         <span class="tertiary_button"><%= t('forms.buttons.cancel') %>
           <i class="fa fa-times" aria-hidden="true"></i>
         </span>
