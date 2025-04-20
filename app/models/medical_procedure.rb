@@ -30,6 +30,8 @@ class MedicalProcedure < ApplicationRecord
   after_save :if_sterilization
   before_destroy :if_sterilization_update_animal
 
+  validates :date_planned, presence: true
+
   private
 
   def if_sterilization
