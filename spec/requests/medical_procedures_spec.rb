@@ -67,9 +67,14 @@ RSpec.describe "/medical_procedures", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
+      let(:animal) { FactoryBot.create(:animal) }
+      
       it "creates a new MedicalProcedure" do
+        animal_ids = [Animal.first.id]
+        params = { medical_procedure: valid_attributes, animal_ids: animal_ids }
+        
         expect {
-          post medical_procedures_url, params: { medical_procedure: valid_attributes }
+          post medical_procedures_url, params: params
         }.to change(MedicalProcedure, :count).by(1)
       end
 
@@ -81,8 +86,11 @@ RSpec.describe "/medical_procedures", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new MedicalProcedure" do
+        animal_ids = [Animal.first.id]
+        params = { medical_procedure: invalid_attributes, animal_ids: animal_ids }
+        
         expect {
-          post medical_procedures_url, params: { medical_procedure: invalid_attributes }
+          post medical_procedures_url, params: params
         }.to change(MedicalProcedure, :count).by(0)
       end
 
