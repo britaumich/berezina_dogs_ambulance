@@ -113,8 +113,6 @@ ru:
       next: "Следующая &rsaquo;"
       truncate: "..."
   simple_calendar:
-    previous: "Прошлый месяц"
-    next: "Следующий месяц"
     today: "Сегодня"
     Today List: "Список на сегодня"
   
