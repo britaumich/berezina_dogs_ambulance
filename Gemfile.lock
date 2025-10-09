@@ -289,7 +289,7 @@ GEM
       io-console (~> 0.5)
     requestjs-rails (0.0.12)
       railties (>= 6.1.0)
-    rexml (3.4.1)
+    rexml (3.4.2)
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
