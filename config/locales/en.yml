@@ -99,6 +99,10 @@ en:
   activerecord:
     attributes:
       animal:
+        id: "ID"
+        nickname: "Nickname"
+        surname: "Surname"
+        gender: "Gender"
         section: "section"
         aviary_id: "Enclosure"
         section_id: "Section"
