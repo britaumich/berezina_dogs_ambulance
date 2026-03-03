@@ -2,43 +2,46 @@
 #
 # Table name: animals
 #
-#  id                  :bigint           not null, primary key
-#  arival_date         :date
-#  birth_day           :date
-#  birth_year          :date
-#  color               :string
-#  death_day           :date
-#  death_year          :date
-#  distinctive_feature :string
-#  fake_parent         :boolean          default(FALSE)
-#  from_people         :string
-#  from_place          :string
-#  gender              :string
-#  graduation          :string
-#  medical_history     :string
-#  nickname            :string
-#  size                :string
-#  sterilization       :boolean          default(FALSE)
-#  surname             :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  animal_status_id    :bigint
-#  animal_type_id      :bigint           not null
-#  aviary_id           :bigint
-#  fake_parent_id      :integer
-#  parent_id           :integer
-#  section_id          :bigint
+#  id                   :bigint           not null, primary key
+#  arival_date          :date
+#  birth_day            :date
+#  birth_year           :date
+#  color                :string
+#  death_day            :date
+#  death_year           :date
+#  distinctive_feature  :string
+#  fake_parent          :boolean          default(FALSE)
+#  from_people          :string
+#  from_place           :string
+#  gender               :string
+#  graduation           :string
+#  medical_history      :string
+#  nickname             :string
+#  size                 :string
+#  sterilization        :boolean          default(FALSE)
+#  surname              :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  animal_status_id     :bigint
+#  animal_type_id       :bigint           not null
+#  aviary_id            :bigint
+#  fake_parent_id       :integer
+#  main_picture_blob_id :bigint
+#  parent_id            :integer
+#  section_id           :bigint
 #
 # Indexes
 #
-#  index_animals_on_animal_status_id  (animal_status_id)
-#  index_animals_on_animal_type_id    (animal_type_id)
-#  index_animals_on_aviary_id         (aviary_id)
-#  index_animals_on_section_id        (section_id)
+#  index_animals_on_animal_status_id      (animal_status_id)
+#  index_animals_on_animal_type_id        (animal_type_id)
+#  index_animals_on_aviary_id             (aviary_id)
+#  index_animals_on_main_picture_blob_id  (main_picture_blob_id)
+#  index_animals_on_section_id            (section_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (animal_type_id => animal_types.id)
+#  fk_rails_...  (main_picture_blob_id => active_storage_blobs.id)
 #
 class Animal < ApplicationRecord
   extend ApplicationHelper
@@ -51,6 +54,7 @@ class Animal < ApplicationRecord
   has_many :notes, as: :noteable, dependent: :destroy
   has_many :children, class_name: 'Animal', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Animal', optional: true
+  belongs_to :main_picture_blob, class_name: 'ActiveStorage::Blob', optional: true
 
   has_one :action_text_rich_text,
     class_name: 'ActionText::RichText',
@@ -64,6 +68,7 @@ class Animal < ApplicationRecord
   has_many :medical_procedures, dependent: :destroy
 
   before_save :strip_whitespace_and_titleize
+  after_commit :ensure_main_picture, on: [:create, :update]
 
   validate :any_present?
 
@@ -90,6 +95,43 @@ class Animal < ApplicationRecord
     else
       Animal.none
     end
+  end
+
+  # Main picture methods
+  def main_picture
+    return nil unless self.pictures.attached?
+    if main_picture_blob_id.present?
+      pictures.find { |attachment| attachment.blob_id == main_picture_blob_id }
+    else
+      pictures.first
+    end
+  end
+
+  def set_main_picture(attachment_or_blob_id)
+    if attachment_or_blob_id.is_a?(ActiveStorage::Attachment)
+      blob_id = attachment_or_blob_id.blob_id
+    else
+      blob_id = attachment_or_blob_id.to_i
+    end
+    # Verify the blob_id belongs to one of this animal's pictures
+    if pictures.any? { |picture| picture.blob_id == blob_id }
+      self.update(main_picture_blob_id: blob_id)
+    else
+      raise ArgumentError, "Picture must be one of the animal's attached pictures"
+    end
+  end
+
+  def other_pictures
+    return pictures if main_picture_blob_id.nil?
+    pictures.reject { |attachment| attachment.blob_id == main_picture_blob_id }
+  end
+
+  def main_picture?
+    main_picture_blob_id.present? && pictures.any? { |picture| picture.blob_id == main_picture_blob_id }
+  end
+
+  def clear_main_picture
+    self.update(main_picture_blob_id: nil)
   end
 
   def dup
@@ -173,6 +215,16 @@ class Animal < ApplicationRecord
   def any_present?
     if %w[nickname surname color arival_date].all? { |attr| self[attr].blank? }
       errors.add :base, :any_present_message
+    end
+  end
+
+  def ensure_main_picture
+    # If we have pictures but no main picture set, set the first one as main
+    if pictures.attached? && main_picture_blob_id.nil?
+      self.update_column(:main_picture_blob_id, pictures.first.blob_id)
+    # If main picture is set but the blob no longer exists in pictures, clear it
+    elsif main_picture_blob_id.present? && !pictures.any? { |picture| picture.blob_id == main_picture_blob_id }
+      self.update_column(:main_picture_blob_id, nil)
     end
   end
 

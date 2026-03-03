@@ -2,43 +2,46 @@
 #
 # Table name: animals
 #
-#  id                  :bigint           not null, primary key
-#  arival_date         :date
-#  birth_day           :date
-#  birth_year          :date
-#  color               :string
-#  death_day           :date
-#  death_year          :date
-#  distinctive_feature :string
-#  fake_parent         :boolean          default(FALSE)
-#  from_people         :string
-#  from_place          :string
-#  gender              :string
-#  graduation          :string
-#  medical_history     :string
-#  nickname            :string
-#  size                :string
-#  sterilization       :boolean          default(FALSE)
-#  surname             :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  animal_status_id    :bigint
-#  animal_type_id      :bigint           not null
-#  aviary_id           :bigint
-#  fake_parent_id      :integer
-#  parent_id           :integer
-#  section_id          :bigint
+#  id                   :bigint           not null, primary key
+#  arival_date          :date
+#  birth_day            :date
+#  birth_year           :date
+#  color                :string
+#  death_day            :date
+#  death_year           :date
+#  distinctive_feature  :string
+#  fake_parent          :boolean          default(FALSE)
+#  from_people          :string
+#  from_place           :string
+#  gender               :string
+#  graduation           :string
+#  medical_history      :string
+#  nickname             :string
+#  size                 :string
+#  sterilization        :boolean          default(FALSE)
+#  surname              :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  animal_status_id     :bigint
+#  animal_type_id       :bigint           not null
+#  aviary_id            :bigint
+#  fake_parent_id       :integer
+#  main_picture_blob_id :bigint
+#  parent_id            :integer
+#  section_id           :bigint
 #
 # Indexes
 #
-#  index_animals_on_animal_status_id  (animal_status_id)
-#  index_animals_on_animal_type_id    (animal_type_id)
-#  index_animals_on_aviary_id         (aviary_id)
-#  index_animals_on_section_id        (section_id)
+#  index_animals_on_animal_status_id      (animal_status_id)
+#  index_animals_on_animal_type_id        (animal_type_id)
+#  index_animals_on_aviary_id             (aviary_id)
+#  index_animals_on_main_picture_blob_id  (main_picture_blob_id)
+#  index_animals_on_section_id            (section_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (animal_type_id => animal_types.id)
+#  fk_rails_...  (main_picture_blob_id => active_storage_blobs.id)
 #
 require 'rails_helper'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_20_003235) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_03_192204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -99,9 +99,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_20_003235) do
     t.boolean "fake_parent", default: false
     t.integer "fake_parent_id"
     t.string "size"
+    t.bigint "main_picture_blob_id"
     t.index ["animal_status_id"], name: "index_animals_on_animal_status_id"
     t.index ["animal_type_id"], name: "index_animals_on_animal_type_id"
     t.index ["aviary_id"], name: "index_animals_on_aviary_id"
+    t.index ["main_picture_blob_id"], name: "index_animals_on_main_picture_blob_id"
     t.index ["section_id"], name: "index_animals_on_section_id"
   end
 
@@ -184,6 +186,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_20_003235) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "animals", "active_storage_blobs", column: "main_picture_blob_id"
   add_foreign_key "animals", "animal_types"
   add_foreign_key "cart_animals", "animals"
   add_foreign_key "cart_animals", "carts"
