@@ -245,4 +245,89 @@ class Animal < ApplicationRecord
               WHERE notes.noteable_type = 'Animal'
                 AND notes.noteable_id = animals.id)")
   end
+
+  # Custom ransackers for Cyrillic case-insensitive search using Ruby downcase
+  def self.ransack(params = {}, options = {})
+    if params.respond_to?(:to_unsafe_h)
+      processed_params = params.to_unsafe_h.with_indifferent_access
+      
+      # Handle case-insensitive search by finding matches with Ruby downcase
+      if processed_params[:nickname_i_cont].present?
+        search_term = processed_params[:nickname_i_cont].downcase
+        matching_ids = where.not(nickname: nil)
+                          .select(:id, :nickname)
+                          .map { |animal| animal.id if animal.nickname.downcase.include?(search_term) }
+                          .compact
+        
+        if matching_ids.any?
+          processed_params[:id_in] = matching_ids
+        else
+          processed_params[:id_in] = [0] # No matches, return empty result
+        end
+        processed_params.delete(:nickname_i_cont)
+      end
+      
+      if processed_params[:surname_i_cont].present?
+        search_term = processed_params[:surname_i_cont].downcase
+        matching_ids = where.not(surname: nil)
+                          .select(:id, :surname)
+                          .map { |animal| animal.id if animal.surname.downcase.include?(search_term) }
+                          .compact
+        
+        if matching_ids.any?
+          if processed_params[:id_in].present?
+            processed_params[:id_in] = processed_params[:id_in] & matching_ids # intersection
+          else
+            processed_params[:id_in] = matching_ids
+          end
+        else
+          processed_params[:id_in] = [0] # No matches
+        end
+        processed_params.delete(:surname_i_cont)
+      end
+      
+      # Handle multi-field case-insensitive search
+      multi_field_key = :nickname_or_surname_or_color_or_distinctive_feature_or_from_people_or_from_place_or_medical_history_or_notes_body_cont
+      if processed_params[multi_field_key].present?
+        search_term = processed_params[multi_field_key].downcase
+        
+        matching_ids = select(:id, :nickname, :surname, :color, :distinctive_feature, :from_people, :from_place, :medical_history)
+                          .includes(:notes)
+                          .map do |animal|
+                            # Check text fields with Ruby downcase for Cyrillic support
+                            text_fields = [
+                              animal.nickname,
+                              animal.surname, 
+                              animal.color,
+                              animal.distinctive_feature,
+                              animal.from_people,
+                              animal.from_place,
+                              animal.medical_history
+                            ].compact.map(&:downcase)
+                            
+                            # Check notes body
+                            notes_text = animal.notes.map(&:body).map(&:to_plain_text).join(' ').downcase
+                            text_fields << notes_text if notes_text.present?
+                            
+                            # Return animal ID if any field matches
+                            animal.id if text_fields.any? { |field| field.include?(search_term) }
+                          end.compact
+        
+        if matching_ids.any?
+          if processed_params[:id_in].present?
+            processed_params[:id_in] = processed_params[:id_in] & matching_ids # intersection
+          else
+            processed_params[:id_in] = matching_ids
+          end
+        else
+          processed_params[:id_in] = [0] # No matches
+        end
+        processed_params.delete(multi_field_key)
+      end
+      
+      params = processed_params
+    end
+    
+    super(params, options)
+  end
 end
