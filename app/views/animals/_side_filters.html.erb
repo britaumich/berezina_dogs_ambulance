@@ -21,11 +21,11 @@
   </div>
 
   <div class="mb-2">
-    <%= f.label :nickname_i_cont, class: "fancy_label" %>
+    <%= f.label :nickname_i_cont, "#{t('activerecord.attributes.animal.nickname')}", class: "fancy_label" %>
     <%= f.search_field :nickname_i_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
   </div>
   <div class="mb-2">
-    <%= f.label :surname_i_cont, class: "fancy_label" %>
+    <%= f.label :surname_i_cont, "#{t('activerecord.attributes.animal.surname')}", class: "fancy_label" %>
     <%= f.search_field :surname_i_cont, placeholder: t('text.Contains'), class: 'filter_select', :"data-action" => "input->autosubmit#search" %>
   </div>
   <div class="mb-2">
