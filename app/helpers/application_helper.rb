@@ -44,7 +44,7 @@ module ApplicationHelper
 
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
-      animal.nickname + ' ' + animal.surname + ' ' + "(#{animal.animal_status.name})"
+      animal.nickname + ' ' + animal.surname + ' ' + "(#{animal.animal_status&.name})"
     else
       animal.id
     end
