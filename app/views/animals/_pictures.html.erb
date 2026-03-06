@@ -60,7 +60,7 @@
                   <% if policy(@animal).delete_picture? %>
                     <%= link_to delete_picture_path(picture), 
                         data: { 
-                          turbo_method: :get, 
+                          turbo_method: :post, 
                           turbo_confirm: t('text.Are you sure?'),
                           picture_delete_target: "deleteButton",
                           action: "click->picture-delete#checkDelete"

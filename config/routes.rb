@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :notes, module: :animals
   end
   post 'animals/upload_pictures/:id', to: 'animals#upload_pictures', as: :upload_pictures
-  get 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
+  post 'animals/delete_picture/:id', to: 'animals#delete_picture', as: :delete_picture
   patch 'animals/set_main_picture/:id', to: 'animals#set_main_picture', as: :set_main_picture
   post 'animals/delete_medical_procedure/:id/:procedure_id', to: 'animals#delete_medical_procedure', as: :delete_medical_procedure
   get 'animals/duplicate/:id', to: 'animals#duplicate', as: :duplicate
