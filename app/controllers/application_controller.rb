@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include Authentication
   include Pundit::Authorization
+  unless Rails.env.development? || Rails.env.test?
+    rescue_from StandardError, with: :render_500
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  end
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   # allow_browser versions: :modern
@@ -50,9 +54,26 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(root_path)
+  end
+
+  def render_404(exception)
+    respond_to do |format|
+      format.any { render 'errors/not_found', status: :not_found, layout: 'error' }
+      format.json { render json: { error: 'Not Found' }, status: :not_found }
+    end
+  end
+
+  def render_500(exception)
+    # Log the error, send it to error tracking services, etc.
+    respond_to do |format|
+      format.any { render 'errors/internal_server_error', status: :internal_server_error, layout: 'error' }
+      format.json { render json: { error: 'Internal Server Error' }, status: :internal_server_error }
+    end
   end
 
 end

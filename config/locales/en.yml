@@ -71,6 +71,7 @@ en:
     To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved"
     Updated on: "Updated on"
     at: "at"
+    Please set a different main picture before deleting this one: "Please set a different main picture before deleting this one"
   label:
     sort: "Sort"
     order: "Order"
@@ -88,6 +89,7 @@ en:
     status: "Status"
     animal_type: "Type"
     Select the Date of the Procedure: "Select the Date of the Procedure"
+    Main Picture: "Main"
   menu:
     languages:
       lang: "Language"
@@ -126,6 +128,8 @@ en:
       models:
         animal:
           any_present_message: "One of the following fileds should exist: nickname, surname, color, or arival_date"
+          main_picture_blob_id:
+           invalid: "Main picture must be one of the animal's attached pictures"
         aviary:
           is_already_in_this_aviary: "is already in this enclosure"
   forms:

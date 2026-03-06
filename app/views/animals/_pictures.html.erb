@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "pictures" do %>
+ <%= turbo_frame_tag "pictures" do %>
   <div class="my-5">
     <h2>
       <%= t('text.Pictures') %>
@@ -14,7 +14,6 @@
       <% end %>
     <% end %>
   </div>
-
   <% if @animal.pictures.attached? %>
     <div class="">
       <p class="body-md-bold-text mb-2"><%= t('text.Uploaded Pictures') %>:</p>
@@ -29,9 +28,43 @@
                 <p class="body-sm-text pt-2">
                   <%= t('text.Uploaded on') %> <%= show_date_with_month_name(picture.created_at) %>
                 </p>
-                <div>
+                
+                <!-- Main picture checkbox -->
+                <div class="mt-2">
+                  <%= form_with url: set_main_picture_path(@animal), method: :patch, class: "flex items-center" do |form| %>
+                    <%= form.hidden_field :blob_id, value: picture.blob_id %>
+                    <%= form.check_box :main_picture, 
+                        { 
+                          checked: @animal.main_picture_blob_id == picture.blob_id,
+                          class: "check_box",
+                          onchange: "this.form.submit();"
+                        }, 
+                        picture.blob_id,
+                        "" %>
+                    <%= form.label :main_picture, t('label.Main Picture'), class: "body-sm-text ml-2" %>
+                  <% end %>
+                </div>
+                
+                <div class="mt-2" 
+                     data-controller="picture-delete"
+                     data-picture-delete-is-main-picture-value="<%= @animal.main_picture_blob_id == picture.blob_id %>"
+                     data-picture-delete-total-pictures-value="<%= @animal.pictures.size %>">
+                  
+                  <!-- Warning message for main picture -->
+                  <div data-picture-delete-target="warningMessage" class="hidden mb-2">
+                    <p class="body-sm-text text-red-600 bg-red-50 p-2 rounded">
+                      <%= t('text.Please set a different main picture before deleting this one') %>
+                    </p>
+                  </div>
+                  
                   <% if policy(@animal).delete_picture? %>
-                    <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
+                    <%= link_to delete_picture_path(picture), 
+                        data: { 
+                          turbo_method: :post, 
+                          turbo_confirm: t('text.Are you sure?'),
+                          picture_delete_target: "deleteButton",
+                          action: "click->picture-delete#checkDelete"
+                        } do %>
                       <span class="tertiary_button"><%= t('forms.buttons.delete') %>
                         <i class="fa fa-times" aria-hidden="true"></i>
                       </span>
@@ -45,6 +78,4 @@
       </div>
     </div>
   <% end %>
-  <%#= render 'picture_errors', image_field_name: 'pictures' %>
 <% end %>
-

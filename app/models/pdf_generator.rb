@@ -24,7 +24,7 @@ class PdfGenerator
       # Add content to the PDF
       @animals.each_with_index do |animal, index|
         pdf.start_new_page unless index == 0
-        pdf.text "#{animal.animal_type.name} - #{animal.animal_status.name}", size: 24, align: :center
+        pdf.text "#{animal.animal_type.name} - #{animal.animal_status&.name}", size: 24, align: :center
         pdf.move_down 20
         pdf.text "#{I18n.t('activerecord.attributes.animal.id')}: #{animal.id}", size: 12
         pdf.text "#{I18n.t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12

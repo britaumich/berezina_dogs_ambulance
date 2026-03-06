@@ -47,6 +47,10 @@ class AnimalPolicy  < ApplicationPolicy
     authenticated?
   end
 
+  def set_main_picture?
+    authenticated?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user

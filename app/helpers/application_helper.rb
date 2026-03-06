@@ -44,9 +44,10 @@ module ApplicationHelper
 
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
-      animal.nickname + ' ' + animal.surname
+      name_parts = [animal.nickname, animal.surname].compact.join(' ')
+      "#{name_parts} (#{animal.animal_status&.name})"
     else
-      animal.id
+      animal.id.to_s
     end
   end
 
@@ -136,6 +137,7 @@ module ApplicationHelper
       [ I18n.t('activerecord.attributes.animal.nickname'), 'nickname' ],
       [ I18n.t('activerecord.attributes.animal.surname'), 'surname' ],
       [ I18n.t('activerecord.attributes.animal.gender'), 'gender' ],
+      [ I18n.t('activerecord.attributes.animal.animal_status_id'), 'animal_status_name' ],
       [ I18n.t('activerecord.attributes.animal.sterilization'), 'sterilization' ],
       [ I18n.t('activerecord.attributes.animal.aviary_id'), 'aviary_name' ],
       [ I18n.t('activerecord.attributes.animal.arival_date'), 'arival_date' ]

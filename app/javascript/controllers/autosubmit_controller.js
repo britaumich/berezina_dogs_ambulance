@@ -17,7 +17,7 @@ export default class extends Controller {
 
     this.timeout = setTimeout(() => {
       Turbo.navigator.submitForm(this.formTarget)
-    }, 200)
+    }, 1000)
   }
   
   submit() {
