@@ -68,7 +68,6 @@ class Animal < ApplicationRecord
   has_many :medical_procedures, dependent: :destroy
 
   before_save :strip_whitespace_and_titleize
-  after_commit :ensure_main_picture, on: [:create, :update]
 
   validate :any_present?
 
@@ -119,15 +118,6 @@ class Animal < ApplicationRecord
     else
       raise ArgumentError, "Picture must be one of the animal's attached pictures"
     end
-  end
-
-  def other_pictures
-    return pictures if main_picture_blob_id.nil?
-    pictures.reject { |attachment| attachment.blob_id == main_picture_blob_id }
-  end
-
-  def main_picture?
-    main_picture_blob_id.present? && pictures.any? { |picture| picture.blob_id == main_picture_blob_id }
   end
 
   def clear_main_picture
@@ -215,16 +205,6 @@ class Animal < ApplicationRecord
   def any_present?
     if %w[nickname surname color arival_date].all? { |attr| self[attr].blank? }
       errors.add :base, :any_present_message
-    end
-  end
-
-  def ensure_main_picture
-    # If we have pictures but no main picture set, set the first one as main
-    if pictures.attached? && main_picture_blob_id.nil?
-      self.update_column(:main_picture_blob_id, pictures.first.blob_id)
-    # If main picture is set but the blob no longer exists in pictures, clear it
-    elsif main_picture_blob_id.present? && !pictures.any? { |picture| picture.blob_id == main_picture_blob_id }
-      self.update_column(:main_picture_blob_id, nil)
     end
   end
 
