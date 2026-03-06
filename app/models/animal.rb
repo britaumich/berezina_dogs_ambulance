@@ -115,7 +115,8 @@ class Animal < ApplicationRecord
     if pictures.any? { |picture| picture.blob_id == blob_id }
       self.update(main_picture_blob_id: blob_id)
     else
-      raise ArgumentError, "Picture must be one of the animal's attached pictures"
+      errors.add(:main_picture_blob_id, t("activerecord.errors.models.animal.attributes.main_picture_blob_id.invalid"))
+      false
     end
   end
 
