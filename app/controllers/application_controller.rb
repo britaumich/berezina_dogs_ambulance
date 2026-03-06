@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include Authentication
   include Pundit::Authorization
-  unless Rails.env.development?
+  unless Rails.env.development? || Rails.env.test?
     rescue_from StandardError, with: :render_500
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
   end
