@@ -88,6 +88,7 @@ en:
     status: "Status"
     animal_type: "Type"
     Select the Date of the Procedure: "Select the Date of the Procedure"
+    Main Picture: "Main"
   menu:
     languages:
       lang: "Language"

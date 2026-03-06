@@ -36,11 +36,12 @@
                     <%= form.check_box :main_picture, 
                         { 
                           checked: @animal.main_picture_blob_id == picture.blob_id,
+                          class: "check_box",
                           onchange: "this.form.submit();"
                         }, 
-                        picture.blob_id, 
+                        picture.blob_id,
                         "" %>
-                    <%= form.label :main_picture, t('text.Main picture'), class: "body-sm-text ml-2" %>
+                    <%= form.label :main_picture, t('label.Main Picture'), class: "body-sm-text ml-2" %>
                   <% end %>
                 </div>
                 
