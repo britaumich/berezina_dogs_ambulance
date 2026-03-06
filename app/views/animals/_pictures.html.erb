@@ -48,7 +48,7 @@
                 <div class="mt-2" 
                      data-controller="picture-delete"
                      data-picture-delete-is-main-picture-value="<%= @animal.main_picture_blob_id == picture.blob_id %>"
-                     data-picture-delete-total-pictures-value="<%= @animal.pictures.count %>">
+                     data-picture-delete-total-pictures-value="<%= @animal.pictures.size %>">
                   
                   <!-- Warning message for main picture -->
                   <div data-picture-delete-target="warningMessage" class="hidden mb-2">

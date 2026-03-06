@@ -223,7 +223,7 @@ class AnimalsController < ApplicationController
     @animal = delete_file.record
     authorize @animal
 
-    is_only_picture = @animal.pictures.count == 1
+    is_only_picture = @animal.pictures.size == 1
     
     delete_file.purge
     
