@@ -44,9 +44,10 @@ module ApplicationHelper
 
   def show_animal(animal)
     if animal.nickname.present? || animal.surname.present?
-      animal.nickname + ' ' + animal.surname + ' ' + "(#{animal.animal_status&.name})"
+      name_parts = [animal.nickname, animal.surname].compact.join(' ')
+      "#{name_parts} (#{animal.animal_status&.name})"
     else
-      animal.id
+      animal.id.to_s
     end
   end
 
