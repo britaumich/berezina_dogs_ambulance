@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path)
   end
 
-  def render_404
+  def render_404(exception)
     respond_to do |format|
       format.any { render 'errors/not_found', status: :not_found, layout: 'error' }
       format.json { render json: { error: 'Not Found' }, status: :not_found }
