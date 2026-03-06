@@ -186,7 +186,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_03_192204) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "animals", "active_storage_blobs", column: "main_picture_blob_id"
   add_foreign_key "animals", "animal_types"
   add_foreign_key "cart_animals", "animals"
   add_foreign_key "cart_animals", "carts"

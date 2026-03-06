@@ -41,7 +41,6 @@
 # Foreign Keys
 #
 #  fk_rails_...  (animal_type_id => animal_types.id)
-#  fk_rails_...  (main_picture_blob_id => active_storage_blobs.id)
 #
 class Animal < ApplicationRecord
   extend ApplicationHelper
