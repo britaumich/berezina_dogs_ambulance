@@ -116,7 +116,7 @@ class Animal < ApplicationRecord
       self.update(main_picture_blob_id: blob_id)
     else
       errors.add(:main_picture_blob_id, t("activerecord.errors.models.animal.attributes.main_picture_blob_id.invalid"))
-      false
+      throw(:abort)
     end
   end
 
