@@ -205,7 +205,6 @@ class AnimalsController < ApplicationController
 
   def set_main_picture
     authorize @animal
-    # begin
       blob_id = params[:blob_id].to_i
       
       # If main_picture checkbox is present and checked, set as main
@@ -217,9 +216,6 @@ class AnimalsController < ApplicationController
       end
       
       redirect_back(fallback_location: request.referer)
-    # rescue ArgumentError => e
-    #   redirect_back(fallback_location: animal_path(@animal), alert: e.message)
-    # end
   end
 
   def delete_picture
