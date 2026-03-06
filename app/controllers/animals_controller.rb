@@ -224,8 +224,17 @@ class AnimalsController < ApplicationController
 
   def delete_picture
     delete_file = ActiveStorage::Attachment.find(params[:id])
+    @animal = delete_file.record
     authorize Animal
+    
+    # Check if this is the only picture attached to the animal
+    is_only_picture = @animal.pictures.count == 1
+    
     delete_file.purge
+    
+    # Clear main_picture_blob_id after deleting the picture
+    @animal.update(main_picture_blob_id: nil)
+    
     redirect_back(fallback_location: request.referer)
   end
 

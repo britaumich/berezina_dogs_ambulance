@@ -45,9 +45,26 @@
                   <% end %>
                 </div>
                 
-                <div class="mt-2">
+                <div class="mt-2" 
+                     data-controller="picture-delete"
+                     data-picture-delete-is-main-picture-value="<%= @animal.main_picture_blob_id == picture.blob_id %>"
+                     data-picture-delete-total-pictures-value="<%= @animal.pictures.count %>">
+                  
+                  <!-- Warning message for main picture -->
+                  <div data-picture-delete-target="warningMessage" class="hidden mb-2">
+                    <p class="body-sm-text text-red-600 bg-red-50 p-2 rounded">
+                      <%= t('text.Please set a different main picture before deleting this one') %>
+                    </p>
+                  </div>
+                  
                   <% if policy(@animal).delete_picture? %>
-                    <%= link_to delete_picture_path(picture), data: { turbo_method: :get, turbo_confirm: t('text.Are you sure?') } do %>
+                    <%= link_to delete_picture_path(picture), 
+                        data: { 
+                          turbo_method: :get, 
+                          turbo_confirm: t('text.Are you sure?'),
+                          picture_delete_target: "deleteButton",
+                          action: "click->picture-delete#checkDelete"
+                        } do %>
                       <span class="tertiary_button"><%= t('forms.buttons.delete') %>
                         <i class="fa fa-times" aria-hidden="true"></i>
                       </span>
@@ -61,5 +78,4 @@
       </div>
     </div>
   <% end %>
-  <%#= render 'picture_errors', image_field_name: 'pictures' %>
 <% end %>

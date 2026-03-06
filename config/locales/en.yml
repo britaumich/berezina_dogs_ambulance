@@ -71,6 +71,7 @@ en:
     To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved"
     Updated on: "Updated on"
     at: "at"
+    Please set a different main picture before deleting this one: "Please set a different main picture before deleting this one"
   label:
     sort: "Sort"
     order: "Order"
