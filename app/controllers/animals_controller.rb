@@ -204,18 +204,17 @@ class AnimalsController < ApplicationController
   end
 
   def set_main_picture
-    authorize @animal
-      blob_id = params[:blob_id].to_i
-      
-      # If main_picture checkbox is present and checked, set as main
-      if params[:main_picture] == params[:blob_id]
-        @animal.set_main_picture(blob_id)
-      # If checkbox was unchecked and this was the main picture, clear it
-      elsif @animal.main_picture_blob_id == blob_id
-        @animal.clear_main_picture
-      end
-      
-      redirect_back(fallback_location: request.referer)
+    blob_id = params[:blob_id].to_i
+    
+    # If main_picture checkbox is present and checked, set as main
+    if params[:main_picture] == params[:blob_id]
+      @animal.set_main_picture(blob_id)
+    # If checkbox was unchecked and this was the main picture, clear it
+    elsif @animal.main_picture_blob_id == blob_id
+      @animal.clear_main_picture
+    end 
+    
+    redirect_back(fallback_location: request.referer)
   end
 
   def delete_picture
