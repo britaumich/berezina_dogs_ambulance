@@ -23,7 +23,7 @@
           <% end %>
         <% end %>
       </div>
-      <%= link_to params[:return_to].present? ? params[:return_to] : animals_path(animal_type_id: @animal.animal_type_id, switch_view: @switch_view) do %>
+      <%= link_to safe_return_path(@animal, @switch_view) do %>
         <span class="tertiary_button">
           <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
           <%= t('forms.buttons.back') %>

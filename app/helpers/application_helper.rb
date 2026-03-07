@@ -9,6 +9,16 @@ module ApplicationHelper
     l field.to_date, format: '%d %B, %Y' if field.present?
   end
 
+  def safe_return_path(animal, switch_view = nil)
+    return animals_path(animal_type_id: animal.animal_type_id, switch_view: switch_view) unless params[:return_to].present?
+    uri = URI.parse(params[:return_to]) rescue nil
+    if uri && uri.scheme.nil? && uri.host.nil? && params[:return_to].start_with?('/')
+      params[:return_to]
+    else
+      animals_path(animal_type_id: animal.animal_type_id, switch_view: switch_view)
+    end
+  end
+
   def show_date(date)
     if date.present?
       I18n.l(date)
