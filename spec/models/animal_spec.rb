@@ -6,6 +6,7 @@
 #  arival_date          :date
 #  birth_day            :date
 #  birth_year           :date
+#  chip                 :string
 #  color                :string
 #  death_day            :date
 #  death_year           :date
@@ -16,6 +17,8 @@
 #  gender               :string
 #  graduation           :string
 #  medical_history      :string
+#  name_english         :string
+#  name_georgian        :string
 #  nickname             :string
 #  size                 :string
 #  sterilization        :boolean          default(FALSE)
