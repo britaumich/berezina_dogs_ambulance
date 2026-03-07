@@ -11,7 +11,11 @@ module ApplicationHelper
 
   def safe_return_path(animal, switch_view = nil)
     return animals_path(animal_type_id: animal.animal_type_id, switch_view: switch_view) unless params[:return_to].present?
-    uri = URI.parse(params[:return_to]) rescue nil
+    uri = begin
+      URI.parse(params[:return_to])
+    rescue URI::InvalidURIError
+      nil
+    end
     if uri && uri.scheme.nil? && uri.host.nil? && params[:return_to].start_with?('/')
       params[:return_to]
     else
