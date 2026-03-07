@@ -6,6 +6,7 @@
 #  arival_date          :date
 #  birth_day            :date
 #  birth_year           :date
+#  chip                 :string
 #  color                :string
 #  death_day            :date
 #  death_year           :date
@@ -16,6 +17,8 @@
 #  gender               :string
 #  graduation           :string
 #  medical_history      :string
+#  name_english         :string
+#  name_georgian        :string
 #  nickname             :string
 #  size                 :string
 #  sterilization        :boolean          default(FALSE)
@@ -134,9 +137,9 @@ class Animal < ApplicationRecord
   end
 
   def self.to_csv
-    fields = %w[ id nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+    fields = %w[ id chip name_english name_georgian nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_year death_year parent_id ]
-    header = %w[ id nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
+    header = %w[ id chip name_english name_georgian nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
       graduation medical_history birth_day death_day parent_id children siblings notes ]
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     csv_string = CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|

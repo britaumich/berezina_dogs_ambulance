@@ -167,6 +167,10 @@ ru:
         children: "Дети"
         siblings: "Братья и сестры"
         size: "Размер"
+        name_english: "Имя на английском"
+        name_georgian: "Имя на грузинском"
+        chip: "Чип"
+        animal_status: "Статус"
       animal_type:
         name: "Название"
         plural_name: "Название во множественном числе"

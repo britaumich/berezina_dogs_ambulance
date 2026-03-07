@@ -251,7 +251,7 @@ class AnimalsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def animal_params
-      params.expect(animal: [ :nickname, :surname, :sterilization, :gender, :size, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
+      params.expect(animal: [ :chip, :name_english, :name_georgian, :nickname, :surname, :sterilization, :gender, :size, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
         :death_year, :death_day, :color, :aviary_id, :section_id, :distinctive_feature, :medical_history, :graduation, :animal_type_id, :animal_status_id, :parent_id, :fake_parent_id, pictures: [] ])
     end
 

@@ -23,9 +23,24 @@
     <%= form.collection_select :animal_status_id, animal_statuses, :id, :name, { required: true, selected: "1" }, { class: "input_text_field" } %>
   </div>
 
+    <div class="my-5">
+    <%= form.label :chip %>
+    <%= form.text_field :chip, class: "input_text_field" %>
+  </div>
+
   <div class="my-5">
     <%= form.label :nickname %>
     <%= form.text_field :nickname, class: "input_text_field" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :name_english %>
+    <%= form.text_field :name_english, class: "input_text_field" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :name_georgian %>
+    <%= form.text_field :name_georgian, class: "input_text_field" %>
   </div>
 
   <div class="my-5">
