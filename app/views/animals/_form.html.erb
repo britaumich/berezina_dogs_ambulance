@@ -15,12 +15,12 @@
 
   <div class="my-5">
     <%= form.label :animal_type_id, "#{t('activerecord.attributes.animal.animal_type_id')}(*)" %>
-    <%= form.collection_select(:animal_type_id, animal_types, :id, :name, { selected: 1, required: true }, { class: "input_text_field" }) %>
+    <%= form.collection_select(:animal_type_id, animal_types, :id, :name, { selected: @animal.animal_type_id, required: true }, { class: "input_text_field" }) %>
   </div>
 
   <div class="my-5">
     <%= form.label :animal_status_id, "#{t('activerecord.attributes.animal.animal_status_id')}(*)" %>
-    <%= form.collection_select :animal_status_id, animal_statuses, :id, :name, { required: true, selected: "1" }, { class: "input_text_field" } %>
+    <%= form.collection_select :animal_status_id, animal_statuses, :id, :name, { required: true, selected: @animal.animal_status_id }, { class: "input_text_field" } %>
   </div>
 
   <div class="my-5">
