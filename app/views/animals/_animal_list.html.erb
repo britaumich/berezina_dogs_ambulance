@@ -133,10 +133,10 @@
               </td>
             <% end %>
             <td class="mi_tbody_td">
-              <%= link_to animal.id, animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} %>
+              <%= link_to animal.id, animal_path(animal, return_to: request.fullpath), class: "link_to", data: {turbo_frame: "_top"} %>
             </td>
             <td class="mi_tbody_td">
-              <%= link_to animal_path(animal), class: "link_to", data: {turbo_frame: "_top"} do %>
+              <%= link_to animal_path(animal, return_to: request.fullpath), class: "link_to", data: {turbo_frame: "_top"} do %>
                 <%= animal.nickname %>
                 <% if animal.main_picture_blob_id.present? %>
                    <i class="fa-solid fa-check"></i>

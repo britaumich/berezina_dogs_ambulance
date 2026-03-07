@@ -67,7 +67,6 @@ class AnimalsController < ApplicationController
   # GET /animals/1 or /animals/1.json
   def show
     @medical_procedures = @animal.medical_procedures
-
     respond_to do |format|
       format.html { render :show, status: :ok }
       format.pdf { send_data PdfGenerator.new([@animal]).generate_pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline' }
