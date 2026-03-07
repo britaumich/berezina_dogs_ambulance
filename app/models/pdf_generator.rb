@@ -27,7 +27,10 @@ class PdfGenerator
         pdf.text "#{animal.animal_type.name} - #{animal.animal_status&.name}", size: 24, align: :center
         pdf.move_down 20
         pdf.text "#{I18n.t('activerecord.attributes.animal.id')}: #{animal.id}", size: 12
+        pdf.text "#{I18n.t('activerecord.attributes.animal.chip')}: #{animal.chip}", size: 12
         pdf.text "#{I18n.t('activerecord.attributes.animal.nickname')}: #{animal.nickname}", size: 12
+        pdf.text "#{I18n.t('activerecord.attributes.animal.name_english')}: #{animal.name_english}", size: 12
+        pdf.text "#{I18n.t('activerecord.attributes.animal.name_georgian')}: #{animal.name_georgian}", size: 12
         pdf.text "#{I18n.t('activerecord.attributes.animal.surname')}: #{animal.surname}", size: 12
         pdf.text "#{I18n.t('activerecord.attributes.animal.gender')}: #{animal.gender}", size: 12
         pdf.text "#{I18n.t('label.Birth Date')}: #{show_birth_or_death_date(animal, "birth")}", size: 12

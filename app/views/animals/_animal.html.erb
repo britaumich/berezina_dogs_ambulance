@@ -12,10 +12,37 @@
 
       <div class="py-2">
         <p class="body-lg-bold-text inline">
+          <%= t('activerecord.attributes.animal.chip') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= animal.chip %>
+        </p>
+      </div>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
           <%= t('activerecord.attributes.animal.nickname') %>:
         </p>
         <p class="body-lg-text pl-2 inline">
           <%= animal.nickname %>
+        </p>
+      </div>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          <%= t('activerecord.attributes.animal.name_english') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= animal.name_english %>
+        </p>
+      </div>
+
+      <div class="py-2">
+        <p class="body-lg-bold-text inline">
+          <%= t('activerecord.attributes.animal.name_georgian') %>:
+        </p>
+        <p class="body-lg-text pl-2 inline">
+          <%= animal.name_georgian %>
         </p>
       </div>
 

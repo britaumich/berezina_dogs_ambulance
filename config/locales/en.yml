@@ -118,6 +118,10 @@ en:
         death_year: "Death Year"
         death_day: "Death Day"
         siblings: "Siblings"
+        name_english: "Name in English"
+        name_georgian: "Name in Georgian"
+        chip: "Chip"
+        animal_status: "Status"
       medical_procedure:
         date_completed: "Date Completed"
         date_planned: "Date Planned"
