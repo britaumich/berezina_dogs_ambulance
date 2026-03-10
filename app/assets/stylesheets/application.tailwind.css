@@ -1,16 +1,40 @@
+@import url('https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import 'actiontext.css';
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@layer utilities {
+  /* GLightbox overrides for Tailwind compatibility */
+  .glightbox-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: rgba(0, 0, 0, 0.92) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .gslider {
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+  }
+  
+  .gslide-image img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+  
+  .gnext, .gprev, .gclose {
+    position: absolute !important;
+    z-index: 10000 !important;
   }
 }
-
-*/
 
 @layer base {
   .header_link {
