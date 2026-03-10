@@ -67,6 +67,8 @@ class AnimalsController < ApplicationController
   # GET /animals/1 or /animals/1.json
   def show
     @medical_procedures = @animal.medical_procedures
+    @ordered_pictures = @animal.pictures.order(created_at: :desc) 
+    @total_pictures  = @ordered_pictures.size
     respond_to do |format|
       format.html { render :show, status: :ok }
       format.pdf { send_data PdfGenerator.new([@animal]).generate_pdf_content, filename: "animal_#{@animal.id}.pdf", type: 'application/pdf', disposition: 'inline' }
@@ -196,6 +198,8 @@ class AnimalsController < ApplicationController
 
   def upload_pictures
     if @animal.update(animal_params)
+      @ordered_pictures = @animal.pictures.order(created_at: :desc) 
+      @total_pictures  = @ordered_pictures.size
       render turbo_stream: turbo_stream.update('pictures', partial: 'pictures')
     else
       render turbo_stream: turbo_stream.update('image_errors_picture', partial: 'picture_errors', locals: { image_field_name: 'pictures' })
