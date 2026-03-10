@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css');
+@import 'glightbox';
 
 @tailwind base;
 @tailwind components;
