@@ -68,7 +68,7 @@ export default class extends Controller {
   
   openImage(event) {
     event.preventDefault()
-    const index = parseInt(event.params.index)
+    const index = parseInt(event.params.index, 10)
     console.log("Opening lightbox at index:", index)
     
     if (this.lightbox) {
