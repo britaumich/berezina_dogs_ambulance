@@ -27,7 +27,7 @@
                   data-gallery="animals-gallery"
                   data-action="click->lightbox#openImage"
                   data-lightbox-index-param="<%= index %>">
-                  <%= picture_tag picture.variant(:thumb), alt: "pictures_#{picture.id}", class: "object-cover group-hover:opacity-75 lightbox-image" %>
+                  <%= picture_tag picture.variant(:thumb), alt: "pictures_#{@animal.display_name}_#{picture.id}", class: "object-cover group-hover:opacity-75 lightbox-image" %>
                 </a>
                 <p class="body-sm-text pt-2">
                   <%= t('text.Uploaded on') %> <%= show_date_with_month_name(picture.created_at) %>
