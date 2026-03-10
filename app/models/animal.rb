@@ -63,7 +63,7 @@ class Animal < ApplicationRecord
     as: :record
 
   has_many_attached :pictures do |attachable|
-    attachable.variant :thumb, resize_to_limit: [ 640, 480 ]
+    attachable.variant :thumb, resize_to_limit: [ 240, 320 ]
   end
   include AppendToHasManyAttached['pictures']
 

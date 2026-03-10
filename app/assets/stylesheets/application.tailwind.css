@@ -2,15 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 @import 'actiontext.css';
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@layer utilities {
+  /* GLightbox overrides for Tailwind compatibility - target all containers */
+  #glightbox-body.glightbox-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: rgba(0, 0, 0, 0.92) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #glightbox-body .gcontainer {
+    width: 90vw !important;
+    height: 90vh !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #glightbox-body .gslider {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #glightbox-body .gslide {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  
+  #glightbox-body .gslide-inner-content {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #glightbox-body .ginner-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: none !important;
+  }
+  
+  #glightbox-body .gslide-image {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  
+  /* Override GLightbox default object-fit: cover with contain */
+  #glightbox-body .gslide-image img,
+  #glightbox-body .gslide-image img.zoomable,
+  #glightbox-body .gslide-image img.dragging {
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: auto !important;
+    min-width: auto !important;
+  }
+  
+  #glightbox-body .gnext, 
+  #glightbox-body .gprev, 
+  #glightbox-body .gclose {
+    position: absolute !important;
+    z-index: 10001 !important;
   }
 }
-
-*/
 
 @layer base {
   .header_link {
