@@ -67,14 +67,17 @@ export default class extends Controller {
   }
   
   openImage(event) {
-    event.preventDefault()
     const index = parseInt(event.params.index, 10)
     console.log("Opening lightbox at index:", index)
     
     if (this.lightbox) {
+      event.preventDefault()
       this.lightbox.openAt(index)
     } else {
       console.error("Lightbox instance not available")
+      if (event.currentTarget && event.currentTarget.href) {
+        window.location = event.currentTarget.href
+      }
     }
   }
   
