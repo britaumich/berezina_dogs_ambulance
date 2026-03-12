@@ -279,7 +279,16 @@ module ApplicationHelper
   end
 
   def display_user_with_role(user)
-    "#{user.email_address} #{translated_enum_value(AdminUser.find_by(email: user.email_address), :role)}"
+    current_role = session()[:role]
+    role_text = current_role.present? ? translated_enum_value_by_key('admin_user', :role, current_role) : ''
+    "#{user.email_address} #{role_text}"
+  end
+
+  # Helper method to translate enum value by key without instance
+  def translated_enum_value_by_key(model_name, enum_field, enum_value)
+    return '' if enum_value.blank?
+    translation_key = "activerecord.attributes.#{model_name}.#{enum_field.to_s.pluralize}.#{enum_value}"
+    I18n.t(translation_key, default: enum_value.humanize)
   end
 
 end
