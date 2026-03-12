@@ -74,7 +74,7 @@
         <div class="flex items-center justify-end">
           <% if current_user %>
             <div>
-              <div class="text-white body-sm-text pb-1"><%= display_user_with_role(current_user) %></div>
+              <div class="text-white text-xs pb-1"><%= display_user_with_role(current_user) %></div>
               <%= link_to "Sign Out", session_path, 
                 method: :delete, 
                 data: { turbo_method: :delete, confirm: "Are you sure?" },
