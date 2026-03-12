@@ -188,6 +188,7 @@ en:
       Registered successfully: "Registered successfully"
       Try another email address or password: "Try another email address or password"
       Sterilization added: "Sterilization added"
+      Email address is not allowed to register: "This email address cannot be used for registration"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

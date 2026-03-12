@@ -241,6 +241,7 @@ ru:
       Medical procedures were successfully updated: "Медицинские процедуры обновлены"
       Error updating database records: "Ошибка обновления записей в базе данных"
       Sterilization added: "Стерилизация добавлена"
+      Email address is not allowed to register: "Этот адрес электронной почты не может быть использован для регистрации"
     buttons:
      edit: "Редактировать"
      submit: "Сохранить"

@@ -277,4 +277,9 @@ module ApplicationHelper
     translation_key = "activerecord.attributes.#{instance.class.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{enum_value}"
     I18n.t(translation_key, default: enum_value.humanize)
   end
+
+  def display_user_with_role(user)
+    "#{user.email_address} #{translated_enum_value(AdminUser.find_by(email: user.email_address), :role)}"
+  end
+
 end
