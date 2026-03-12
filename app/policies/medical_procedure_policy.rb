@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class MedicalProcedurePolicy  < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def index?
-    true
+    admin_user? || employee_user?
   end
 
   def medical_calendar?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def show?
-    true
+    admin_user? || employee_user?
   end
 
   def create?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def new?
@@ -24,7 +24,7 @@ class MedicalProcedurePolicy  < ApplicationPolicy
   end
 
   def update?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def edit?
@@ -32,16 +32,17 @@ class MedicalProcedurePolicy  < ApplicationPolicy
   end
 
   def complete_procedures?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def destroy?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   class Scope
-    def initialize(user, scope)
-      @user = user
+    def initialize(context, scope)
+      @user = context[:user]
+      @role = context[:role]
       @scope = scope
     end
 
@@ -51,6 +52,6 @@ class MedicalProcedurePolicy  < ApplicationPolicy
 
     private
 
-    attr_reader :user, :scope
+    attr_reader :user, :role, :scope
   end
 end

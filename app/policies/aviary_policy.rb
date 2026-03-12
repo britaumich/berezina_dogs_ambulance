@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class AviaryPolicy  < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def index?
-    authenticated?
+      admin_user? || employee_user?
   end
 
   def show?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def create?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def new?
@@ -20,7 +20,7 @@ class AviaryPolicy  < ApplicationPolicy
   end
 
   def update?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def edit?
@@ -28,12 +28,13 @@ class AviaryPolicy  < ApplicationPolicy
   end
 
   def destroy?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   class Scope
-    def initialize(user, scope)
-      @user = user
+    def initialize(context, scope)
+      @user = context[:user]
+      @role = context[:role]
       @scope = scope
     end
 
@@ -43,6 +44,6 @@ class AviaryPolicy  < ApplicationPolicy
 
     private
 
-    attr_reader :user, :scope
+    attr_reader :user, :role, :scope
   end
 end

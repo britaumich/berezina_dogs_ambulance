@@ -1,43 +1,44 @@
 # frozen_string_literal: true
 
 class CartPolicy < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def show?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def add?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def remove?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def add_medical_procedure?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def add_completed_medical_procedure?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def add_to_aviary?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def add_sterilization_to_animals?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def empty_cart?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   class Scope
-    def initialize(user, scope)
-      @user = user
+    def initialize(context, scope)
+      @user = context[:user]
+      @role = context[:role]
       @scope = scope
     end
 
@@ -47,6 +48,6 @@ class CartPolicy < ApplicationPolicy
 
     private
 
-    attr_reader :user, :scope
+    attr_reader :user, :role, :scope
   end
 end

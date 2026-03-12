@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class AdminUserPolicy  < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def index?
-    authenticated?
+    admin_user?
   end
 
   def create?
-    authenticated?
+    admin_user?
   end
 
   def new?
@@ -16,7 +16,7 @@ class AdminUserPolicy  < ApplicationPolicy
   end
 
   def update?
-    authenticated?
+    admin_user?
   end
 
   def edit?
@@ -24,12 +24,13 @@ class AdminUserPolicy  < ApplicationPolicy
   end
 
   def destroy?
-    authenticated?
+    admin_user?
   end
 
   class Scope
-    def initialize(user, scope)
-      @user = user
+    def initialize(context, scope)
+      @user = context[:user]
+      @role = context[:role]
       @scope = scope
     end
 
@@ -39,6 +40,6 @@ class AdminUserPolicy  < ApplicationPolicy
 
     private
 
-    attr_reader :user, :scope
+    attr_reader :user, :role, :scope
   end
 end
