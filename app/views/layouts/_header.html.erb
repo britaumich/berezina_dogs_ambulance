@@ -150,38 +150,37 @@
               <% animal_types_except_dogs.each do |animal_type| %>
                 <%= link_to animal_type.name, animals_path(:animal_type_id => animal_type.id), class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(Animal).index? %>
               <% end %>
-
-              <div class="header_link">
-                <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" if policy(MedicalProcedure).index?  %>
-              </div>
-              <div class="icursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
-                <%= link_to t('menu.header.calendar'), medical_calendar_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(MedicalProcedure).index? %>
-              </div>
-            
-              <div>
-                <%= content_tag :span, t('menu.header.аdditions'), class: "header_link" %>
-              </div>
-              <div class="cursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
-                <%= link_to t('menu.header.animal_types'), animal_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_types_path))}" if policy(AnimalType).index? %>
-                <%= link_to t('menu.header.animal_statuses'), animal_statuses_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_statuses_path))}" if policy(AnimalStatus).index? %>
-                <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(Aviary).index? %>
-                <%= link_to t('menu.header.procedure_types'), procedure_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(procedure_types_path))}" if policy(ProcedureType).index? %>
-                <%= link_to t('menu.header.admins'), admin_users_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(admin_users_path))}" if policy(AdminUser).index? %>
-              </div>
-              <div class="header_link">
-                <%= link_to t('menu.header.cart'), cart_path, class: "#{class_names(active: current_page?(cart_path))}" if policy(Cart).show? %>
-                <%= turbo_frame_tag "cart_total" do %>
-                  <%= render 'cart/cart_total' %>
-                <% end %>
-              </div>
-            
-              <div class="header_link">
-                <% if I18n.locale == :en %>
-                  <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "" %>
-                <% else %>
-                  <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "" %>
-                <% end %>
-              </div>
+            </div>
+            <div class="header_link">
+              <%= link_to t('menu.header.medicine'), medical_procedures_path, class: "#{class_names(active: current_page?(medical_procedures_path))}" if policy(MedicalProcedure).index?  %>
+            </div>
+            <div class="icursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
+              <%= link_to t('menu.header.calendar'), medical_calendar_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(MedicalProcedure).index? %>
+            </div>
+            <div>
+              <%= content_tag :span, t('menu.header.аdditions'), class: "header_link" %>
+            </div>
+            <div class="cursor-pointer flex flex-col justify-start ml-4 py-1" onClick="">
+              <%= link_to t('menu.header.animal_types'), animal_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_types_path))}" if policy(AnimalType).index? %>
+              <%= link_to t('menu.header.animal_statuses'), animal_statuses_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_statuses_path))}" if policy(AnimalStatus).index? %>
+              <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(Aviary).index? %>
+              <%= link_to t('menu.header.procedure_types'), procedure_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(procedure_types_path))}" if policy(ProcedureType).index? %>
+              <%= link_to t('menu.header.admins'), admin_users_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(admin_users_path))}" if policy(AdminUser).index? %>
+            </div>
+            <div class="header_link">
+              <%= link_to t('menu.header.cart'), cart_path, class: "#{class_names(active: current_page?(cart_path))}" if policy(Cart).show? %>
+              <%= turbo_frame_tag "cart_total" do %>
+                <%= render 'cart/cart_total' %>
+              <% end %>
+            </div>
+          
+            <div class="header_link">
+              <% if I18n.locale == :en %>
+                <%= link_to t('menu.languages.ru'), change_locale_path(:ru), class: "" %>
+              <% else %>
+                <%= link_to t('menu.languages.en'), change_locale_path(:en), class: "" %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
