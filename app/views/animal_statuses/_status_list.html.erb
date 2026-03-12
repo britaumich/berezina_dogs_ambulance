@@ -14,15 +14,15 @@
             <td class="mi_tbody_td">
               <%= animal_status.name %>
             </td>
-            <% if policy(animal_status).edit? %>
-              <td class="mi_tbody_td">
+            <td class="mi_tbody_td">
+              <% if policy(animal_status).edit? %>
                 <%= link_to edit_animal_status_path(animal_status), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(animal_status)}_edit" } do%>
                   <i class="fa fa-pencil text-950"></i>
                 <% end %>
-              </td>
-            <% end %>
-            <% if policy(animal_status).destroy? %>
-              <td class="mi_tbody_td">
+              <% end %>
+            </td>
+            <td class="mi_tbody_td">
+              <% if policy(animal_status).destroy? %>
                 <% if animal_status.id == 1 %>
                   <%= t('text.The default status cannot be removed') %>
                 <% else %>
@@ -30,8 +30,8 @@
                     <i class="fa fa-trash-can text-red-950"></i>
                   <% end %>
                 <% end %>
-              </td>
-            <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
