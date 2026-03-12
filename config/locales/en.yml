@@ -122,6 +122,12 @@ en:
         name_georgian: "Name in Georgian"
         chip: "Chip"
         animal_status: "Status"
+      admin_user:
+        email: "Email"
+        role: "Role"
+        roles:
+          admin: "Administrator"
+          employee: "Employee"
       medical_procedure:
         date_completed: "Date Completed"
         date_planned: "Date Planned"

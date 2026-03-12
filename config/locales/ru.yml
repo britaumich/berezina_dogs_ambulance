@@ -195,6 +195,9 @@ ru:
       admin_user:
         email: "Адрес электронной почты"
         role: "Роль"
+        roles:
+          admin: "Администратор"
+          employee: "Сотрудник"
     errors:
       models:
         animal:

@@ -17,7 +17,7 @@
 
   <div class="my-5">
     <%= form.label :role %>
-    <%= form.select :role, AdminUser.roles.keys.map { |r| [AdminUser.human_attribute_name("#{r}"), r] }, {}, class: "input_text_field", required: true %>
+    <%= form.select :role, translated_enum_options(AdminUser, :role), { selected: (admin_user.role.blank? ? 'employee' : admin_user.role) }, class: "input_text_field", required: true %>
   </div>
 
   <div class="inline">

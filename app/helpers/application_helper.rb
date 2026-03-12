@@ -260,4 +260,21 @@ module ApplicationHelper
       procedure.name + " - " + Animal.find(medical_procedure[0].animal_id).nickname
     end
   end
+
+  # Helper method to get translated enum values
+  def translated_enum_options(model, enum_field)
+    model.send(enum_field.to_s.pluralize).map do |key, _|
+      translation_key = "activerecord.attributes.#{model.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{key}"
+      [I18n.t(translation_key, default: key.humanize), key]
+    end
+  end
+
+  # Helper method to display translated enum value for a specific instance
+  def translated_enum_value(instance, enum_field)
+    return '' unless instance.send(enum_field).present?
+    
+    enum_value = instance.send(enum_field)
+    translation_key = "activerecord.attributes.#{instance.class.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{enum_value}"
+    I18n.t(translation_key, default: enum_value.humanize)
+  end
 end
