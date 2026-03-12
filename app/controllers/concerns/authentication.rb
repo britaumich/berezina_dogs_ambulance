@@ -55,12 +55,12 @@ module Authentication
     end
 
     def start_new_session_for(user)
-      user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |session|
-        Current.session = session
-        cookies.signed.permanent[:session_id] = { value: session.id, httponly: true, same_site: :lax }
+      user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |user_session|
+        Current.session = user_session
+        cookies.signed.permanent[:session_id] = { value: user_session.id, httponly: true, same_site: :lax }
         # Set role based on admin_user table
         admin_user = AdminUser.find_by(email: user.email_address)
-        session()[:role] = admin_user&.role || nil
+        session[:role] = admin_user&.role || nil
         # role changes require re-authentication.
       end
     end
