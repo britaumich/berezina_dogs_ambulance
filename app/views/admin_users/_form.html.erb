@@ -15,6 +15,11 @@
     <%= form.text_field :email, class: "input_text_field", required: true %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :role %>
+    <%= form.select :role, AdminUser.roles.keys.map { |r| [AdminUser.human_attribute_name("#{r}"), r] }, {}, class: "input_text_field", required: true %>
+  </div>
+
   <div class="inline">
     <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
   </div>

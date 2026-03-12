@@ -194,6 +194,7 @@ ru:
         description: "Описание"
       admin_user:
         email: "Адрес электронной почты"
+        role: "Роль"
     errors:
       models:
         animal:
