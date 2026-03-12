@@ -272,8 +272,8 @@ module ApplicationHelper
   # Helper method to display translated enum value for a specific instance
   def translated_enum_value(instance, enum_field)
     return '' unless instance.send(enum_field).present?
-    
     enum_value = instance.send(enum_field)
+    return '' if enum_value.blank?
     translation_key = "activerecord.attributes.#{instance.class.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{enum_value}"
     I18n.t(translation_key, default: enum_value.humanize)
   end
