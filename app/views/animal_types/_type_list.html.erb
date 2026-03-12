@@ -18,20 +18,24 @@
             <td class="mi_tbody_td">
               <%= animal_type.plural_name %>
             </td>
-            <td class="mi_tbody_td">
-              <%= link_to edit_animal_type_path(animal_type), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(animal_type)}_edit" } do%>
-                <i class="fa fa-pencil text-950"></i>
-              <% end %>
-            </td>
-            <td class="mi_tbody_td">
-            <% if animal_type.id == 1 %>
-                <%= t('text.The default type cannot be removed') %>
-              <% else %>
-                <%= link_to animal_type_path(animal_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_type)}_delete" }  do %>
-                  <i class="fa fa-trash-can text-red-950"></i>
+            <% if policy(animal_type).edit? %>
+              <td class="mi_tbody_td">
+                <%= link_to edit_animal_type_path(animal_type), data: { turbo_frame: "_top" }, aria: { label: "#{dom_id(animal_type)}_edit" } do %>
+                  <i class="fa fa-pencil text-950"></i>
                 <% end %>
-              <% end %>
-            </td>
+              </td>
+            <% end %>
+            <% if policy(animal_type).destroy? %>
+              <td class="mi_tbody_td">
+              <% if animal_type.id == 1 %>
+                  <%= t('text.The default type cannot be removed') %>
+                <% else %>
+                  <%= link_to animal_type_path(animal_type), data: { turbo_confirm: t('text.Are you sure?'), turbo_method: :delete}, aria: { label: "#{dom_id(animal_type)}_delete" }  do %>
+                    <i class="fa fa-trash-can text-red-950"></i>
+                  <% end %>
+                <% end %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
