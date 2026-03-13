@@ -4,7 +4,7 @@ class AviaryPolicy  < ApplicationPolicy
   attr_reader :user, :role, :record
 
   def index?
-      admin_user? || employee_user?
+    admin_user? || employee_user?
   end
 
   def show?
