@@ -49,21 +49,6 @@ class ApplicationPolicy
 
   def employee_user?
     authenticated? && role == 'employee'
-   end
-
-  class Scope
-    def initialize(context, scope)
-      @user = context[:user]
-      @role = context[:role]
-      @scope = scope
-    end
-
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
   end
+
 end

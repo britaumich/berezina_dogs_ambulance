@@ -51,19 +51,4 @@ class AnimalPolicy  < ApplicationPolicy
     employee_user? || admin_user?
   end
 
-  class Scope
-    def initialize(context, scope)
-      @user = context[:user]
-      @role = context[:role]
-      @scope = scope
-    end
-
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :role, :scope
-  end
 end
