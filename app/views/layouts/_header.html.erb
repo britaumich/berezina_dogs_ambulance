@@ -44,7 +44,7 @@
                   <%= link_to t('menu.header.animal_statuses'), animal_statuses_path, class: "nav-sub-link" if policy(AnimalStatus).index? %>
                   <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link" if policy(Aviary).index? %>
                   <%= link_to t('menu.header.procedure_types'), procedure_types_path, class: "nav-sub-link" if policy(ProcedureType).index? %>
-                  <%= link_to t('menu.header.admins'), admin_users_path, class: "nav-sub-link" if policy(AdminUser).index? %>
+                  <%= link_to t('menu.header.users'), admin_users_path, class: "nav-sub-link" if policy(AdminUser).index? %>
                 </div>
               </div>
               <div class="flex items-center justify-between">
@@ -165,7 +165,7 @@
               <%= link_to t('menu.header.animal_statuses'), animal_statuses_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(animal_statuses_path))}" if policy(AnimalStatus).index? %>
               <%= link_to t('menu.header.aviaries'), aviaries_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(aviaries_path))}" if policy(Aviary).index? %>
               <%= link_to t('menu.header.procedure_types'), procedure_types_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(procedure_types_path))}" if policy(ProcedureType).index? %>
-              <%= link_to t('menu.header.admins'), admin_users_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(admin_users_path))}" if policy(AdminUser).index? %>
+              <%= link_to t('menu.header.users'), admin_users_path, class: "nav-sub-link-mobile #{class_names(active: current_page?(admin_users_path))}" if policy(AdminUser).index? %>
             </div>
             <div class="header_link">
               <%= link_to t('menu.header.cart'), cart_path, class: "#{class_names(active: current_page?(cart_path))}" if policy(Cart).show? %>

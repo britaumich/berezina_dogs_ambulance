@@ -30,6 +30,7 @@
 en:
   hello: "Hello world"
   text:
+    users: "Users"
     Add to Cart: "Add to Cart"
     Contains: "Contains"
     From: "From"
@@ -41,7 +42,7 @@ en:
     Aviary: "Enclosure"
     Aviaries: "Enclosures"
     Add To Enclosure: "Add To Enclosure"
-    section: "секция"
+    section: "Section"
     Citizens: "Citizens"
     Citizen: "Citizen"
     Animal Type: "Animal Type"
@@ -100,6 +101,7 @@ en:
     header:
       aviaries: "Enclosures"
       аdditions: "Additions"
+      users: "Users"
   activerecord:
     attributes:
       animal:
