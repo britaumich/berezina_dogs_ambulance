@@ -279,7 +279,6 @@ module ApplicationHelper
   end
 
   def display_user_with_role(user)
-    current_role = session[:role]
     role_text = current_role.present? ? translated_enum_value_by_key('admin_user', :role, current_role) : ''
     "#{user.email_address} #{role_text}"
   end
