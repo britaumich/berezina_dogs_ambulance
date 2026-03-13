@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class AnimalStatusPolicy  < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def index?
-    authenticated?
+    admin_user? || employee_user?
   end
 
   def create?
-    authenticated?
+    admin_user?
   end
 
   def new?
@@ -16,7 +16,7 @@ class AnimalStatusPolicy  < ApplicationPolicy
   end
 
   def update?
-    authenticated?
+    admin_user?
   end
 
   def edit?
@@ -24,21 +24,7 @@ class AnimalStatusPolicy  < ApplicationPolicy
   end
 
   def destroy?
-    authenticated?
+    admin_user?
   end
-
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
-  end
+  
 end

@@ -30,6 +30,7 @@
 en:
   hello: "Hello world"
   text:
+    users: "Users"
     Add to Cart: "Add to Cart"
     Contains: "Contains"
     From: "From"
@@ -41,7 +42,7 @@ en:
     Aviary: "Enclosure"
     Aviaries: "Enclosures"
     Add To Enclosure: "Add To Enclosure"
-    section: "секция"
+    section: "Section"
     Citizens: "Citizens"
     Citizen: "Citizen"
     Animal Type: "Animal Type"
@@ -67,11 +68,13 @@ en:
     Enclosure has animals and can't be deleted: "Enclosure has animals and can't be deleted"
     There are animals with this status and it can't be deleted: "There are animals with this status and it can't be deleted"
     There are animals with this type and it can't be deleted: "There are animals with this type and it can't be deleted"
+    User has associated data and was not deleted: "The user has associated data and was not deleted"
     To remove a sibling, please check the corresponding checkbox: "To remove a sibling, please check the corresponding checkbox"
     To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved"
     Updated on: "Updated on"
     at: "at"
     Please set a different main picture before deleting this one: "Please set a different main picture before deleting this one"
+    Admin user could not be deleted: "Admin user could not be deleted. "
   label:
     sort: "Sort"
     order: "Order"
@@ -98,6 +101,7 @@ en:
     header:
       aviaries: "Enclosures"
       аdditions: "Additions"
+      users: "Users"
   activerecord:
     attributes:
       animal:
@@ -122,6 +126,12 @@ en:
         name_georgian: "Name in Georgian"
         chip: "Chip"
         animal_status: "Status"
+      admin_user:
+        email: "Email"
+        role: "Role"
+        roles:
+          admin: "Administrator"
+          employee: "Employee"
       medical_procedure:
         date_completed: "Date Completed"
         date_planned: "Date Planned"
@@ -136,6 +146,8 @@ en:
            invalid: "Main picture must be one of the animal's attached pictures"
         aviary:
           is_already_in_this_aviary: "is already in this enclosure"
+        admin_user:
+          one_admin_user_must_exist: "At least one admin user must exist."
   forms:
     buttons:
       edit: "Edit"
@@ -181,7 +193,9 @@ en:
       Registered successfully: "Registered successfully"
       Registered successfully: "Registered successfully"
       Try another email address or password: "Try another email address or password"
+      access_denied: "Access denied. Contact administrator."
       Sterilization added: "Sterilization added"
+      Email address is not allowed to register: "This email address cannot be used for registration"
   gender_lists:
     "Unspecified": Unspecified
     "Male": Male

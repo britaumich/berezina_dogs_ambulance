@@ -8,6 +8,12 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate_by(params.permit(:email_address, :password))
+      # Check if user's email exists in AdminUser table
+      unless AdminUser.exists?(email: user.email_address)
+        redirect_to new_session_path, alert: t('forms.messages.access_denied')
+        return
+      end
+      
       start_new_session_for user
       redirect_to after_authentication_url
     else

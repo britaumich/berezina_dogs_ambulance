@@ -260,4 +260,33 @@ module ApplicationHelper
       procedure.name + " - " + Animal.find(medical_procedure[0].animal_id).nickname
     end
   end
+
+  # Helper method to get translated enum values
+  def translated_enum_options(model, enum_field)
+    model.send(enum_field.to_s.pluralize).map do |key, _|
+      translation_key = "activerecord.attributes.#{model.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{key}"
+      [I18n.t(translation_key, default: key.humanize), key]
+    end
+  end
+
+  # Helper method to display translated enum value for a specific instance
+  def translated_enum_value(instance, enum_field)
+    enum_value = instance.send(enum_field)
+    return '' if enum_value.blank?
+    translation_key = "activerecord.attributes.#{instance.class.model_name.i18n_key}.#{enum_field.to_s.pluralize}.#{enum_value}"
+    I18n.t(translation_key, default: enum_value.humanize)
+  end
+
+  def display_user_with_role(user)
+    role_text = current_role.present? ? translated_enum_value_by_key('admin_user', :role, current_role) : ''
+    "#{user.email_address} #{role_text}"
+  end
+
+  # Helper method to translate enum value by key without instance
+  def translated_enum_value_by_key(model_name, enum_field, enum_value)
+    return '' if enum_value.blank?
+    translation_key = "activerecord.attributes.#{model_name}.#{enum_field.to_s.pluralize}.#{enum_value}"
+    I18n.t(translation_key, default: enum_value.humanize)
+  end
+
 end

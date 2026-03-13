@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class AnimalPolicy  < ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :role, :record
 
   def index?
-    true
+    employee_user? || admin_user?
   end
 
   def show?
-    true
+    employee_user? || admin_user?
   end
 
   def duplicate?
@@ -16,7 +16,7 @@ class AnimalPolicy  < ApplicationPolicy
   end
 
   def create?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def new?
@@ -24,7 +24,7 @@ class AnimalPolicy  < ApplicationPolicy
   end
 
   def update?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def edit?
@@ -32,37 +32,23 @@ class AnimalPolicy  < ApplicationPolicy
   end
 
   def destroy?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def upload_pictures?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def delete_picture?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def delete_medical_procedure?
-    authenticated?
+    employee_user? || admin_user?
   end
 
   def set_main_picture?
-    authenticated?
+    employee_user? || admin_user?
   end
 
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
-  end
 end

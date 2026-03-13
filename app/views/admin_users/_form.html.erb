@@ -15,6 +15,11 @@
     <%= form.text_field :email, class: "input_text_field", required: true %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :role %>
+    <%= form.select :role, translated_enum_options(AdminUser, :role), { selected: (admin_user.role.blank? ? 'employee' : admin_user.role) }, class: "input_text_field", required: true %>
+  </div>
+
   <div class="inline">
     <%= form.submit t('forms.buttons.submit'), class: "primary_button" %>
   </div>

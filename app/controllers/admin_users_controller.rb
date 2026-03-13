@@ -47,14 +47,19 @@ class AdminUsersController < ApplicationController
 
   # DELETE /admin_users/1 or /admin_users/1.json
   def destroy
-    email = @admin_user.email
-    if @admin_user.destroy
-      User.find_by(email_address: email)&.destroy!
-      flash.now[:notice] = t('forms.messages.Admin user was successfully deleted')
-    else
-      flash.now[:alert] = t('text.Admin user could not be deleted ')
-      flash.now[:alert] += @admin_user.errors.full_messages.join(', ')
+    begin
+      email = @admin_user.email
+      if @admin_user.destroy
+        User.find_by(email_address: email)&.destroy!
+        flash.now[:notice] = t('forms.messages.Admin user was successfully deleted')
+      else
+        flash.now[:alert] = t('text.Admin user could not be deleted')
+        flash.now[:alert] += @admin_user.errors.full_messages.join(', ')
+      end
+    rescue ActiveRecord::InvalidForeignKey
+      flash.now[:alert] = t('text.User has associated data and was not deleted')
     end
+    
     @admin_users = AdminUser.order(:email)
     respond_to do |format|
       format.turbo_stream do
@@ -62,7 +67,6 @@ class AdminUsersController < ApplicationController
                                 turbo_stream.update('flash', partial: 'layouts/notification') ]
       end
     end
-
   end
 
   private
@@ -74,6 +78,6 @@ class AdminUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_user_params
-      params.expect(admin_user: [ :email ])
+      params.expect(admin_user: [ :email, :role ])
     end
 end
