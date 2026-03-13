@@ -89,6 +89,7 @@ ru:
     Enclosure has animals and can't be deleted: "Вольер содержит животных и не может быть удален"
     There are animals with this status and it can't be deleted: "Есть животные с этим статусом, поэтому статус нельзя удалить"
     There are animals with this type and it can't be deleted: "Есть животные этого вида, поэтому вид нельзя удалить"
+    User has associated data and was not deleted: "Этот пользователь создавал записи о животных и не был удален"
     To remove a sibling, please check the corresponding checkbox: "Чтобы удалить брата или сестру, поставьте галочку около имени"
     To add a sibling please select one from the drop-down list; when duplicating, siblings will be preserved: "Чтобы добавить брата или сестру, выберите имя из списка; при дублировании братья и сестры будут сохранены"
     Updated on: "Обновлено"
@@ -97,6 +98,7 @@ ru:
     Animal Details: "Детали"
     Fill out the forms to apply changes to all animals from the list: "Заполните формы, чтобы применить изменения ко всему списку"
     Duplicate: "Копия"
+    Admin user could not be deleted: "Администратор не может быть удален. "
   helpers:
     page_entries_info:
       one_page:
@@ -206,6 +208,8 @@ ru:
             invalid: "Главная фотография должна быть одной из прикрепленных к этому животному"
         section:
           is_already_in_this_aviary: "уже есть в этом вольере"
+        admin_user:
+          one_admin_user_must_exist: "Должен быть хотя бы один администратор"
       messages:
         blank: "- поле не может буть пустым"
   forms:
@@ -238,6 +242,7 @@ ru:
       Admin user was successfully deleted: "Администратор удален"
       Registered successfully: "Вы зарегистрированы"
       Try another email address or password: "Попробуйте другой адрес электронной почты или пароль"
+      access_denied: "Доступ запрещен. Обратитесь к администратору."
       Medical procedures were successfully updated: "Медицинские процедуры обновлены"
       Error updating database records: "Ошибка обновления записей в базе данных"
       Sterilization added: "Стерилизация добавлена"

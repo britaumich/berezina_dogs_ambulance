@@ -20,9 +20,9 @@ class AdminUser < ApplicationRecord
   private
 
   def one_admin_user_should_exist
-    if AdminUser.count == 1
-      errors.add(:base, "At least one admin user must exist.")
+    if role_admin? && AdminUser.role_admin.count == 1
+      errors.add(:base, I18n.t("activerecord.errors.models.admin_user.one_admin_user_must_exist"))
       throw(:abort)
     end
   end
-end
+end 
