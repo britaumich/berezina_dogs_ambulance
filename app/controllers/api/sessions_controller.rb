@@ -2,7 +2,7 @@ class Api::SessionsController < Api::BaseController
   # Allow unauthenticated access for login/signup endpoints
   skip_before_action :require_api_authentication, only: [:create]
   
-  # POST /api/sessions
+  # POST /api/session
   def create
     if user = User.authenticate_by(params.permit(:email_address, :password))
       # Check if user's email exists in AdminUser table
@@ -24,7 +24,7 @@ class Api::SessionsController < Api::BaseController
     end
   end
 
-  # DELETE /api/sessions
+  # DELETE /api/session
   def destroy
     current_session&.destroy
     render json: { message: 'Logged out successfully' }, status: :ok
