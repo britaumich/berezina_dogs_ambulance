@@ -1,5 +1,4 @@
 class Api::AnimalsController < Api::BaseController
-  include ApplicationHelper
   
   def index
     @animal_type_id = params[:animal_type_id].present? ? params[:animal_type_id] : AnimalType.find_by(name: 'собака').id
@@ -26,8 +25,8 @@ class Api::AnimalsController < Api::BaseController
     # Handle sorting
     if params[:sort].present?
       @sort_by = params[:sort]
-      @order = params[:order] 
-      @q.sorts = @sort_by + ' ' + @order
+      @order = params[:order].presence || 'asc'
+      @q.sorts = "#{@sort_by} #{@order}"
     end
     
     @animals = @q.result.includes(:animal_type, :aviary, :animal_status)
