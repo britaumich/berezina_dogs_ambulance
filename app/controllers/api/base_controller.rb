@@ -67,7 +67,17 @@ class Api::BaseController < ActionController::Base
   end
 
   def handle_api_error(exception)
-    render json: { error: exception.message }, status: :internal_server_error
+    # Log full error details server-side
+    Rails.logger.error("[API ERROR] #{exception.class}: #{exception.message}")
+    Rails.logger.error(exception.backtrace.join("\n")) if exception.backtrace
+    # Return a generic error message to clients
+    error_response = { error: 'Internal server error' }
+    error_response[:request_id] = request.request_id if request.respond_to?(:request_id)
+    # In non-production environments, include more detail to aid debugging
+    if defined?(Rails) && (Rails.env.development? || Rails.env.test?)
+      error_response[:details] = exception.message
+    end
+    render json: error_response, status: :internal_server_error
   end
 
   def handle_not_found(exception)
