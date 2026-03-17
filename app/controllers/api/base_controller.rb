@@ -59,6 +59,15 @@ class Api::BaseController < ActionController::Base
   end
 
   def set_json_format
+    # Only default to JSON when the client hasn't explicitly requested another format.
+    # Respect an explicit format in the URL/params (e.g. /api/animals.csv).
+    return if params[:format].present?
+    # Respect a specific non-JSON Accept header when provided.
+    accept = request.headers['Accept']
+    if accept.present? && !accept.include?('*/*') && !accept.include?('application/json')
+      return
+    end
+    # Fall back to JSON as the default format for API responses.
     request.format = :json
   end
 
