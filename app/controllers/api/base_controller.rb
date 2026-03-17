@@ -1,6 +1,6 @@
 class Api::BaseController < ActionController::Base
-  # Skip CSRF protection for API endpoints (they use token authentication)
-  skip_forgery_protection
+  # Use a null session for API endpoints to avoid CSRF issues while keeping state stateless
+  protect_from_forgery with: :null_session
   
   # Include Pundit for authorization
   include Pundit::Authorization
