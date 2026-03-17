@@ -1,6 +1,4 @@
 class MedicalProceduresController < ApplicationController
-  allow_unauthenticated_access only: [ :index, :show ]
-  before_action :resume_session
   before_action :set_medical_procedure, only: %i[ show edit update destroy ]
 
   # GET /medical_procedures or /medical_procedures.json

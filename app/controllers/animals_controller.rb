@@ -1,7 +1,5 @@
 class AnimalsController < ApplicationController
   include ApplicationHelper
-  allow_unauthenticated_access only: [ :index, :show ]
-  before_action :resume_session
   before_action :set_animal, only: %i[ show duplicate edit update upload_pictures set_main_picture destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
@@ -17,7 +15,7 @@ class AnimalsController < ApplicationController
     end
     if params[:sort].present?
       @sort_by = params[:sort]
-      @order = params[:order]
+      @order = params[:order].presence || 'asc'
     else
       @sort_by = nil
     end
@@ -36,7 +34,7 @@ class AnimalsController < ApplicationController
     @arival_date_lteq = params[:q].present? && params[:q][:arival_date_lteq].present? ? params[:q][:arival_date_lteq] : nil
     @arival_date_gteq = params[:q].present? && params[:q][:arival_date_gteq].present? ? params[:q][:arival_date_gteq] : nil
     if @sort_by.present?
-      @q.sorts = @sort_by + ' ' + @order
+      @q.sorts = "#{@sort_by} #{@order}"
     end
     @animals = @q.result.includes(:animal_type, :aviary, :animal_status).page(params[:page])
     authorize @animals
