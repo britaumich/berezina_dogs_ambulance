@@ -15,7 +15,7 @@ class Api::SessionsController < Api::BaseController
       session = create_api_session_for(user)
       
       render json: { 
-        token: session.id,
+        token: session.signed_id(purpose: 'api_session', expires_in: 30.days),
         user_email: user.email_address,
         expires_at: 30.days.from_now.iso8601
       }, status: :ok

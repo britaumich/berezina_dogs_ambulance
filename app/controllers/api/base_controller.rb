@@ -21,9 +21,16 @@ class Api::BaseController < ActionController::Base
 
   def authenticate_token
     authenticate_with_http_token do |token, options|
-      # Find user by token - we'll store tokens in a simple way for now
-      user_session = Session.joins(:user).find_by(id: token)
-      if user_session && token_valid?(user_session)
+      # Find user by a signed, expiring token instead of using the numeric primary key
+      begin
+        user_session = Session.joins(:user).find_signed(
+          token,
+          purpose: 'api_session'
+        )
+      rescue ActiveSupport::MessageVerifier::InvalidSignature, ArgumentError => e
+        user_session = nil
+      end
+      if user_session 
         @current_user = user_session.user
         @current_session = user_session
         true
@@ -31,11 +38,6 @@ class Api::BaseController < ActionController::Base
         false
       end
     end
-  end
-
-  def token_valid?(session)
-    # Token is valid if session was created within last 30 days
-    session.created_at > 30.days.ago
   end
 
   def current_user
