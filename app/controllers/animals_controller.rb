@@ -1,6 +1,5 @@
 class AnimalsController < ApplicationController
   include ApplicationHelper
-  before_action :resume_session
   before_action :set_animal, only: %i[ show duplicate edit update upload_pictures set_main_picture destroy delete_medical_procedure ]
 
   # GET /animals or /animals.json
@@ -249,6 +248,10 @@ class AnimalsController < ApplicationController
     def set_animal
       @animal = Animal.find(params.expect(:id))
       authorize @animal
+    end
+
+    def csv_format_requested?
+      params[:format] == 'csv'
     end
 
     # Only allow a list of trusted parameters through.
