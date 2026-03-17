@@ -1,6 +1,5 @@
 class AnimalsController < ApplicationController
   include ApplicationHelper
-  allow_unauthenticated_access only: [ :index, :show ]
   before_action :resume_session
   before_action :set_animal, only: %i[ show duplicate edit update upload_pictures set_main_picture destroy delete_medical_procedure ]
 
