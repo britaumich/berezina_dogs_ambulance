@@ -250,10 +250,6 @@ class AnimalsController < ApplicationController
       authorize @animal
     end
 
-    def csv_format_requested?
-      params[:format] == 'csv'
-    end
-
     # Only allow a list of trusted parameters through.
     def animal_params
       params.expect(animal: [ :chip, :name_english, :name_georgian, :nickname, :surname, :sterilization, :gender, :size, :arival_date, :from_people, :from_place, :birth_year, :birth_day,
