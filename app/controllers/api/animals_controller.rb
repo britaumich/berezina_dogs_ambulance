@@ -35,7 +35,8 @@ class Api::AnimalsController < Api::BaseController
     respond_to do |format|
       format.json { 
         render json: @animals.as_json(
-          include: [:animal_type, :aviary, :animal_status]
+          include: [:animal_type, :aviary, :animal_status],
+          methods: [:main_picture_url]
         )
       }
       format.csv { 

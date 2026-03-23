@@ -108,6 +108,11 @@ class Animal < ApplicationRecord
     end
   end
 
+  def main_picture_url
+    return nil unless main_picture&.attached?
+    Rails.application.routes.url_helpers.url_for(main_picture)
+  end
+
   def set_main_picture(attachment_or_blob_id)
     if attachment_or_blob_id.is_a?(ActiveStorage::Attachment)
       blob_id = attachment_or_blob_id.blob_id
@@ -138,9 +143,9 @@ class Animal < ApplicationRecord
 
   def self.to_csv
     fields = %w[ id chip name_english name_georgian nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
-      graduation medical_history birth_year death_year parent_id ]
+      graduation medical_history birth_year death_year parent_id main_picture_url ]
     header = %w[ id chip name_english name_georgian nickname surname gender size animal_type_id sterilization aviary_id section_id animal_status_id arival_date color distinctive_feature from_people from_place
-      graduation medical_history birth_day death_day parent_id children siblings notes ]
+      graduation medical_history birth_day death_day parent_id children siblings notes main_picture_url ]
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     csv_string = CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << header_to_csv
@@ -166,6 +171,8 @@ class Animal < ApplicationRecord
             show_date(animal.arival_date)
           when 'parent_id'
             animal.parent&.display_name
+          when 'main_picture_url'
+            animal.main_picture_url
           else
             animal.attributes.values_at(field)[0]
           end
