@@ -109,8 +109,13 @@ class Animal < ApplicationRecord
   end
 
   def main_picture_url
-    return nil unless main_picture&.attached?
-    Rails.application.routes.url_helpers.url_for(main_picture)
+    return nil unless main_picture&.present?
+    # For S3, get the direct service URL
+    if Rails.application.config.active_storage.service == :amazon
+      main_picture.blob.key
+    else
+      Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.asset_host)
+    end
   end
 
   def set_main_picture(attachment_or_blob_id)
@@ -149,7 +154,7 @@ class Animal < ApplicationRecord
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     csv_string = CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << header_to_csv
-      find_each do |animal|
+      all.each do |animal|
         row = []
         fields.each do |field|
           value = case field
