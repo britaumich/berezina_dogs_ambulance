@@ -112,9 +112,9 @@ class Animal < ApplicationRecord
     return nil unless main_picture&.present?
     # For S3, get the direct service URL
     if Rails.application.config.active_storage.service == :amazon
-      Rails.application.config.asset_host + "/" + main_picture.blob.key
+      Rails.application.x.active_storage_host + "/" + main_picture.blob.key
     else
-      Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.asset_host)
+      Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.config.x.active_storage_host)
     end
   end
 

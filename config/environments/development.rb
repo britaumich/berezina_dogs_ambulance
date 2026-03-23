@@ -36,7 +36,9 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   # config.active_storage.service = :local
   config.active_storage.service = :local
-  config.asset_host = "http://localhost:3000"
+  if ENV["ASSET_HOST"]
+    config.x.active_storage_host = ENV["ASSET_HOST"]
+  end
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
