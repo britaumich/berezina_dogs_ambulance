@@ -116,7 +116,7 @@ class Animal < ApplicationRecord
       if Rails.application.config.active_storage.service == :amazon
         main_picture.url
       else
-        Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.asset_host)
+        Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.x.active_storage_host)
       end
     rescue => e
       Rails.logger.error "Failed to generate main_picture_url for animal #{self.id}: #{e.message}"
