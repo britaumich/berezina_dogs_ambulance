@@ -110,11 +110,17 @@ class Animal < ApplicationRecord
 
   def main_picture_url
     return nil unless main_picture&.present?
-    # For S3, get the direct service URL
-    if Rails.application.config.active_storage.service == :amazon
-      Rails.application.x.active_storage_host + "/" + main_picture.blob.key
-    else
-      Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.config.x.active_storage_host)
+    
+    begin
+      # For S3, get the direct service URL
+      if Rails.application.config.active_storage.service == :amazon
+        main_picture.url
+      else
+        Rails.application.routes.url_helpers.rails_blob_url(main_picture, host: Rails.application.config.asset_host)
+      end
+    rescue => e
+      Rails.logger.error "Failed to generate main_picture_url for animal #{self.id}: #{e.message}"
+      nil
     end
   end
 
@@ -154,7 +160,7 @@ class Animal < ApplicationRecord
     header_to_csv = header.map { |field| I18n.t("activerecord.attributes.animal.#{field}", default: field.humanize) }
     csv_string = CSV.generate(headers: true, encoding: Encoding::UTF_8) do |csv|
       csv << header_to_csv
-      all.each do |animal|
+      find_each do |animal|
         row = []
         fields.each do |field|
           value = case field
