@@ -1,7 +1,7 @@
 class Api::AnimalsController < Api::BaseController
   
   def index
-    @animals = Animal.includes(:animal_type, :aviary, :animal_status).order(:id)
+    @animals = Animal.includes(:animal_type, :aviary, :animal_status, pictures_attachments: :blob).order(:id)
     authorize @animals
     
     respond_to do |format|
