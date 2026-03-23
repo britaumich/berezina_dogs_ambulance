@@ -31,7 +31,6 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
-  config.asset_host = "https://dog-ambulance-storage-123456.s3.us-east-2.amazonaws.com"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
@@ -40,6 +39,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   # config.active_storage.service = :local
   config.active_storage.service = :amazon
+  config.x.active_storage_host = "https://dog-ambulance-storage-123456.s3.us-east-2.amazonaws.com"
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
