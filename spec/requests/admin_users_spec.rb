@@ -15,7 +15,7 @@ require 'rails_helper'
 RSpec.describe "/admin_users", type: :request do
 
   before(:each) do
-    admin_user = FactoryBot.create(:admin_user)
+    admin_user = FactoryBot.create(:admin_user, role: :admin)
     user = FactoryBot.create(:user, email_address: admin_user.email)
     animal_type_dog = FactoryBot.create(:animal_type, name: 'собака', plural_name: 'собаки')
     sign_in(user)
@@ -25,7 +25,7 @@ RSpec.describe "/admin_users", type: :request do
   # AdminUser. As you add validations to AdminUser, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { email: "test@test.com" }
+    { email: "test@test.com", role: :admin }
   }
 
   let(:invalid_attributes) {
