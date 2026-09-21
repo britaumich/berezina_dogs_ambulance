@@ -25,7 +25,7 @@ RSpec.describe "/admin_users", type: :request do
   # AdminUser. As you add validations to AdminUser, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    { email: "test@test.com" }
+    { email: "test@test.com", role: :admin }
   }
 
   let(:invalid_attributes) {
