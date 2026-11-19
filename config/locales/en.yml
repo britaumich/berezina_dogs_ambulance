@@ -99,8 +99,17 @@ en:
       ru: "Русский"
       en: "English"
     header:
-      aviaries: "Enclosures"
       аdditions: "Additions"
+      medicine: "Medicine"
+      calendar: "Calendar"
+      animal_types: "Animal Types"
+      animal_statuses: "Animal Statuses"
+      procedures: "Procedures"
+      procedure_types: "Procedure Types"
+      animals: "Animals"
+      aviaries: "Enclosures"
+      language: "Language"
+      cart: "Cart"
       users: "Users"
   activerecord:
     attributes:
