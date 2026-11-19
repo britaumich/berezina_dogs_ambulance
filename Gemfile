@@ -1,9 +1,12 @@
 source "https://rubygems.org"
 
-ruby "3.3.6"
+ruby "4.0.10"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.0"
+
+# No longer a default gem since Ruby 3.4
+gem "csv"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
